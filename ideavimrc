@@ -1,0 +1,146 @@
+" ===
+" === Base
+" ===
+set nu
+set rnu
+set showmode
+set showcmd
+set hlsearch
+set incsearch
+set ignorecase
+set smartcase
+set scrolloff=5
+set timeoutlen=5000
+" 系统剪切板
+set clipboard^=unnamed,unnamedplus
+" 中英文输入法自动切换
+"set keep-english-in-normal
+
+" ===
+" === Plugins
+" ===
+set highlightedyank
+set ideajoin
+set multiple-cursors
+
+" 仿真NERDTree插件
+" https://github.com/JetBrains/ideavim/wiki/NERDTree-support
+set NERDTree
+nmap <leader>e :NERDTreeToggle<CR>
+nmap <leader>o :NERDTreeFind<CR>
+
+" https://github.com/JetBrains/ideavim/blob/master/doc/IdeaVim%20Plugins.md
+Plug 'vim-scripts/ReplaceWithRegister'
+nmap rs  <Plug>ReplaceWithRegisterOperator
+nmap rss <Plug>ReplaceWithRegisterLine
+xmap rs  <Plug>ReplaceWithRegisterVisual
+
+set sneak
+set surround
+"set which-key
+
+" ===
+" === Mappings
+" ===
+" Map <space> to leader
+let mapleader=" "
+inoremap jj <esc>
+nmap <Leader>Q :qa<CR>
+nmap <Leader>q :q<CR>
+noremap n nzz
+noremap N Nzz
+map gh ^
+map gl $
+noremap Q q
+noremap q @
+nmap <esc> :noh<CR>
+
+" 拖拽行
+"nmap <C-S-j> :move +1<CR>==
+"nmap <C-S-k> :move -2<CR>==
+"xmap <C-S-j> :move '>+1<CR>gv=gv
+"xmap <C-S-k> :move '<-2<CR>gv=gv
+
+" x模式黏贴后重新复制被黏贴内容
+"xnoremap p pgvy
+
+" 复制整个缓冲区
+nmap <leader>y mmggVGy`m
+
+" https://github.com/JetBrains/ideavim
+" IdeaVim: track action Ids
+" run
+nmap <leader><CR> <action>(Run)
+" 搜索
+nmap / <action>(Find)
+nmap ? <action>(Find)
+nmap <C-o> <Action>(Back)
+nmap <C-i> <Action>(Forward)
+"nmap u <Action>($Undo)
+nmap U <Action>($Redo)
+" 文件查找
+nmap <leader>ff <Action>(GotoFile)
+" 全局模糊搜索
+nmap <leader>fg <Action>(FindInPath)
+" 全局替换
+nmap <leader>fr <Action>(ReplaceInPath)
+" 类查找
+nmap gw <Action>(GotoClass)
+" 类方法或类成员字段查找
+nmap gs <Action>(FileStructurePopup)
+" 实现类或方法查找
+nmap gi <Action>(GotoImplementation)
+" 跳转到定义或引用处
+nmap gd <Action>(GotoDeclaration)
+" 查找所有引用，类似vim中的quickfix列表
+nmap gr <Action>(FindUsages)
+" 找到被实现的类或方法
+nmap gp <Action>(GotoSuperMethod)
+" 注释
+xmap gc <Action>(CommentByLineComment)<Esc>
+" 代码编辑提示
+nmap <leader>ca <Action>(ShowIntentionActions)
+xmap <leader>ca <Action>(ShowIntentionActions)
+" 新建类
+nmap <leader>nc <Action>(NewClass)
+" 打开终端
+nmap `` <Action>(ActivateTerminalToolWindow)
+" 翻译
+xmap <leader>t <Action>($EditorTranslateAction)<Esc>
+nmap <leader>T <Action>($ShowTranslationDialogAction)
+nmap <leader>t viw<Action>($EditorTranslateAction)
+" 重命名
+nmap <leader>rn <Action>(RenameElement)
+" 类wildfire
+nmap <Enter> <Action>(EditorSelectWord)
+nmap <BS> <Action>(EditorUnSelectWord)
+xmap <Enter> <Action>(EditorSelectWord)
+xmap <BS> <Action>(EditorUnSelectWord)
+" 找到上一个或下一个问题
+nmap [d <Action>(GotoPreviousError)
+nmap ]d <Action>(GotoNextError)
+" 找到上一个或下一个突出高亮
+nmap [h <Action>(GotoPrevElementUnderCaretUsage)
+nmap ]h <Action>(GotoNextElementUnderCaretUsage)
+" vim模式开关
+nmap <leader>vim <Action>(VimPluginToggle)
+" 选择idea keymap
+nmap <leader>mp <Action>(ChangeKeymap)
+" 跳转tab
+nmap [b <Action>(PreviousTab)
+nmap ]b <Action>(NextTab)
+" 跳转method
+nmap [m <Action>(MethodUp)
+nmap ]m <Action>(MethodDown)
+" debug
+nmap <leader>dd <Action>(DebugClass)
+nmap <leader>db <Action>(ToggleLineBreakpoint)
+nmap <leader>dr <Action>(EvaluateExpression)
+" git
+nmap <leader>gb <Action>(Annotate)
+" gpt plugin
+nmap <leader>cg <Action>(Generate)
+nmap <leader>ct <Action>(com.note.chatgpt.OpenCodeAiWindow)
+xmap <leader>ck <Action>(com.note.chatgpt.OpenCodeAiWindowWithText)
+
+sethandler <C-V> i:ide n:vim

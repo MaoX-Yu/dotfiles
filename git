@@ -1,0 +1,11 @@
+[user]
+	name = MaoX_Yu
+	email = maoxytz@163.com
+[core]
+	quotepath = false
+[init]
+	defaultBranch = main
+[http]
+	proxy = socks5://127.0.0.1:7891
+[https]
+	proxy = socks5://127.0.0.1:7891

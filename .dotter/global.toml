@@ -1,0 +1,15 @@
+[starship.files]
+"starship.toml" = { target = "~/.config/starship.toml", type = "symbolic" }
+
+[nvim.files]
+nvim = "~/.config/nvim"
+
+[joshuto.files]
+joshuto = "~/.config/joshuto"
+
+[shell.files]
+git = "~/.gitconfig"
+vimrc = "~/.vimrc"
+
+[idea.files]
+ideavimrc = { target = "~/.ideavimrc", type = "symbolic" }
