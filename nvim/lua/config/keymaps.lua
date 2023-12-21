@@ -31,7 +31,7 @@ local maps = {
     to = function()
       return comment.operator() .. "_"
     end,
-    mode = "n",
+    mode = { "n", "v" },
     opts = { expr = true, desc = "Comment line" },
   },
   {
@@ -39,7 +39,7 @@ local maps = {
     to = function()
       return comment.operator() .. "_"
     end,
-    mode = "n",
+    mode = { "n", "v" },
     opts = { expr = true, desc = "Comment line" },
   },
 
