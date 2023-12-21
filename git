@@ -1,6 +1,9 @@
 [user]
 	name = MaoX_Yu
 	email = maoxytz@163.com
+{{#if gpg.key}}
+	signingkey = {{gpg.key}}
+{{/if}}
 [core]
 	quotepath = false
 [init]
@@ -9,3 +12,11 @@
 	proxy = socks5://127.0.0.1:7891
 [https]
 	proxy = socks5://127.0.0.1:7891
+{{#if gpg.key}}
+[commit]
+	gpgsign = true
+{{/if}}
+{{#if gpg.bin}}
+[gpg]
+	program = {{gpg.bin}}
+{{/if}}
