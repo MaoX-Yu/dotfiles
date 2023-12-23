@@ -1,2 +1,7 @@
 [nvim.files]
 nvim = "~/AppData/Local/nvim"
+
+[helix.files]
+helix = ""
+"helix/config.toml" = "~/scoop/persist/helix/config.toml"
+"helix/languages.toml" = "~/AppData/Roaming/helix/languages.toml"
