@@ -5,3 +5,6 @@ nvim = "~/AppData/Local/nvim"
 helix = ""
 "helix/config.toml" = "~/scoop/persist/helix/config.toml"
 "helix/languages.toml" = "~/AppData/Roaming/helix/languages.toml"
+
+[lazygit.files]
+lazygit = { target = "~/AppData/Roaming/lazygit/config.yml", type = "symbolic" }
