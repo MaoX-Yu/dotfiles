@@ -14,7 +14,7 @@ vimrc = "~/.vimrc"
 [idea.files]
 ideavimrc = { target = "~/.ideavimrc", type = "symbolic" }
 
-[powershell.files]
+[pwsh.files]
 powershell = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
 
 [helix.files]
