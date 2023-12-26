@@ -1,12 +1,8 @@
 -- Keymaps are automatically loaded on the VeryLazy event
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
-local util = require("lazyvim.util")
 local comment = require("mini.comment")
 local lsp = vim.lsp
-local lazyterm = function()
-  util.terminal.open(nil, { cwd = util.root.get() })
-end
 
 -- Default: <leader> is <space>
 local maps = {
@@ -21,8 +17,7 @@ local maps = {
   { from = "<leader>q", to = "<cmd>qa<cr>",    mode = "n",          opts = { desc = "Quit all"}                   },
 
   -- Terminal
-  { from = "<C-t>",     to = lazyterm,         mode = "n",          opts = { desc = "Terminal" }                  },
-  { from = "<C-t>",     to = "<cmd>close<cr>", mode = "t",          opts = { desc = "Hide Terminal" }             },
+  { from = "<C-q>",     to = "<cmd>close<cr>", mode = "t",          opts = { desc = "Hide Terminal" }             },
   -- stylua: ignore end
 
   -- Comment
