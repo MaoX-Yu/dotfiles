@@ -13,6 +13,7 @@ local options = {
     incsearch = true,
     linebreak = true,
     list = true,
+    listchars = "nbsp:+,space:·,tab:>·,trail:-",
     mouse = "", -- disable mouse
     scrolloff = 8,
     shiftwidth = 4,
@@ -32,8 +33,6 @@ local options = {
   },
 }
 
-vim.opt.listchars:append("space:·")
-
 -- Neovide
 if vim.g.neovide then
   -- options.opt.guifont = "JetbrainsMono Nerd Font:h14"
@@ -46,3 +45,12 @@ for scope, table in pairs(options) do
     vim[scope][setting] = value
   end
 end
+
+-- Filetype
+vim.filetype.add({
+  filename = {
+    ["go.mod"] = "gomod",
+    ["go.sum"] = "gosum",
+    ["go.work"] = "gowork",
+  },
+})
