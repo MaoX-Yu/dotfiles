@@ -9,6 +9,7 @@ line-number = "relative"
 bufferline = "multiple"
 cursorline = true
 color-modes = true
+default-line-ending = "lf"
 
 [editor.cursor-shape]
 insert = "bar"
