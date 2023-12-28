@@ -156,6 +156,14 @@ return {
     "j-hui/fidget.nvim",
     event = "LspAttach",
     opts = {
+      progress = {
+        suppress_on_insert = true,
+        ignore_done_already = true,
+        ignore_empty_message = true,
+        display = {
+          render_limit = 8,
+        },
+      },
       notification = {
         window = {
           winblend = 0,
@@ -167,7 +175,6 @@ return {
     "folke/noice.nvim",
     opts = function(_, opts)
       opts.lsp.progress = { enabled = false }
-      opts.presets.lsp_doc_border = true
       return opts
     end,
   },

@@ -91,11 +91,23 @@ return {
         },
       })
       -- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", { desc = "Hover" })
-      vim.keymap.set("n", "<leader>ca", "<cmd>Lspsaga code_action<cr>", { desc = "Code Action" })
     end,
     dependencies = {
       "nvim-treesitter/nvim-treesitter",
       "nvim-tree/nvim-web-devicons",
+    },
+  },
+  {
+    "aznhe21/actions-preview.nvim",
+    keys = {
+      {
+        "<leader>ca",
+        function()
+          require("actions-preview").code_actions()
+        end,
+        mode = { "n", "v" },
+        desc = "Code Action",
+      },
     },
   },
   {
