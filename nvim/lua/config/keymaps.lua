@@ -22,14 +22,6 @@ local maps = {
 
   -- Comment
   {
-    from = "<C-/>",
-    to = function()
-      return comment.operator() .. "_"
-    end,
-    mode = { "n", "v" },
-    opts = { expr = true, desc = "Comment line" },
-  },
-  {
     from = "<C-_>",
     to = function()
       return comment.operator() .. "_"
