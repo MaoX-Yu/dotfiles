@@ -17,6 +17,7 @@
 - Powershell
 - Starship
 - Vim
+- Yazi
 
 ## 使用方式
 
