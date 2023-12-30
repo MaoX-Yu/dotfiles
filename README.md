@@ -6,6 +6,18 @@
 
 [dotter](https://github.com/SuperCuber/dotter)
 
+## 应用
+
+- Git
+- Helix
+- Idea
+- Joshuto (Only Linux)
+- Lazygit
+- Neovim
+- Powershell
+- Starship
+- Vim
+
 ## 使用方式
 
 ### 安装dotter
