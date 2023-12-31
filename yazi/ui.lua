@@ -9,10 +9,10 @@ function Manager:render(area)
 		:split(area)
 
 	local bar = function(c, x, y)
-		return ui.Bar(ui.Rect { x = math.max(0, x), y = math.max(0, y), w = 1, h = 1 }, ui.Position.TOP):symbol(c)
+		return ui.Bar(ui.Rect({ x = math.max(0, x), y = math.max(0, y), w = 1, h = 1 }), ui.Position.TOP):symbol(c)
 	end
 
-	return utils.flat {
+	return utils.flat({
 		ui.Border(area, ui.Position.ALL),
 		ui.Bar(chunks[1], ui.Position.RIGHT),
 		ui.Bar(chunks[3], ui.Position.LEFT),
@@ -28,5 +28,5 @@ function Manager:render(area)
 		Folder:render(chunks[2]:padding(ui.Padding.y(1)), { kind = Folder.CURRENT }),
 		-- Preview
 		ui.Base(chunks[3]:padding(ui.Padding.xy(1)), ui.Base.PREVIEW),
-	}
+	})
 end
