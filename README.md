@@ -9,6 +9,7 @@
 ## 应用
 
 - Git
+- Gitui
 - Helix
 - Idea
 - Joshuto (Only Linux)
