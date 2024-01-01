@@ -1,4 +1,20 @@
 # ====================
+# Go
+# ====================
+[[language]]
+name = "go"
+auto-format = true
+formatter = { command = "goimports" }
+
+# ====================
+# Lua
+# ====================
+[[language]]
+name = "lua"
+auto-format = true
+formatter = { command = "stylua", args = ["-"] }
+
+# ====================
 # Python
 # ====================
 [[language]]
@@ -27,11 +43,3 @@ name = "rust"
 
 [language-server.rust-analyzer.config.check]
 command = "clippy"
-
-# ====================
-# Go
-# ====================
-[[languages]]
-name = "go"
-auto-format = true
-formatter = { command = "goimports" }
