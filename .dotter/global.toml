@@ -1,5 +1,5 @@
 [starship.files]
-"starship.toml" = { target = "~/.config/starship.toml", type = "symbolic" }
+starship = "~/.config/starship.toml"
 
 [nvim.files]
 nvim = "~/.config/nvim"

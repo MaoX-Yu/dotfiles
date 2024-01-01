@@ -42,3 +42,6 @@ modified = '📝${count}'
 staged = '👀${count}'
 renamed = '✒${count}'
 deleted = '🗑${count}'
+{{#if windows_starship}}
+windows_starship = '{{windows_starship}}'
+{{/if}}
