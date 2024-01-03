@@ -28,3 +28,6 @@ yazi = { target = "~/.config/yazi", type = "symbolic" }
 
 [gitui.files]
 gitui = "~/.config/gitui"
+
+[wezterm.files]
+wezterm = "~/.config/wezterm"

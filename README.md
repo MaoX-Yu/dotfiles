@@ -18,6 +18,7 @@
 - Powershell
 - Starship
 - Vim
+- Wezterm
 - Yazi
 
 ## 使用方式
