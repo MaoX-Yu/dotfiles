@@ -9,10 +9,13 @@ Set-PSReadlineKeyHandler -Key DownArrow -Function HistorySearchForward
 
 Set-PSReadLineKeyHandler -Chord "Ctrl+RightArrow" -Function ForwardWord
 
-# auto suggestions
+# Auto suggestions
 Import-Module PSReadLine
 Set-PSReadLineOption -PredictionSource History
 
-# alias
+# Icon
+Import-Module -Name Terminal-Icons
+
+# Alias
 New-Alias -Name lg -Value lazygit
 New-Alias -Name vi -Value nvim
