@@ -4,6 +4,7 @@ local Windows = require("windows")
 local Linux = require("linux")
 local Terminal = require("terminal")
 local Icon = require("icon")
+local Utils = require("utils")
 
 local C = {}
 
@@ -36,83 +37,33 @@ end)
 
 Terminal.setup(C)
 
-------------------------------
--- Local Functions
-------------------------------
-local function recompute_padding(window)
-  local window_dims = window:get_dimensions()
-  local overrides = window:get_config_overrides() or {}
-
-  if not window_dims.is_full_screen then
-    if not overrides.window_padding then
-      -- not changing anything
-      return
-    end
-    overrides.window_padding = nil
-  else
-    -- Use only the middle 33%
-    -- local third = math.floor(window_dims.pixel_width / 3)
-    local new_padding = {
-      left = 0,
-      right = 0,
-      top = 0,
-      bottom = 0,
-    }
-    if overrides.window_padding and new_padding.left == overrides.window_padding.left then
-      -- padding is same, avoid triggering further changes
-      return
-    end
-    overrides.window_padding = new_padding
-  end
-  window:set_config_overrides(overrides)
-end
-
+-- ===
+-- === Window
+-- ===
 Wezterm.on("window-resized", function(window)
-  recompute_padding(window)
+  Utils.recompute_padding(window)
 end)
 
 Wezterm.on("window-config-reloaded", function(window)
-  recompute_padding(window)
+  Utils.recompute_padding(window)
 end)
 
+-- ===
+-- === Tab bar
+-- ===
 Wezterm.on("format-tab-title", function(tab)
-  local function tab_title(tab_info)
-    local title = tab_info.tab_title
-    if title and #title > 0 then
-      return title
-    end
-    return tab_info.active_pane.title
-  end
-  local function split(input, delimiter)
-    input = tostring(input)
-    delimiter = tostring(delimiter)
-    if delimiter == "" then
-      return false
-    end
-    local pos, arr = 0, {}
-    for st, sp in
-      function()
-        return string.find(input, delimiter, pos, true)
-      end
-    do
-      table.insert(arr, string.sub(input, pos, st - 1))
-      pos = sp + 1
-    end
-    table.insert(arr, string.sub(input, pos))
-    return arr
-  end
-  local tab_name = split(tab_title(tab), ".")[1]
-  local icon = Icon.nerdfonts[tab_name] or ""
+  local tab_name = Utils.split(Utils.tab_title(tab), ".")[1]
+  local icon = Icon.nerdfonts[tab_name] and Icon.nerdfonts[tab_name] .. " " or ""
   if tab.tab_index == 0 then
     return Wezterm.format({
       -- { Text = " " },
-      { Text = " " .. icon .. " " .. tab_name .. " " },
+      { Text = " " .. icon .. tab_name .. " " },
       { Text = Icon.SOLID_RIGHT_TRIANGLE },
     })
   else
     return Wezterm.format({
       { Text = Icon.SOLID_LEFT_TRIANGLE },
-      { Text = " " .. icon .. " " .. tab_name .. " " },
+      { Text = " " .. icon .. tab_name .. " " },
       { Text = Icon.SOLID_RIGHT_TRIANGLE },
     })
   end

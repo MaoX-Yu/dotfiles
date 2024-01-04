@@ -8,8 +8,10 @@ M.SOLID_LEFT_TRIANGLE = Wezterm.nerdfonts.ple_lower_left_triangle
 M.SOLID_RIGHT_TRIANGLE = Wezterm.nerdfonts.ple_upper_right_triangle
 
 M.nerdfonts = {
+  Bash = "",
   cargo = "󱘗",
   cmd = "",
+  Fish = "",
   git = "",
   gitui = "",
   go = "",
@@ -23,6 +25,7 @@ M.nerdfonts = {
   rustc = "󱘗",
   scoop = "",
   vim = "",
+  Zsh = "",
 }
 
 return M
