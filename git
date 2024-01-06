@@ -8,10 +8,6 @@
 	quotepath = false
 [init]
 	defaultBranch = main
-[http]
-	proxy = socks5://127.0.0.1:7891
-[https]
-	proxy = socks5://127.0.0.1:7891
 {{#if gpg.key}}
 [commit]
 	gpgsign = true
@@ -20,3 +16,7 @@
 [gpg]
 	program = {{gpg.bin}}
 {{/if}}
+[http]
+	proxy = socks5://127.0.0.1:7891
+[https]
+	proxy = socks5://127.0.0.1:7891
