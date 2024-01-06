@@ -18,8 +18,12 @@ ueberzug_offset = [ 0, 0, 0, 0 ]
 
 [opener]
 edit = [
-	{ exec = '$EDITOR "$@"', block = true,  for = "unix" },
-	{ exec = 'code "%*"',    orphan = true, for = "windows" },
+	{ exec = '$EDITOR "$@"', block = true, for = "unix" },
+	{ exec = 'nvim "%*"',    block = true, for = "windows" },
+]
+helix = [
+	{ exec = 'hx "%@"', block = true, for = "unix" },
+	{ exec = 'hx "%*"', block = true, for = "windows" },
 ]
 open = [
 	{ exec = 'xdg-open "$@"',             desc = "Open", for = "linux" },
@@ -43,16 +47,16 @@ play = [
 
 [open]
 rules = [
-	{ name = "*/", use = [ "edit", "open", "reveal" ] },
+	{ name = "*/", use = [ "edit", "helix", "open", "reveal" ] },
 
-	{ mime = "text/*",  use = [ "edit", "reveal" ] },
+	{ mime = "text/*",  use = [ "edit", "helix", "reveal" ] },
 	{ mime = "image/*", use = [ "open", "reveal" ] },
 	{ mime = "video/*", use = [ "play", "reveal" ] },
 	{ mime = "audio/*", use = [ "play", "reveal" ] },
-	{ mime = "inode/x-empty", use = [ "edit", "reveal" ] },
+	{ mime = "inode/x-empty", use = [ "edit", "helix", "reveal" ] },
 
-	{ mime = "application/json", use = [ "edit", "reveal" ] },
-	{ mime = "*/javascript",     use = [ "edit", "reveal" ] },
+	{ mime = "application/json", use = [ "edit", "helix", "reveal" ] },
+	{ mime = "*/javascript",     use = [ "edit", "helix", "reveal" ] },
 
 	{ mime = "application/zip",             use = [ "extract", "reveal" ] },
 	{ mime = "application/gzip",            use = [ "extract", "reveal" ] },
