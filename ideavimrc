@@ -47,10 +47,9 @@ let mapleader=" "
 inoremap jj <esc>
 nmap <Leader>Q :qa<CR>
 nmap <Leader>q :q<CR>
-noremap n nzz
-noremap N Nzz
 map gh ^
 map gl $
+map ge G
 noremap Q q
 noremap q @
 nmap <esc> :noh<CR>
@@ -78,6 +77,8 @@ nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 "nmap u <Action>($Undo)
 nmap U <Action>($Redo)
+" 查找
+nmap <leader><leader> <Action>(SearchEverywhere)
 " 文件查找
 nmap <leader>ff <Action>(GotoFile)
 " 全局模糊搜索
@@ -99,18 +100,18 @@ nmap gp <Action>(GotoSuperMethod)
 " 注释
 xmap gc <Action>(CommentByLineComment)<Esc>
 " 代码编辑提示
-nmap <leader>ca <Action>(ShowIntentionActions)
-xmap <leader>ca <Action>(ShowIntentionActions)
+nmap <leader>a <Action>(ShowIntentionActions)
+xmap <leader>a <Action>(ShowIntentionActions)
 " 新建类
 nmap <leader>nc <Action>(NewClass)
 " 打开终端
-nmap `` <Action>(ActivateTerminalToolWindow)
+nmap <leader>ft <Action>(ActivateTerminalToolWindow)
 " 翻译
 xmap <leader>t <Action>($EditorTranslateAction)<Esc>
 nmap <leader>T <Action>($ShowTranslationDialogAction)
 nmap <leader>t viw<Action>($EditorTranslateAction)
 " 重命名
-nmap <leader>rn <Action>(RenameElement)
+nmap <leader>r <Action>(RenameElement)
 " 类wildfire
 nmap <Enter> <Action>(EditorSelectWord)
 nmap <BS> <Action>(EditorUnSelectWord)
@@ -130,17 +131,13 @@ nmap <leader>mp <Action>(ChangeKeymap)
 nmap [b <Action>(PreviousTab)
 nmap ]b <Action>(NextTab)
 " 跳转method
-nmap [m <Action>(MethodUp)
-nmap ]m <Action>(MethodDown)
+nmap [f <Action>(MethodUp)
+nmap ]f <Action>(MethodDown)
 " debug
 nmap <leader>dd <Action>(DebugClass)
 nmap <leader>db <Action>(ToggleLineBreakpoint)
 nmap <leader>dr <Action>(EvaluateExpression)
 " git
 nmap <leader>gb <Action>(Annotate)
-" gpt plugin
-nmap <leader>cg <Action>(Generate)
-nmap <leader>ct <Action>(com.note.chatgpt.OpenCodeAiWindow)
-xmap <leader>ck <Action>(com.note.chatgpt.OpenCodeAiWindowWithText)
 
 sethandler <C-V> i:ide n:vim
