@@ -53,6 +53,7 @@ end)
 -- ===
 Wezterm.on("format-tab-title", function(tab)
   local tab_name = Utils.split(Utils.tab_title(tab), ".")[1]
+  tab_name = string.lower(tab_name)
   local icon = Icon.nerdfonts[tab_name] and Icon.nerdfonts[tab_name] .. " " or ""
   if tab.tab_index == 0 then
     return Wezterm.format({
