@@ -1,4 +1,7 @@
 Invoke-Expression (&starship init powershell)
+{{#if scoop}}
+Invoke-Expression (&scoop-search --hook)
+{{/if}}
 
 # Shows navigable menu of all options when hitting Tab
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete

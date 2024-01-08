@@ -17,6 +17,9 @@ ideavimrc = { target = "~/.ideavimrc", type = "symbolic" }
 [pwsh.files]
 powershell = "~/Documents/PowerShell/Microsoft.PowerShell_profile.ps1"
 
+[pwsh.variables]
+scoop = true
+
 [helix.files]
 helix = "~/.config/helix"
 
