@@ -11,8 +11,6 @@ lazygit = { target = "~/AppData/Roaming/lazygit/config.yml", type = "symbolic" }
 
 [yazi.files]
 yazi = { target = "~/AppData/Roaming/yazi/config", type = "symbolic" }
-"yazi/ui.lua" = "~/.config/yazi/ui.lua"
-"yazi/status-name.lua" = "~/.config/yazi/status-name.lua"
 
 [gitui.files]
 gitui = "~/AppData/Roaming/gitui"
