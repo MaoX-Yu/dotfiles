@@ -38,8 +38,8 @@ function M.setup(config)
   config.max_fps = 240
 
   -- Initial size
-  config.initial_cols = 130
-  config.initial_rows = 32
+  config.initial_cols = 128
+  config.initial_rows = 34
 
   -- Cursor
   config.default_cursor_style = "BlinkingBlock"
