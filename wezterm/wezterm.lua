@@ -57,7 +57,6 @@ Wezterm.on("format-tab-title", function(tab)
   local icon = Icon.nerdfonts[tab_name] and Icon.nerdfonts[tab_name] .. " " or ""
   if tab.tab_index == 0 then
     return Wezterm.format({
-      -- { Text = " " },
       { Text = " " .. icon .. tab_name .. " " },
       { Text = Icon.SOLID_RIGHT_TRIANGLE },
     })
@@ -91,29 +90,32 @@ Wezterm.on("update-right-status", function(window, pane)
 
   local cwd_uri = pane:get_current_working_dir()
   if cwd_uri then
-    cwd_uri = cwd_uri:sub(8)
-    local slash = cwd_uri:find("/")
-    -- local cwd = ""
     local hostname = ""
-    if slash then
-      hostname = cwd_uri:sub(1, slash - 1)
-      -- Remove the domain name portion of the hostname
-      local dot = hostname:find("[.]")
-      if dot then
-        hostname = hostname:sub(1, dot - 1)
-      end
-      -- and extract the cwd from the uri
-      -- cwd = cwd_uri:sub(slash)
-      -- table.insert(cells, cwd)
-      if hostname == "" then
-        table.insert(cells, "")
-      elseif string.find(hostname, "arch") then
-        table.insert(cells, "")
-      else
-        table.insert(cells, "")
+    if type(cwd_uri) == "userdata" then
+      hostname = cwd_uri.host or ""
+    else
+      cwd_uri = cwd_uri:sub(8)
+      local slash = cwd_uri:find("/")
+      if slash then
+        hostname = cwd_uri:sub(1, slash - 1)
       end
     end
+
+    -- Remove the domain name portion of the hostname
+    local dot = hostname:find("[.]")
+    if dot then
+      hostname = hostname:sub(1, dot - 1)
+    end
+
+    if hostname == "" then
+      table.insert(cells, "")
+    elseif string.find(hostname, "arch") then
+      table.insert(cells, "")
+    else
+      table.insert(cells, "")
+    end
   end
+
   local current_time = tonumber(Wezterm.strftime("%H"))
   local time = {
     [00] = "",
@@ -141,11 +143,9 @@ Wezterm.on("update-right-status", function(window, pane)
     [22] = "",
     [23] = "",
   }
-  local date = Wezterm.strftime("%H:%M:%S %a %b %d ")
+  local date = Wezterm.strftime("%H:%M:%S %a %b %d")
   local date_time = time[current_time] .. " " .. date
   table.insert(cells, date_time)
-  -- local text_fg = Terminal.colors.transparent
-  -- local SEPERATOR = " █"
   local SEPERATOR = "  "
   local pallete = {
     "#f7768e",
@@ -164,7 +164,6 @@ Wezterm.on("update-right-status", function(window, pane)
   local function push(text, is_last)
     local cell_no = num_cells + 1
     if is_last then
-      -- table.insert(elements, text_fg)
       table.insert(elements, { Text = padding })
     end
     table.insert(elements, { Foreground = { Color = pallete[cell_no] } })
