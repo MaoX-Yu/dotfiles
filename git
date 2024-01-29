@@ -17,6 +17,6 @@
 	program = {{gpg.bin}}
 {{/if}}
 [http]
-	proxy = socks5://127.0.0.1:7891
+	proxy = socks5://127.0.0.1:7890
 [https]
-	proxy = socks5://127.0.0.1:7891
+	proxy = socks5://127.0.0.1:7890
