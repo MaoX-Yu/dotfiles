@@ -34,3 +34,9 @@ gitui = "~/.config/gitui"
 
 [wezterm.files]
 wezterm = "~/.config/wezterm"
+
+[nushell.files]
+nushell = "~/.config/nushell"
+
+[nushell.variables]
+nu_zoxide = "~/.config/nushell"

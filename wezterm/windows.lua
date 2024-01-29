@@ -13,13 +13,14 @@ function M.setup(config)
   config.wsl_domains = wsl_domains
   config.ssh_domains = ssh_domains
 
-  local PWSH = os.getenv("PWSH")
-  config.default_prog = { PWSH .. "\\pwsh.exe" }
+  local SHELL = os.getenv("NUSHELL")
+  config.default_prog = { SHELL .. "\\nu.exe" }
 
   -- Using latest features
   config.prefer_egl = true
 
   config.launch_menu = {
+    { label = " NuShell", args = { "nu" } },
     { label = " PowerShell", args = { "pwsh" } },
     { label = " Cmd", args = { "cmd" } },
     {

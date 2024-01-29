@@ -15,6 +15,7 @@
 - Joshuto (Only Linux)
 - Lazygit
 - Neovim
+- Nushell
 - Powershell
 - Starship
 - Vim
