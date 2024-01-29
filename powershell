@@ -2,6 +2,9 @@ Invoke-Expression (&starship init powershell)
 {{#if scoop}}
 Invoke-Expression (&scoop-search --hook)
 {{/if}}
+{{#if (is_executable "zoxide")}}
+Invoke-Expression (& { (zoxide init powershell | Out-String) })
+{{/if}}
 
 # Shows navigable menu of all options when hitting Tab
 Set-PSReadlineKeyHandler -Key Tab -Function MenuComplete
