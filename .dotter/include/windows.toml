@@ -18,6 +18,4 @@ gitui = "~/AppData/Roaming/gitui"
 
 [nushell.files]
 nushell = "~/AppData/Roaming/nushell"
-
-[nushell.variables]
-nu_zoxide = "~/AppData/Roaming/nushell"
+"nushell/zoxide.nu" = "~/.config/nushell/zoxide.nu"

@@ -759,9 +759,7 @@ $env.config = {
     ]
 }
 
-{{#if nu_zoxide}}
-source {{nu_zoxide}}/zoxide.nu
-{{/if}}
+source ~/.config/nushell/zoxide.nu
 
 alias vi = nvim
 alias lg = lazygit
