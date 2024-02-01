@@ -759,7 +759,18 @@ $env.config = {
     ]
 }
 
+{{#if (is_executable "zoxide")}}
 source ~/.config/nushell/zoxide.nu
+{{/if}}
 
 alias vi = nvim
 alias lg = lazygit
+{{#if (is_executable "bat")}}
+alias cat = bat --paging=never --theme "gruvbox-dark"
+{{/if}}
+{{#if (is_executable "eza")}}
+alias l = eza --color always --icons -s type
+alias ls = eza --color always --icons -s type -a
+alias ll = eza --color always --icons -s type -l
+alias la = eza --color always --icons -s type -l -a
+{{/if}}

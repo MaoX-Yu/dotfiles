@@ -25,3 +25,9 @@ Import-Module -Name Terminal-Icons
 # Alias
 New-Alias -Name lg -Value lazygit
 New-Alias -Name vi -Value nvim
+{{#if (is_executable "bat")}}
+Set-Alias -Name cat -Value bat
+{{/if}}
+{{#if (is_executable "eza")}}
+Set-Alias -Name ls -Value eza
+{{/if}}
