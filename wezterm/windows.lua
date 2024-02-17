@@ -20,7 +20,7 @@ function M.setup(config)
   config.prefer_egl = true
 
   config.launch_menu = {
-    { label = " NuShell", args = { "nu" } },
+    { label = " NuShell", args = { "nu" } },
     { label = " PowerShell", args = { "pwsh" } },
     { label = " Cmd", args = { "cmd" } },
     {

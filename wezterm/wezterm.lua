@@ -3,7 +3,7 @@ local mux = Wezterm.mux
 local Windows = require("windows")
 local Linux = require("linux")
 local Terminal = require("terminal")
-local Icon = require("icon")
+local Icon = require("icons")
 local Utils = require("utils")
 
 local C = {}

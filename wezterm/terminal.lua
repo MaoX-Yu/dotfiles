@@ -1,5 +1,5 @@
 local Wezterm = require("wezterm")
-local Icon = require("icon")
+local Icon = require("icons")
 
 local M = {}
 

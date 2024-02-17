@@ -18,6 +18,7 @@ M.nerdfonts = {
   lazygit = "",
   mysql = "",
   mysqld = "",
+  nu = "",
   nvim = "",
   powershell = "",
   pwsh = "",
