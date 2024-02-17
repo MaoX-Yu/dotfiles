@@ -10,7 +10,7 @@ set incsearch
 set ignorecase
 set smartcase
 set scrolloff=5
-set timeoutlen=5000
+set timeoutlen=500
 " 系统剪切板
 set clipboard^=unnamed,unnamedplus
 " 中英文输入法自动切换
@@ -72,7 +72,7 @@ nmap <leader>y mmggVGy`m
 " run
 nmap <leader><CR> <action>(Run)
 " 搜索
-nmap / <action>(Find)
+"nmap / <action>(Find)
 nmap ? <action>(Find)
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
@@ -141,4 +141,38 @@ nmap <leader>dr <Action>(EvaluateExpression)
 " git
 nmap <leader>gb <Action>(Annotate)
 
-sethandler <C-V> i:ide n:vim
+" ===
+" === Shortcut handler
+" ===
+sethandler <C-2> a:ide
+sethandler <C-S-2> a:ide
+sethandler <C-6> a:ide
+sethandler <C-S-6> a:ide
+sethandler <C-A> a:ide
+sethandler <C-B> i:ide n-v:vim
+sethandler <C-C> i:ide n-v:vim
+sethandler <C-D> i:ide n-v:vim
+sethandler <C-E> a:ide
+sethandler <C-F> i:ide n-v:vim
+sethandler <C-G> a:ide
+sethandler <C-H> a:ide
+sethandler <C-I> i:ide n-v:vim
+sethandler <C-J> a:ide
+sethandler <C-K> a:ide
+sethandler <C-L> a:ide
+sethandler <C-M> a:ide
+sethandler <C-N> a:ide
+sethandler <C-O> i:ide n-v:vim
+sethandler <C-P> a:ide
+sethandler <C-Q> a:ide
+sethandler <C-R> a:ide
+sethandler <C-S> a:ide
+sethandler <C-T> a:ide
+sethandler <C-U> i:ide n-v:vim
+sethandler <C-V> i:ide n-v:vim
+sethandler <C-W> i:ide n-v:vim
+sethandler <C-X> a:ide
+sethandler <C-Y> a:ide
+sethandler <C-[> a:ide
+sethandler <C-\> a:ide
+sethandler <C-]> a:ide
