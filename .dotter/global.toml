@@ -37,3 +37,6 @@ wezterm = "~/.config/wezterm"
 
 [nushell.files]
 nushell = "~/.config/nushell"
+
+[bat.files]
+bat = "~/.config/bat/themes"

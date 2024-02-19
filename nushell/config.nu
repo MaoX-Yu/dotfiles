@@ -766,11 +766,10 @@ source ~/.config/nushell/zoxide.nu
 alias vi = nvim
 alias lg = lazygit
 {{#if (is_executable "bat")}}
-alias cat = bat --paging=never --theme "gruvbox-dark"
+alias cat = bat --paging=never --theme "Catppuccin-mocha"
 {{/if}}
 {{#if (is_executable "eza")}}
-alias l = eza --color always --icons -s type
-alias ls = eza --color always --icons -s type -a
+alias ls = eza --color always --icons -s type
 alias ll = eza --color always --icons -s type -l
 alias la = eza --color always --icons -s type -l -a
 {{/if}}

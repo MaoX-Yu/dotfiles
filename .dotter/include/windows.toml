@@ -19,3 +19,6 @@ gitui = "~/AppData/Roaming/gitui"
 [nushell.files]
 nushell = "~/AppData/Roaming/nushell"
 "nushell/zoxide.nu" = "~/.config/nushell/zoxide.nu"
+
+[bat.files]
+bat = "~/AppData/Roaming/bat/themes"
