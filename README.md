@@ -8,6 +8,7 @@
 
 ## 应用
 
+- Bat
 - Git
 - Gitui
 - Helix
@@ -24,7 +25,7 @@
 
 ## 使用方式
 
-### 安装dotter
+### 安装dotter[可选]
 
 Windows:
 
