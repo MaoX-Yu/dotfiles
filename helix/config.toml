@@ -59,9 +59,8 @@ max-wrap = 80
 max-indent-retain = 0
 
 [editor.file-picker]
-hidden = false
-ignore = false
-git-ignore = false
+hidden = true
+git-ignore = true
 
 # ====================
 # Keymaps
@@ -73,6 +72,15 @@ C-q = ":q"
 
 [keys.normal.space]
 q = ":qa"
+space = "file_picker"
+
+[keys.normal.space.f]
+"." = ":toggle file-picker.hidden"
+g = ":toggle file-picker.git-ignore"
+i = ":toggle file-picker.ignore"
+
+[keys.normal.Z]
+Z = ":wq"
 
 [keys.insert.j]
 j = "normal_mode"
