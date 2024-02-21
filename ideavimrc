@@ -35,7 +35,12 @@ nmap rs  <Plug>ReplaceWithRegisterOperator
 nmap rss <Plug>ReplaceWithRegisterLine
 xmap rs  <Plug>ReplaceWithRegisterVisual
 
-set sneak
+set easymotion
+map \ <Plug>(easymotion-prefix)
+map s <Plug>(easymotion-prefix)f
+map S <Plug>(easymotion-prefix)F
+
+"set sneak
 set surround
 "set which-key
 
