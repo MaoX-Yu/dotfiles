@@ -7,8 +7,10 @@ nvim = "~/.config/nvim"
 [joshuto.files]
 joshuto = "~/.config/joshuto"
 
-[shell.files]
+[git.files]
 git = "~/.gitconfig"
+
+[vim.files]
 vimrc = "~/.vimrc"
 
 [idea.files]
