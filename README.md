@@ -27,6 +27,8 @@
 
 ### 安装dotter[可选]
 
+> 仓库中存放了Windows与Linux下的dotter可执行文件
+
 Windows:
 
 ```powershell
@@ -41,7 +43,9 @@ cargo install dotter
 
 ### 创建本地配置
 
-在`.dotter`文件夹下创建`local.toml`文件，内容如下:
+在`.dotter`文件夹下，将`local.toml.example`重命名为`local.toml`
+
+`local.toml`示例:
 
 ```toml
 includes = [".dotter/include/windows.toml"]
@@ -51,7 +55,6 @@ packages = ["nvim"]
 [files]
 
 [variables]
-
 ```
 
 ### 执行dotter命令
