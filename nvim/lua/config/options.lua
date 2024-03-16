@@ -15,6 +15,7 @@ local options = {
     list = true,
     listchars = "nbsp:+,space:·,tab:→ ,trail:-",
     mouse = "", -- disable mouse
+    pumblend = 0,
     scrolloff = 8,
     shiftwidth = 4,
     showcmd = true,
@@ -25,6 +26,7 @@ local options = {
     swapfile = false,
     tabstop = 4,
     wildmenu = true,
+    winblend = 0,
     wrap = false,
     writebackup = false,
   },

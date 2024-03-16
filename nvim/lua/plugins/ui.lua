@@ -24,6 +24,37 @@ return {
         return {
           Visual = { bg = C.surface1, reverse = true, style = { "bold" } },
           VisualNOS = { bg = C.surface1, reverse = true, style = { "bold" } },
+
+          CmpItemAbbr = { fg = C.text },
+          CmpItemMenu = { fg = C.mauve },
+          CmpItemAbbrMatch = { fg = C.blue, style = { "bold" } },
+          CmpItemAbbrMatchFuzzy = { fg = C.blue, style = { "bold" } },
+          CmpItemKindSnippet = { fg = "#ffffff", bg = C.mauve },
+          CmpItemKindKeyword = { fg = "#ffffff", bg = C.red },
+          CmpItemKindText = { fg = "#ffffff", bg = C.teal },
+          CmpItemKindMethod = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindConstructor = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindFunction = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindFolder = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindModule = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindConstant = { fg = "#ffffff", bg = C.peach },
+          CmpItemKindField = { fg = "#ffffff", bg = C.green },
+          CmpItemKindProperty = { fg = "#ffffff", bg = C.green },
+          CmpItemKindEnum = { fg = "#ffffff", bg = C.green },
+          CmpItemKindUnit = { fg = "#ffffff", bg = C.green },
+          CmpItemKindClass = { fg = "#ffffff", bg = C.yellow },
+          CmpItemKindVariable = { fg = "#ffffff", bg = C.flamingo },
+          CmpItemKindFile = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindInterface = { fg = "#ffffff", bg = C.yellow },
+          CmpItemKindColor = { fg = "#ffffff", bg = C.red },
+          CmpItemKindReference = { fg = "#ffffff", bg = C.red },
+          CmpItemKindEnumMember = { fg = "#ffffff", bg = C.red },
+          CmpItemKindStruct = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindValue = { fg = "#ffffff", bg = C.peach },
+          CmpItemKindEvent = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindOperator = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindTypeParameter = { fg = "#ffffff", bg = C.blue },
+          CmpItemKindCopilot = { fg = "#ffffff", bg = C.teal },
         }
       end,
     },
@@ -107,8 +138,8 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "zR", function() require("ufo").openAllFolds() end, desc = "Open All Folds" },
-      { "zM", function() require("ufo").closeAllFolds() end, desc = "Close All Folds" },
+      { "zR", function() require("ufo").openAllFolds() end,         desc = "Open All Folds" },
+      { "zM", function() require("ufo").closeAllFolds() end,        desc = "Close All Folds" },
       { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Fold less" },
       {
         "K",
@@ -158,15 +189,13 @@ return {
     opts = {
       progress = {
         suppress_on_insert = true,
-        ignore_done_already = true,
-        ignore_empty_message = true,
         display = {
           render_limit = 8,
         },
       },
       notification = {
         window = {
-          winblend = 0,
+          winblend = 100,
         },
       },
     },
@@ -177,6 +206,10 @@ return {
       opts.lsp.progress = { enabled = false }
       return opts
     end,
+  },
+  {
+    "onsails/lspkind.nvim",
+    lazy = true,
   },
   {
     "folke/which-key.nvim",
