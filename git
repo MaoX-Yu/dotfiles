@@ -6,6 +6,7 @@
 {{/if}}
 [core]
 	quotepath = false
+	longpaths = true
 [init]
 	defaultBranch = main
 {{#if gpg.key}}
