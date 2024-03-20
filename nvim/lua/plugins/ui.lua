@@ -10,6 +10,7 @@ return {
     name = "catppuccin",
     optional = true,
     opts = {
+      flavour = "macchiato",
       integrations = {
         fidget = true,
         lsp_saga = true,

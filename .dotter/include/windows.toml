@@ -11,7 +11,7 @@ lazygit = { target = "~/AppData/Roaming/lazygit/config.yml", type = "symbolic" }
 
 [yazi.files]
 yazi = { target = "~/AppData/Roaming/yazi/config", type = "symbolic" }
-"yazi/Catppuccin-mocha.tmTheme" = { target = "~/.config/yazi/Catppuccin-mocha.tmTheme", type = "symbolic" }
+"yazi/Catppuccin-macchiato.tmTheme" = { target = "~/.config/yazi/Catppuccin-macchiato.tmTheme", type = "symbolic" }
 
 [gitui.files]
 gitui = "~/AppData/Roaming/gitui"
