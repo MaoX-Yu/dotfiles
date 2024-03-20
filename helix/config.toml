@@ -1,7 +1,7 @@
 # ====================
 # Options
 # ====================
-theme = "catppuccin_mocha"
+theme = "catppuccin_macchiato"
 
 [editor]
 mouse = false
