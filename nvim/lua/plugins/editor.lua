@@ -72,8 +72,14 @@ return {
         desc = "Undos",
       },
     },
-    opts = function()
+    opts = function(_, opts)
       require("telescope").load_extension("undo")
+      opts.defaults.layout_config = {
+        horizontal = {
+          preview_width = 0.55,
+        },
+      }
+      return opts
     end,
   },
   {
