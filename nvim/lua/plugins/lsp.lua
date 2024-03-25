@@ -63,9 +63,10 @@ return {
       opts = vim.tbl_extend("force", opts, {
         window = {
           completion = {
-            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:CmpItemSel,Search:None",
             col_offset = -3,
             side_padding = 0,
+            scrollbar = false,
           },
         },
         formatting = {
