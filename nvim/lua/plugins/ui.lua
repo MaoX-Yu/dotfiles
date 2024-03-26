@@ -39,6 +39,9 @@ return {
           -- which-key
           WhichKeyBorder = { fg = C.blue, bg = C.mantle },
 
+          -- scrollview
+          ScrollView = { bg = C.surface1 },
+
           -- nvim-cmp
           CmpItemAbbr = { fg = C.text },
           CmpItemMenu = { fg = C.mauve },
@@ -100,7 +103,6 @@ return {
   },
   {
     "dstein64/nvim-scrollview",
-    enabled = false,
     event = "VeryLazy",
     config = function()
       require("scrollview").setup({
