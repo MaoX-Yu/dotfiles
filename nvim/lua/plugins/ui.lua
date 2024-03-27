@@ -87,7 +87,7 @@ return {
           function()
             require("neo-tree.command").execute({ toggle = true, dir = require("lazyvim.util").root.get() })
           end,
-          desc = "Explorer NeoTree (root dir)",
+          desc = "Explorer NeoTree (Root Dir)",
         },
         {
           "<leader>E",
@@ -253,7 +253,7 @@ return {
         ["g"] = { name = "Goto" },
         ["gs"] = { name = "Surround" },
         ["z"] = { name = "Fold" },
-        ["="] = { name = "Apply filter" },
+        ["="] = { name = "Apply Filter" },
         ["]"] = { name = "Next" },
         ["["] = { name = "Prev" },
         ["<C-w>"] = { name = "Window" },
@@ -266,7 +266,7 @@ return {
         ["<leader>g"] = { name = "󰊢 Git" },
         ["<leader>gh"] = { name = "Hunks" },
         ["<leader>m"] = { name = " Minimap" },
-        ["<leader>q"] = { "Quit all" },
+        ["<leader>q"] = { "Quit All" },
         ["<leader>r"] = { name = "󰑕 Refactor" },
         ["<leader>s"] = { name = " Search" },
         ["<leader>S"] = { name = "󱂬 Session" },
