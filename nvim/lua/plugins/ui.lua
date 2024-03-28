@@ -31,6 +31,9 @@ return {
           Visual = { bg = C.surface1, reverse = true, style = { "bold" } },
           VisualNOS = { bg = C.surface1, reverse = true, style = { "bold" } },
 
+          -- lazy.nvim
+          LazyButtonActive = { bg = C.surface1, style = { "bold" } },
+
           -- lspsaga
           SagaBorder = { fg = C.mantle, bg = C.mantle },
           SagaNormal = { bg = C.mantle },
