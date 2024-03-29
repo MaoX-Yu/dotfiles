@@ -31,7 +31,7 @@ return {
     optional = true,
     opts = {
       defaults = {
-        ["<leader>dP"] = { name = "+python" },
+        ["<leader>dP"] = { name = "Python" },
       },
     },
   },
