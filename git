@@ -9,6 +9,8 @@
 	longpaths = true
 [init]
 	defaultBranch = main
+[pull]
+	rebase = true
 {{#if gpg.key}}
 [commit]
 	gpgsign = true
