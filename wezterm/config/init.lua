@@ -1,16 +1,16 @@
 local Wezterm = require("wezterm")
-local Icon = require("icons")
 
 local M = {}
 
 -- Color pallete
 M.colors = {
-  crust = "rgba(30,30,46,1)",
-  transparent = "rgba(0,0,0,0)",
+  crust = "rgba(24, 25, 38, 1)",
+  transparent = "rgba(0, 0, 0, 0)",
   tab_active = "#FAB387",
-  tab_inactive = "#7AA2F7",
+  tab_inactive = "#89B4FA",
+  tab_hover = "#A6E3A1",
   tab_fg = "#1E1E2E",
-  float_bg = "#303446",
+  float_bg = "#1E2030",
   float_fg = "rgba(198, 208, 245, 1)",
 }
 
@@ -21,7 +21,7 @@ function M.setup(config)
   config.front_end = "OpenGL"
 
   -- Colorscheme
-  config.color_scheme = "Catppuccin Mocha"
+  config.color_scheme = "Catppuccin Macchiato"
 
   -- Font
   config.font = Wezterm.font_with_fallback({
@@ -50,6 +50,8 @@ function M.setup(config)
   config.text_background_opacity = 1.0
   config.window_background_opacity = 1.0
   config.window_frame = {
+    active_titlebar_bg = M.colors.crust,
+    inactive_titlebar_bg = M.colors.crust,
     border_left_width = "0px",
     border_right_width = "0px",
     border_bottom_height = "0px",
@@ -58,51 +60,34 @@ function M.setup(config)
   }
   config.enable_scroll_bar = false
   config.inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 }
-  config.window_padding = { left = "5px", right = "5px", top = "0.1cell", bottom = "0.1cell" }
+  config.window_padding = { left = "5px", right = "5px", top = "10px", bottom = "0px" }
 
   -- Tab bar
   config.colors = {
     tab_bar = {
       background = M.colors.transparent,
-      active_tab = {
-        bg_color = M.colors.tab_active,
-        fg_color = M.colors.tab_fg,
-      },
-      inactive_tab = {
-        bg_color = M.colors.tab_inactive,
-        fg_color = M.colors.tab_fg,
-      },
-      inactive_tab_hover = {
-        bg_color = M.colors.tab_active,
-        fg_color = M.colors.tab_fg,
-      },
       new_tab = {
         bg_color = M.colors.tab_inactive,
         fg_color = M.colors.tab_fg,
       },
       new_tab_hover = {
-        bg_color = M.colors.tab_active,
+        bg_color = M.colors.tab_hover,
         fg_color = M.colors.tab_fg,
       },
     },
   }
-  config.tab_bar_style = {
-    new_tab = Wezterm.format({
-      { Text = Icon.SOLID_LEFT_TRIANGLE },
-      { Text = " + " },
-      { Text = Icon.SOLID_RIGHT_TRIANGLE },
-    }),
-    new_tab_hover = Wezterm.format({
-      { Text = Icon.SOLID_LEFT_TRIANGLE },
-      { Text = " + " },
-      { Text = Icon.SOLID_RIGHT_TRIANGLE },
-    }),
-  }
+
   config.tab_max_width = 25
   config.hide_tab_bar_if_only_one_tab = false
-  config.tab_bar_at_bottom = true
+  config.tab_bar_at_bottom = false
   config.show_new_tab_button_in_tab_bar = true
-  config.use_fancy_tab_bar = false
+  config.show_tab_index_in_tab_bar = true
+  config.use_fancy_tab_bar = true
+
+  config.window_decorations = "INTEGRATED_BUTTONS|RESIZE"
+  config.integrated_title_button_style = "Windows"
+  config.integrated_title_button_color = "auto"
+  config.integrated_title_button_alignment = "Right"
 
   -- Command palette
   config.command_palette_bg_color = M.colors.float_bg
@@ -118,7 +103,7 @@ function M.setup(config)
   config.allow_win32_input_mode = true
   config.audible_bell = "Disabled"
   config.disable_default_key_bindings = false
-  config.exit_behavior = "Close"
+  config.exit_behavior = "CloseOnCleanExit"
   config.scrollback_lines = 50000
 end
 
