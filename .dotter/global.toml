@@ -42,3 +42,6 @@ nushell = "~/.config/nushell"
 
 [bat.files]
 bat = "~/.config/bat/themes"
+
+[zellij.files]
+zellij = "~/.config/zellij"
