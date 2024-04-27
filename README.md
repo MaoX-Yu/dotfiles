@@ -22,6 +22,7 @@
 - Vim
 - Wezterm
 - Yazi
+- Zellij
 
 ## 使用方式
 
