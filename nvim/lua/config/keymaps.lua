@@ -7,17 +7,17 @@ local lsp = vim.lsp
 -- Default: <leader> is <space>
 local maps = {
   -- stylua: ignore start
-  { from = "<C-a>",     to = "ggvG$",          mode = "n",          opts = { desc = "Select all" }                },
-  { from = "<C-a>",     to = "<esc>ggvG$",     mode = "i",          opts = { desc = "Select all" }                },
-  { from = "gh",        to = "^",              mode = { "n", "v" }, opts = { desc = "Move to the start of line" } },
-  { from = "gl",        to = "$",              mode = { "n", "v" }, opts = { desc = "Move to the end of line" }   },
-  { from = "Q",         to = "q",              mode = "n",          opts = { desc = "Create macros" }             },
-  { from = "q",         to = "@",              mode = "n",          opts = { desc = "Execute macros" }            },
-  { from = "<C-q>",     to = "<cmd>q<cr>",     mode = "n",          opts = { desc = "Quit" }                      },
-  { from = "<leader>q", to = "<cmd>qa<cr>",    mode = "n",          opts = { desc = "Quit all"}                   },
+  { from = "<C-a>",     to = "ggvG$",          mode = "n",          opts = { desc = "Select All" }      },
+  { from = "<C-a>",     to = "<esc>ggvG$",     mode = "i",          opts = { desc = "Select All" }      },
+  { from = "gh",        to = "^",              mode = { "n", "v" }, opts = { desc = "Goto Line Start" } },
+  { from = "gl",        to = "$",              mode = { "n", "v" }, opts = { desc = "Goto Line End" }   },
+  { from = "Q",         to = "q",              mode = "n",          opts = { desc = "Create Macros" }   },
+  { from = "q",         to = "@",              mode = "n",          opts = { desc = "Execute Macros" }  },
+  { from = "<C-q>",     to = "<cmd>q<cr>",     mode = "n",          opts = { desc = "Quit" }            },
+  { from = "<leader>q", to = "<cmd>qa<cr>",    mode = "n",          opts = { desc = "Quit All"}         },
 
   -- Terminal
-  { from = "<C-q>",     to = "<cmd>close<cr>", mode = "t",          opts = { desc = "Hide Terminal" }             },
+  { from = "<C-q>",     to = "<cmd>close<cr>", mode = "t",          opts = { desc = "Hide Terminal" }   },
   -- stylua: ignore end
 
   -- Comment
@@ -27,7 +27,15 @@ local maps = {
       return comment.operator() .. "_"
     end,
     mode = { "n", "v" },
-    opts = { expr = true, desc = "Comment line" },
+    opts = { expr = true, desc = "Comment Line" },
+  },
+  {
+    from = "<C-/>",
+    to = function()
+      return comment.operator() .. "_"
+    end,
+    mode = { "n", "v" },
+    opts = { expr = true, desc = "Comment Line" },
   },
 
   -- Rename
@@ -44,6 +52,7 @@ local maps = {
 local unmaps = {
   -- Terminal
   { key = "<C-_>", mode = { "n", "t" } },
+  { key = "<C-/>", mode = { "n", "t" } },
 
   -- Buffer
   { key = "<S-h>", mode = { "n" } },
