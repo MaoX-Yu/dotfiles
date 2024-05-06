@@ -1,6 +1,6 @@
 local util = require("utils")
 
-if not util.check_extra("lang.clangd") then
+if not util.has_extra("lang.clangd") then
   return {}
 end
 

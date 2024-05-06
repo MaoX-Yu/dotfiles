@@ -9,7 +9,7 @@ end
 ---Check if the extra is enabled
 ---@param extra string @extra name
 ---@return boolean
-function M.check_extra(extra)
+function M.has_extra(extra)
   extra = "lazyvim.plugins.extras." .. extra
   local path = vim.fn.stdpath("config") .. "/lazyvim.json"
   local file = io.open(path, "r")
@@ -23,9 +23,9 @@ function M.check_extra(extra)
   return data:find(extra) ~= nil
 end
 
-local Utils = {
+local U = {
   is_windows = M.is_windows,
-  check_extra = M.check_extra,
+  has_extra = M.has_extra,
 }
 
-return Utils
+return U
