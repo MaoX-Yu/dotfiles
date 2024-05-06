@@ -6,6 +6,23 @@ end
 
 return {
   {
+    "neovim/nvim-lspconfig",
+    optional = true,
+    opts = {
+      servers = {
+        basedpyright = {
+          settings = {
+            basedpyright = {
+              analysis = {
+                typeCheckingMode = "basic",
+              },
+            },
+          },
+        },
+      },
+    },
+  },
+  {
     "williamboman/mason.nvim",
     opts = function(_, opts)
       table.insert(opts.ensure_installed, "debugpy")
