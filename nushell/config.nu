@@ -762,6 +762,9 @@ $env.config = {
 {{#if (is_executable "zoxide")}}
 source ~/.config/nushell/zoxide.nu
 {{/if}}
+{{#if (is_executable "yazi")}}
+source ~/.config/nushell/yazi.nu
+{{/if}}
 
 alias vi = nvim
 alias lg = lazygit
