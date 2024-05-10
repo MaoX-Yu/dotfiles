@@ -6,6 +6,10 @@ return {
     },
   },
   {
+    "folke/tokyonight.nvim",
+    enabled = false,
+  },
+  {
     "catppuccin/nvim",
     name = "catppuccin",
     optional = true,
@@ -54,18 +58,6 @@ return {
     end,
   },
   {
-    "dstein64/nvim-scrollview",
-    event = "VeryLazy",
-    config = function()
-      require("scrollview").setup({
-        excluded_filetypes = { "alpha", "dashboard" },
-        current_only = true,
-        column = 1,
-        signs_on_startup = { "all" },
-      })
-    end,
-  },
-  {
     "gorbit99/codewindow.nvim",
     event = { "BufReadPre", "BufNewFile" },
     config = function()
@@ -73,13 +65,6 @@ return {
       codewindow.setup()
       codewindow.apply_default_keybinds()
     end,
-  },
-  {
-    "max397574/better-escape.nvim",
-    event = "VeryLazy",
-    opts = {
-      mapping = { "jj", "fd" },
-    },
   },
   {
     "kevinhwang91/nvim-ufo",
@@ -108,9 +93,9 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "zR", function() require("ufo").openAllFolds() end,         desc = "Open All Folds" },
+      { "zR", function() require("ufo").openAllFolds() end,         desc = "Open All Folds"  },
       { "zM", function() require("ufo").closeAllFolds() end,        desc = "Close All Folds" },
-      { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Fold less" },
+      { "zr", function() require("ufo").openFoldsExceptKinds() end, desc = "Fold less"       },
       {
         "K",
         function()
@@ -152,30 +137,6 @@ return {
         end,
       },
     },
-  },
-  {
-    "j-hui/fidget.nvim",
-    event = "LspAttach",
-    opts = {
-      progress = {
-        suppress_on_insert = true,
-        display = {
-          render_limit = 8,
-        },
-      },
-      notification = {
-        window = {
-          winblend = 100,
-        },
-      },
-    },
-  },
-  {
-    "folke/noice.nvim",
-    opts = function(_, opts)
-      opts.lsp.progress = { enabled = false }
-      return opts
-    end,
   },
   {
     "onsails/lspkind.nvim",
