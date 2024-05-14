@@ -34,7 +34,7 @@ function M.setup()
       [23] = "",
     }
     local date = Wezterm.strftime("%b %d %a")
-    local time = Wezterm.strftime("%H:%M:%S")
+    local time = Wezterm.strftime("%H:%M")
     local date_time = "  " .. date .. "  " .. time_icons[current_time] .. "  " .. time .. " "
     table.insert(cells, date_time)
     local SEPERATOR = "  "
