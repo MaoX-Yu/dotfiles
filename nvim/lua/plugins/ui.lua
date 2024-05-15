@@ -35,6 +35,13 @@ return {
     },
   },
   {
+    "nvim-lualine/lualine.nvim",
+    optional = true,
+    opts = function()
+      return require("plugins.configs.lualine").opts()
+    end,
+  },
+  {
     "nvim-neo-tree/neo-tree.nvim",
     keys = function()
       return {
