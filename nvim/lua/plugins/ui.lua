@@ -16,7 +16,10 @@ return {
     opts = {
       flavour = "macchiato",
       integrations = {
-        fidget = true,
+        dropbar = {
+          enabled = true,
+          color_mode = false, -- enable color for kind's texts, not just kind's icons
+        },
         lsp_saga = true,
         telescope = {
           enabled = true,

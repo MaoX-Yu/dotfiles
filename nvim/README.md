@@ -12,10 +12,9 @@
 
 本配置依赖如下环境：
 
-- neovim >= 0.9.0
+- neovim >= 0.10.0
 - node.js
 - lazygit
 - fd
 - ripgrep
 - make
-

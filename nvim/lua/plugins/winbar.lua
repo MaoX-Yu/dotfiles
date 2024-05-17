@@ -1,15 +1,16 @@
 return {
   {
     "Bekaboo/dropbar.nvim",
-    enabled = false,
+    event = "LazyFile",
     config = function()
       local api = require("dropbar.api")
+      local utils = require("dropbar.utils")
       vim.keymap.set("n", "<Leader>;", api.pick, { desc = "Pick Dropbar" })
       vim.keymap.set("n", "[c", api.goto_context_start, { desc = "Goto context start" })
       vim.keymap.set("n", "]c", api.select_next_context, { desc = "Select next context" })
 
       local confirm = function()
-        local menu = api.get_current_dropbar_menu()
+        local menu = utils.menu.get_current()
         if not menu then
           return
         end
@@ -21,7 +22,7 @@ return {
       end
 
       local quit_curr = function()
-        local menu = api.get_current_dropbar_menu()
+        local menu = utils.menu.get_current()
         if menu then
           menu:close()
         end
@@ -35,13 +36,13 @@ return {
           ---@type table<string, string|function|table<string, string|function>>
           keymaps = {
             ["<LeftMouse>"] = function()
-              local menu = api.get_current_dropbar_menu()
+              local menu = utils.menu.get_current()
               if not menu then
                 return
               end
               local mouse = vim.fn.getmousepos()
               if mouse.winid ~= menu.win then
-                local parent_menu = api.get_dropbar_menu(mouse.winid)
+                local parent_menu = utils.menu.get(mouse.winid)
                 if parent_menu and parent_menu.sub_menu then
                   parent_menu.sub_menu:close()
                 end
@@ -58,7 +59,7 @@ return {
             ["q"] = quit_curr,
             ["n"] = quit_curr,
             ["<MouseMove>"] = function()
-              local menu = api.get_current_dropbar_menu()
+              local menu = utils.menu.get_current()
               if not menu then
                 return
               end
