@@ -29,8 +29,20 @@ return {
 
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<C-j>"] = cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-        ["<C-k>"] = cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }),
+        ["<C-j>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
+        ["<C-k>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.visible() then
             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })

@@ -168,6 +168,10 @@ return {
       icons = {
         group = "",
       },
+      popup_mappings = {
+        scroll_down = "<c-f>",
+        scroll_up = "<c-b>",
+      },
       window = {
         border = "single",
         position = "top",
