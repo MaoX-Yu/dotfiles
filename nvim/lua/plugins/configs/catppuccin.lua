@@ -5,9 +5,10 @@ M.highlights = function(C)
     PmenuSbar = { bg = C.mantle },
     Visual = { bg = C.surface1, reverse = true, style = { "bold" } },
     VisualNOS = { bg = C.surface1, reverse = true, style = { "bold" } },
+    VisualFallback = { bg = C.surface1, style = { "bold" } },
 
     -- lazy.nvim
-    LazyButtonActive = { bg = C.surface1, style = { "bold" } },
+    LazyButtonActive = { link = "VisualFallback" },
 
     -- lspsaga
     SagaBorder = { fg = C.mantle, bg = C.mantle },
@@ -73,6 +74,9 @@ M.highlights = function(C)
     DropBarIconKindTypeParameter = { fg = C.blue },
     DropBarIconKindUnit = { fg = C.green },
     DropBarIconKindVariable = { fg = C.flamingo },
+    DropBarHover = { link = "VisualFallback" },
+    DropBarCurrentContext = { link = "VisualFallback" },
+    DropBarMenuHoverEntry = { link = "VisualFallback" },
   }
 end
 
