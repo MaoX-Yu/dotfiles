@@ -9,6 +9,19 @@ return {
       vim.keymap.set("n", "[j", api.goto_context_start, { desc = "Goto context start" })
       vim.keymap.set("n", "]j", api.select_next_context, { desc = "Select next context" })
 
+      local enter = function()
+        local menu = utils.menu.get_current()
+        if not menu then
+          return
+        end
+        local cursor = vim.api.nvim_win_get_cursor(menu.win)
+        local entry = menu.entries[cursor[1]]
+        local component = entry:first_clickable(entry.padding.left + entry.components[1]:bytewidth())
+        if component then
+          menu:click_on(component, nil, 1, "l")
+        end
+      end
+
       local close = function()
         local menu = utils.menu.get_current()
         while menu and menu.prev_menu do
@@ -49,20 +62,10 @@ return {
               end
             end,
             ["h"] = "<C-w>q",
-            ["o"] = function()
-              local menu = utils.menu.get_current()
-              if not menu then
-                return
-              end
-              local cursor = vim.api.nvim_win_get_cursor(menu.win)
-              local entry = menu.entries[cursor[1]]
-              local component = entry:first_clickable(entry.padding.left + entry.components[1]:bytewidth())
-              if component then
-                menu:click_on(component, nil, 1, "l")
-              end
-            end,
+            ["o"] = enter,
+            ["<CR>"] = enter,
             ["q"] = close,
-            ["<esc>"] = close,
+            ["<Esc>"] = close,
           },
         },
       }
