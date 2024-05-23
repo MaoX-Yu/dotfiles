@@ -49,9 +49,9 @@ newline = "none"
 [editor.whitespace.characters]
 space = "·"
 nbsp = "+"
-tab = "→"
+tab = ""
 newline = "⏎"
-tabpad = " "
+tabpad = ""
 
 [editor.soft-wrap]
 enable = true
