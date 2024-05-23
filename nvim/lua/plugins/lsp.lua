@@ -30,21 +30,22 @@ return {
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<C-j>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
             cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
           else
             fallback()
           end
         end, { "i", "s" }),
         ["<C-k>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
             cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
           else
             fallback()
           end
         end, { "i", "s" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
+            LazyVim.create_undo()
             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
             -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
             -- this way you will only jump inside the snippet region
@@ -55,7 +56,8 @@ return {
           end
         end, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(function(fallback)
-          if cmp.visible() then
+          if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
+            LazyVim.create_undo()
             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
           elseif luasnip.jumpable(-1) then
             luasnip.jump(-1)
