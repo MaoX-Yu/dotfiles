@@ -1,6 +1,8 @@
 -- Options are automatically loaded before lazy.nvim startup
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
+local U = require("utils")
+
 local options = {
   opt = {
     autoread = true,
@@ -44,12 +46,6 @@ if vim.g.neovide then
   options.g.neovide_hide_mouse_when_typing = true
 end
 
-for scope, table in pairs(options) do
-  for setting, value in pairs(table) do
-    vim[scope][setting] = value
-  end
-end
-
 -- Filetype
 vim.filetype.add({
   filename = {
@@ -58,3 +54,5 @@ vim.filetype.add({
     ["go.work"] = "gowork",
   },
 })
+
+U.load_opts(options)
