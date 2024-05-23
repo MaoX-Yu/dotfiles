@@ -191,7 +191,7 @@ return {
         ["<leader>d"] = { name = " Debug" },
         ["<leader>f"] = { name = "󰈞 Find/File" },
         ["<leader>g"] = { name = "󰊢 Git" },
-        ["<leader>gh"] = { name = "Hunks" },
+        ["<leader>gh"] = { name = "Hunks", ["🚫"] = "which_key_ignore" },
         ["<leader>m"] = { name = " Minimap" },
         ["<leader>q"] = { "Quit All" },
         ["<leader>r"] = { name = "󰑕 Refactor" },
