@@ -51,16 +51,16 @@ play = [
 
 [open]
 rules = [
-	{ name = "*/", use = [ "helix", "edit", "open", "reveal" ] },
+	{ name = "*/", use = [ "edit", "helix", "open", "reveal" ] },
 
-	{ mime = "text/*",  use = [ "helix", "edit", "reveal" ] },
+	{ mime = "text/*",  use = [ "edit", "helix", "reveal" ] },
 	{ mime = "image/*", use = [ "open", "reveal" ] },
 	{ mime = "video/*", use = [ "play", "reveal" ] },
 	{ mime = "audio/*", use = [ "play", "reveal" ] },
-	{ mime = "inode/x-empty", use = [ "helix", "edit", "reveal" ] },
+	{ mime = "inode/x-empty", use = [ "edit", "helix", "reveal" ] },
 
-	{ mime = "application/json", use = [ "helix", "edit", "reveal" ] },
-	{ mime = "*/javascript",     use = [ "helix", "edit", "reveal" ] },
+	{ mime = "application/json", use = [ "edit", "helix", "reveal" ] },
+	{ mime = "*/javascript",     use = [ "edit", "helix", "reveal" ] },
 
 	{ mime = "application/zip",             use = [ "extract", "reveal" ] },
 	{ mime = "application/gzip",            use = [ "extract", "reveal" ] },
