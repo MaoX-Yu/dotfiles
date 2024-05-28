@@ -117,26 +117,71 @@ function M.opts()
 
   ins_left(LazyVim.lualine.pretty_path())
 
-      -- stylua: ignore
-      ins_right({
-        function() return require("noice").api.status.command.get() end,
-        cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
-        color = LazyVim.ui.fg("Statement"),
-      })
+  ins_left({
+    function()
+      return "%="
+    end,
+  })
 
-      -- stylua: ignore
-      ins_right({
-        function() return require("noice").api.status.mode.get() end,
-        cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
-        color = LazyVim.ui.fg("Constant"),
-      })
+  ins_left({
+    function()
+      local msg = ""
+      local buf_ft = vim.api.nvim_get_option_value("filetype", { buf = 0 })
+      local clients = vim.lsp.get_clients()
+      for _, client in ipairs(clients) do
+        local filetypes = client.config.filetypes
+        if filetypes and vim.fn.index(filetypes, buf_ft) ~= -1 then
+          if msg ~= "" then
+            msg = msg .. ", "
+          end
+          msg = msg .. client.name
+        end
+      end
+      if msg == "" then
+        return "No Active Lsp"
+      end
+      return msg
+    end,
+    cond = function()
+      local clients = vim.lsp.get_clients()
+      if next(clients) == nil then
+        return false
+      end
+      return true
+    end,
+    icon = "",
+    color = { fg = colors.text, gui = "bold" },
+  })
 
-      -- stylua: ignore
-      ins_right({
-        function() return "  " .. require("dap").status() end,
-        cond = function () return package.loaded["dap"] and require("dap").status() ~= "" end,
-        color = LazyVim.ui.fg("Debug"),
-      })
+  ins_right({
+    function()
+      return require("noice").api.status.command.get()
+    end,
+    cond = function()
+      return package.loaded["noice"] and require("noice").api.status.command.has()
+    end,
+    color = LazyVim.ui.fg("Statement"),
+  })
+
+  ins_right({
+    function()
+      return require("noice").api.status.mode.get()
+    end,
+    cond = function()
+      return package.loaded["noice"] and require("noice").api.status.mode.has()
+    end,
+    color = LazyVim.ui.fg("Constant"),
+  })
+
+  ins_right({
+    function()
+      return "  " .. require("dap").status()
+    end,
+    cond = function()
+      return package.loaded["dap"] and require("dap").status() ~= ""
+    end,
+    color = LazyVim.ui.fg("Debug"),
+  })
 
   ins_right({
     require("lazy.status").updates,
