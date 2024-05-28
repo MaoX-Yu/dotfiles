@@ -19,7 +19,6 @@ return {
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
-      local luasnip = require("luasnip")
       local cmp = require("cmp")
       local has_words_before = function()
         unpack = unpack or table.unpack
@@ -47,10 +46,6 @@ return {
           if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
             LazyVim.create_undo()
             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-            -- You could replace the expand_or_jumpable() calls with expand_or_locally_jumpable()
-            -- this way you will only jump inside the snippet region
-          elseif luasnip.expand_or_locally_jumpable() then
-            luasnip.expand_or_jump()
           else
             fallback()
           end
@@ -59,8 +54,6 @@ return {
           if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
             LazyVim.create_undo()
             cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true })
-          elseif luasnip.jumpable(-1) then
-            luasnip.jump(-1)
           else
             fallback()
           end

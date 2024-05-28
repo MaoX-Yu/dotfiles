@@ -16,8 +16,6 @@ require("lazy").setup({
     { import = "lazyvim.plugins.extras.dap.core" },
     { import = "lazyvim.plugins.extras.test.core" },
     { import = "lazyvim.plugins.extras.util.project" },
-    -- NOTE: native snippet can't load my snippets, so use luasnip now
-    { import = "lazyvim.plugins.extras.coding.luasnip" },
     -- import/override with your plugins
     { import = "plugins" },
   },
