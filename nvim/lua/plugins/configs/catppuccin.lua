@@ -77,6 +77,9 @@ M.highlights = function(C)
     DropBarHover = { link = "VisualFallback" },
     DropBarCurrentContext = { link = "VisualFallback" },
     DropBarMenuHoverEntry = { link = "VisualFallback" },
+
+    -- codewindow
+    CodewindowBackground = { bg = C.mantle },
   }
 end
 

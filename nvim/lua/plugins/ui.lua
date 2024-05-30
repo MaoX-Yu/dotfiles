@@ -70,11 +70,34 @@ return {
   {
     "gorbit99/codewindow.nvim",
     event = { "BufReadPre", "BufNewFile" },
-    config = function()
-      local codewindow = require("codewindow")
-      codewindow.setup()
-      codewindow.apply_default_keybinds()
-    end,
+    keys = {
+      {
+        "<leader>um",
+        function()
+          require("codewindow").toggle_minimap()
+        end,
+        desc = "Toggle Minimap",
+      },
+    },
+    opts = {
+      minimap_width = 20,
+      width_multiplier = 2,
+      screen_bounds = "background",
+      window_border = "none",
+      relative = "win",
+      exclude_filetypes = {
+        "dashboard",
+        "neo-tree",
+        "lazy",
+        "lazyterm",
+        "mason",
+        "help",
+        "checkhealth",
+        "lspinfo",
+        "noice",
+        "Trouble",
+      },
+    },
   },
   {
     "kevinhwang91/nvim-ufo",
@@ -192,7 +215,6 @@ return {
         ["<leader>f"] = { name = "󰈞 Find/File" },
         ["<leader>g"] = { name = "󰊢 Git" },
         ["<leader>gh"] = { name = "Hunks", ["🚫"] = "which_key_ignore" },
-        ["<leader>m"] = { name = " Minimap" },
         ["<leader>q"] = { "Quit All" },
         ["<leader>r"] = { name = "󰑕 Refactor" },
         ["<leader>s"] = { name = " Search" },
