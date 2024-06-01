@@ -72,19 +72,42 @@ return {
   },
   {
     "nvim-telescope/telescope.nvim",
-    dependencies = { "debugloop/telescope-undo.nvim" },
-    -- stylua: ignore
-    keys = {
-      { "<leader>su", "<cmd>Telescope undo<CR>", desc = "Undos" },
-    },
+    optional = true,
     opts = function(_, opts)
-      require("telescope").load_extension("undo")
       opts.defaults.layout_config = {
         horizontal = {
           preview_width = 0.55,
         },
       }
       return opts
+    end,
+  },
+  {
+    "mbbill/undotree",
+    cmd = "UndotreeToggle",
+    keys = {
+      { "<leader>su", "<cmd>UndotreeToggle<cr>", desc = "Undo Tree" },
+    },
+    init = function()
+      vim.g.undotree_WindowLayout = 4
+    end,
+  },
+  {
+    "folke/edgy.nvim",
+    optional = true,
+    opts = function(_, opts)
+      opts.right = opts.right or {}
+      opts.bottom = opts.bottom or {}
+      table.insert(opts.right, {
+        title = "Undo Tree",
+        ft = "undotree",
+        open = "UndotreeToggle",
+      })
+      table.insert(opts.bottom, {
+        title = "Diff",
+        ft = "diff",
+        open = "UndotreeToggle",
+      })
     end,
   },
 }
