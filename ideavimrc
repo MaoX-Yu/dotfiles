@@ -55,7 +55,6 @@ nmap <Leader>Q :qa<CR>
 nmap <Leader>q :q<CR>
 map gh ^
 map gl $
-map ge G
 noremap Q q
 noremap q @
 nmap <esc> :noh<CR>
