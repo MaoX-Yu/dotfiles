@@ -14,6 +14,15 @@ return {
     },
   },
   {
+    "folke/flash.nvim",
+    optional = true,
+    opts = {
+      jump = {
+        autojump = true,
+      },
+    },
+  },
+  {
     "folke/persistence.nvim",
     -- stylua: ignore
     keys = {
