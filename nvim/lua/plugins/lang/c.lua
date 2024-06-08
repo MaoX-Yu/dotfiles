@@ -1,6 +1,4 @@
-local util = require("utils")
-
-if not util.has_extra("lang.clangd") then
+if not LazyVim.has_extra("lang.clangd") then
   return {}
 end
 

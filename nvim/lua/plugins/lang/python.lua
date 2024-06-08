@@ -1,6 +1,4 @@
-local util = require("utils")
-
-if not util.has_extra("lang.python") then
+if not LazyVim.has_extra("lang.python") then
   return {}
 end
 
@@ -32,7 +30,7 @@ return {
     "mfussenegger/nvim-dap-python",
     config = function()
       local path = require("mason-registry").get_package("debugpy"):get_install_path()
-      if util.is_windows() then
+      if LazyVim.is_win() then
         require("dap-python").setup(path .. "\\venv\\Scripts\\python.exe")
       else
         require("dap-python").setup(path .. "/venv/bin/python")
