@@ -1,20 +1,8 @@
 return {
   {
-    "neovim/nvim-lspconfig",
-    init = function()
-      local keys = require("lazyvim.plugins.lsp.keymaps").get()
-      keys[#keys + 1] = { "K", false }
-      keys[#keys + 1] = { "<leader>ca", false }
-    end,
-    opts = {
-      format = {
-        timeout_ms = 3000,
-      },
-    },
-  },
-  {
     "hrsh7th/nvim-cmp",
     dependencies = {
+      "onsails/lspkind.nvim",
       "hrsh7th/cmp-emoji",
     },
     ---@param opts cmp.ConfigSchema
@@ -28,20 +16,6 @@ return {
 
       opts.sources = cmp.config.sources(vim.list_extend(opts.sources, { { name = "emoji" } }))
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
-        ["<C-j>"] = cmp.mapping(function(fallback)
-          if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
-            cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
-        ["<C-k>"] = cmp.mapping(function(fallback)
-          if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
-            cmp.select_prev_item({ behavior = cmp.SelectBehavior.Select })
-          else
-            fallback()
-          end
-        end, { "i", "s" }),
         ["<Tab>"] = cmp.mapping(function(fallback)
           if cmp.core.view:visible() or vim.fn.pumvisible() == 1 then
             LazyVim.create_undo()
@@ -89,57 +63,5 @@ return {
       })
       return opts
     end,
-  },
-  {
-    "nvimdev/lspsaga.nvim",
-    event = "LspAttach",
-    config = function()
-      require("lspsaga").setup({
-        ui = {
-          kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
-        },
-        symbol_in_winbar = {
-          enable = false,
-        },
-        lightbulb = {
-          enable = true,
-          virtual_text = false,
-        },
-      })
-      -- vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>", { desc = "Hover" })
-    end,
-    dependencies = {
-      "nvim-treesitter/nvim-treesitter",
-      "nvim-tree/nvim-web-devicons",
-    },
-  },
-  {
-    "aznhe21/actions-preview.nvim",
-    keys = {
-      {
-        "<leader>ca",
-        function()
-          require("actions-preview").code_actions()
-        end,
-        mode = { "n", "v" },
-        desc = "Code Action",
-      },
-    },
-  },
-  {
-    "VidocqH/lsp-lens.nvim",
-    event = "LspAttach",
-    opts = {
-      enable = true,
-      include_declaration = false, -- Reference include declaration
-      sections = { -- Enable / Disable specific request
-        definition = false,
-        references = true,
-        implements = true,
-      },
-      ignore_filetype = {
-        "prisma",
-      },
-    },
   },
 }
