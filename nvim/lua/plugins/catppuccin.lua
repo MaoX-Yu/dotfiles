@@ -23,7 +23,6 @@ return {
         lsp_saga = true,
         telescope = {
           enabled = true,
-          style = "nvchad",
         },
       },
       styles = {

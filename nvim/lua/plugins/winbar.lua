@@ -35,7 +35,7 @@ return {
       return {
         icons = {
           ui = {
-            bar = { separator = "  " },
+            bar = { separator = "  " },
             menu = { separator = "" },
           },
         },
