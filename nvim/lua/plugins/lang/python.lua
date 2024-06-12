@@ -22,12 +22,17 @@ return {
   },
   {
     "williamboman/mason.nvim",
+    optional = true,
     opts = function(_, opts)
       table.insert(opts.ensure_installed, "debugpy")
     end,
   },
   {
     "mfussenegger/nvim-dap-python",
+    optional = true,
+    keys = {
+      { "<leader>dP", "", desc = "Python", ft = "python" },
+    },
     config = function()
       local path = require("mason-registry").get_package("debugpy"):get_install_path()
       if LazyVim.is_win() then
@@ -40,14 +45,5 @@ return {
   {
     "linux-cultist/venv-selector.nvim",
     enabled = false,
-  },
-  {
-    "folke/which-key.nvim",
-    optional = true,
-    opts = {
-      defaults = {
-        ["<leader>dP"] = { name = "Python" },
-      },
-    },
   },
 }
