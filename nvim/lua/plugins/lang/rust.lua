@@ -1,3 +1,7 @@
+if not LazyVim.has_extra("lang.rust") then
+  return {}
+end
+
 return {
   {
     "neovim/nvim-lspconfig",
