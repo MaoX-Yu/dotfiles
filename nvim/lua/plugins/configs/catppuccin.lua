@@ -80,6 +80,9 @@ M.highlights = function(C)
 
     -- codewindow
     CodewindowBackground = { bg = C.mantle },
+
+    -- fzf-lua
+    FzfLuaBorder = { link = "FloatBorder" },
   }
 end
 
