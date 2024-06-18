@@ -1,5 +1,5 @@
 Invoke-Expression (&starship init powershell)
-{{#if scoop}}
+{{#if (is_executable "scoop-search")}}
 Invoke-Expression (&scoop-search --hook)
 {{/if}}
 {{#if (is_executable "zoxide")}}
