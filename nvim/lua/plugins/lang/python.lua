@@ -33,17 +33,5 @@ return {
     keys = {
       { "<leader>dP", "", desc = "Python", ft = "python" },
     },
-    config = function()
-      local path = require("mason-registry").get_package("debugpy"):get_install_path()
-      if LazyVim.is_win() then
-        require("dap-python").setup(path .. "\\venv\\Scripts\\python.exe")
-      else
-        require("dap-python").setup(path .. "/venv/bin/python")
-      end
-    end,
-  },
-  {
-    "linux-cultist/venv-selector.nvim",
-    enabled = false,
   },
 }
