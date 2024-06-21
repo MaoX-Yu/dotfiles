@@ -7,7 +7,7 @@ local U = require("utils")
 local maps = {
   -- stylua: ignore start
   { from = "<leader>%",  to = "ggvG$",          mode = "n",          opts = { desc = "Select All" }                          },
-  { from = "<leader>%",  to = "<esc>ggvG$",     mode = "i",          opts = { desc = "Select All" }                          },
+  { from = "<C-a>",      to = "<esc>ggvG$",     mode = "i",          opts = { desc = "Select All" }                          },
   { from = "gh",         to = "^",              mode = { "n", "v" }, opts = { desc = "Goto Line Start" }                     },
   { from = "gl",         to = "$",              mode = { "n", "v" }, opts = { desc = "Goto Line End" }                       },
   { from = "Q",          to = "q",              mode = "n",          opts = { desc = "Create Macros" }                       },
