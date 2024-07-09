@@ -2,7 +2,6 @@ return {
   {
     "hrsh7th/nvim-cmp",
     dependencies = {
-      "onsails/lspkind.nvim",
       "hrsh7th/cmp-emoji",
     },
     ---@param opts cmp.ConfigSchema
@@ -52,12 +51,12 @@ return {
         },
         formatting = {
           fields = { "kind", "abbr", "menu" },
-          format = function(entry, vim_item)
-            local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry, vim_item)
-            local strings = vim.split(kind.kind, "%s", { trimempty = true })
-            kind.kind = " " .. (strings[1] or "") .. " "
-            kind.menu = "    (" .. (strings[2] or "") .. ")"
-            return kind
+          format = function(_, vim_item)
+            local kind = vim_item.kind
+            local symbol, _, _ = require("mini.icons").get("lsp", kind)
+            vim_item.kind = " " .. (symbol or "󰞋") .. " "
+            vim_item.menu = "    (" .. (kind or "Unknown") .. ")"
+            return vim_item
           end,
         },
       })
