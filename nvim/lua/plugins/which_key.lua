@@ -34,7 +34,6 @@ return {
         ["<leader>"] = { name = "Leader" },
         ["<leader>b"] = { name = "󰓩 Buffer" },
         ["<leader>c"] = { name = " Code" },
-        ["<leader>d"] = { name = " Debug" },
         ["<leader>f"] = { name = "󰈞 Find/File" },
         ["<leader>g"] = { name = "󰊢 Git" },
         ["<leader>gh"] = { name = "Hunks", ["🚫"] = "which_key_ignore" },
