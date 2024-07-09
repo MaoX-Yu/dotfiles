@@ -50,7 +50,7 @@ set surround
 " Map <space> to leader
 let mapleader=" "
 inoremap jj <esc>
-inoremap fd <esc>
+inoremap jk <esc>
 nmap <Leader>Q :qa<CR>
 nmap <Leader>q :q<CR>
 map gh ^
