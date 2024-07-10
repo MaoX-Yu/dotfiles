@@ -37,6 +37,7 @@ return {
         ["<leader>f"] = { name = "󰈞 Find/File" },
         ["<leader>g"] = { name = "󰊢 Git" },
         ["<leader>gh"] = { name = "Hunks", ["🚫"] = "which_key_ignore" },
+        ["<leader>o"] = { name = " Overseer" },
         ["<leader>q"] = { "Quit All" },
         ["<leader>r"] = { name = "󰑕 Refactor" },
         ["<leader>s"] = { name = " Search" },
