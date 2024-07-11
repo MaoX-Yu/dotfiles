@@ -26,8 +26,8 @@ function M.setup(config)
   -- Font
   config.font = Wezterm.font_with_fallback({
     {
-      family = "Maple Mono SC NF",
-      harfbuzz_features = { "ss01=1", "ss02=1", "ss03=1", "ss04=1", "ss05=1" },
+      family = "Maple Mono NF CN",
+      harfbuzz_features = {},
     },
     "Segoe UI Symbol",
   })
