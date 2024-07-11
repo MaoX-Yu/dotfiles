@@ -42,7 +42,7 @@ local options = {
 -- Neovide
 if vim.g.neovide then
   -- options.opt.guifont = "JetbrainsMono Nerd Font:h14"
-  options.opt.guifont = "Maple Mono SC NF:h14"
+  options.opt.guifont = "Maple Mono NF CN:h14"
   options.g.neovide_hide_mouse_when_typing = true
 end
 
