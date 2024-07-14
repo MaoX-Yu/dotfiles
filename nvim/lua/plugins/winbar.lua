@@ -2,12 +2,16 @@ return {
   {
     "Bekaboo/dropbar.nvim",
     event = "LazyFile",
-    opts = function()
+    keys = function()
       local api = require("dropbar.api")
+      return {
+        { "<leader>;", api.pick, desc = "Pick Dropbar" },
+        { "[j", api.goto_context_start, desc = "Goto Context Start" },
+        { "]j", api.select_next_context, desc = "Select Next Context" },
+      }
+    end,
+    opts = function()
       local utils = require("dropbar.utils")
-      vim.keymap.set("n", "<Leader>;", api.pick, { desc = "Pick Dropbar" })
-      vim.keymap.set("n", "[j", api.goto_context_start, { desc = "Goto context start" })
-      vim.keymap.set("n", "]j", api.select_next_context, { desc = "Select next context" })
 
       local enter = function()
         local menu = utils.menu.get_current()

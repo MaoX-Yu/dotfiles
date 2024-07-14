@@ -17,6 +17,7 @@ M.highlights = function(C)
 
     -- which-key
     WhichKeyBorder = { fg = C.blue, bg = C.mantle },
+    WhichKeyTitle = { fg = C.blue, bg = C.mantle },
 
     -- scrollview
     ScrollView = { bg = C.surface1 },
