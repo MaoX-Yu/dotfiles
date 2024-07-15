@@ -149,7 +149,7 @@ function M.opts()
       end
       return true
     end,
-    icon = "",
+    icon = " ",
     color = { fg = colors.text, gui = "bold" },
   })
 
