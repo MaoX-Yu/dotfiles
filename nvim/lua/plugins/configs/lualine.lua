@@ -199,6 +199,8 @@ function M.opts()
     },
   })
 
+  ins_right({ "overseer" })
+
   ins_right({ "location", separator = " ", padding = { left = 1, right = 0 } })
 
   ins_right({ "progress", padding = { left = 0, right = 1 } })
