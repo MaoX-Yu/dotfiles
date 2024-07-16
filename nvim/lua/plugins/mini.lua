@@ -10,6 +10,7 @@ return {
     opts = {
       lsp = {
         codeium = { glyph = "" },
+        fittencode = { glyph = "" },
       },
     },
   },
