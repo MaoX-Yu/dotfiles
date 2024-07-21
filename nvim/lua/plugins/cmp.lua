@@ -42,12 +42,15 @@ return {
         },
         formatting = {
           fields = { "kind", "abbr", "menu" },
-          format = function(_, vim_item)
-            local kind = vim_item.kind
+          format = function(_, item)
+            local kind = item.kind or ""
             local symbol, _, _ = require("mini.icons").get("lsp", kind)
-            vim_item.kind = " " .. (symbol or "󰞋") .. " "
-            vim_item.menu = "    (" .. (kind or "Unknown") .. ")"
-            return vim_item
+            item.menu = "    (" .. (item.kind or "Unknown") .. ")"
+            item.kind = " " .. (symbol or "󰞋") .. " "
+            if kind == "FittenCode" then
+              item.abbr = require("utils").fittencode.format(item.abbr)
+            end
+            return item
           end,
         },
       })
