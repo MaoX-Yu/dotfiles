@@ -1,5 +1,13 @@
 local M = {}
 
+setmetatable(M, {
+  __index = function(t, k)
+    ---@diagnostic disable-next-line: no-unknown
+    t[k] = require("utils." .. k)
+    return t[k]
+  end,
+})
+
 ---Load nvim options
 ---@param opts table @options
 function M.load_opts(opts)
