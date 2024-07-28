@@ -55,6 +55,7 @@ M.highlights = function(C)
     CmpItemKindTypeParameter = { fg = C.mantle, bg = C.blue },
     CmpItemKindCopilot = { fg = C.mantle, bg = C.teal },
     CmpItemKindCodeium = { fg = C.mantle, bg = C.teal },
+    CmpItemKindFittenCode = { fg = C.mantle, bg = C.teal },
 
     -- dropbar
     DropBarIconKindClass = { fg = C.yellow },
