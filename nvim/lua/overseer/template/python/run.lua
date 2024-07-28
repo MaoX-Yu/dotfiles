@@ -9,6 +9,10 @@ return {
       cmd = "python",
       cwd = vim.fn.expand("%:p:h"),
       args = { vim.fn.expand("%:p") },
+      components = {
+        { "open_output", direction = "float", focus = true, on_start = "always" },
+        "default",
+      },
     }
   end,
 }
