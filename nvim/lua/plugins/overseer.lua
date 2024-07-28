@@ -3,7 +3,11 @@ return {
     "stevearc/overseer.nvim",
     optional = true,
     opts = {
-      templates = { "builtin", "python" },
+      templates = {
+        "builtin",
+        "python.run",
+        "python.run_slient",
+      },
     },
   },
 }
