@@ -43,10 +43,10 @@ return {
         formatting = {
           fields = { "kind", "abbr", "menu" },
           format = function(_, item)
-            local kind = item.kind or ""
+            local kind = item.kind or "Unknown"
             local symbol, _, _ = require("mini.icons").get("lsp", kind)
-            item.menu = "    (" .. (item.kind or "Unknown") .. ")"
-            item.kind = " " .. (symbol or "󰞋") .. " "
+            item.kind = " " .. symbol .. " "
+            item.menu = "    (" .. kind .. ")"
             if kind == "FittenCode" then
               item.abbr = require("utils").fittencode.format(item.abbr)
             end
