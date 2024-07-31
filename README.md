@@ -14,6 +14,7 @@
 - Helix
 - Idea
 - Joshuto (Only Linux)
+- Komorebi
 - Lazygit
 - Neovim
 - Nushell
@@ -68,4 +69,3 @@ dotter -v # [-v]可选，显示详细信息
 # 取消部署
 dotter undeploy
 ```
-
