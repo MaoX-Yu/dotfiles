@@ -45,3 +45,6 @@ bat = "~/.config/bat/themes"
 
 [zellij.files]
 zellij = "~/.config/zellij"
+
+[komorebi.files]
+komorebi = "~/komorebi.json"
