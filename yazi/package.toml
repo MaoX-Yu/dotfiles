@@ -1,0 +1,9 @@
+[plugin]
+deps = [
+    { use = "yazi-rs/plugins#full-border", commit = "06e5fe1" },
+    { use = "Rolv-Apneseth/starship", commit = "5abe29e" },
+    { use = "Ape/open-with-cmd", commit = "8d7abc8" },
+]
+
+[flavor]
+deps = [{ use = "yazi-rs/flavors#catppuccin-macchiato", commit = "2d7dd2a" }]

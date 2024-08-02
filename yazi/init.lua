@@ -1,81 +1,41 @@
--- Full border
-function Manager:render(area)
-	self.area = area
+local ok, full_border = pcall(require, "full-border")
+if ok then
+	full_border:setup({
+		-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
+		type = ui.Border.PLAIN,
+	})
+end
 
-	local chunks = ui.Layout()
-		:direction(ui.Layout.HORIZONTAL)
-		:constraints({
-			ui.Constraint.Ratio(MANAGER.ratio.parent, MANAGER.ratio.all),
-			ui.Constraint.Ratio(MANAGER.ratio.current, MANAGER.ratio.all),
-			ui.Constraint.Ratio(MANAGER.ratio.preview, MANAGER.ratio.all),
-		})
-		:split(area)
-
-	local bar = function(c, x, y)
-		return ui.Bar(
-			ui.Rect { x = math.max(0, x), y = math.max(0, y), w = math.min(1, area.w), h = math.min(1, area.h) },
-			ui.Bar.TOP
-		):symbol(c)
-	end
-
-	return ya.flat {
-		-- Borders
-		ui.Border(area, ui.Border.ALL),
-		ui.Bar(chunks[1], ui.Bar.RIGHT),
-		ui.Bar(chunks[3], ui.Bar.LEFT),
-
-		bar("┬", chunks[1].right - 1, chunks[1].y),
-		bar("┴", chunks[1].right - 1, chunks[1].bottom - 1),
-		bar("┬", chunks[2].right, chunks[2].y),
-		bar("┴", chunks[2].right, chunks[1].bottom - 1),
-
-		-- Parent
-		Parent:render(chunks[1]:padding(ui.Padding.xy(1))),
-		-- Current
-		Current:render(chunks[2]:padding(ui.Padding.y(1))),
-		-- Preview
-		Preview:render(chunks[3]:padding(ui.Padding.xy(1))),
-	}
+local ok, starship = pcall(require, "starship")
+if ok then
+	starship:setup()
 end
 
 -- Show symlink in status bar
 function Status:name()
-	local h = cx.active.current.hovered
-	if h == nil then
-		return ui.Span("")
+	local h = self._tab.current.hovered
+	if not h then
+		return ui.Line({})
 	end
 
 	local linked = ""
 	if h.link_to ~= nil then
 		linked = " -> " .. tostring(h.link_to)
 	end
-	return ui.Span(" " .. h.name .. linked)
+	return ui.Line(" " .. h.name .. linked)
 end
 
 -- Show user/group of files in status bar
-function Status:owner()
+Status:children_add(function()
 	local h = cx.active.current.hovered
 	if h == nil or ya.target_family() ~= "unix" then
-		return ui.Line {}
+		return ui.Line({})
 	end
 
-	return ui.Line {
+	return ui.Line({
 		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
 		ui.Span(":"),
 		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
 		ui.Span(" "),
-	}
-end
-
--- Ditto
-function Status:render(area)
-	self.area = area
-
-	local left = ui.Line { self:mode(), self:size(), self:name() }
-	local right = ui.Line { self:owner(), self:permissions(), self:percentage(), self:position() }
-	return {
-		ui.Paragraph(area, { left }),
-		ui.Paragraph(area, { right }):align(ui.Paragraph.RIGHT),
-		table.unpack(Progress:render(area, right:width())),
-	}
-end
+	})
+end, 500, Status.RIGHT)
