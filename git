@@ -7,6 +7,20 @@
 [core]
 	quotepath = false
 	longpaths = true
+{{#if (is_executable "delta")}}
+	pager = delta
+[interactive]
+	diffFilter = delta --color-only
+[include]
+	path = ~/dotfiles/delta/catppuccin.gitconfig
+[delta]
+	navigate = true    # use n and N to move between diff sections
+	features = catppuccin-macchiato
+[merge]
+	conflictstyle = diff3
+[diff]
+	colorMoved = default
+{{/if}}
 [init]
 	defaultBranch = main
 [pull]
