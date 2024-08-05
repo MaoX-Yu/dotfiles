@@ -9,6 +9,7 @@
 ## 应用
 
 - Bat
+- Delta
 - Git
 - Gitui
 - Helix
