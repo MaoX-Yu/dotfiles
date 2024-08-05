@@ -20,4 +20,4 @@ nushell = "~/AppData/Roaming/nushell"
 "nushell/yazi.nu" = "~/.config/nushell/yazi.nu"
 
 [bat.files]
-bat = "~/AppData/Roaming/bat/themes"
+bat = "~/AppData/Roaming/bat"

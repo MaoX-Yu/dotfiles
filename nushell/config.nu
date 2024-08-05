@@ -25,7 +25,7 @@ source ~/.config/nushell/yazi.nu
 alias vi = nvim
 alias lg = lazygit
 {{#if (is_executable "bat")}}
-alias cat = bat --paging=never --theme "Catppuccin-macchiato"
+alias cat = bat --paging=never --theme "Catppuccin Macchiato"
 {{/if}}
 {{#if (is_executable "eza")}}
 alias ls = eza --color always --icons -s type
