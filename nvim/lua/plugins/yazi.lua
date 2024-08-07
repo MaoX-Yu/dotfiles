@@ -4,23 +4,32 @@ end
 
 return {
   {
+    "nvim-neo-tree/neo-tree.nvim",
+    enabled = false,
+  },
+  {
     "mikavilpas/yazi.nvim",
     keys = {
       {
-        "<leader>y",
-        function()
-          require("yazi").yazi()
-        end,
+        "<leader>e",
+        "<cmd>Yazi<cr>",
         desc = "Open File Manager",
       },
       {
-        "<leader>Y",
-        function()
-          require("yazi").yazi(nil, vim.fn.getcwd())
-        end,
+        "<leader>E",
+        "<cmd>Yazi cwd<cr>",
         desc = "Open File Manager (cwd)",
       },
+      {
+        "<leader>fe",
+        "<cmd>Yazi toggle<cr>",
+        desc = "Resume Last Yazi Session",
+      },
     },
-    opts = {},
+    opts = {
+      use_ya_for_events_reading = true,
+      use_yazi_client_id_flag = true,
+      floating_window_scaling_factor = 1,
+    },
   },
 }
