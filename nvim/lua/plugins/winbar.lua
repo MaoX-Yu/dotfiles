@@ -1,7 +1,7 @@
 return {
   {
     "Bekaboo/dropbar.nvim",
-    event = "LazyFile",
+    event = "VeryLazy",
     keys = function()
       local api = require("dropbar.api")
       return {
@@ -39,7 +39,7 @@ return {
       return {
         icons = {
           ui = {
-            bar = { separator = "  " },
+            bar = { separator = " " },
             menu = { separator = "" },
           },
         },
