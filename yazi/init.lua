@@ -2,7 +2,7 @@ local ok, full_border = pcall(require, "full-border")
 if ok then
 	full_border:setup({
 		-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
-		type = ui.Border.PLAIN,
+		type = ui.Border.ROUNDED,
 	})
 end
 
