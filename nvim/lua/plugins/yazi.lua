@@ -26,10 +26,13 @@ return {
         desc = "Resume Last Yazi Session",
       },
     },
-    opts = {
-      use_ya_for_events_reading = true,
-      use_yazi_client_id_flag = true,
-      floating_window_scaling_factor = 1,
-    },
+    opts = function()
+      local factor = vim.g.neovide and 0.97 or 1
+      return {
+        use_ya_for_events_reading = true,
+        use_yazi_client_id_flag = true,
+        floating_window_scaling_factor = factor,
+      }
+    end,
   },
 }
