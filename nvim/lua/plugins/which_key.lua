@@ -34,6 +34,7 @@ return {
         { "<leader>", group = "leader" },
         { "<leader>S", group = "session" },
         { "<leader>o", group = "overseer", icon = { icon = " ", color = "yellow" } },
+        { "<leader>r", group = "refactor", icon = { icon = " ", color = "purple" } },
         { "<leader>K", desc = "Keywordprg", icon = { icon = "󰘥 ", color = "green" } },
         { "<leader>q", desc = "Quit All" },
         { "<leader>rn", desc = "Rename Symbol", icon = { icon = "󰑕 ", color = "purple" } },
