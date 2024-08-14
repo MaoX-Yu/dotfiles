@@ -2,8 +2,8 @@ return {
   {
     "nvim-lualine/lualine.nvim",
     optional = true,
-    opts = function()
-      return require("plugins.configs.lualine").opts()
+    opts = function(_, opts)
+      return require("plugins.configs.lualine").opts(opts)
     end,
   },
 }

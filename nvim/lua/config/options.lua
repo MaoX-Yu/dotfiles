@@ -36,6 +36,7 @@ local options = {
     mapleader = " ", -- leader key
     lazyvim_python_lsp = "basedpyright",
     lazyvim_python_ruff = "ruff",
+    trouble_lualine = false,
   },
 }
 
