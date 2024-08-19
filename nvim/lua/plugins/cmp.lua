@@ -44,7 +44,7 @@ return {
           fields = { "kind", "abbr", "menu" },
           format = function(_, item)
             local kind = item.kind or "Unknown"
-            local symbol, _, _ = require("mini.icons").get("lsp", kind)
+            local symbol = require("mini.icons").get("lsp", kind)
             item.kind = " " .. symbol .. " "
             item.menu = "    (" .. kind .. ")"
             if kind == "FittenCode" then
