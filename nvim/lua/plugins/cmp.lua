@@ -34,21 +34,26 @@ return {
       opts = vim.tbl_extend("force", opts, {
         window = {
           completion = {
-            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:CmpItemSel,Search:None",
-            col_offset = -3,
-            side_padding = 0,
-            scrollbar = false,
+            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:CmpItemHover,Search:None",
           },
         },
         formatting = {
-          fields = { "kind", "abbr", "menu" },
           format = function(_, item)
-            local kind = item.kind or "Unknown"
-            local symbol = require("mini.icons").get("lsp", kind)
-            item.kind = " " .. symbol .. " "
-            item.menu = "    (" .. kind .. ")"
-            if kind == "FittenCode" then
+            if item.kind == "FittenCode" then
               item.abbr = require("utils").fittencode.format(item.abbr)
+            end
+            item.abbr = item.abbr:gsub("…", "..")
+
+            local symbol = require("mini.icons").get("lsp", item.kind)
+            item.kind = symbol .. "  " .. item.kind
+            local widths = {
+              abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
+              menu = vim.g.cmp_widths and vim.g.cmp_widths.menu or 30,
+            }
+            for key, width in pairs(widths) do
+              if item[key] and vim.fn.strdisplaywidth(item[key]) > width then
+                item[key] = vim.fn.strcharpart(item[key], 0, width - 1) .. "~"
+              end
             end
             return item
           end,
