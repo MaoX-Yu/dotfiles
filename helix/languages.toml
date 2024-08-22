@@ -30,10 +30,8 @@ args = ["--stdio"]
 typeCheckingMode = "basic"
 
 [language-server.ruff]
-command = "ruff-lsp"
-
-[language-server.ruff.config.settings]
-args = ["--ignore", "E501"]
+command = "ruff"
+config = { settings = { args = ["server"] } }
 
 [language.formatter]
 command = "black"
