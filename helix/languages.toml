@@ -31,7 +31,7 @@ typeCheckingMode = "basic"
 
 [language-server.ruff]
 command = "ruff"
-config = { settings = { args = ["server"] } }
+args = ["server"]
 
 [language.formatter]
 command = "black"
