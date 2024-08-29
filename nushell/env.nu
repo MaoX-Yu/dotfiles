@@ -43,6 +43,7 @@ $env.ENV_CONVERSIONS = {
 $env.NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'scripts') # add <nushell-config-dir>/scripts
     ($nu.data-dir | path join 'completions') # default home for nushell completions
+    ($nu.default-config-dir | path join 'themes')
 ]
 
 # Directories to search for plugin binaries when calling register
@@ -67,6 +68,5 @@ $env.NU_PLUGIN_DIRS = [
 
 # Starship
 {{#if (is_executable "starship")}}
-mkdir ~/.cache/starship
-starship init nu | save -f ~/.cache/starship/init.nu
+starship init nu | save -f ($nu.default-config-dir | path join 'scripts' | path join 'starship.nu')
 {{/if}}
