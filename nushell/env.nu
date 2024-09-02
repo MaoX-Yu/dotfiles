@@ -66,7 +66,9 @@ $env.NU_PLUGIN_DIRS = [
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
-# Starship
+$env.CONDA_NO_PROMPT = true
+
 {{#if (is_executable "starship")}}
+# Starship
 starship init nu | save -f ($nu.default-config-dir | path join 'scripts' | path join 'starship.nu')
 {{/if}}
