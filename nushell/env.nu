@@ -66,7 +66,11 @@ $env.NU_PLUGIN_DIRS = [
 # To load from a custom file you can use:
 # source ($nu.default-config-dir | path join 'custom.nu')
 
-$env.CONDA_NO_PROMPT = true
+load-env {
+    'CONDA_NO_PROMPT': true
+    'VISUAL': 'hx'
+    'EDITOR': 'hx'
+}
 
 {{#if (is_executable "starship")}}
 # Starship
