@@ -11,7 +11,7 @@ function M.opts(opts)
 
   opts.options = opts.options or {}
   opts.options.component_separators = ""
-  opts.options.section_separators = { left = "", right = "" }
+  opts.options.section_separators = ""
 
   opts.sections = opts.sections or {}
   opts.sections.lualine_c = {
