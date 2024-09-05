@@ -2,7 +2,7 @@
 starship = "~/.config/starship.toml"
 
 [nvim.files]
-nvim = "~/.config/nvim"
+lazyvim = "~/.config/nvim"
 
 [joshuto.files]
 joshuto = "~/.config/joshuto"
