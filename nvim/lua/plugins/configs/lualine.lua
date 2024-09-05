@@ -39,14 +39,15 @@ function M.opts(opts)
     cond = conditions.hide_in_width,
     color = { fg = colors.green },
   })
-  opts.sections.lualine_z = {
-    {
-      "filetype",
-      colored = false,
-      separator = "",
-      padding = { left = 1, right = 1 },
-    },
-  }
+  opts.sections.lualine_x = vim.list_extend(opts.sections.lualine_x, opts.sections.lualine_y or {})
+  table.insert(opts.sections.lualine_x, {
+    "filetype",
+    colored = true,
+    separator = "",
+    padding = { left = 1, right = 1 },
+  })
+  opts.sections.lualine_y = {}
+  opts.sections.lualine_z = {}
 
   return opts
 end
