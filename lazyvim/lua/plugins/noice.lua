@@ -3,11 +3,14 @@ return {
     "folke/noice.nvim",
     optional = true,
     opts = {
-      presets = {
-        command_palette = false,
-      },
       cmdline = {
-        view = "cmdline",
+        enabled = false,
+      },
+      messages = {
+        enabled = false,
+      },
+      popupmenu = {
+        enabled = false,
       },
     },
   },
