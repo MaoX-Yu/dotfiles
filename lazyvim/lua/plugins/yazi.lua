@@ -1,4 +1,4 @@
-if not vim.fn.executable("yazi") then
+if vim.fn.executable("yazi") == 0 then
   return {}
 end
 
