@@ -34,4 +34,13 @@ return {
       { "<leader>dP", "", desc = "Python", ft = "python" },
     },
   },
+  {
+    "stevearc/conform.nvim",
+    optional = true,
+    opts = {
+      formatters_by_ft = {
+        ["python"] = { "ruff_format" },
+      },
+    },
+  },
 }
