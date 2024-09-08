@@ -1,0 +1,18 @@
+theme = "catppuccin-macchiato"
+
+[editor]
+program = "hx"
+args = []
+
+[fonts]
+size = 20
+family = "Maple Mono NF CN"
+
+[shell]
+program = "nu"
+args = []
+
+[window]
+width = 1420
+height = 900
+decorations = "Enabled"

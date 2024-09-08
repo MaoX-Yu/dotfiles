@@ -20,6 +20,7 @@
 - Neovim
 - Nushell
 - Powershell
+- Rio
 - Starship
 - Vim
 - Wezterm

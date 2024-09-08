@@ -48,3 +48,6 @@ zellij = "~/.config/zellij"
 
 [komorebi.files]
 komorebi = "~/komorebi.json"
+
+[rio.files]
+rio = "~/.config/rio"

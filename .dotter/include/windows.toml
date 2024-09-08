@@ -19,3 +19,6 @@ nushell = "~/AppData/Roaming/nushell"
 
 [bat.files]
 bat = "~/AppData/Roaming/bat"
+
+[rio.files]
+rio = "~/AppData/Local/rio"
