@@ -29,13 +29,13 @@ function M.opts(opts)
   }
   table.insert(opts.sections.lualine_x, { "overseer" })
   table.insert(opts.sections.lualine_x, {
-    "fileformat",
+    "o:encoding",
+    fmt = string.upper,
     cond = conditions.hide_in_width,
     color = { fg = colors.green },
   })
   table.insert(opts.sections.lualine_x, {
-    "o:encoding",
-    fmt = string.upper,
+    "fileformat",
     cond = conditions.hide_in_width,
     color = { fg = colors.green },
   })
