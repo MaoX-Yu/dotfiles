@@ -72,18 +72,6 @@ return {
             ["<Esc>"] = close,
           },
         },
-        sources = {
-          path = {
-            relative_to = function(buf, win)
-              local root = LazyVim.root.get({ buf = buf })
-              if root and root ~= "" then
-                return root
-              end
-              local ok, cwd = pcall(vim.fn.getcwd, win)
-              return ok and cwd or vim.fn.getcwd()
-            end,
-          },
-        },
       }
     end,
   },
