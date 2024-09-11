@@ -13,14 +13,16 @@ return {
             {
               "K",
               function()
-                if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
-                  require("crates").show_popup()
-                else
-                  -- vim.lsp.buf.hover()
-                  vim.cmd([[ Lspsaga hover_doc ]])
+                local winid = require("ufo").peekFoldedLinesUnderCursor()
+                if not winid then
+                  if vim.fn.expand("%:t") == "Cargo.toml" and require("crates").popup_available() then
+                    require("crates").show_popup()
+                  else
+                    vim.lsp.buf.hover()
+                  end
                 end
               end,
-              desc = "Show Crate Documentation",
+              desc = "Hover",
             },
           },
         },
