@@ -1,7 +1,7 @@
 return {
   {
     "nvim-neo-tree/neo-tree.nvim",
-    optional = true,
+    enabled = false,
     init = function() end,
     keys = function()
       return {
