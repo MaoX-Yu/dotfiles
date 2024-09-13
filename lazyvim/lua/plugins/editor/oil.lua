@@ -3,7 +3,12 @@ return {
     "stevearc/oil.nvim",
     ---@module 'oil'
     ---@type oil.SetupOpts
-    opts = {},
+    opts = {
+      keymaps = {
+        ["q"] = "actions.close",
+        ["<C-c>"] = false,
+      },
+    },
     event = "VeryLazy",
     keys = {
       {
