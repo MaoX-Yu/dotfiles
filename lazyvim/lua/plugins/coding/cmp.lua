@@ -3,6 +3,7 @@ return {
     "hrsh7th/nvim-cmp",
     dependencies = {
       "hrsh7th/cmp-emoji",
+      "echasnovski/mini.icons",
     },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
@@ -44,7 +45,7 @@ return {
             end
             item.abbr = item.abbr:gsub("…", "..")
 
-            local symbol = require("mini.icons").get("lsp", item.kind)
+            local symbol = MiniIcons.get("lsp", item.kind)
             item.kind = symbol .. "  " .. item.kind
             local widths = {
               abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,
