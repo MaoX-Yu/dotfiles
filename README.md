@@ -31,7 +31,7 @@
 
 ### 安装dotter[可选]
 
-> 仓库中存放了Windows与Linux下的dotter可执行文件
+> dotter分支下存放了Windows与Linux平台的dotter可执行文件
 
 Windows:
 
