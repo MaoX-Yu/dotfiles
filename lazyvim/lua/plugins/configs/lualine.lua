@@ -1,13 +1,7 @@
 local M = {}
 
 function M.opts(opts)
-  local colors = require("catppuccin.palettes").get_palette("macchiato")
   local icons = LazyVim.config.icons
-  local conditions = {
-    hide_in_width = function()
-      return vim.fn.winwidth(0) > 80
-    end,
-  }
 
   opts.options = opts.options or {}
   opts.options.component_separators = ""
@@ -25,21 +19,38 @@ function M.opts(opts)
         hint = icons.diagnostics.Hint,
       },
     },
-    { LazyVim.lualine.pretty_path() },
+    {
+      "filename",
+      newfile_status = true,
+      path = 1,
+      symbols = {
+        readonly = "[RO]",
+      },
+    },
   }
   table.insert(opts.sections.lualine_x, { "overseer" })
   table.insert(opts.sections.lualine_x, {
     "o:encoding",
     fmt = string.upper,
-    cond = conditions.hide_in_width,
-    color = { fg = colors.green },
+    cond = function()
+      return vim.opt.fileencoding:get() ~= "utf-8"
+    end,
   })
   table.insert(opts.sections.lualine_x, {
     "fileformat",
-    cond = conditions.hide_in_width,
-    color = { fg = colors.green },
+    fmt = string.upper,
+    icons_enabled = false,
   })
-  opts.sections.lualine_x = vim.list_extend(opts.sections.lualine_x, opts.sections.lualine_y or {})
+  table.insert(opts.sections.lualine_x, {
+    "progress",
+    separator = " ",
+    fmt = string.upper,
+    padding = { left = 1, right = 0 },
+  })
+  table.insert(opts.sections.lualine_x, {
+    "location",
+    padding = { left = 0, right = 1 },
+  })
   table.insert(opts.sections.lualine_x, {
     "filetype",
     colored = true,
