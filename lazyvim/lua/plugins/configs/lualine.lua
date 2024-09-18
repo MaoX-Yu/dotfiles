@@ -60,6 +60,19 @@ function M.opts(opts)
   opts.sections.lualine_y = {}
   opts.sections.lualine_z = {}
 
+  opts.extensions = {
+    "fzf",
+    "lazy",
+    "man",
+    "mason",
+    "neo-tree",
+    "nvim-dap-ui",
+    "oil",
+    "overseer",
+    "quickfix",
+    "trouble",
+  }
+
   return opts
 end
 
