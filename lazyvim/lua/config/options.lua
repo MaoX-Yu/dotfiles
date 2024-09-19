@@ -56,4 +56,4 @@ vim.filetype.add({
   },
 })
 
-U.load_opts(options)
+U.core.load_opts(options)

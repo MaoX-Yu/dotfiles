@@ -50,4 +50,4 @@ local unmaps = {
   { key = "<leader>qq", mode = { "n" }      },
 }
 
-U.load_keymaps(maps, unmaps)
+U.core.load_keymaps(maps, unmaps)
