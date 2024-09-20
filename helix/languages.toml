@@ -35,7 +35,7 @@ args = ["server"]
 
 [language.formatter]
 command = "ruff"
-args = ["format", "--force-exclude", "--stdin-filename", "$FILENAME", "-"]
+args = ["format", "-"]
 
 # ====================
 # Rust
