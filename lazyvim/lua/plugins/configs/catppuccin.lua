@@ -60,6 +60,29 @@ M.highlights = function(C)
 
     -- leap
     LeapBackdrop = { fg = C.overlay0 },
+
+    -- statusline
+    StatuslineNormal = { bg = C.blue, fg = C.mantle, style = { "bold" } },
+    StatuslineInsert = { bg = C.green, fg = C.base, style = { "bold" } },
+    StatuslineTerminal = { bg = C.green, fg = C.base, style = { "bold" } },
+    StatuslineCommand = { bg = C.peach, fg = C.base, style = { "bold" } },
+    StatuslineVisual = { bg = C.mauve, fg = C.base, style = { "bold" } },
+    StatuslineReplace = { bg = C.red, fg = C.base, style = { "bold" } },
+    StatuslineInactive = { bg = C.mantle, fg = C.blue },
+    StatuslineBranch = { bg = C.mantle, fg = C.mauve },
+    StatuslineDiffAdd = { bg = C.mantle, fg = C.green },
+    StatuslineDiffChange = { bg = C.mantle, fg = C.yellow },
+    StatuslineDIffDelete = { bg = C.mantle, fg = C.red },
+    StatuslineDiagnosticError = { bg = C.mantle, fg = C.red },
+    StatuslineDiagnosticWarn = { bg = C.mantle, fg = C.yellow },
+    StatuslineDiagnosticInfo = { bg = C.mantle, fg = C.sky },
+    StatuslineDiagnosticHint = { bg = C.mantle, fg = C.teal },
+    StatuslineLazy = { bg = C.mantle, fg = C.pink },
+    StatuslineDebug = { bg = C.mantle, fg = C.red },
+    StatuslineOverseerRUNNING = { bg = C.mantle, fg = C.yellow },
+    StatuslineOverseerSUCCESS = { bg = C.mantle, fg = C.green },
+    StatuslineOverseerCANCELED = { bg = C.mantle, fg = C.overlay2 },
+    StatuslineOverseerFAILURE = { bg = C.mantle, fg = C.red },
   }
 end
 
