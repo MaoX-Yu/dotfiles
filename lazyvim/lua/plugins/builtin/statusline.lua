@@ -463,6 +463,14 @@ local stl_lazy = function()
   return lazy_str .. " " .. lazy_status .. " " .. components.lazy
 end
 
+local stl_fzf = function()
+  local fzf = require("fzf-lua")
+  local fzf_str = U.stl.hl(" FZF ", "StatuslineTerminal")
+  local fzf_picker = string.gsub(vim.inspect(fzf.get_info()["fnc"]), '"', "")
+  fzf_picker = U.stl.hl(" " .. fzf_picker .. " ", "StatuslineTerminal")
+  return fzf_str .. "%=" .. fzf_picker
+end
+
 function M.get()
   local ft = vim.bo.filetype
   if ft == "dashboard" then
@@ -470,6 +478,9 @@ function M.get()
   end
   if ft == "lazy" then
     return stl_lazy()
+  end
+  if ft == "fzf" then
+    return stl_fzf()
   end
   return stl
 end
