@@ -432,7 +432,7 @@ local components = {
   filetype     = [[%{%v:lua.require'plugins.builtin.statusline'.filetype()%}]],
 }
 
-local statusline = table.concat({
+local stl = table.concat({
   components.mode,
   components.branch,
   components.diag,
@@ -456,11 +456,22 @@ local statusline = table.concat({
   components.filetype,
 })
 
+local stl_lazy = function()
+  local lazy = require("lazy")
+  local lazy_str = U.stl.hl(" Lazy 💤 ", "StatuslineNormal")
+  local lazy_status = "loaded: " .. lazy.stats().loaded .. "/" .. lazy.stats().count
+  return lazy_str .. " " .. lazy_status .. " " .. components.lazy
+end
+
 function M.get()
-  if vim.bo.filetype == "dashboard" then
+  local ft = vim.bo.filetype
+  if ft == "dashboard" then
     return "%#Normal#"
   end
-  return statusline
+  if ft == "lazy" then
+    return stl_lazy()
+  end
+  return stl
 end
 
 vim.api.nvim_create_autocmd({ "FileChangedShellPost", "DiagnosticChanged", "LspProgress" }, {
