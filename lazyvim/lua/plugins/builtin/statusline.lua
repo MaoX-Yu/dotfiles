@@ -478,6 +478,14 @@ local stl_mason = function()
   return mason_str .. " " .. mason_status
 end
 
+local stl_oil = function()
+  local mode = vim.api.nvim_get_mode().mode
+  local _, hl = U.stl.get_mode_hl(mode)
+  local oil_str = U.stl.hl(" Oil ", hl)
+  local oil_dir = vim.fn.fnamemodify(require("oil").get_current_dir(), ":~")
+  return oil_str .. " " .. oil_dir
+end
+
 function M.get()
   local ft = vim.bo.filetype
   if ft == "dashboard" then
@@ -491,6 +499,9 @@ function M.get()
   end
   if ft == "mason" then
     return stl_mason()
+  end
+  if ft == "oil" then
+    return stl_oil()
   end
   return stl
 end
