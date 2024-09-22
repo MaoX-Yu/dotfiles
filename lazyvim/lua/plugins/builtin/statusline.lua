@@ -471,6 +471,13 @@ local stl_fzf = function()
   return fzf_str .. "%=" .. fzf_picker
 end
 
+local stl_mason = function()
+  local mason = require("mason-registry")
+  local mason_str = U.stl.hl(" Mason ", "StatuslineNormal")
+  local mason_status = "Installed: " .. #mason.get_installed_packages() .. "/" .. #mason.get_all_package_specs()
+  return mason_str .. " " .. mason_status
+end
+
 function M.get()
   local ft = vim.bo.filetype
   if ft == "dashboard" then
@@ -481,6 +488,9 @@ function M.get()
   end
   if ft == "fzf" then
     return stl_fzf()
+  end
+  if ft == "mason" then
+    return stl_mason()
   end
   return stl
 end
