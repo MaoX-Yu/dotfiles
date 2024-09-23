@@ -72,7 +72,7 @@ M.highlights = function(C)
     StatuslineBranch = { bg = C.mantle, fg = C.mauve },
     StatuslineDiffAdd = { bg = C.mantle, fg = C.green },
     StatuslineDiffChange = { bg = C.mantle, fg = C.yellow },
-    StatuslineDIffDelete = { bg = C.mantle, fg = C.red },
+    StatuslineDiffRemove = { bg = C.mantle, fg = C.red },
     StatuslineDiagnosticError = { bg = C.mantle, fg = C.red },
     StatuslineDiagnosticWarn = { bg = C.mantle, fg = C.yellow },
     StatuslineDiagnosticInfo = { bg = C.mantle, fg = C.sky },

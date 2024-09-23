@@ -464,10 +464,13 @@ local stl_lazy = function()
 end
 
 local stl_fzf = function()
-  local fzf = require("fzf-lua")
   local fzf_str = U.stl.hl(" FZF ", "StatuslineTerminal")
-  local fzf_picker = string.gsub(vim.inspect(fzf.get_info()["fnc"]), '"', "")
-  fzf_picker = U.stl.hl(" " .. fzf_picker .. " ", "StatuslineTerminal")
+  local fzf_picker = ""
+  local fzf_info = require("fzf-lua").get_info()
+  if fzf_info then
+    fzf_picker = string.gsub(vim.inspect(fzf_info["fnc"]), '"', "")
+    fzf_picker = U.stl.hl(" " .. fzf_picker .. " ", "StatuslineTerminal")
+  end
   return fzf_str .. "%=" .. fzf_picker
 end
 
