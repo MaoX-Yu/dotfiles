@@ -1,6 +1,16 @@
 return {
   {
     "folke/noice.nvim",
-    enabled = false,
+    optional = true,
+    init = function()
+      vim.o.cmdheight = 0
+    end,
+    opts = {
+      lsp = {
+        progress = {
+          enabled = false,
+        },
+      },
+    },
   },
 }
