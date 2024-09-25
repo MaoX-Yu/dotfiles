@@ -411,6 +411,14 @@ function M.lazy()
   return ""
 end
 
+function M.noice()
+  if package.loaded["noice"] and require("noice").api.status.command.has() then
+    local command = require("noice").api.status.command.get()
+    return U.stl.hl(string.format(" %s ", command), "StatuslineBranch")
+  end
+  return ""
+end
+
 -- stylua: ignore
 local components = {
   align        = [[%=]],
@@ -421,6 +429,7 @@ local components = {
   diag         = [[%{%v:lua.require'plugins.builtin.statusline'.diag()%}]],
   fname        = [[%{%v:lua.require'plugins.builtin.statusline'.fname()%} ]],
   lsp_progress = [[%{%v:lua.require'plugins.builtin.statusline'.lsp_progress()%}]],
+  noice        = [[%{%v:lua.require'plugins.builtin.statusline'.noice()%}]],
   lazy         = [[%{%v:lua.require'plugins.builtin.statusline'.lazy()%}]],
   debug        = [[%{%v:lua.require'plugins.builtin.statusline'.debug()%}]],
   gitdiff      = [[%{%v:lua.require'plugins.builtin.statusline'.gitdiff()%}]],
@@ -441,6 +450,7 @@ local stl = table.concat({
   components.truncate,
   components.lsp_progress,
   components.align,
+  components.noice,
   components.lazy,
   components.gitdiff,
   components.overseer,
