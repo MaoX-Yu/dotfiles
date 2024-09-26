@@ -111,9 +111,9 @@ vim.api.nvim_create_autocmd({ "BufDelete", "BufFilePre" }, {
 function M.fname()
   local symbols = {
     modified = "[+]",
-    readonly = "[RO]",
+    readonly = "[-]",
     unnamed = "[No Name]",
-    newfile = "[New]",
+    newfile = "[*]",
   }
   local function is_new_file()
     local filename = vim.fn.expand("%")
