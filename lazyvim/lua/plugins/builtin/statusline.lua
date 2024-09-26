@@ -128,10 +128,10 @@ function M.fname()
       return symbols.unnamed
     end
     -- Relative path
-    local fname = vim.fn.expand("%:~:.")
+    local fname = vim.fn.expand("%:t")
     local file_symbols = {}
-    if vim.bo.modified then
-      table.insert(file_symbols, symbols.modified)
+    if vim.b._stl_pdiff then
+      table.insert(file_symbols, string.format("[%s]", vim.b._stl_pdiff))
     end
     if vim.bo.modifiable == false or vim.bo.readonly == true then
       table.insert(file_symbols, symbols.readonly)
@@ -139,10 +139,10 @@ function M.fname()
     if is_new_file() then
       table.insert(file_symbols, symbols.newfile)
     end
-    if vim.b._stl_pdiff then
-      table.insert(file_symbols, string.format("[%s]", vim.b._stl_pdiff))
+    if vim.bo.modified then
+      table.insert(file_symbols, symbols.modified)
     end
-    return U.stl.escape(fname) .. (#file_symbols > 0 and " " .. table.concat(file_symbols, "") or "")
+    return U.stl.escape(fname) .. (#file_symbols > 0 and " " .. table.concat(file_symbols, " ") or "")
   end
 
   -- Terminal buffer, show terminal command and id
