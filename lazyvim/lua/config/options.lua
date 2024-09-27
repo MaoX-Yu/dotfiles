@@ -15,7 +15,7 @@ local options = {
     incsearch = true,
     linebreak = true,
     list = true,
-    listchars = "nbsp:+,space:·,tab:  ,trail:-",
+    listchars = { nbsp = "+", space = "·", tab = "  ", trail = "-" },
     mouse = "", -- disable mouse
     pumblend = 0,
     scrolloff = 8,
