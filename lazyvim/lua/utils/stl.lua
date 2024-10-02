@@ -41,24 +41,25 @@ local modes = {
   ["t"]     = "TERMINAL",
 }
 
+-- stylua: ignore
 local mode_to_hl = {
-  ["VISUAL"] = "StatuslineVisual",
-  ["V-BLOCK"] = "StatuslineVisual",
-  ["V-LINE"] = "StatuslineVisual",
-  ["SELECT"] = "StatuslineVisual",
-  ["S-LINE"] = "StatuslineVisual",
-  ["S-BLOCK"] = "StatuslineVisual",
-  ["REPLACE"] = "StatuslineReplace",
+  ["VISUAL"]    = "StatuslineVisual",
+  ["V-BLOCK"]   = "StatuslineVisual",
+  ["V-LINE"]    = "StatuslineVisual",
+  ["SELECT"]    = "StatuslineVisual",
+  ["S-LINE"]    = "StatuslineVisual",
+  ["S-BLOCK"]   = "StatuslineVisual",
+  ["REPLACE"]   = "StatuslineReplace",
   ["V-REPLACE"] = "StatuslineReplace",
-  ["INSERT"] = "StatuslineInsert",
-  ["COMMAND"] = "StatuslineCommand",
-  ["EX"] = "StatuslineCommand",
-  ["MORE"] = "StatuslineCommand",
-  ["CONFIRM"] = "StatuslineCommand",
-  ["TERMINAL"] = "StatuslineTerminal",
+  ["INSERT"]    = "StatuslineInsert",
+  ["COMMAND"]   = "StatuslineCommand",
+  ["EX"]        = "StatuslineCommand",
+  ["MORE"]      = "StatuslineCommand",
+  ["CONFIRM"]   = "StatuslineCommand",
+  ["TERMINAL"]  = "StatuslineTerminal",
 }
 
-local diag_signs_default_text = { " ", " ", " ", " " }
+local diag_signs_text = { "E:", "W:", "I:", "H:" }
 
 local diag_severity_map = {
   [1] = "ERROR",
@@ -71,13 +72,11 @@ local diag_severity_map = {
   HINT = 4,
 }
 
+---Get diagnostic sign text
 ---@param severity integer|string
 ---@return string
 function M.get_diag_sign_text(severity)
-  local diag_config = vim.diagnostic.config()
-  local signs_text = diag_config and diag_config.signs and type(diag_config.signs) == "table" and diag_config.signs.text
-  return signs_text and (signs_text[severity] or signs_text[diag_severity_map[severity]])
-    or (diag_signs_default_text[severity] or diag_signs_default_text[diag_severity_map[severity]])
+  return diag_signs_text[severity] or diag_signs_text[diag_severity_map[severity]]
 end
 
 ---Get mode string and highlight group name

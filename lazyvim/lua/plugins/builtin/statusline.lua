@@ -1,4 +1,11 @@
+-- Built-in statusline
+
+---@class utils
+---@field fs table
+---@field git table
+---@field stl table
 local U = require("utils")
+
 local colors = require("catppuccin.palettes").get_palette("macchiato")
 local groupid = vim.api.nvim_create_augroup("Statusline", {})
 
@@ -202,17 +209,21 @@ end
 
 local spinner_end_keep = 2000 -- ms
 local spinner_status_keep = 600 -- ms
-local spinner_progress_keep = 100 -- ms
+local spinner_progress_keep = 80 -- ms
 local spinner_timer = vim.uv.new_timer()
 
-local spinner_icon_done = "[DONE]"
+local spinner_icon_done = "✔"
 local spinner_icons = {
-  "[    ]",
-  "[=   ]",
-  "[==  ]",
-  "[ == ]",
-  "[  ==]",
-  "[   =]",
+  "⠋",
+  "⠙",
+  "⠹",
+  "⠸",
+  "⠼",
+  "⠴",
+  "⠦",
+  "⠧",
+  "⠇",
+  "⠏",
 }
 
 ---Id and additional info of language servers in progress
@@ -237,8 +248,9 @@ vim.api.nvim_create_autocmd("LspProgress", {
     -- Clear client message after a short time if no new message is received
     vim.defer_fn(function()
       -- No new report since the timer was set
+      local type = (server_info[id] or {}).type
       local last_timestamp = (server_info[id] or {}).timestamp
-      if not last_timestamp or last_timestamp == now then
+      if (not type or type == "end") and (not last_timestamp or last_timestamp == now) then
         server_info[id] = nil
         if vim.tbl_isempty(server_info) and spinner_timer then
           spinner_timer:stop()
@@ -309,13 +321,13 @@ function M.gitdiff()
   end
   local diff_str = " "
   if added > 0 then
-    diff_str = diff_str .. U.stl.hl(string.format(" %d", added), "StatuslineDiffAdd") .. " "
+    diff_str = diff_str .. U.stl.hl(string.format("+%d", added), "StatuslineDiffAdd") .. " "
   end
   if changed > 0 then
-    diff_str = diff_str .. U.stl.hl(string.format(" %d", changed), "StatuslineDiffChange") .. " "
+    diff_str = diff_str .. U.stl.hl(string.format("~%d", changed), "StatuslineDiffChange") .. " "
   end
   if removed > 0 then
-    diff_str = diff_str .. U.stl.hl(string.format(" %d", removed), "StatuslineDiffRemove") .. " "
+    diff_str = diff_str .. U.stl.hl(string.format("-%d", removed), "StatuslineDiffRemove") .. " "
   end
   return diff_str
 end
@@ -378,10 +390,10 @@ function M.overseer()
     local util = require("overseer.util")
     local STATUS = constants.STATUS
     local icons = {
-      [STATUS.FAILURE] = "󰅚 ",
-      [STATUS.CANCELED] = " ",
-      [STATUS.SUCCESS] = "󰄴 ",
-      [STATUS.RUNNING] = "󰑮 ",
+      [STATUS.FAILURE] = "F:",
+      [STATUS.CANCELED] = "C:",
+      [STATUS.SUCCESS] = "S:",
+      [STATUS.RUNNING] = "R:",
     }
     local tasks = task_list.list_tasks()
     local tasks_by_status = util.tbl_group_by(tasks, "status")
@@ -412,7 +424,9 @@ function M.lazy()
 end
 
 function M.noice()
+  ---@diagnostic disable-next-line: undefined-field
   if package.loaded["noice"] and require("noice").api.status.command.has() then
+    ---@diagnostic disable-next-line: undefined-field
     local command = require("noice").api.status.command.get()
     return U.stl.hl(string.format(" %s ", command), "StatuslineBranch")
   end
@@ -422,30 +436,32 @@ end
 -- stylua: ignore
 local components = {
   align        = [[%=]],
-  padding      = [[ ]],
-  truncate     = [[%<]],
-  mode         = [[%{%v:lua.require'plugins.builtin.statusline'.mode()%}]],
   branch       = [[%{%v:lua.require'plugins.builtin.statusline'.branch()%}]],
-  diag         = [[%{%v:lua.require'plugins.builtin.statusline'.diag()%}]],
-  fname        = [[%{%v:lua.require'plugins.builtin.statusline'.fname()%} ]],
-  lsp_progress = [[%{%v:lua.require'plugins.builtin.statusline'.lsp_progress()%}]],
-  noice        = [[%{%v:lua.require'plugins.builtin.statusline'.noice()%}]],
-  lazy         = [[%{%v:lua.require'plugins.builtin.statusline'.lazy()%}]],
   debug        = [[%{%v:lua.require'plugins.builtin.statusline'.debug()%}]],
-  gitdiff      = [[%{%v:lua.require'plugins.builtin.statusline'.gitdiff()%}]],
-  overseer     = [[%{%v:lua.require'plugins.builtin.statusline'.overseer()%}]],
+  diag         = [[%{%v:lua.require'plugins.builtin.statusline'.diag()%}]],
   encoding     = [[%{%v:lua.require'plugins.builtin.statusline'.encoding()%}]],
   fileformat   = [[%{%v:lua.require'plugins.builtin.statusline'.fileformat()%}]],
-  progress     = [[%{%v:lua.require'plugins.builtin.statusline'.progress()%}]],
-  position     = [[%{%&ru?"%l:%c ":""%}]],
   filetype     = [[%{%v:lua.require'plugins.builtin.statusline'.filetype()%}]],
+  flag         = [[%{%&bt==#''?'':(&bt==#'help'?'%h ':(&pvw?'%w ':''))%}]],
+  fname        = [[%{%v:lua.require'plugins.builtin.statusline'.fname()%} ]],
+  gitdiff      = [[%{%v:lua.require'plugins.builtin.statusline'.gitdiff()%}]],
+  lazy         = [[%{%v:lua.require'plugins.builtin.statusline'.lazy()%}]],
+  lsp_progress = [[%{%v:lua.require'plugins.builtin.statusline'.lsp_progress()%}]],
+  mode         = [[%{%v:lua.require'plugins.builtin.statusline'.mode()%}]],
+  noice        = [[%{%v:lua.require'plugins.builtin.statusline'.noice()%}]],
+  overseer     = [[%{%v:lua.require'plugins.builtin.statusline'.overseer()%}]],
+  padding      = [[ ]],
+  position     = [[%{%&ru?"%l:%c ":""%}]],
+  progress     = [[%{%v:lua.require'plugins.builtin.statusline'.progress()%}]],
+  truncate     = [[%<]],
 }
 
 local stl = table.concat({
   components.mode,
   components.branch,
-  components.diag,
+  components.flag,
   components.fname,
+  components.diag,
   components.align,
   components.truncate,
   components.lsp_progress,
