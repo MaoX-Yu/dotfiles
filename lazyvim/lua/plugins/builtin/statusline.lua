@@ -6,7 +6,6 @@
 ---@field stl table
 local U = require("utils")
 
-local colors = require("catppuccin.palettes").get_palette("macchiato")
 local groupid = vim.api.nvim_create_augroup("Statusline", {})
 
 local M = {}
@@ -120,7 +119,7 @@ function M.fname()
     modified = "[+]",
     readonly = "[-]",
     unnamed = "[No Name]",
-    newfile = "[*]",
+    newfile = "[New]",
   }
   local function is_new_file()
     local filename = vim.fn.expand("%")
@@ -169,7 +168,7 @@ end
 
 function M.branch()
   local branch = vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.head or U.git.branch()
-  return branch == "" and "" or U.stl.hl(string.format(" %s ", U.stl.escape(branch)), "StatuslineBranch")
+  return branch ~= "" and string.format("#%s", U.stl.escape(branch)) or ""
 end
 
 vim.api.nvim_create_autocmd("DiagnosticChanged", {
@@ -190,19 +189,17 @@ function M.diag()
   if vim.b.diag_str_cache then
     return vim.b.diag_str_cache
   end
-  local str = ""
+  local diag = {}
   local buf_cnt = vim.b.diag_cnt_cache or {}
   for serverity_nr, severity in ipairs({ "Error", "Warn", "Info", "Hint" }) do
     local cnt = buf_cnt[serverity_nr] or 0
     if cnt > 0 then
       local icon_text = U.stl.get_diag_sign_text(serverity_nr)
       local icon_hl = "StatuslineDiagnostic" .. severity
-      str = str .. (str == "" and "" or " ") .. U.stl.hl(icon_text .. cnt, icon_hl)
+      table.insert(diag, U.stl.hl(icon_text .. cnt, icon_hl))
     end
   end
-  if str:find("%S") then
-    str = str .. " "
-  end
+  local str = #diag > 0 and string.format(" %s ", table.concat(diag, " ")) or ""
   vim.b.diag_str_cache = str
   return str
 end
@@ -299,7 +296,7 @@ function M.lsp_progress()
   end
 
   return string.format(
-    " %s %s",
+    "%s %s ",
     table.concat(
       vim.tbl_map(function(id)
         return U.stl.escape(server_info[id].name)
@@ -316,20 +313,35 @@ function M.gitdiff()
   local changed = diff.changed or 0
   local removed = diff.removed or 0
 
-  if added == 0 and changed == 0 and removed == 0 then
-    return ""
-  end
-  local diff_str = " "
+  local diff_str = {}
   if added > 0 then
-    diff_str = diff_str .. U.stl.hl(string.format("+%d", added), "StatuslineDiffAdd") .. " "
+    table.insert(diff_str, U.stl.hl(string.format("+%d", added), "StatuslineDiffAdd"))
   end
   if changed > 0 then
-    diff_str = diff_str .. U.stl.hl(string.format("~%d", changed), "StatuslineDiffChange") .. " "
+    table.insert(diff_str, U.stl.hl(string.format("~%d", changed), "StatuslineDiffChange"))
   end
   if removed > 0 then
-    diff_str = diff_str .. U.stl.hl(string.format("-%d", removed), "StatuslineDiffRemove") .. " "
+    table.insert(diff_str, U.stl.hl(string.format("-%d", removed), "StatuslineDiffRemove"))
   end
-  return diff_str
+  return #diff_str > 0 and string.format("%s", table.concat(diff_str, " ")) or ""
+end
+
+function M.info()
+  local filetype = M.filetype()
+  local branch = M.branch()
+  local gitdiff = M.gitdiff()
+
+  local info = {}
+  if filetype ~= "" then
+    table.insert(info, filetype)
+  end
+  if branch ~= "" then
+    table.insert(info, branch)
+  end
+  if gitdiff ~= "" then
+    table.insert(info, gitdiff)
+  end
+  return #info > 0 and string.format("(%s)", table.concat(info, ", ")) or ""
 end
 
 function M.encoding()
@@ -352,7 +364,7 @@ function M.progress()
   elseif cur == total then
     return "BOT "
   else
-    return string.format("%2d%%%% ", math.floor(cur / total * 100))
+    return string.format("%d%%%% ", math.floor(cur / total * 100))
   end
 end
 
@@ -361,18 +373,7 @@ function M.filetype()
   if ft == "" then
     return ""
   end
-  local ok, icons = pcall(require, "mini.icons")
-  if ok then
-    local symbol, hl = icons.get("filetype", ft)
-    local hl_group = vim.api.nvim_get_hl(0, { name = hl })
-    local icon_hl = "Statusline" .. hl
-    vim.api.nvim_set_hl(0, icon_hl, {
-      bg = colors.mantle,
-      fg = hl_group.fg,
-    })
-    return string.format("%s %s ", U.stl.hl(symbol, icon_hl), U.stl.escape(ft))
-  end
-  return string.format("%s ", U.stl.escape(ft))
+  return string.format("%s", U.stl.escape(ft))
 end
 
 function M.debug()
@@ -428,7 +429,7 @@ function M.noice()
   if package.loaded["noice"] and require("noice").api.status.command.has() then
     ---@diagnostic disable-next-line: undefined-field
     local command = require("noice").api.status.command.get()
-    return U.stl.hl(string.format(" %s ", command), "StatuslineBranch")
+    return U.stl.hl(string.format(" %s ", command), "StatuslineHistoryCommand")
   end
   return ""
 end
@@ -436,15 +437,13 @@ end
 -- stylua: ignore
 local components = {
   align        = [[%=]],
-  branch       = [[%{%v:lua.require'plugins.builtin.statusline'.branch()%}]],
   debug        = [[%{%v:lua.require'plugins.builtin.statusline'.debug()%}]],
   diag         = [[%{%v:lua.require'plugins.builtin.statusline'.diag()%}]],
   encoding     = [[%{%v:lua.require'plugins.builtin.statusline'.encoding()%}]],
   fileformat   = [[%{%v:lua.require'plugins.builtin.statusline'.fileformat()%}]],
-  filetype     = [[%{%v:lua.require'plugins.builtin.statusline'.filetype()%}]],
   flag         = [[%{%&bt==#''?'':(&bt==#'help'?'%h ':(&pvw?'%w ':''))%}]],
   fname        = [[%{%v:lua.require'plugins.builtin.statusline'.fname()%} ]],
-  gitdiff      = [[%{%v:lua.require'plugins.builtin.statusline'.gitdiff()%}]],
+  info         = [[%{%v:lua.require'plugins.builtin.statusline'.info()%}]],
   lazy         = [[%{%v:lua.require'plugins.builtin.statusline'.lazy()%}]],
   lsp_progress = [[%{%v:lua.require'plugins.builtin.statusline'.lsp_progress()%}]],
   mode         = [[%{%v:lua.require'plugins.builtin.statusline'.mode()%}]],
@@ -458,17 +457,15 @@ local components = {
 
 local stl = table.concat({
   components.mode,
-  components.branch,
   components.flag,
   components.fname,
-  components.diag,
+  components.info,
   components.align,
   components.truncate,
   components.lsp_progress,
-  components.align,
+  components.diag,
   components.noice,
   components.lazy,
-  components.gitdiff,
   components.overseer,
   components.debug,
   components.encoding,
@@ -478,13 +475,11 @@ local stl = table.concat({
   components.progress,
   components.padding,
   components.position,
-  components.padding,
-  components.filetype,
 })
 
 local stl_lazy = function()
   local lazy = require("lazy")
-  local lazy_str = U.stl.hl(" Lazy 💤 ", "StatuslineNormal")
+  local lazy_str = U.stl.hl(" Lazy ", "StatuslineNormal")
   local lazy_status = "loaded: " .. lazy.stats().loaded .. "/" .. lazy.stats().count
   return lazy_str .. " " .. lazy_status .. " " .. components.lazy
 end

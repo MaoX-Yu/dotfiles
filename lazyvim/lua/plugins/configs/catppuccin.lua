@@ -69,7 +69,7 @@ M.highlights = function(C)
     StatuslineVisual = { bg = C.mauve, fg = C.base, style = { "bold" } },
     StatuslineReplace = { bg = C.red, fg = C.base, style = { "bold" } },
     StatuslineInactive = { bg = C.mantle, fg = C.blue },
-    StatuslineBranch = { bg = C.mantle, fg = C.mauve },
+    StatuslineHistoryCommand = { bg = C.mantle, fg = C.mauve },
     StatuslineDiffAdd = { bg = C.mantle, fg = C.green },
     StatuslineDiffChange = { bg = C.mantle, fg = C.yellow },
     StatuslineDiffRemove = { bg = C.mantle, fg = C.red },
