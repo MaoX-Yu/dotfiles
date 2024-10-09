@@ -50,13 +50,4 @@ if vim.g.neovide then
   options.g.neovide_hide_mouse_when_typing = true
 end
 
--- Filetype
-vim.filetype.add({
-  filename = {
-    ["go.mod"] = "gomod",
-    ["go.sum"] = "gosum",
-    ["go.work"] = "gowork",
-  },
-})
-
 U.core.load_opts(options)
