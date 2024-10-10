@@ -6,7 +6,7 @@
 ---@field stl table
 local U = require("utils")
 
-local groupid = vim.api.nvim_create_augroup("Statusline", {})
+local group_id = vim.api.nvim_create_augroup("Statusline", {})
 
 local M = {}
 
@@ -65,7 +65,7 @@ for _, buf in ipairs(vim.api.nvim_list_bufs()) do
 end
 
 vim.api.nvim_create_autocmd({ "BufAdd", "BufFilePost" }, {
-  group = groupid,
+  group = group_id,
   desc = "Track new buffer file name.",
   callback = function(info)
     -- Delay adding buffer to fnames to ensure attributes, e.g.
@@ -77,7 +77,7 @@ vim.api.nvim_create_autocmd({ "BufAdd", "BufFilePost" }, {
 })
 
 vim.api.nvim_create_autocmd({ "BufDelete", "BufFilePre" }, {
-  group = groupid,
+  group = group_id,
   desc = "Remove deleted buffer file name from record.",
   callback = function(info)
     if vim.bo[info.buf].bt ~= "" then
@@ -133,7 +133,6 @@ function M.fname()
     if bname == "" then
       return symbols.unnamed
     end
-    -- Relative path
     local fname = vim.fn.expand("%:t")
     local file_symbols = {}
     if vim.b._stl_pdiff then
@@ -172,7 +171,7 @@ function M.branch()
 end
 
 vim.api.nvim_create_autocmd("DiagnosticChanged", {
-  group = groupid,
+  group = group_id,
   desc = "Update diagnostics cache for the status line.",
   callback = function(info)
     local b = vim.b[info.buf]
@@ -229,7 +228,7 @@ local server_info = {}
 
 vim.api.nvim_create_autocmd("LspProgress", {
   desc = "Update LSP progress info for the status line.",
-  group = groupid,
+  group = group_id,
   callback = function(info)
     if spinner_timer then
       spinner_timer:start(spinner_progress_keep, spinner_progress_keep, vim.schedule_wrap(vim.cmd.redrawstatus))
@@ -531,7 +530,7 @@ function M.get()
 end
 
 vim.api.nvim_create_autocmd({ "FileChangedShellPost", "DiagnosticChanged", "LspProgress" }, {
-  group = groupid,
+  group = group_id,
   command = "redrawstatus",
 })
 
