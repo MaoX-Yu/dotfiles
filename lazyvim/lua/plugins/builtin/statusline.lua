@@ -167,7 +167,7 @@ end
 
 function M.branch()
   local branch = vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.head or U.git.branch()
-  return branch ~= "" and string.format("#%s", U.stl.escape(branch)) or ""
+  return branch ~= "" and string.format("*%s", U.stl.escape(branch)) or ""
 end
 
 vim.api.nvim_create_autocmd("DiagnosticChanged", {
