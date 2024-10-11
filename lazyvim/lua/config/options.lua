@@ -33,9 +33,6 @@ local options = {
     wrap = false,
     writebackup = false,
   },
-  go = {
-    statusline = [[%!v:lua.require'plugins.builtin.statusline'.get()]],
-  },
   g = {
     mapleader = " ", -- leader key
     lazyvim_python_lsp = "basedpyright",
