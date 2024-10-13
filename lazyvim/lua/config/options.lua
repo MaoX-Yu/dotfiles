@@ -34,9 +34,10 @@ local options = {
     writebackup = false,
   },
   g = {
-    mapleader = " ", -- leader key
     lazyvim_python_lsp = "basedpyright",
     lazyvim_python_ruff = "ruff",
+    mapleader = " ", -- leader key
+    qf_disable_statusline = true,
     trouble_lualine = false,
   },
 }

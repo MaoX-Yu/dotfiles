@@ -162,6 +162,10 @@ function M.fname()
     return string.format("[%s] %s", U.stl.escape(U.stl.snake_to_camel(prefix)), U.stl.escape(suffix))
   end
 
+  if bname == "" and vim.bo.ft ~= "" then
+    return string.format("[%s]", U.stl.escape(U.stl.snake_to_camel(vim.bo.ft)))
+  end
+
   return "%F"
 end
 
@@ -326,6 +330,10 @@ function M.gitdiff()
 end
 
 function M.info()
+  if vim.bo.bt ~= "" then
+    return ""
+  end
+
   local filetype = M.filetype()
   local branch = M.branch()
   local gitdiff = M.gitdiff()
