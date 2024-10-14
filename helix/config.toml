@@ -29,11 +29,11 @@ right = [
   "selections",
   "file-encoding",
   "file-line-ending",
+  "file-type",
   "spacer",
   "position-percentage",
   "spacer",
   "position",
-  "file-type",
 ]
 separator = "│"
 mode.normal = "NORMAL"
