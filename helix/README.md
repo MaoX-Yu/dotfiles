@@ -6,11 +6,9 @@
 
 ### Python
 
-[pyright](https://github.com/microsoft/pyright) - `npm install pyright -g`
+[basedpyright](https://github.com/detachhead/basedpyright) - `pip install basedpyright`
 
-[ruff](https://github.com/astral-sh/ruff-lsp) - `pip install ruff-lsp`
-
-[black](https://github.com/psf/black) - `pip install black`
+[ruff](https://github.com/astral-sh/ruff) - `pip install ruff`
 
 ### Go
 
@@ -26,4 +24,4 @@ go install golang.org/x/tools/cmd/goimports@latest  # Formatter
 rustup component add rust-analyzer
 ```
 
-[更多](https://github.com/helix-editor/helix/wiki/How-to-install-the-default-language-servers)
+[更多](https://github.com/helix-editor/helix/wiki/Language-Server-Configurations)
