@@ -162,7 +162,7 @@ function M.fname()
     return string.format("[%s] %s", U.stl.escape(U.stl.snake_to_camel(prefix)), U.stl.escape(suffix))
   end
 
-  if bname == "" and vim.bo.ft ~= "" then
+  if bname == "" and vim.bo.ft ~= "" and vim.bo.ft ~= "qf" then
     return string.format("[%s]", U.stl.escape(U.stl.snake_to_camel(vim.bo.ft)))
   end
 
