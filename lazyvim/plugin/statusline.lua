@@ -444,21 +444,21 @@ end
 -- stylua: ignore
 local components = {
   align        = [[%=]],
-  debug        = [[%{%v:lua.require'plugins.builtin.statusline'.debug()%}]],
-  diag         = [[%{%v:lua.require'plugins.builtin.statusline'.diag()%}]],
-  encoding     = [[%{%v:lua.require'plugins.builtin.statusline'.encoding()%}]],
-  fileformat   = [[%{%v:lua.require'plugins.builtin.statusline'.fileformat()%}]],
+  debug        = [[%{%v:lua._G.STL.debug()%}]],
+  diag         = [[%{%v:lua._G.STL.diag()%}]],
+  encoding     = [[%{%v:lua._G.STL.encoding()%}]],
+  fileformat   = [[%{%v:lua._G.STL.fileformat()%}]],
   flag         = [[%{%&bt==#''?'':(&bt==#'help'?'%h ':(&pvw?'%w ':''))%}]],
-  fname        = [[%{%v:lua.require'plugins.builtin.statusline'.fname()%} ]],
-  info         = [[%{%v:lua.require'plugins.builtin.statusline'.info()%}]],
-  lazy         = [[%{%v:lua.require'plugins.builtin.statusline'.lazy()%}]],
-  lsp_progress = [[%{%v:lua.require'plugins.builtin.statusline'.lsp_progress()%}]],
-  mode         = [[%{%v:lua.require'plugins.builtin.statusline'.mode()%}]],
-  noice        = [[%{%v:lua.require'plugins.builtin.statusline'.noice()%}]],
-  overseer     = [[%{%v:lua.require'plugins.builtin.statusline'.overseer()%}]],
+  fname        = [[%{%v:lua._G.STL.fname()%} ]],
+  info         = [[%{%v:lua._G.STL.info()%}]],
+  lazy         = [[%{%v:lua._G.STL.lazy()%}]],
+  lsp_progress = [[%{%v:lua._G.STL.lsp_progress()%}]],
+  mode         = [[%{%v:lua._G.STL.mode()%}]],
+  noice        = [[%{%v:lua._G.STL.noice()%}]],
+  overseer     = [[%{%v:lua._G.STL.overseer()%}]],
   padding      = [[ ]],
   position     = [[%{%&ru?"%l:%c ":""%}]],
-  progress     = [[%{%v:lua.require'plugins.builtin.statusline'.progress()%}]],
+  progress     = [[%{%v:lua._G.STL.progress()%}]],
   truncate     = [[%<]],
 }
 
@@ -542,4 +542,6 @@ vim.api.nvim_create_autocmd({ "FileChangedShellPost", "DiagnosticChanged", "LspP
   command = "redrawstatus",
 })
 
-return M
+_G.STL = M
+
+vim.opt_global.statusline = [[%!v:lua._G.STL.get()]]
