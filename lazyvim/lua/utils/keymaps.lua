@@ -6,7 +6,7 @@ function M.super_escape()
 end
 
 function M.super_q()
-  if vim.bo.bt == "terminal" or vim.bo.bt == "nofile" then
+  if vim.bo.bt ~= "" then
     return "<cmd>close<cr>"
   end
   return "@"
