@@ -1,8 +1,11 @@
 [starship.files]
 starship = "~/.config/starship.toml"
 
-[nvim.files]
+[lazyvim.files]
 lazyvim = "~/.config/nvim"
+
+[nvim.files]
+nvim = "~/.config/nvim"
 
 [joshuto.files]
 joshuto = "~/.config/joshuto"
