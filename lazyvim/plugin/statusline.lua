@@ -7,6 +7,7 @@
 local U = require("utils")
 
 local group_id = vim.api.nvim_create_augroup("Statusline", {})
+local hl_groups = U.stl.hl_groups
 
 local M = {}
 
@@ -194,12 +195,11 @@ function M.diag()
   end
   local diag = {}
   local buf_cnt = vim.b.diag_cnt_cache or {}
-  for serverity_nr, severity in ipairs({ "Error", "Warn", "Info", "Hint" }) do
+  for serverity_nr, severity in ipairs({ "error", "warn", "info", "hint" }) do
     local cnt = buf_cnt[serverity_nr] or 0
     if cnt > 0 then
       local icon_text = U.stl.get_diag_sign_text(serverity_nr)
-      local icon_hl = "StatuslineDiagnostic" .. severity
-      table.insert(diag, U.stl.hl(icon_text .. cnt, icon_hl))
+      table.insert(diag, U.stl.hl(icon_text .. cnt, hl_groups[severity]))
     end
   end
   local str = #diag > 0 and string.format(" %s ", table.concat(diag, " ")) or ""
@@ -318,13 +318,13 @@ function M.gitdiff()
 
   local diff_str = {}
   if added > 0 then
-    table.insert(diff_str, U.stl.hl(string.format("+%d", added), "StatuslineDiffAdd"))
+    table.insert(diff_str, U.stl.hl(string.format("+%d", added), hl_groups.diff_add))
   end
   if changed > 0 then
-    table.insert(diff_str, U.stl.hl(string.format("~%d", changed), "StatuslineDiffChange"))
+    table.insert(diff_str, U.stl.hl(string.format("~%d", changed), hl_groups.diff_change))
   end
   if removed > 0 then
-    table.insert(diff_str, U.stl.hl(string.format("-%d", removed), "StatuslineDiffRemove"))
+    table.insert(diff_str, U.stl.hl(string.format("-%d", removed), hl_groups.diff_remove))
   end
   return #diff_str > 0 and string.format("%s", table.concat(diff_str, " ")) or ""
 end
@@ -386,7 +386,7 @@ end
 function M.debug()
   if package.loaded["dap"] and require("dap").status() ~= "" then
     local dap = "  " .. require("dap").status() .. " "
-    return U.stl.hl(dap, "StatuslineDebug")
+    return U.stl.hl(dap, hl_groups.debug)
   end
   return ""
 end
@@ -409,10 +409,7 @@ function M.overseer()
     for _, status in ipairs(STATUS.values) do
       local status_tasks = tasks_by_status[status]
       if icons[status] and status_tasks then
-        table.insert(
-          pieces,
-          U.stl.hl(string.format("%s%s", icons[status], #status_tasks), "StatuslineOverseer" .. status)
-        )
+        table.insert(pieces, U.stl.hl(string.format("%s%s", icons[status], #status_tasks), hl_groups[status]))
       end
     end
     if #pieces > 0 then
@@ -426,7 +423,7 @@ function M.lazy()
   local ok, status = pcall(require, "lazy.status")
   if ok and status.has_updates() then
     local updates = " " .. status.updates() .. " "
-    return U.stl.hl(updates, "StatuslineLazy")
+    return U.stl.hl(updates, hl_groups.lazy)
   end
   return ""
 end
@@ -436,7 +433,7 @@ function M.noice()
   if package.loaded["noice"] and require("noice").api.status.command.has() then
     ---@diagnostic disable-next-line: undefined-field
     local command = require("noice").api.status.command.get()
-    return U.stl.hl(string.format(" %s ", command), "StatuslineHistoryCommand")
+    return U.stl.hl(string.format(" %s ", command), hl_groups.history_command)
   end
   return ""
 end
@@ -486,25 +483,25 @@ local stl = table.concat({
 
 local stl_lazy = function()
   local lazy = require("lazy")
-  local lazy_str = U.stl.hl(" Lazy ", "StatuslineNormal")
+  local lazy_str = U.stl.hl(" Lazy ", hl_groups.normal)
   local lazy_status = "loaded: " .. lazy.stats().loaded .. "/" .. lazy.stats().count
   return lazy_str .. " " .. lazy_status .. " " .. components.lazy
 end
 
 local stl_fzf = function()
-  local fzf_str = U.stl.hl(" FZF ", "StatuslineTerminal")
+  local fzf_str = U.stl.hl(" FZF ", hl_groups.terminal)
   local fzf_picker = ""
   local fzf_info = require("fzf-lua").get_info()
   if fzf_info then
     fzf_picker = string.gsub(vim.inspect(fzf_info["fnc"]), '"', "")
-    fzf_picker = U.stl.hl(" " .. fzf_picker .. " ", "StatuslineTerminal")
+    fzf_picker = U.stl.hl(" " .. fzf_picker .. " ", hl_groups.terminal)
   end
   return fzf_str .. "%=" .. fzf_picker
 end
 
 local stl_mason = function()
   local mason = require("mason-registry")
-  local mason_str = U.stl.hl(" Mason ", "StatuslineNormal")
+  local mason_str = U.stl.hl(" Mason ", hl_groups.normal)
   local mason_status = "Installed: " .. #mason.get_installed_packages() .. "/" .. #mason.get_all_package_specs()
   return mason_str .. " " .. mason_status
 end

@@ -2,6 +2,31 @@
 local M = {}
 
 -- stylua: ignore
+M.hl_groups = {
+  normal          = "StatuslineNormal",
+  insert          = "StatuslineInsert",
+  terminal        = "StatuslineTerminal",
+  command         = "StatuslineCommand",
+  visual          = "StatuslineVisual",
+  replace         = "StatuslineReplace",
+  inactive        = "StatuslineInactive",
+  history_command = "StatuslineHistoryCommand",
+  diff_add        = "StatuslineDiffAdd",
+  diff_change     = "StatuslineDiffChange",
+  diff_remove     = "StatuslineDiffRemove",
+  error           = "StatuslineDiagnosticError",
+  warn            = "StatuslineDiagnosticWarn",
+  info            = "StatuslineDiagnosticInfo",
+  hint            = "StatuslineDiagnosticHint",
+  lazy            = "StatuslineLazy",
+  debug           = "StatuslineDebug",
+  RUNNING         = "StatuslineOverseerRUNNING",
+  SUCCESS         = "StatuslineOverseerSUCCESS",
+  CANCELED        = "StatuslineOverseerCANCELED",
+  FAILURE         = "StatuslineOverseerFAILURE",
+}
+
+-- stylua: ignore
 local modes = {
   ["n"]     = "NORMAL",
   ["no"]    = "O-PENDING",
@@ -43,20 +68,20 @@ local modes = {
 
 -- stylua: ignore
 local mode_to_hl = {
-  ["VISUAL"]    = "StatuslineVisual",
-  ["V-BLOCK"]   = "StatuslineVisual",
-  ["V-LINE"]    = "StatuslineVisual",
-  ["SELECT"]    = "StatuslineVisual",
-  ["S-LINE"]    = "StatuslineVisual",
-  ["S-BLOCK"]   = "StatuslineVisual",
-  ["REPLACE"]   = "StatuslineReplace",
-  ["V-REPLACE"] = "StatuslineReplace",
-  ["INSERT"]    = "StatuslineInsert",
-  ["COMMAND"]   = "StatuslineCommand",
-  ["EX"]        = "StatuslineCommand",
-  ["MORE"]      = "StatuslineCommand",
-  ["CONFIRM"]   = "StatuslineCommand",
-  ["TERMINAL"]  = "StatuslineTerminal",
+  ["VISUAL"]    = M.hl_groups.visual,
+  ["V-BLOCK"]   = M.hl_groups.visual,
+  ["V-LINE"]    = M.hl_groups.visual,
+  ["SELECT"]    = M.hl_groups.visual,
+  ["S-LINE"]    = M.hl_groups.visual,
+  ["S-BLOCK"]   = M.hl_groups.visual,
+  ["REPLACE"]   = M.hl_groups.replace,
+  ["V-REPLACE"] = M.hl_groups.replace,
+  ["INSERT"]    = M.hl_groups.insert,
+  ["COMMAND"]   = M.hl_groups.command,
+  ["EX"]        = M.hl_groups.command,
+  ["MORE"]      = M.hl_groups.command,
+  ["CONFIRM"]   = M.hl_groups.command,
+  ["TERMINAL"]  = M.hl_groups.terminal,
 }
 
 local diag_signs_text = { "E:", "W:", "I:", "H:" }
@@ -85,7 +110,7 @@ end
 ---@return string hl @highlight group name
 function M.get_mode_hl(mode)
   local mode_str = modes[mode]
-  local hl = mode_to_hl[mode_str] or "StatuslineNormal"
+  local hl = mode_to_hl[mode_str] or M.hl_groups.normal
   return mode_str, hl
 end
 
