@@ -423,8 +423,8 @@ function M.overseer()
 end
 
 function M.lazy()
-  local status = require("lazy.status")
-  if status.has_updates() then
+  local ok, status = pcall(require, "lazy.status")
+  if ok and status.has_updates() then
     local updates = " " .. status.updates() .. " "
     return U.stl.hl(updates, "StatuslineLazy")
   end
