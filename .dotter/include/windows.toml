@@ -1,9 +1,6 @@
 [lazyvim.files]
 lazyvim = "~/AppData/Local/nvim"
 
-[nvim.files]
-nvim = "~/AppData/Local/nvim"
-
 [helix.files]
 helix = "~/AppData/Roaming/helix"
 
