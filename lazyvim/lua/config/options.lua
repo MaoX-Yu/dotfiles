@@ -2,12 +2,9 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-local U = require("utils")
-
 local options = {
   opt = {
     autoread = true,
-    backup = false,
     breakindent = true,
     cmdheight = 1,
     expandtab = true, -- use space replace tab
@@ -19,24 +16,23 @@ local options = {
     listchars = { nbsp = "+", space = "·", tab = "  ", trail = "-" },
     mouse = "", -- disable mouse
     pumblend = 0,
-    scrolloff = 8,
+    scrolloff = 4,
     shiftwidth = 4,
     showcmd = true,
     showmatch = true,
     showtabline = 2,
     sidescrolloff = 8,
+    smarttab = true,
     softtabstop = -1,
     swapfile = false,
     tabstop = 4,
     wildmenu = true,
     winblend = 0,
     wrap = false,
-    writebackup = false,
   },
   g = {
     lazyvim_python_lsp = "basedpyright",
     lazyvim_python_ruff = "ruff",
-    mapleader = " ", -- leader key
     qf_disable_statusline = true,
     trouble_lualine = false,
   },
@@ -49,4 +45,8 @@ if vim.g.neovide then
   options.g.neovide_hide_mouse_when_typing = true
 end
 
-U.core.load_opts(options)
+for scope, tbl in pairs(options) do
+  for setting, val in pairs(tbl) do
+    vim[scope][setting] = val
+  end
+end

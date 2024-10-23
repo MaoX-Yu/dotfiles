@@ -2,7 +2,6 @@
 -- Default keymaps that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/keymaps.lua
 -- Add any additional keymaps here
 
-local U = require("utils")
 local K = require("utils.keymaps")
 
 -- Default: <leader> is <space>
@@ -43,4 +42,10 @@ local unmaps = {
   { key = "<leader>qq", mode = { "n" }      },
 }
 
-U.core.load_keymaps(maps, unmaps)
+for _, unmap in pairs(unmaps) do
+  vim.keymap.del(unmap.mode, unmap.key, unmap.opts or {})
+end
+
+for _, map in pairs(maps) do
+  vim.keymap.set(map.mode, map.from, map.to, map.opts or {})
+end
