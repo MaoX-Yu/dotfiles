@@ -10,17 +10,9 @@ M.highlights = function(C)
     -- lazy.nvim
     LazyButtonActive = { link = "VisualFallback" },
 
-    -- lspsaga
-    SagaBorder = { fg = C.mantle, bg = C.mantle },
-    SagaNormal = { bg = C.mantle },
-    SagaBeacon = { bg = C.mantle },
-
     -- which-key
     WhichKeyBorder = { fg = C.blue, bg = C.mantle },
     WhichKeyTitle = { fg = C.blue, bg = C.mantle },
-
-    -- scrollview
-    ScrollView = { bg = C.surface1 },
 
     -- nvim-cmp
     CmpItemMenu = { fg = C.mauve },
@@ -57,9 +49,6 @@ M.highlights = function(C)
 
     -- fzf-lua
     FzfLuaNormal = { link = "Normal" },
-
-    -- leap
-    LeapBackdrop = { fg = C.overlay0 },
 
     -- statusline
     StatuslineNormal = { bg = C.blue, fg = C.mantle, style = { "bold" } },
