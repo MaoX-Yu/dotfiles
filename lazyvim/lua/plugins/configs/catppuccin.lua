@@ -44,9 +44,6 @@ M.highlights = function(C)
     DropBarCurrentContext = { link = "VisualFallback" },
     DropBarMenuHoverEntry = { link = "VisualFallback" },
 
-    -- codewindow
-    CodewindowBackground = { bg = C.mantle },
-
     -- fzf-lua
     FzfLuaNormal = { link = "Normal" },
 
