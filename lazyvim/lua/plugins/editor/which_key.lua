@@ -12,17 +12,13 @@ return {
       end,
       icons = {
         group = "",
-        rules = {
-          { plugin = "dropbar.nvim", icon = " ", color = "green" },
-          { plugin = "overseer.nvim", icon = " ", color = "yellow" },
-          { plugin = "undotree", icon = " ", color = "green" },
-        },
+        mappings = false,
         keys = {
           BS = "󰁮 ",
         },
       },
       spec = {
-        { "=", group = "apply filter" },
+        { "=", group = "filter" },
         { "<", group = "indent left" },
         { ">", group = "indent right" },
         { "f", desc = "Find Next Char" },
@@ -33,12 +29,12 @@ return {
         { ",", desc = "Prev Find Result" },
         { "<leader>", group = "leader" },
         { "<leader>S", group = "session" },
-        { "<leader>o", group = "overseer", icon = { icon = " ", color = "yellow" } },
-        { "<leader>r", group = "refactor", icon = { icon = " ", color = "purple" } },
-        { "<leader>K", desc = "Keywordprg", icon = { icon = "󰘥 ", color = "green" } },
+        { "<leader>o", group = "overseer" },
+        { "<leader>r", group = "refactor" },
+        { "<leader>K", desc = "Keywordprg" },
         { "<leader>q", desc = "Quit All" },
-        { "<leader>rn", desc = "Rename Symbol", icon = { icon = "󰑕 ", color = "purple" } },
-        { "<leader>%", desc = "Select All", icon = { icon = "󰒆 ", color = "yellow" } },
+        { "<leader>rn", desc = "Rename Symbol" },
+        { "<leader>%", desc = "Select All" },
         {
           mode = { "n", "v" },
           { "<C-_>", hidden = true },
