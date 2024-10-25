@@ -5,6 +5,15 @@ return {
     opts = {},
   },
   {
+    "echasnovski/mini.animate",
+    optional = true,
+    opts = {
+      cursor = {
+        enable = false,
+      },
+    },
+  },
+  {
     "echasnovski/mini.icons",
     optional = true,
     opts = {
