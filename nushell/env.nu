@@ -68,8 +68,8 @@ $env.NU_PLUGIN_DIRS = [
 
 load-env {
     'CONDA_NO_PROMPT': true
-    'VISUAL': 'hx'
-    'EDITOR': 'hx'
+    'VISUAL': 'nvim'
+    'EDITOR': 'nvim'
 }
 
 {{#if (is_executable "starship")}}
