@@ -3,7 +3,7 @@ return {
     "gbprod/yanky.nvim",
     optional = true,
     opts = {
-      highlight = { timer = 500 },
+      highlight = { timer = 300 },
     },
   },
 }
