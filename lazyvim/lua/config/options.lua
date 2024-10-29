@@ -40,6 +40,14 @@ local options = {
 
 if vim.fn.executable("nu") then
   options.opt.shell = "nu"
+  options.opt.shellcmdflag = "--stdin --no-newline -c"
+  options.opt.shellpipe =
+    "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
+  options.opt.shellredir = "out+err> %s"
+  options.opt.shellxescape = ""
+  options.opt.shellquote = ""
+  options.opt.shellxquote = ""
+  options.opt.shelltemp = false
 elseif LazyVim.is_win() then
   LazyVim.terminal.setup("pwsh")
 elseif vim.fn.executable("fish") then
