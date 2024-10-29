@@ -8,6 +8,7 @@ return {
       { "<leader>qS", false },
       { "<leader>ql", false },
       { "<leader>qd", false },
+      { "<leader>S",  "",                                                          desc = "session"                    },
       { "<leader>Ss", function() require("persistence").load() end,                desc = "Restore Session"            },
       { "<leader>SS", function() require("persistence").select() end,              desc = "Select Session"             },
       { "<leader>Sl", function() require("persistence").load({ last = true }) end, desc = "Restore Last Session"       },

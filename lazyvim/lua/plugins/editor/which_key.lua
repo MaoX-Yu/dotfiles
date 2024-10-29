@@ -28,13 +28,8 @@ return {
         { ";", desc = "Next Find Result" },
         { ",", desc = "Prev Find Result" },
         { "<leader>", group = "leader" },
-        { "<leader>S", group = "session" },
-        { "<leader>o", group = "overseer" },
-        { "<leader>r", group = "refactor" },
-        { "<leader>K", desc = "Keywordprg" },
         { "<leader>q", desc = "Quit All" },
         { "<leader>rn", desc = "Rename Symbol" },
-        { "<leader>%", desc = "Select All" },
         {
           mode = { "n", "v" },
           { "<C-_>", hidden = true },
