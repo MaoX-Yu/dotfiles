@@ -34,6 +34,13 @@ local maps = {
 
 -- stylua: ignore
 local unmaps = {
+  -- Buffer
+  { key = "<leader>`",  mode = { "n" }      },
+
+  -- Window
+  { key = "<leader>-",  mode = { "n" }      },
+  { key = "<leader>|",  mode = { "n" }      },
+
   -- Terminal
   { key = "<C-_>",      mode = { "n", "t" } },
   { key = "<C-/>",      mode = { "n", "t" } },

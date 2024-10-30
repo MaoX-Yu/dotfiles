@@ -7,6 +7,7 @@ return {
     "ibhagwan/fzf-lua",
     optional = true,
     keys = {
+      { "<leader>,", false },
       { '<leader>s"', false },
       { "<leader>sa", false },
       { "<leader>sb", false },
