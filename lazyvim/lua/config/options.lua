@@ -50,8 +50,6 @@ if vim.fn.executable("nu") then
   options.opt.shelltemp = false
 elseif LazyVim.is_win() then
   LazyVim.terminal.setup("pwsh")
-elseif vim.fn.executable("fish") then
-  options.opt.shell = "fish"
 end
 
 -- Neovide
