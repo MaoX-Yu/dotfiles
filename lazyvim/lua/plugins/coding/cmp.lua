@@ -1,11 +1,13 @@
 return {
   {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-      "hrsh7th/cmp-emoji",
-      "echasnovski/mini.icons",
+    "iguanacucumber/magazine.nvim",
+    name = "nvim-cmp",
+    optional = true,
+    dependencies = { "hrsh7th/cmp-emoji" },
+    specs = {
+      { "iguanacucumber/mag-nvim-lsp", name = "cmp-nvim-lsp", lazy = true },
+      { "iguanacucumber/mag-buffer", name = "cmp-buffer", lazy = true },
     },
-    ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local cmp = require("cmp")
       local is_visible = function()
@@ -35,7 +37,7 @@ return {
       opts = vim.tbl_extend("force", opts, {
         window = {
           completion = {
-            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:CmpItemHover,Search:None",
+            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
           },
         },
         formatting = {
@@ -62,5 +64,17 @@ return {
       })
       return opts
     end,
+  },
+  {
+    "Saghen/blink.cmp",
+    optional = true,
+    dependencies = { "saghen/blink.compat" },
+    opts = {
+      windows = {
+        autocomplete = {
+          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+        },
+      },
+    },
   },
 }

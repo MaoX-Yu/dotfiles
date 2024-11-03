@@ -16,6 +16,7 @@ return {
     opts = {
       flavour = "macchiato",
       integrations = {
+        blink_cmp = true,
         dropbar = {
           enabled = true,
           color_mode = false, -- enable color for kind's texts, not just kind's icons
