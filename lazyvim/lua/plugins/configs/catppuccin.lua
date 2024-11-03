@@ -2,6 +2,8 @@ local M = {}
 
 M.highlights = function(C)
   return {
+    Pmenu = { link = "NormalFloat" },
+    -- PmenuSel = { fg = C.mantle, bg = C.green, style = { "bold" } },
     PmenuSbar = { bg = C.mantle },
     Visual = { bg = C.surface1, reverse = true, style = { "bold" } },
     VisualNOS = { bg = C.surface1, reverse = true, style = { "bold" } },
@@ -16,7 +18,6 @@ M.highlights = function(C)
 
     -- nvim-cmp
     CmpItemMenu = { fg = C.mauve },
-    CmpItemHover = { fg = C.mantle, bg = C.green, style = { "bold" } },
     CmpItemKindCodeium = { fg = C.teal },
     CmpItemKindFittenCode = { fg = C.teal },
 
