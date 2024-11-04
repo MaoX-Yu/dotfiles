@@ -2,9 +2,6 @@ local M = {}
 
 M.highlights = function(C)
   return {
-    Pmenu = { link = "NormalFloat" },
-    -- PmenuSel = { fg = C.mantle, bg = C.green, style = { "bold" } },
-    PmenuSbar = { bg = C.mantle },
     Visual = { bg = C.surface1, reverse = true, style = { "bold" } },
     VisualNOS = { bg = C.surface1, reverse = true, style = { "bold" } },
     VisualFallback = { bg = C.surface1, style = { "bold" } },
@@ -49,21 +46,17 @@ M.highlights = function(C)
     FzfLuaNormal = { link = "Normal" },
 
     -- statusline
-    StatuslineNormal = { bg = C.blue, fg = C.mantle, style = { "bold" } },
+    StatuslineNormal = { bg = C.lavender, fg = C.mantle, style = { "bold" } },
     StatuslineInsert = { bg = C.green, fg = C.base, style = { "bold" } },
     StatuslineTerminal = { bg = C.green, fg = C.base, style = { "bold" } },
     StatuslineCommand = { bg = C.peach, fg = C.base, style = { "bold" } },
-    StatuslineVisual = { bg = C.mauve, fg = C.base, style = { "bold" } },
-    StatuslineReplace = { bg = C.red, fg = C.base, style = { "bold" } },
-    StatuslineInactive = { bg = C.mantle, fg = C.blue },
+    StatuslineVisual = { bg = C.flamingo, fg = C.base, style = { "bold" } },
+    StatuslineReplace = { bg = C.maroon, fg = C.base, style = { "bold" } },
+    StatuslineInactive = { bg = C.mantle, fg = C.lavender },
     StatuslineHistoryCommand = { bg = C.mantle, fg = C.mauve },
     StatuslineDiffAdd = { bg = C.mantle, fg = C.green },
     StatuslineDiffChange = { bg = C.mantle, fg = C.yellow },
     StatuslineDiffRemove = { bg = C.mantle, fg = C.red },
-    StatuslineDiagnosticError = { bg = C.mantle, fg = C.red },
-    StatuslineDiagnosticWarn = { bg = C.mantle, fg = C.yellow },
-    StatuslineDiagnosticInfo = { bg = C.mantle, fg = C.sky },
-    StatuslineDiagnosticHint = { bg = C.mantle, fg = C.teal },
     StatuslineLazy = { bg = C.mantle, fg = C.pink },
     StatuslineDebug = { bg = C.mantle, fg = C.red },
     StatuslineOverseerRUNNING = { bg = C.mantle, fg = C.yellow },

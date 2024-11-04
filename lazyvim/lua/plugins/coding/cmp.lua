@@ -37,7 +37,7 @@ return {
       opts = vim.tbl_extend("force", opts, {
         window = {
           completion = {
-            winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
+            winhighlight = "Normal:Pmenu,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
           },
         },
         formatting = {
@@ -64,17 +64,5 @@ return {
       })
       return opts
     end,
-  },
-  {
-    "Saghen/blink.cmp",
-    optional = true,
-    dependencies = { "saghen/blink.compat" },
-    opts = {
-      windows = {
-        autocomplete = {
-          winhighlight = "Normal:NormalFloat,FloatBorder:FloatBorder,CursorLine:PmenuSel,Search:None",
-        },
-      },
-    },
   },
 }

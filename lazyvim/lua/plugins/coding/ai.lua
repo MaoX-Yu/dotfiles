@@ -23,6 +23,7 @@ return {
   {
     "Saghen/blink.cmp",
     optional = true,
+    dependencies = { "Saghen/blink.compat" },
     opts = {
       sources = {
         completion = {
