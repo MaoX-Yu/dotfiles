@@ -1,7 +1,7 @@
 return {
   {
     "VidocqH/lsp-lens.nvim",
-    event = "LspAttach",
+    event = "LazyFile",
     opts = {
       enable = true,
       include_declaration = false, -- Reference include declaration

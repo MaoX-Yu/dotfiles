@@ -1,6 +1,7 @@
 return {
   {
     "Bekaboo/dropbar.nvim",
+    enabled = false,
     keys = function()
       local api = require("dropbar.api")
       return {
