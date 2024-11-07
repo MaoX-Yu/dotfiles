@@ -6,6 +6,9 @@ return {
       lightbulb = {
         enable = false,
       },
+      symbol_in_winbar = {
+        folder_level = 0,
+      },
     },
   },
 }
