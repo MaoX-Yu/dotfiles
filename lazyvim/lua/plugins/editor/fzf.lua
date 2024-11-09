@@ -32,7 +32,7 @@ return {
       { "<leader>sW", false },
       { "<leader>ss", false },
       { "<leader>sS", false },
-      { "<leader>s", "<cmd>FzfLua builtin<cr>", desc = "search" },
+      { "<leader>s", "<cmd>FzfLua builtin<cr>", desc = "Search by Fzf" },
     },
   },
   {
