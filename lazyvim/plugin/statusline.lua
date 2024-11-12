@@ -541,4 +541,4 @@ vim.api.nvim_create_autocmd({ "FileChangedShellPost", "DiagnosticChanged", "LspP
 
 _G.STL = M
 
-vim.opt_global.statusline = [[%!v:lua._G.STL.get()]]
+vim.opt_global.statusline = [[%!v:lua.STL.get()]]
