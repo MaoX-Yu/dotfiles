@@ -363,6 +363,12 @@ function M.fileformat()
   return string.format("%s ", string.upper(vim.bo.fileformat))
 end
 
+function M.position()
+  local line = vim.fn.line(".")
+  local col = vim.fn.charcol(".")
+  return string.format("%d:%d ", line, col)
+end
+
 function M.progress()
   local cur = vim.fn.line(".")
   local total = vim.fn.line("$")
@@ -441,21 +447,21 @@ end
 -- stylua: ignore
 local components = {
   align        = [[%=]],
-  debug        = [[%{%v:lua._G.STL.debug()%}]],
-  diag         = [[%{%v:lua._G.STL.diag()%}]],
-  encoding     = [[%{%v:lua._G.STL.encoding()%}]],
-  fileformat   = [[%{%v:lua._G.STL.fileformat()%}]],
+  debug        = [[%{%v:lua.STL.debug()%}]],
+  diag         = [[%{%v:lua.STL.diag()%}]],
+  encoding     = [[%{%v:lua.STL.encoding()%}]],
+  fileformat   = [[%{%v:lua.STL.fileformat()%}]],
   flag         = [[%{%&bt==#''?'':(&bt==#'help'?'%h ':(&pvw?'%w ':''))%}]],
-  fname        = [[%{%v:lua._G.STL.fname()%} ]],
-  info         = [[%{%v:lua._G.STL.info()%}]],
-  lazy         = [[%{%v:lua._G.STL.lazy()%}]],
-  lsp_progress = [[%{%v:lua._G.STL.lsp_progress()%}]],
-  mode         = [[%{%v:lua._G.STL.mode()%}]],
-  noice        = [[%{%v:lua._G.STL.noice()%}]],
-  overseer     = [[%{%v:lua._G.STL.overseer()%}]],
+  fname        = [[%{%v:lua.STL.fname()%}]],
+  info         = [[%{%v:lua.STL.info()%}]],
+  lazy         = [[%{%v:lua.STL.lazy()%}]],
+  lsp_progress = [[%{%v:lua.STL.lsp_progress()%}]],
+  mode         = [[%{%v:lua.STL.mode()%}]],
+  noice        = [[%{%v:lua.STL.noice()%}]],
+  overseer     = [[%{%v:lua.STL.overseer()%}]],
   padding      = [[ ]],
-  position     = [[%{%&ru?"%l:%c ":""%}]],
-  progress     = [[%{%v:lua._G.STL.progress()%}]],
+  position     = [[%{%v:lua.STL.position()%}]],
+  progress     = [[%{%v:lua.STL.progress()%}]],
   truncate     = [[%<]],
 }
 
@@ -463,6 +469,7 @@ local stl = table.concat({
   components.mode,
   components.flag,
   components.fname,
+  components.padding,
   components.info,
   components.align,
   components.truncate,
