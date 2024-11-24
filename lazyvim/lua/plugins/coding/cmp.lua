@@ -65,4 +65,15 @@ return {
       return opts
     end,
   },
+  {
+    "saghen/blink.cmp",
+    optional = true,
+    opts = {
+      windows = {
+        documentation = {
+          border = "none",
+        },
+      },
+    },
+  },
 }

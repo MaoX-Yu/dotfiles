@@ -8,6 +8,9 @@ return {
     event = "InsertEnter",
     opts = {
       completion_mode = "source",
+      source_completion = {
+        engine = LazyVim.has_extra("coding.blink") and "blink" or "cmp",
+      },
     },
   },
   {
@@ -21,9 +24,8 @@ return {
     end,
   },
   {
-    "Saghen/blink.cmp",
+    "saghen/blink.cmp",
     optional = true,
-    dependencies = { "Saghen/blink.compat" },
     opts = {
       sources = {
         completion = {
@@ -32,9 +34,8 @@ return {
         providers = {
           fittencode = {
             name = "fittencode",
-            module = "blink.compat.source",
-            score_offset = 99,
-            opts = {},
+            module = "fittencode.sources.blink",
+            score_offset = 15,
           },
         },
       },
