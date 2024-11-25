@@ -6,6 +6,11 @@ return {
       jump = {
         autojump = true,
       },
+      modes = {
+        char = {
+          highlight = { backdrop = false },
+        },
+      },
     },
   },
 }
