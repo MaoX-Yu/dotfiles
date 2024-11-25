@@ -1,4 +1,4 @@
-if LazyVim.has_extra("coding.codeium") then
+if LazyVim.has_extra("ai.codeium") then
   return {}
 end
 

@@ -58,4 +58,13 @@ return {
       },
     },
   },
+  {
+    "folke/which-key.nvim",
+    optional = true,
+    opts = {
+      spec = {
+        { "<leader>s", desc = "Search by Fzf" },
+      },
+    },
+  },
 }
