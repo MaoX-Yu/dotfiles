@@ -2,71 +2,62 @@
 -- Default options that are always set: https://github.com/LazyVim/LazyVim/blob/main/lua/lazyvim/config/options.lua
 -- Add any additional options here
 
-local options = {
-  opt = {
-    autoread = true,
-    breakindent = true,
-    cmdheight = 1,
-    expandtab = true, -- use space replace tab
-    fillchars = { fold = " ", foldopen = "", foldsep = " ", foldclose = "" },
-    foldcolumn = "1",
-    foldenable = true,
-    foldlevel = 99,
-    foldlevelstart = 99,
-    hidden = true,
-    hlsearch = true,
-    incsearch = true,
-    linebreak = true,
-    list = true,
-    listchars = { nbsp = "+", space = "·", tab = "  ", trail = "-" },
-    mouse = "", -- disable mouse
-    pumblend = 0,
-    scrolloff = 4,
-    shiftwidth = 4,
-    showcmd = true,
-    showmatch = true,
-    showtabline = 2,
-    sidescrolloff = 8,
-    smarttab = true,
-    softtabstop = -1,
-    statuscolumn = [[%{%v:lua.require('utils.stc').is_fold_start(v:lnum)?'%C':' '%} %l %s]],
-    swapfile = false,
-    tabstop = 4,
-    wildmenu = true,
-    winblend = 0,
-    wrap = false,
-  },
-  g = {
-    lazyvim_python_lsp = "basedpyright",
-    lazyvim_python_ruff = "ruff",
-    qf_disable_statusline = true,
-    trouble_lualine = false,
-  },
-}
+local g = vim.g
+local o = vim.opt
+
+o.autoread = true
+o.breakindent = true
+o.cmdheight = 1
+o.expandtab = true -- use space replace tab
+o.fillchars = { fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
+o.foldcolumn = "1"
+o.foldenable = true
+o.foldlevel = 99
+o.foldlevelstart = 99
+o.hidden = true
+o.hlsearch = true
+o.incsearch = true
+o.linebreak = true
+o.list = true
+o.listchars = { nbsp = "+", space = "·", tab = "  ", trail = "-" }
+o.mouse = "" -- disable mouse
+o.pumblend = 0
+o.scrolloff = 4
+o.shiftwidth = 4
+o.showcmd = true
+o.showmatch = true
+o.showtabline = 2
+o.sidescrolloff = 8
+o.smarttab = true
+o.softtabstop = -1
+o.statuscolumn = [[%{%v:lua.require('utils.stc').is_fold_start(v:lnum)?'%C':' '%} %l %s]]
+o.swapfile = false
+o.tabstop = 4
+o.wildmenu = true
+o.winblend = 0
+o.wrap = false
+
+g.lazyvim_python_lsp = "basedpyright"
+g.lazyvim_python_ruff = "ruff"
+g.qf_disable_statusline = true
+g.trouble_lualine = false
 
 if vim.fn.executable("nu") then
-  options.opt.shell = "nu"
-  options.opt.shellcmdflag = "--stdin --no-newline -c"
-  options.opt.shellpipe =
-    "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
-  options.opt.shellredir = "out+err> %s"
-  options.opt.shellxescape = ""
-  options.opt.shellquote = ""
-  options.opt.shellxquote = ""
-  options.opt.shelltemp = false
+  o.shell = "nu"
+  o.shellcmdflag = "--stdin --no-newline -c"
+  o.shellpipe = "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
+  o.shellredir = "out+err> %s"
+  o.shellxescape = ""
+  o.shellquote = ""
+  o.shellxquote = ""
+  o.shelltemp = false
 elseif LazyVim.is_win() then
   LazyVim.terminal.setup("pwsh")
 end
 
 -- Neovide
-if vim.g.neovide then
+if g.neovide then
   -- options.opt.guifont = "JetbrainsMono Nerd Font:h14"
-  options.opt.guifont = "Maple Mono NF CN:h14"
-  options.g.neovide_hide_mouse_when_typing = true
-end
-
-for scope, tbl in pairs(options) do
-  for setting, val in pairs(tbl) do
-    vim[scope][setting] = val
-  end
+  o.guifont = "Maple Mono NF CN:h14"
+  g.neovide_hide_mouse_when_typing = true
 end
