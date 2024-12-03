@@ -42,7 +42,7 @@ g.lazyvim_python_ruff = "ruff"
 g.qf_disable_statusline = true
 g.trouble_lualine = false
 
-if vim.fn.executable("nu") then
+if vim.fn.executable("nu") == 1 then
   o.shell = "nu"
   o.shellcmdflag = "--stdin --no-newline -c"
   o.shellpipe = "| complete | update stderr { ansi strip } | tee { get stderr | save --force --raw %s } | into record"
