@@ -19,7 +19,7 @@ o.hlsearch = true
 o.incsearch = true
 o.linebreak = true
 o.list = true
-o.listchars = { nbsp = "+", space = "·", tab = "  ", trail = "-" }
+o.listchars = { nbsp = "+", space = "·", tab = "» ", trail = "-" }
 o.mouse = "" -- disable mouse
 o.pumblend = 0
 o.scrolloff = 4
