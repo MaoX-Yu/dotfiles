@@ -1,0 +1,14 @@
+{
+  "name": "my-snippets",
+  "contributes": {
+    "snippets": [
+      {
+        "language": [
+          "csharp",
+          "cs"
+        ],
+        "path": "./csharp/unity.json"
+      }
+    ]
+  }
+}

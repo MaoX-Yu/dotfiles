@@ -4,6 +4,10 @@ starship = "~/.config/starship.toml"
 [lazyvim.files]
 lazyvim = "~/.config/nvim"
 
+# TODO
+[nvim.files]
+nvim = "~/.config/nvim-dev"
+
 [joshuto.files]
 joshuto = "~/.config/joshuto"
 
