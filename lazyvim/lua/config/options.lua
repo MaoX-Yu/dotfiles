@@ -11,7 +11,6 @@ o.cmdheight = 1
 o.expandtab = true -- use space replace tab
 o.fillchars = { fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
 o.foldcolumn = "1"
-o.foldenable = true
 o.foldlevel = 99
 o.foldlevelstart = 99
 o.hidden = true
@@ -30,7 +29,6 @@ o.showtabline = 2
 o.sidescrolloff = 8
 o.smarttab = true
 o.softtabstop = -1
-o.statuscolumn = [[%{%v:lua.require('utils.stc').is_fold_start(v:lnum)?'%C':' '%} %l %s]]
 o.swapfile = false
 o.tabstop = 4
 o.wildmenu = true

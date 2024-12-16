@@ -13,22 +13,17 @@ return {
     keys = {
       {
         "<leader>e",
-        "<cmd>Oil<cr>",
+        function()
+          require("oil").open_float()
+        end,
         desc = "Open Directory",
       },
       {
         "<leader>E",
         function()
-          require("oil").open(vim.fn.getcwd())
+          require("oil").open_float(vim.fn.getcwd())
         end,
         desc = "Open Directory (cwd)",
-      },
-      {
-        "<leader>fe",
-        function()
-          require("oil").open_float(vim.fn.expand("%:p:h"))
-        end,
-        desc = "Open Directory (Float)",
       },
     },
     dependencies = { "echasnovski/mini.icons" },

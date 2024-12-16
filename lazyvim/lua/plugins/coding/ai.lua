@@ -28,14 +28,14 @@ return {
     optional = true,
     opts = {
       sources = {
-        completion = {
-          enabled_providers = { "fittencode" },
-        },
+        default = { "fittencode" },
         providers = {
           fittencode = {
             name = "fittencode",
+            kind = "Fittencode",
             module = "fittencode.sources.blink",
-            score_offset = 15,
+            score_offset = 100,
+            async = true,
           },
         },
       },

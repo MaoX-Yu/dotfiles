@@ -69,9 +69,11 @@ return {
     "saghen/blink.cmp",
     optional = true,
     opts = {
-      windows = {
-        documentation = {
-          border = "none",
+      completion = {
+        menu = {
+          draw = {
+            columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
+          },
         },
       },
     },
