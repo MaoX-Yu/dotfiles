@@ -76,6 +76,11 @@ return {
           },
         },
       },
+      appearance = {
+        kind_icons = {
+          Fittencode = "󰘦 ",
+        },
+      },
     },
   },
 }
