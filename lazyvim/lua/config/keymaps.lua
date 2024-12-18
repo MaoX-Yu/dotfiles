@@ -16,7 +16,6 @@ local maps = {
   { from = "U",          to = "<C-r>",          mode = "n",          opts = { desc = "Redo" }                       },
   { from = "<C-q>",      to = "<cmd>q<cr>",     mode = "n",          opts = { desc = "Quit" }                       },
   { from = "<leader>q",  to = "<cmd>qa<cr>",    mode = "n",          opts = { desc = "Quit All"}                    },
-  { from = "<esc>",      to = K.super_escape,   mode = { "i", "n" }, opts = { expr = true, desc = "Escape" }        },
 
   -- Terminal
   { from = "<C-q>",      to = "<cmd>close<cr>", mode = "t",          opts = { desc = "Hide Terminal" }              },
