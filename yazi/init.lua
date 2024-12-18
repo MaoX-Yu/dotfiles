@@ -1,15 +1,11 @@
-local ok, full_border = pcall(require, "full-border")
-if ok then
-	full_border:setup({
-		-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
-		type = ui.Border.ROUNDED,
-	})
-end
+require("full-border"):setup({
+	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
+	type = ui.Border.ROUNDED,
+})
 
-local ok, starship = pcall(require, "starship")
-if ok then
-	starship:setup()
-end
+require("starship"):setup()
+
+require("git"):setup()
 
 -- Show symlink in status bar
 function Status:name()
