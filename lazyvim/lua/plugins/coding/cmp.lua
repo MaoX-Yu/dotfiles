@@ -69,7 +69,10 @@ return {
     "saghen/blink.cmp",
     optional = true,
     opts = {
-      keymap = { preset = "super-tab" },
+      keymap = {
+        preset = "super-tab",
+        ["<CR>"] = { "accept", "fallback" },
+      },
       completion = {
         menu = {
           draw = {
