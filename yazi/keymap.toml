@@ -15,6 +15,61 @@ on = "O"
 run = "plugin open-with-cmd"
 desc = "Open with command"
 
+[[manager.prepend_keymap]]
+on = "<C-g>"
+run = "shell --confirm --block lazygit"
+desc = "Lazygit"
+
+[[manager.prepend_keymap]]
+on = "<C-p>"
+run = "plugin max-preview"
+desc = "Maximize or restore preview"
+
+[[manager.prepend_keymap]]
+on = ["c", "a"]
+run = "plugin compress"
+desc = "Archive selected files"
+
+[[manager.prepend_keymap]]
+on = ["'", "a"]
+run = "plugin yamb --args=save"
+desc = "Add bookmark"
+
+[[manager.prepend_keymap]]
+on = ["'", "g"]
+run = "plugin yamb --args=jump_by_key"
+desc = "Jump bookmark by key"
+
+[[manager.prepend_keymap]]
+on = ["'", "G"]
+run = "plugin yamb --args=jump_by_fzf"
+desc = "Jump bookmark by fzf"
+
+[[manager.prepend_keymap]]
+on = ["'", "d"]
+run = "plugin yamb --args=delete_by_key"
+desc = "Delete bookmark by key"
+
+[[manager.prepend_keymap]]
+on = ["'", "D"]
+run = "plugin yamb --args=delete_by_fzf"
+desc = "Delete bookmark by fzf"
+
+[[manager.prepend_keymap]]
+on = ["'", "A"]
+run = "plugin yamb --args=delete_all"
+desc = "Delete all bookmarks"
+
+[[manager.prepend_keymap]]
+on = ["'", "r"]
+run = "plugin yamb --args=rename_by_key"
+desc = "Rename bookmark by key"
+
+[[manager.prepend_keymap]]
+on = ["'", "R"]
+run = "plugin yamb --args=rename_by_fzf"
+desc = "Rename bookmark by fzf"
+
 [[input.prepend_keymap]]
 on = "U"
 run = "redo"

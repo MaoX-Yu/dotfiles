@@ -1,11 +1,8 @@
-require("full-border"):setup({
-	-- Available values: ui.Border.PLAIN, ui.Border.ROUNDED
-	type = ui.Border.ROUNDED,
-})
-
 require("starship"):setup()
 
 require("git"):setup()
+
+require("yamb"):setup({})
 
 -- Show symlink in status bar
 function Status:name()

@@ -4,8 +4,14 @@
 dark = "catppuccin-macchiato"
 
 [manager]
+border_symbol = " "
+tab_width = 12
 hovered = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
 preview_hovered = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
+
+[status]
+separator_open = ""
+separator_close = ""
 
 [filetype]
 rules = [

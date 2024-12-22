@@ -20,7 +20,8 @@ source zoxide.nu
 source yazi.nu
 {{/if}}
 
-alias vi = nvim
+alias n = nvim
+alias nf = nvim (fzf)
 alias lg = lazygit
 {{#if (is_executable "bat")}}
 alias cat = bat --paging=never --theme "Catppuccin Macchiato"
