@@ -1,8 +1,5 @@
 # Nushell Config File
 
-# Load default config
-source default_config.nu
-
 $env.config = ($env.config | upsert show_banner false)
 $env.config = ($env.config | upsert edit_mode 'vi')
 $env.config.shell_integration = ($env.config.shell_integration | upsert osc133 false)
