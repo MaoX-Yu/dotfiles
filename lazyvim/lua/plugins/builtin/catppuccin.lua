@@ -22,6 +22,10 @@ return {
           color_mode = false, -- enable color for kind's texts, not just kind's icons
         },
         fzf = true,
+        indent_blankline = {
+          enabled = true,
+          colored_indent_levels = true,
+        },
         lsp_saga = true,
         telescope = {
           enabled = true,
