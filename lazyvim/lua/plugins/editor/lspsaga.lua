@@ -1,6 +1,7 @@
 return {
   {
     "nvimdev/lspsaga.nvim",
+    enabled = false,
     event = "LazyFile",
     opts = {
       lightbulb = {
