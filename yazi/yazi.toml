@@ -23,8 +23,8 @@ ueberzug_offset = [0, 0, 0, 0]
 
 [opener]
 edit = [
-	{ run = '$EDITOR "$@"', block = true, desc = "Editor", for = "unix" },
-	{ run = '%EDITOR% "%*"', block = true, desc = "Editor", for = "windows" },
+	{ run = '${EDITOR:-vi} "$@"', block = true, desc = "Editor", for = "unix" },
+	{ run = '%EDITOR% %*', block = true, desc = "Editor", for = "windows" },
 ]
 
 [[plugin.prepend_fetchers]]
