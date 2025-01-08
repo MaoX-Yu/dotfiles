@@ -10,6 +10,7 @@ bufferline = "multiple"
 cursorline = true
 color-modes = true
 default-line-ending = "lf"
+end-of-line-diagnostics = "hint"
 
 [editor.cursor-shape]
 insert = "bar"
@@ -70,6 +71,9 @@ max-indent-retain = 0
 [editor.file-picker]
 hidden = true
 git-ignore = true
+
+[editor.inline-diagnostics]
+cursor-line = "warning"
 
 # ====================
 # Keymaps
