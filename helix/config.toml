@@ -37,16 +37,11 @@ right = [
   "selections",
   "file-encoding",
   "file-line-ending",
-  "file-type",
   "spacer",
   "position-percentage",
   "spacer",
   "position",
 ]
-separator = "│"
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
 
 [editor.lsp]
 display-inlay-hints = true
@@ -73,7 +68,7 @@ hidden = true
 git-ignore = true
 
 [editor.inline-diagnostics]
-cursor-line = "warning"
+cursor-line = "hint"
 
 # ====================
 # Keymaps
