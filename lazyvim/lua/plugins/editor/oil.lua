@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
+    lazy = false,
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
@@ -9,7 +10,6 @@ return {
         ["<C-c>"] = false,
       },
     },
-    event = "VeryLazy",
     keys = function()
       if vim.fn.executable("yazi") == 1 then
         return

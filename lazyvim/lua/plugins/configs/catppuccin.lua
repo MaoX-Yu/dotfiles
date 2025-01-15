@@ -13,6 +13,11 @@ M.highlights = function(C)
     WhichKeyBorder = { fg = C.blue, bg = C.mantle },
     WhichKeyTitle = { fg = C.blue, bg = C.mantle },
 
+    -- snacks
+    SnacksPicker = { link = "Normal" },
+    SnacksPickerListCursorLine = { link = "VisualFallback" },
+    SnacksPickerPreviewCursorLine = { link = "VisualFallback" },
+
     -- flash
     FlashLabel = { fg = C.base, bg = C.red },
 
