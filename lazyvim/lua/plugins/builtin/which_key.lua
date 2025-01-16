@@ -4,13 +4,11 @@ return {
     optional = true,
     opts = {
       preset = "helix",
-      win = {
-        height = { min = 4, max = 999 },
-      },
       expand = function(node)
         return not node.desc -- expand all nodes without a description
       end,
       icons = {
+        separator = "│",
         group = "",
         mappings = false,
         keys = {
