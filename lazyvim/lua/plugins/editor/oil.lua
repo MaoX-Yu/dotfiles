@@ -1,7 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
-    lazy = false,
+    event = "VeryLazy",
     ---@module 'oil'
     ---@type oil.SetupOpts
     opts = {
@@ -31,6 +31,5 @@ return {
         },
       }
     end,
-    dependencies = { "echasnovski/mini.icons" },
   },
 }
