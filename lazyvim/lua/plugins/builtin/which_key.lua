@@ -4,6 +4,10 @@ return {
     optional = true,
     opts = {
       preset = "helix",
+      win = {
+        no_overlap = false,
+        height = { min = 4, max = 999 },
+      },
       expand = function(node)
         return not node.desc -- expand all nodes without a description
       end,
@@ -15,6 +19,7 @@ return {
           BS = "󰁮 ",
         },
       },
+      show_help = false,
       spec = {
         { "=", group = "filter" },
         { "<", group = "indent left" },

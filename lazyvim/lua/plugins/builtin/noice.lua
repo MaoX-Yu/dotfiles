@@ -12,14 +12,5 @@ return {
         },
       },
     },
-    -- stylua: ignore
-    keys = {
-      { "<leader>sn",  false },
-      { "<leader>snl", false },
-      { "<leader>snh", false },
-      { "<leader>sna", false },
-      { "<leader>snd", false },
-      { "<leader>snt", false },
-    },
   },
 }
