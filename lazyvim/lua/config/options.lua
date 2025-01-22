@@ -7,7 +7,7 @@ local o = vim.opt
 
 o.autoread = true
 o.breakindent = true
-o.cmdheight = 1
+o.cmdheight = 0
 o.expandtab = true -- use space replace tab
 o.fillchars = { fold = " ", foldopen = "", foldsep = " ", foldclose = "" }
 o.foldcolumn = "1"
