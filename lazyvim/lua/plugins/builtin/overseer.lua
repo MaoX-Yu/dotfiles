@@ -5,8 +5,7 @@ return {
     opts = {
       templates = {
         "builtin",
-        "python.run",
-        "python.run_slient",
+        "python",
       },
     },
   },
