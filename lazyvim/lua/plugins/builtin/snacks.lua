@@ -18,10 +18,5 @@ return {
         },
       },
     },
-    -- stylua: ignore
-    keys = {
-      { "<leader>qp", false },
-      { "<leader>sp", function() Snacks.picker.projects() end, desc = "Projects" },
-    },
   },
 }

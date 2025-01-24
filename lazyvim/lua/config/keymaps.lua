@@ -15,7 +15,6 @@ local maps = {
   { from = "q",          to = K.super_q,        mode = "n",          opts = { expr = true, desc = "Replay Macros" } },
   { from = "U",          to = "<C-r>",          mode = "n",          opts = { desc = "Redo" }                       },
   { from = "<C-q>",      to = "<cmd>q<cr>",     mode = "n",          opts = { desc = "Quit" }                       },
-  { from = "<leader>q",  to = "<cmd>qa<cr>",    mode = "n",          opts = { desc = "Quit All"}                    },
 
   -- Terminal
   { from = "<C-q>",      to = "<cmd>close<cr>", mode = "t",          opts = { desc = "Hide Terminal" }              },
@@ -43,9 +42,6 @@ local unmaps = {
   -- Terminal
   { key = "<C-_>",      mode = { "n", "t" } },
   { key = "<C-/>",      mode = { "n", "t" } },
-
-  -- Quit
-  { key = "<leader>qq", mode = { "n" }      },
 }
 
 for _, unmap in pairs(unmaps) do

@@ -31,7 +31,6 @@ return {
         { ";", desc = "Next Find Result" },
         { ",", desc = "Prev Find Result" },
         { "<leader>", group = "leader" },
-        { "<leader>q", desc = "Quit All" },
         { "<leader>rn", desc = "Rename Symbol" },
         {
           mode = { "n", "v" },
