@@ -4,6 +4,14 @@ require("git"):setup()
 
 require("yamb"):setup({})
 
+require("mime-ext"):setup({
+	-- Expand the existing filename database (lowercase), for example:
+	with_files = {},
+	-- Expand the existing extension database (lowercase), for example:
+	with_exts = {},
+	fallback_file1 = true,
+})
+
 -- Show symlink in status bar
 function Status:name()
 	local h = self._tab.current.hovered

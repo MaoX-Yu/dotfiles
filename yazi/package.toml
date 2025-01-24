@@ -1,12 +1,14 @@
 [plugin]
 deps = [
-    { use = "Rolv-Apneseth/starship", rev = "247f49d" },
+    { use = "yazi-rs/plugins:git", rev = "8ed2537" },
+    { use = "yazi-rs/plugins:max-preview", rev = "8ed2537" },
+    { use = "yazi-rs/plugins:mime-ext", rev = "8ed2537" },
+    { use = "yazi-rs/plugins:smart-enter", rev = "8ed2537" },
+    { use = "Rolv-Apneseth/starship", rev = "af8bf6f" },
     { use = "Ape/open-with-cmd", rev = "a80d1cf" },
-    { use = "yazi-rs/plugins:git", rev = "7afba3a" },
-    { use = "yazi-rs/plugins:max-preview", rev = "7afba3a" },
     { use = "KKV9/compress", rev = "60b24af" },
     { use = "h-hg/yamb", rev = "108347b" },
 ]
 
 [flavor]
-deps = [{ use = "yazi-rs/flavors:catppuccin-macchiato", rev = "8458d25" }]
+deps = [{ use = "yazi-rs/flavors:catppuccin-macchiato", rev = "fd85060" }]
