@@ -53,6 +53,10 @@ elseif LazyVim.is_win() then
   LazyVim.terminal.setup("pwsh")
 end
 
+vim.diagnostic.config({
+  virtual_lines = { current_line = true },
+})
+
 -- Neovide
 if g.neovide then
   -- options.opt.guifont = "JetbrainsMono Nerd Font:h14"
