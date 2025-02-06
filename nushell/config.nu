@@ -1,8 +1,10 @@
 # Nushell Config File
 
-$env.config = ($env.config | upsert show_banner false)
-$env.config = ($env.config | upsert edit_mode 'vi')
-$env.config.shell_integration = ($env.config.shell_integration | upsert osc133 false)
+$env.config.show_banner = "short"
+$env.config.edit_mode = "vi"
+$env.config.cursor_shape.vi_insert = "block"
+$env.config.cursor_shape.vi_normal = "underscore"
+$env.config.shell_integration.osc133 = false
 
 # Themes
 source catppuccin-macchiato.nu
