@@ -1,16 +1,28 @@
-require("starship"):setup()
+local starship_ok, starship = pcall(require, "starship")
+if starship_ok then
+	starship.setup()
+end
 
-require("git"):setup()
+local git_ok, git = pcall(require, "git")
+if git_ok then
+	git:setup()
+end
 
-require("yamb"):setup({})
+local yamb_ok, yamb = pcall(require, "yamb")
+if yamb_ok then
+	yamb:setup({})
+end
 
-require("mime-ext"):setup({
-	-- Expand the existing filename database (lowercase), for example:
-	with_files = {},
-	-- Expand the existing extension database (lowercase), for example:
-	with_exts = {},
-	fallback_file1 = true,
-})
+local mime_ext_ok, mime_ext = pcall(require, "mime-ext")
+if mime_ext_ok then
+	mime_ext:setup({
+		-- Expand the existing filename database (lowercase), for example:
+		with_files = {},
+		-- Expand the existing extension database (lowercase), for example:
+		with_exts = {},
+		fallback_file1 = true,
+	})
+end
 
 -- Show symlink in status bar
 function Status:name()

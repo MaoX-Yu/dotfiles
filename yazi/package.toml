@@ -1,14 +1,44 @@
-[plugin]
-deps = [
-    { use = "yazi-rs/plugins:git", rev = "8ed2537" },
-    { use = "yazi-rs/plugins:max-preview", rev = "8ed2537" },
-    { use = "yazi-rs/plugins:mime-ext", rev = "8ed2537" },
-    { use = "yazi-rs/plugins:smart-enter", rev = "8ed2537" },
-    { use = "Rolv-Apneseth/starship", rev = "af8bf6f" },
-    { use = "Ape/open-with-cmd", rev = "a80d1cf" },
-    { use = "KKV9/compress", rev = "60b24af" },
-    { use = "h-hg/yamb", rev = "108347b" },
-]
+[[plugin.deps]]
+use = "yazi-rs/plugins:git"
+rev = "8945e54"
+hash = "e683c4188b7c9ae70be1c5c12f701f9e"
 
-[flavor]
-deps = [{ use = "yazi-rs/flavors:catppuccin-macchiato", rev = "fd85060" }]
+[[plugin.deps]]
+use = "yazi-rs/plugins:max-preview"
+rev = "8945e54"
+hash = "647f130f143411966782d25b841c6aa0"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:mime-ext"
+rev = "8945e54"
+hash = "acac930aba9cde01b8ba7077919ab59"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:smart-enter"
+rev = "8945e54"
+hash = "4cb295b4f6c321f84fce74cde27c3e08"
+
+[[plugin.deps]]
+use = "Rolv-Apneseth/starship"
+rev = "d1cd0a3"
+hash = "2fa41624ede0d1ae695c7c346fc3b6a0"
+
+[[plugin.deps]]
+use = "Ape/open-with-cmd"
+rev = "433cf30"
+hash = "a6d150d153ed3491505b02f4dc174e89"
+
+[[plugin.deps]]
+use = "KKV9/compress"
+rev = "60b24af"
+hash = "4808a9f0e7aec3b7c0cfadcd0ba8c1f0"
+
+[[plugin.deps]]
+use = "h-hg/yamb"
+rev = "3f7c51f"
+hash = "e11b980e5635f0fbabd80931b1a1347e"
+
+[[flavor.deps]]
+use = "yazi-rs/flavors:catppuccin-macchiato"
+rev = "fd85060"
+hash = "8f348f7cdc6b3a5d0883f38d94866865"
