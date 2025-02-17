@@ -47,7 +47,7 @@ return {
             end
             item.abbr = item.abbr:gsub("…", "..")
 
-            local symbol = MiniIcons.get("lsp", item.kind)
+            local symbol = require("mini.icons").get("lsp", item.kind)
             item.kind = symbol .. "  " .. item.kind
             local widths = {
               abbr = vim.g.cmp_widths and vim.g.cmp_widths.abbr or 40,

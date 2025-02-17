@@ -26,6 +26,9 @@ M.highlights = function(C)
     CmpItemKindCodeium = { fg = C.teal },
     CmpItemKindFittenCode = { fg = C.teal },
 
+    -- blink.cmp
+    BlinkCmpKindFittencode = { link = "CmpItemKindFittenCode" },
+
     -- dropbar
     DropBarHover = { link = "VisualFallback" },
     DropBarCurrentContext = { link = "VisualFallback" },
