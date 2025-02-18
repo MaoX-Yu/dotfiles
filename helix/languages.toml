@@ -1,4 +1,11 @@
 # ====================
+# Helix-gpt
+# ====================
+[language-server.gpt]
+command = "helix-gpt"
+args = ["--handler", "codeium"]
+
+# ====================
 # Go
 # ====================
 [[language]]
