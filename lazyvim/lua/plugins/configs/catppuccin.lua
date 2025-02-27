@@ -27,6 +27,11 @@ M.highlights = function(C)
     CmpItemKindFittenCode = { fg = C.teal },
 
     -- blink.cmp
+    BlinkCmpKind = { fg = C.overlay2 },
+    BlinkCmpSource = { fg = C.overlay2 },
+    BlinkCmpLabelDetail = { link = "BlinkCmpSource" },
+    BlinkCmpLabelDescription = { link = "BlinkCmpSource" },
+    BlinkCmpKindCodeium = { link = "CmpItemKindCodeium" },
     BlinkCmpKindFittencode = { link = "CmpItemKindFittenCode" },
 
     -- dropbar
