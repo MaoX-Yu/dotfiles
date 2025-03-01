@@ -42,9 +42,6 @@ return {
         },
         formatting = {
           format = function(_, item)
-            if item.kind == "FittenCode" then
-              item.abbr = require("utils").fittencode.format(item.abbr)
-            end
             item.abbr = item.abbr:gsub("…", "..")
 
             local symbol = require("mini.icons").get("lsp", item.kind)
