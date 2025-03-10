@@ -2,6 +2,7 @@ return {
   {
     "Bekaboo/dropbar.nvim",
     enabled = true,
+    cond = not vim.g.vscode,
     keys = function()
       local api = require("dropbar.api")
       return {

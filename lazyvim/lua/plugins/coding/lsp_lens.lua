@@ -1,6 +1,7 @@
 return {
   {
     "VidocqH/lsp-lens.nvim",
+    cond = not vim.g.vscode,
     event = "LazyFile",
     opts = {
       enable = false,

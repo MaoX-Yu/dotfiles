@@ -523,6 +523,9 @@ end
 
 function M.get()
   local ft = vim.bo.filetype
+  if vim.g.vscode then
+    return components.mode
+  end
   if ft == "dashboard" then
     return "%#Normal#"
   end

@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/oil.nvim",
+    cond = not vim.g.vscode,
     event = "VeryLazy",
     ---@module 'oil'
     ---@type oil.SetupOpts
