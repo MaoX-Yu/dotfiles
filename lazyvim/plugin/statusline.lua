@@ -495,17 +495,6 @@ local stl_lazy = function()
   return lazy_str .. " " .. lazy_status .. " " .. components.lazy
 end
 
-local stl_fzf = function()
-  local fzf_str = U.stl.hl(" FZF ", hl_groups.terminal)
-  local fzf_picker = ""
-  local fzf_info = require("fzf-lua").get_info()
-  if fzf_info then
-    fzf_picker = string.gsub(vim.inspect(fzf_info["fnc"]), '"', "")
-    fzf_picker = U.stl.hl(" " .. fzf_picker .. " ", hl_groups.terminal)
-  end
-  return fzf_str .. "%=" .. fzf_picker
-end
-
 local stl_mason = function()
   local mason = require("mason-registry")
   local mason_str = U.stl.hl(" Mason ", hl_groups.normal)
@@ -524,16 +513,13 @@ end
 function M.get()
   local ft = vim.bo.filetype
   if vim.g.vscode then
-    return components.mode
+    return ""
   end
   if ft == "dashboard" then
     return "%#Normal#"
   end
   if ft == "lazy" then
     return stl_lazy()
-  end
-  if ft == "fzf" then
-    return stl_fzf()
   end
   if ft == "mason" then
     return stl_mason()

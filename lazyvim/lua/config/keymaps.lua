@@ -15,6 +15,7 @@ local maps = {
   { from = "q",          to = K.super_q,        mode = "n",          opts = { expr = true, desc = "Replay Macros" } },
   { from = "U",          to = "<C-r>",          mode = "n",          opts = { desc = "Redo" }                       },
   { from = "<C-q>",      to = "<cmd>q<cr>",     mode = "n",          opts = { desc = "Quit" }                       },
+  { from = "<leader>ci", to = K.virt_lines,     mode = "n",          opts = { desc = "Virtual Lines" }              },
 
   -- Terminal
   { from = "<C-q>",      to = "<cmd>close<cr>", mode = "t",          opts = { desc = "Hide Terminal" }              },

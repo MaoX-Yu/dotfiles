@@ -41,12 +41,9 @@ g.lazyvim_python_ruff = "ruff"
 g.qf_disable_statusline = true
 g.trouble_lualine = false
 
-vim.diagnostic.config({
-  virtual_lines = { current_line = true },
-})
-
 -- VSCode
 if g.vscode then
+  o.showmode = true
   o.report = 9999
 else
   utils.terminal.setup()
