@@ -24,7 +24,6 @@ M.highlights = function(C)
     -- nvim-cmp
     CmpItemMenu = { fg = C.mauve },
     CmpItemKindCodeium = { fg = C.teal },
-    CmpItemKindFittenCode = { fg = C.teal },
 
     -- blink.cmp
     BlinkCmpKind = { fg = C.overlay2 },
@@ -32,7 +31,7 @@ M.highlights = function(C)
     BlinkCmpLabelDetail = { link = "BlinkCmpSource" },
     BlinkCmpLabelDescription = { link = "BlinkCmpSource" },
     BlinkCmpKindCodeium = { link = "CmpItemKindCodeium" },
-    BlinkCmpKindFittencode = { link = "CmpItemKindFittenCode" },
+    BlinkCmpKindAvante = { link = "CmpItemKindCodeium" },
 
     -- dropbar
     DropBarHover = { link = "VisualFallback" },

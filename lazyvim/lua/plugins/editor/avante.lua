@@ -42,6 +42,26 @@ return {
     },
   },
   {
+    "saghen/blink.cmp",
+    optional = true,
+    dependencies = {
+      "Kaiser-Yang/blink-cmp-avante",
+    },
+    opts = {
+      sources = {
+        default = { "avante" },
+        providers = {
+          avante = {
+            module = "blink-cmp-avante",
+            name = "Avante",
+            async = true,
+            score_offset = 99,
+          },
+        },
+      },
+    },
+  },
+  {
     "folke/which-key.nvim",
     optional = true,
     opts = {

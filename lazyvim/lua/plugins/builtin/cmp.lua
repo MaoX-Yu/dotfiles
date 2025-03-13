@@ -70,18 +70,6 @@ return {
         preset = "super-tab",
         ["<CR>"] = { "accept", "fallback" },
       },
-      completion = {
-        menu = {
-          draw = {
-            columns = { { "label", "label_description", gap = 1 }, { "kind_icon", "kind" } },
-          },
-        },
-      },
-      appearance = {
-        kind_icons = {
-          Fittencode = "󰘦 ",
-        },
-      },
     },
   },
 }
