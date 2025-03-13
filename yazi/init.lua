@@ -1,8 +1,3 @@
-local starship_ok, starship = pcall(require, "starship")
-if starship_ok then
-	starship.setup()
-end
-
 local git_ok, git = pcall(require, "git")
 if git_ok then
 	git:setup()
