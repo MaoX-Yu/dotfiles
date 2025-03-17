@@ -1,5 +1,5 @@
-local build_cmd = LazyVim.is_win() and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
-  or "make"
+local build_cmd = not LazyVim.is_win() and "make"
+  or ":echo 'Please run: powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'"
 
 return {
   {
@@ -19,6 +19,7 @@ return {
           api_key_name = "DEEPSEEK_API_KEY",
           endpoint = "https://api.deepseek.com",
           model = "deepseek-chat",
+          max_tokens = 4096,
         },
       },
       file_selector = {
@@ -61,7 +62,7 @@ return {
             module = "blink-cmp-avante",
             name = "Avante",
             async = true,
-            score_offset = 99,
+            score_offset = 100,
           },
         },
       },
