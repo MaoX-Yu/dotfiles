@@ -1,6 +1,3 @@
-local build_cmd = not LazyVim.is_win() and "make"
-  or ":echo 'Please run: powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false'"
-
 return {
   {
     "yetone/avante.nvim",
@@ -19,14 +16,13 @@ return {
           api_key_name = "DEEPSEEK_API_KEY",
           endpoint = "https://api.deepseek.com",
           model = "deepseek-chat",
-          max_tokens = 4096,
+          max_tokens = 8192,
         },
       },
       file_selector = {
         provider = "snacks",
       },
     },
-    build = build_cmd,
   },
   {
     "MeanderingProgrammer/render-markdown.nvim",
