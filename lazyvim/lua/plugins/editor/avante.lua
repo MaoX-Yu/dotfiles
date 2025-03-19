@@ -69,7 +69,7 @@ return {
     optional = true,
     opts = {
       spec = {
-        { "<leader>a", group = "avante" },
+        { "<leader>a", group = "avante", mode = { "n", "v" } },
       },
     },
   },
