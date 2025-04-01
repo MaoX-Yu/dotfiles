@@ -65,7 +65,7 @@ cursor-line = "hint"
 # ====================
 [keys.normal]
 C-q = ":q"
-"C-/" = "toggle_comments"
+"C-/" = ["toggle_comments", "move_visual_line_down"]
 0 = "goto_line_start"
 H = "goto_previous_buffer"
 L = "goto_next_buffer"
@@ -76,11 +76,9 @@ X = "select_line_above"
 Y = ["extend_to_line_end", "yank", "collapse_selection"]
 "{" = ["goto_prev_paragraph", "collapse_selection"]
 "}" = ["goto_next_paragraph", "collapse_selection"]
-esc = ["collapse_selection", "keep_primary_selection"]
 
 [keys.normal.space]
 "'" = "no_op"
-q = ":qa"
 space = "last_picker"
 
 [keys.normal.g]
@@ -91,16 +89,18 @@ h = "goto_first_nonwhitespace"
 [keys.normal.Z]
 Z = ":wq"
 
+[keys.insert]
+"C-[" = "normal_mode"
+
 [keys.insert.j]
 j = "normal_mode"
-k = "normal_mode"
 
 [keys.select]
+"C-[" = "normal_mode"
 G = "goto_file_end"
-u = ["switch_to_lowercase", "collapse_selection", "normal_mode"]
-U = ["switch_to_uppercase", "collapse_selection", "normal_mode"]
 i = "select_textobject_inner"
 a = "select_textobject_around"
+u = ["switch_to_lowercase", "collapse_selection", "normal_mode"]
+U = ["switch_to_uppercase", "collapse_selection", "normal_mode"]
 "{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
 "}" = ["extend_to_line_bounds", "goto_next_paragraph"]
-esc = ["collapse_selection", "keep_primary_selection", "normal_mode"]
