@@ -4,7 +4,7 @@ function M.super_q()
   if vim.bo.bt ~= "" then
     return "<cmd>close<cr>"
   end
-  return "@"
+  return "q"
 end
 
 function M.virt_lines()
