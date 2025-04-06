@@ -8,7 +8,7 @@ local K = require("utils.keymaps")
 local maps = {
   -- stylua: ignore start
   { from = "<leader>%",  to = "ggVG",           mode = "n",          opts = { desc = "Select All" }                 },
-  { from = "<C-l>",      to = "<right>",        mode = "i",          opts = { desc = "Move Right" }                 },
+  { from = "<C-l>",      to = "<right>",        mode = { "i", "c" }, opts = { desc = "Move Right" }                 },
   { from = "gh",         to = "^",              mode = { "n", "x" }, opts = { desc = "Goto Line Start" }            },
   { from = "gl",         to = "$",              mode = { "n", "x" }, opts = { desc = "Goto Line End" }              },
   { from = "q",          to = K.super_q,        mode = "n",          opts = { expr = true, desc = "Record Macros" } },
