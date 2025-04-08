@@ -21,7 +21,6 @@ return {
       },
       show_help = false,
       spec = {
-        { "=", group = "filter" },
         { "<", group = "indent left" },
         { ">", group = "indent right" },
         { "f", desc = "Find Next Char" },
