@@ -50,13 +50,8 @@ set surround
 " Map <space> to leader
 let mapleader=" "
 inoremap jj <esc>
-inoremap jk <esc>
-nmap <Leader>Q :qa<CR>
-nmap <Leader>q :q<CR>
 map gh ^
 map gl $
-noremap Q q
-noremap q @
 nmap <esc> :noh<CR>
 
 " 拖拽行

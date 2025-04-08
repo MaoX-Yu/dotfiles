@@ -8,16 +8,13 @@ local K = require("utils.keymaps")
 local maps = {
   -- stylua: ignore start
   { from = "<leader>%",  to = "ggVG",           mode = "n",          opts = { desc = "Select All" }                 },
-  { from = "<C-l>",      to = "<right>",        mode = { "i", "c" }, opts = { desc = "Move Right" }                 },
+  { from = "<C-l>",      to = "<right>",        mode = "!",          opts = { desc = "Move Right" }                 },
   { from = "gh",         to = "^",              mode = { "n", "x" }, opts = { desc = "Goto Line Start" }            },
   { from = "gl",         to = "$",              mode = { "n", "x" }, opts = { desc = "Goto Line End" }              },
   { from = "q",          to = K.super_q,        mode = "n",          opts = { expr = true, desc = "Record Macros" } },
   { from = "U",          to = "<C-r>",          mode = "n",          opts = { desc = "Redo" }                       },
-  { from = "<C-q>",      to = "<cmd>close<cr>", mode = "n",          opts = { desc = "Close" }                      },
+  { from = "<C-q>",      to = "<cmd>close<cr>", mode = { "n", "t" }, opts = { desc = "Close" }                      },
   { from = "<leader>ci", to = K.virt_lines,     mode = "n",          opts = { desc = "Virtual Lines" }              },
-
-  -- Terminal
-  { from = "<C-q>",      to = "<cmd>close<cr>", mode = "t",          opts = { desc = "Hide Terminal" }              },
 
   -- Comment
   { from = "<C-_>",      to = "gccj",           mode = "n",          opts = { remap = true }                        },

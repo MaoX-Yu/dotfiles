@@ -21,12 +21,10 @@ set scrolloff=4
 set sidescrolloff=8
 set cursorline
 set timeoutlen=500
+set novisualbell
 
 inoremap jj <esc>
 " map <space> leader
 let mapleader=" "
-nnoremap <leader>q :qa<cr>
-nnoremap <leader>p "+p
 noremap <leader>y "+y
-noremap Q q
-noremap q @
+noremap <leader>p "+p
