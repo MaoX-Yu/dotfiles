@@ -6,7 +6,8 @@ function M.setup()
   if vim.fn.executable("nu") == 1 then
     o.shell = "nu"
     o.shellcmdflag = "--stdin --no-newline -c"
-    o.shellpipe = "out+err> %s"
+    o.shellpipe =
+      "| complete | update stderr { ansi strip } | tee { if ($in.stderr | is-empty) { get stdout } else { get stderr } | save --force --raw %s } | into record"
     o.shellredir = "out+err> %s"
     o.shellxescape = ""
     o.shellquote = ""
