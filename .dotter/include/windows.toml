@@ -1,6 +1,3 @@
-[lazyvim.files]
-lazyvim = "~/AppData/Local/nvim-lazy"
-
 [nvim.files]
 nvim = "~/AppData/Local/nvim"
 
