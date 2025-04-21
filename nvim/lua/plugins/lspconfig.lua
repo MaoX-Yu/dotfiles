@@ -1,6 +1,7 @@
 return {
   {
     "neovim/nvim-lspconfig",
+    cond = not vim.g.vscode,
     opts_extend = { "servers" },
     opts = {
       servers = { "lua_ls" },
@@ -24,6 +25,13 @@ return {
           },
         },
       })
+      vim.diagnostic.handlers.loclist = {
+        show = function()
+          local winid = vim.api.nvim_get_current_win()
+          vim.diagnostic.setloclist({ open = false })
+          vim.api.nvim_set_current_win(winid)
+        end,
+      }
     end,
   },
 }

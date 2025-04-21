@@ -1,6 +1,7 @@
 return {
   {
     "mfussenegger/nvim-lint",
+    cond = not vim.g.vscode,
     opts = {
       linters_by_ft = {},
     },

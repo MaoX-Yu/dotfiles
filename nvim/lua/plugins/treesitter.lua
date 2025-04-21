@@ -1,6 +1,7 @@
 return {
   {
     "nvim-treesitter/nvim-treesitter",
+    cond = not vim.g.vscode,
     version = false,
     build = ":TSUpdate",
     lazy = vim.fn.argc(-1) == 0,
@@ -65,6 +66,7 @@ return {
   },
   {
     "nvim-treesitter/nvim-treesitter-context",
+    cond = not vim.g.vscode,
     event = { "BufReadPost", "BufNewFile" },
     opts = function()
       local tsc = require("treesitter-context")
@@ -81,16 +83,5 @@ return {
       }):map("<leader>ut")
       return { mode = "cursor", max_lines = 3 }
     end,
-  },
-  {
-    "folke/which-key.nvim",
-    opts = {
-      spec = {
-        { "<BS>", "<M-i>", desc = "Decrement Selection", mode = "x", remap = true },
-        { "<c-space>", "<M-o>", desc = "Increment Selection", mode = { "x", "n" }, remap = true },
-        { "<M-i>", desc = "Decrement Selection", mode = "x" },
-        { "<M-o>", desc = "Increment Selection", mode = { "x", "n" } },
-      },
-    },
   },
 }

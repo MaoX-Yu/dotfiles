@@ -1,6 +1,7 @@
 return {
   {
     "stevearc/overseer.nvim",
+    cond = not vim.g.vscode,
     cmd = {
       "OverseerOpen",
       "OverseerClose",
@@ -36,14 +37,6 @@ return {
       { "<leader>ob", "<cmd>OverseerBuild<cr>",       desc = "Task builder" },
       { "<leader>ot", "<cmd>OverseerTaskAction<cr>",  desc = "Task action" },
       { "<leader>oc", "<cmd>OverseerClearCache<cr>",  desc = "Clear cache" },
-    },
-  },
-  {
-    "folke/which-key.nvim",
-    opts = {
-      spec = {
-        { "<leader>o", group = "overseer" },
-      },
     },
   },
 }

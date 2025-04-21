@@ -1,6 +1,7 @@
 return {
   {
     "folke/which-key.nvim",
+    cond = not vim.g.vscode,
     event = "VeryLazy",
     opts_extend = { "spec" },
     opts = {
@@ -34,8 +35,18 @@ return {
         { "<", group = "indent left" },
         { ">", group = "indent right" },
         { "<leader>", group = "leader" },
+        { "<leader>o", group = "overseer" },
+        { "<BS>", "<M-i>", desc = "Decrement Selection", mode = "x", remap = true },
+        { "<c-space>", "<M-o>", desc = "Increment Selection", mode = { "x", "n" }, remap = true },
+        { "<M-i>", desc = "Decrement Selection", mode = "x" },
+        { "<M-o>", desc = "Increment Selection", mode = { "x", "n" } },
         {
           mode = { "n", "v" },
+          { "[", group = "prev" },
+          { "]", group = "next" },
+          { "g", group = "goto" },
+          { "gs", group = "surround" },
+          { "z", group = "fold" },
           { "<leader><tab>", group = "tabs" },
           { "<leader>a", group = "avante" },
           { "<leader>c", group = "code" },
@@ -43,11 +54,6 @@ return {
           { "<leader>s", group = "search" },
           { "<leader>u", group = "ui" },
           { "<leader>x", group = "quickfix" },
-          { "[", group = "prev" },
-          { "]", group = "next" },
-          { "g", group = "goto" },
-          { "gs", group = "surround" },
-          { "z", group = "fold" },
           {
             "<leader>b",
             group = "buffer",

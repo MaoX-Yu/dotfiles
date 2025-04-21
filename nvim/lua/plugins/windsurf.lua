@@ -1,6 +1,7 @@
 return {
   {
     "Exafunction/windsurf.nvim",
+    cond = not vim.g.vscode,
     event = "InsertEnter",
     cmd = "Codeium",
     opts = {

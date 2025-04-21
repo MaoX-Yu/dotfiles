@@ -1,6 +1,7 @@
 return {
   {
     "MeanderingProgrammer/render-markdown.nvim",
+    cond = not vim.g.vscode,
     ft = { "markdown", "norg", "rmd", "org", "Avante" },
     opts = {},
     config = function(_, opts)
