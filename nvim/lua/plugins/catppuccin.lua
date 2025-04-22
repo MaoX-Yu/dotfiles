@@ -30,6 +30,9 @@ return {
           WhichKeyTitle = { fg = C.blue, bg = C.mantle },
 
           -- snacks
+          SnacksInputIcon = { fg = C.blue, style = { "italic" } },
+          SnacksInputTitle = { fg = C.blue, style = { "italic" } },
+          SnacksInputBorder = { fg = C.blue, style = { "italic" } },
           SnacksPicker = { link = "Normal" },
 
           -- mini

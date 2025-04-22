@@ -180,6 +180,19 @@ return {
               vim.b.autoformat = state
             end,
           }):map("<leader>uF")
+          Snacks.toggle({
+            name = "Virtual Lines",
+            get = function()
+              return type(vim.diagnostic.config().virtual_lines) == "table"
+            end,
+            set = function(state)
+              if state then
+                vim.diagnostic.config({ virtual_lines = { current_line = true } })
+              else
+                vim.diagnostic.config({ virtual_lines = false })
+              end
+            end,
+          }):map("<leader>uv")
         end,
       })
     end,

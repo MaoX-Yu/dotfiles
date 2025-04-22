@@ -1,118 +1,19 @@
 -- Built-in statusline
 
 ---@class utils
----@field fs table
 ---@field stl table
-local U = require("utils")
+local utils = require("utils")
 
 local group_id = vim.api.nvim_create_augroup("Statusline", {})
-local hl_groups = U.stl.hl_groups
+local hl_groups = utils.stl.hl_groups
 
 local M = {}
 
 function M.mode()
   local mode = vim.api.nvim_get_mode().mode
-  local mode_str, hl = U.stl.get_mode_hl(mode)
-  return U.stl.hl(string.format(" %s ", mode_str), hl) .. " "
+  local mode_str, hl = utils.stl.get_mode_hl(mode)
+  return utils.stl.hl(string.format(" %s ", mode_str), hl) .. " "
 end
-
----Record file name of normal buffers, key:val = fname:buffers_with_fname
----@type table<string, number[]>
-local fnames = {}
-
----Update path diffs for buffers with the same file name
----@param bufs integer[]
----@return nil
-local function update_pdiffs(bufs)
-  bufs = vim.tbl_filter(vim.api.nvim_buf_is_valid, bufs)
-
-  for i, path_diff in
-    ipairs(vim.tbl_filter(function(d)
-      return d ~= ""
-    end, U.fs.diff(vim.tbl_map(vim.api.nvim_buf_get_name, bufs))))
-  do
-    local _buf = bufs[i]
-    vim.b[_buf]._stl_pdiff = path_diff
-  end
-end
-
----Add a normal buffer to `fnames`, calc diff for buffer with non-unique
----file names
----@param buf integer buffer number
----@return nil
-local function add_buf(buf)
-  if not vim.api.nvim_buf_is_valid(buf) or vim.bo[buf].bt ~= "" then
-    return
-  end
-
-  local fname = vim.fs.basename(vim.api.nvim_buf_get_name(buf))
-  if fname == "" then
-    return
-  end
-
-  if not fnames[fname] then
-    fnames[fname] = {}
-  end
-
-  local bufs = fnames[fname] -- buffers with the same name as the removed buf
-  table.insert(bufs, buf)
-
-  update_pdiffs(bufs)
-end
-
-for _, buf in ipairs(vim.api.nvim_list_bufs()) do
-  add_buf(buf)
-end
-
-vim.api.nvim_create_autocmd({ "BufAdd", "BufFilePost" }, {
-  group = group_id,
-  desc = "Track new buffer file name.",
-  callback = function(info)
-    -- Delay adding buffer to fnames to ensure attributes, e.g.
-    -- `bt`, are set for special buffers, for example, terminal buffers
-    vim.schedule(function()
-      add_buf(info.buf)
-    end)
-  end,
-})
-
-vim.api.nvim_create_autocmd({ "BufDelete", "BufFilePre" }, {
-  group = group_id,
-  desc = "Remove deleted buffer file name from record.",
-  callback = function(info)
-    if vim.bo[info.buf].bt ~= "" then
-      return
-    end
-
-    local fname = vim.fs.basename(vim.api.nvim_buf_get_name(info.buf))
-    local bufs = fnames[fname] -- buffers with the same name as the removed buf
-    if not bufs then
-      return
-    end
-
-    for i, buf in ipairs(bufs) do
-      if buf == info.buf then
-        table.remove(bufs, i)
-        break
-      end
-    end
-
-    local num_bufs = #bufs
-    if num_bufs == 0 then
-      fnames[fname] = nil
-      return
-    end
-
-    if num_bufs == 1 then
-      vim.b[bufs[1]]._stl_pdiff = nil
-      return
-    end
-
-    -- Still have multiple buffers with the same file name,
-    -- update path diffs for the remaining buffers
-    update_pdiffs(bufs)
-  end,
-})
 
 function M.fname()
   local symbols = {
@@ -135,9 +36,6 @@ function M.fname()
     end
     local fname = vim.fn.expand("%:t")
     local file_symbols = {}
-    if vim.b._stl_pdiff then
-      table.insert(file_symbols, string.format("[%s]", vim.b._stl_pdiff))
-    end
     if vim.bo.modifiable == false or vim.bo.readonly == true then
       table.insert(file_symbols, symbols.readonly)
     end
@@ -147,23 +45,23 @@ function M.fname()
     if vim.bo.modified then
       table.insert(file_symbols, symbols.modified)
     end
-    return U.stl.escape(fname) .. (#file_symbols > 0 and " " .. table.concat(file_symbols, " ") or "")
+    return utils.stl.escape(fname) .. (#file_symbols > 0 and " " .. table.concat(file_symbols, " ") or "")
   end
 
   -- Terminal buffer, show terminal command and id
   if vim.bo.bt == "terminal" then
     local id, cmd = bname:match("^term://.*/(%d+):(.*)")
-    return id and cmd and string.format("%s (%s)", U.stl.escape(cmd), id) or "%F"
+    return id and cmd and string.format("%s (%s)", utils.stl.escape(cmd), id) or "%F"
   end
 
   -- Other special buffer types
   local prefix, suffix = bname:match("^%s*(%S+)://(.*)")
   if prefix and suffix then
-    return string.format("[%s] %s", U.stl.escape(U.stl.snake_to_camel(prefix)), U.stl.escape(suffix))
+    return string.format("[%s] %s", utils.stl.escape(utils.stl.snake_to_camel(prefix)), utils.stl.escape(suffix))
   end
 
   if bname == "" and vim.bo.ft ~= "" and vim.bo.ft ~= "qf" then
-    return string.format("[%s]", U.stl.escape(U.stl.snake_to_camel(vim.bo.ft)))
+    return string.format("[%s]", utils.stl.escape(utils.stl.snake_to_camel(vim.bo.ft)))
   end
 
   return "%F"
@@ -171,7 +69,7 @@ end
 
 function M.branch()
   local branch = vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.head or ""
-  return branch ~= "" and string.format("*%s", U.stl.escape(branch)) or ""
+  return branch ~= "" and string.format("*%s", utils.stl.escape(branch)) or ""
 end
 
 vim.api.nvim_create_autocmd("DiagnosticChanged", {
@@ -197,8 +95,8 @@ function M.diag()
   for serverity_nr, severity in ipairs({ "error", "warn", "info", "hint" }) do
     local cnt = buf_cnt[serverity_nr] or 0
     if cnt > 0 then
-      local icon_text = U.stl.get_diag_sign_text(serverity_nr)
-      table.insert(diag, U.stl.hl(icon_text .. cnt, hl_groups[severity]))
+      local icon_text = utils.stl.get_diag_sign_text(serverity_nr)
+      table.insert(diag, utils.stl.hl(icon_text .. cnt, hl_groups[severity]))
     end
   end
   local str = #diag > 0 and string.format(" %s ", table.concat(diag, " ")) or ""
@@ -301,7 +199,7 @@ function M.lsp_progress()
     "%s %s ",
     table.concat(
       vim.tbl_map(function(id)
-        return U.stl.escape(server_info[id].name)
+        return utils.stl.escape(server_info[id].name)
       end, server_ids),
       ", "
     ),
@@ -317,13 +215,13 @@ function M.gitdiff()
 
   local diff_str = {}
   if added > 0 then
-    table.insert(diff_str, U.stl.hl(string.format("+%d", added), hl_groups.diff_add))
+    table.insert(diff_str, utils.stl.hl(string.format("+%d", added), hl_groups.diff_add))
   end
   if changed > 0 then
-    table.insert(diff_str, U.stl.hl(string.format("~%d", changed), hl_groups.diff_change))
+    table.insert(diff_str, utils.stl.hl(string.format("~%d", changed), hl_groups.diff_change))
   end
   if removed > 0 then
-    table.insert(diff_str, U.stl.hl(string.format("-%d", removed), hl_groups.diff_remove))
+    table.insert(diff_str, utils.stl.hl(string.format("-%d", removed), hl_groups.diff_remove))
   end
   return #diff_str > 0 and string.format("%s", table.concat(diff_str, " ")) or ""
 end
@@ -385,13 +283,13 @@ function M.filetype()
   if ft == "" then
     return ""
   end
-  return string.format("%s", U.stl.escape(ft))
+  return string.format("%s", utils.stl.escape(ft))
 end
 
 function M.debug()
   if package.loaded["dap"] and require("dap").status() ~= "" then
     local dap = "  " .. require("dap").status() .. " "
-    return U.stl.hl(dap, hl_groups.debug)
+    return utils.stl.hl(dap, hl_groups.debug)
   end
   return ""
 end
@@ -414,7 +312,7 @@ function M.overseer()
     for _, status in ipairs(STATUS.values) do
       local status_tasks = tasks_by_status[status]
       if icons[status] and status_tasks then
-        table.insert(pieces, U.stl.hl(string.format("%s%s", icons[status], #status_tasks), hl_groups[status]))
+        table.insert(pieces, utils.stl.hl(string.format("%s%s", icons[status], #status_tasks), hl_groups[status]))
       end
     end
     if #pieces > 0 then
@@ -428,7 +326,7 @@ function M.lazy()
   local ok, status = pcall(require, "lazy.status")
   if ok and status.has_updates() then
     local updates = " " .. status.updates() .. " "
-    return U.stl.hl(updates, hl_groups.lazy)
+    return utils.stl.hl(updates, hl_groups.lazy)
   end
   return ""
 end
@@ -438,7 +336,7 @@ function M.noice()
   if package.loaded["noice"] and require("noice").api.status.command.has() then
     ---@diagnostic disable-next-line: undefined-field
     local command = require("noice").api.status.command.get()
-    return U.stl.hl(string.format(" %s ", command), hl_groups.history_command)
+    return utils.stl.hl(string.format(" %s ", command), hl_groups.history_command)
   end
   return ""
 end
@@ -489,22 +387,22 @@ local stl = table.concat({
 
 local stl_lazy = function()
   local lazy = require("lazy")
-  local lazy_str = U.stl.hl(" Lazy ", hl_groups.normal)
+  local lazy_str = utils.stl.hl(" Lazy ", hl_groups.normal)
   local lazy_status = "loaded: " .. lazy.stats().loaded .. "/" .. lazy.stats().count
   return lazy_str .. " " .. lazy_status .. " " .. components.lazy
 end
 
 local stl_mason = function()
   local mason = require("mason-registry")
-  local mason_str = U.stl.hl(" Mason ", hl_groups.normal)
+  local mason_str = utils.stl.hl(" Mason ", hl_groups.normal)
   local mason_status = "Installed: " .. #mason.get_installed_packages() .. "/" .. #mason.get_all_package_specs()
   return mason_str .. " " .. mason_status
 end
 
 local stl_oil = function()
   local mode = vim.api.nvim_get_mode().mode
-  local _, hl = U.stl.get_mode_hl(mode)
-  local oil_str = U.stl.hl(" Oil ", hl)
+  local _, hl = utils.stl.get_mode_hl(mode)
+  local oil_str = utils.stl.hl(" Oil ", hl)
   local oil_dir = vim.fn.fnamemodify(require("oil").get_current_dir() or "", ":~")
   return oil_str .. " " .. oil_dir
 end
