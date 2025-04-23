@@ -77,6 +77,7 @@ map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 -- Quickfix
 map("n", "<leader>xq", vim.cmd.copen, { desc = "Quickfix" })
 map("n", "<leader>xl", vim.cmd.lopen, { desc = "Location List" })
+map("n", "<leader>xd", vim.diagnostic.setloclist, { desc = "Diagnostics" })
 
 -- Diagnostic
 local diagnostic_goto = function(next, severity)

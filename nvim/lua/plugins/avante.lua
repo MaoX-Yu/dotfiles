@@ -21,7 +21,6 @@ return {
       "AvanteSwitchSelectorProvider",
       "AvanteToggle",
     },
-    dependencies = { "MunifTanjim/nui.nvim" },
     opts = {
       provider = "deepseek",
       cursor_applying_provider = "deepseek",
@@ -67,8 +66,8 @@ return {
         default = { "avante" },
         providers = {
           avante = {
-            module = "blink-cmp-avante",
             name = "Avante",
+            module = "blink-cmp-avante",
             async = true,
             score_offset = 100,
           },

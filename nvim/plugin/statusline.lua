@@ -249,7 +249,7 @@ function M.info()
 end
 
 function M.encoding()
-  local encoding = vim.opt.fileencoding:get()
+  local encoding = vim.o.fileencoding
   if encoding == "" or encoding == "utf-8" then
     return ""
   end
@@ -434,4 +434,4 @@ vim.api.nvim_create_autocmd({ "FileChangedShellPost", "DiagnosticChanged", "LspP
 
 _G.STL = M
 
-vim.opt_global.statusline = [[%!v:lua.STL.get()]]
+vim.go.statusline = [[%!v:lua.STL.get()]]

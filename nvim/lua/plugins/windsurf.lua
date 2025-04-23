@@ -4,17 +4,25 @@ return {
     cond = not vim.g.vscode,
     event = "InsertEnter",
     cmd = "Codeium",
-    opts = {
-      virtual_text = {
-        enabled = true,
-        filetypes = {
-          snacks_picker_input = false,
-        },
-        default_filetype_enabled = true,
-      },
-    },
+    opts = {},
     config = function(_, opts)
       require("codeium").setup(opts)
     end,
+  },
+  {
+    "saghen/blink.cmp",
+    opts = {
+      sources = {
+        default = { "codeium" },
+        providers = {
+          codeium = {
+            name = "Codeium",
+            module = "codeium.blink",
+            async = true,
+            score_offset = 100,
+          },
+        },
+      },
+    },
   },
 }

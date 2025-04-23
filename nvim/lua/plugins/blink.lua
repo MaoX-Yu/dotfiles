@@ -8,12 +8,11 @@ return {
     opts_extend = { "sources.default" },
     opts = {
       keymap = {
-        preset = "enter",
+        preset = "super-tab",
+        ["<CR>"] = { "accept", "fallback" },
       },
       cmdline = {
-        keymap = {
-          ["<CR>"] = { "accept_and_enter", "fallback" },
-        },
+        enabled = false,
       },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },

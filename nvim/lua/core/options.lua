@@ -1,5 +1,5 @@
 local g = vim.g
-local o = vim.opt
+local o = vim.o
 
 g.autoformat = true
 g.mapleader = " "
@@ -11,12 +11,12 @@ vim.schedule(function()
 end)
 
 o.breakindent = true
-o.cmdheight = 1
+o.cmdheight = 0
 o.completeopt = "menu,menuone,noselect"
 o.confirm = true
 o.cursorline = true
 o.expandtab = true -- use space replace tab
-o.fillchars = { fold = " ", foldopen = "", foldclose = "", foldsep = " " }
+o.fillchars = "fold: ,foldclose:,foldopen:,foldsep: "
 o.foldcolumn = "1"
 o.foldlevel = 99
 o.foldlevelstart = 99
@@ -29,7 +29,7 @@ o.jumpoptions = "view"
 o.laststatus = 3
 o.linebreak = true
 o.list = true
-o.listchars = { nbsp = "+", space = "·", tab = "» ", trail = "-" }
+o.listchars = "nbsp:+,space:·,tab:» ,trail:-"
 o.mouse = "" -- disable mouse
 o.number = true
 o.pumblend = 0
@@ -38,8 +38,7 @@ o.relativenumber = true
 o.ruler = false
 o.scrolloff = 4
 o.shiftwidth = 4
-o.shortmess:append({ W = true, I = true, c = true, C = true })
-o.showcmd = false
+o.shortmess = "CoWITOtcFl"
 o.showmode = false
 o.sidescrolloff = 8
 o.signcolumn = "yes"
