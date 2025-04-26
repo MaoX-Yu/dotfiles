@@ -53,6 +53,10 @@ return {
         notification = {
           wo = { wrap = true }, -- Wrap notifications
         },
+        notification_history = {
+          width = 0.8,
+          height = 0.8,
+        },
       },
     },
     -- stylua: ignore

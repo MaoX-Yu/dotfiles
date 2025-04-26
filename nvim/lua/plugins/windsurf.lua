@@ -16,10 +16,17 @@ return {
         default = { "codeium" },
         providers = {
           codeium = {
-            name = "Codeium",
-            module = "codeium.blink",
+            name = "codeium",
+            module = "blink.compat.source",
             async = true,
             score_offset = 100,
+            transform_items = function(_, items)
+              for _, item in ipairs(items) do
+                item.kind_icon = "󰘦 "
+                item.kind_hl = "BlinkCmpKindCodeium"
+              end
+              return items
+            end,
           },
         },
       },

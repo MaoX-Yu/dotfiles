@@ -1,5 +1,19 @@
-# My Neovim Config
+# My Neovim
+
+> Personal Neovim configuration
 
 ## Required
 
-- Neovim >= 0.11
+- neovim >= 0.11
+
+- ripgrep
+
+- fd/fd-find
+
+- make
+
+- cc
+
+- git
+
+- lazygit

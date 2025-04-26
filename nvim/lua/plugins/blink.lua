@@ -14,6 +14,11 @@ return {
       cmdline = {
         enabled = false,
       },
+      completion = {
+        ghost_text = {
+          enabled = true,
+        },
+      },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
