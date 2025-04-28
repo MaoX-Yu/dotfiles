@@ -5,6 +5,8 @@ return {
     version = false,
     config = function()
       local gen_spec = require("mini.ai").gen_spec
+      local hipatterns = require("mini.hipatterns")
+
       require("mini.ai").setup({
         custom_textobjects = {
           o = gen_spec.treesitter({ -- code block
@@ -31,7 +33,11 @@ return {
           U = gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
         },
       })
-      require("mini.hipatterns").setup({})
+      require("mini.hipatterns").setup({
+        highlighters = {
+          hex_color = hipatterns.gen_highlighter.hex_color(),
+        },
+      })
       require("mini.icons").setup({})
       require("mini.move").setup({})
       require("mini.pairs").setup({})

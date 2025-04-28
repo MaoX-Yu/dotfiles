@@ -10,10 +10,9 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, 
 map({ "n", "x" }, "gh", "^", { desc = "Goto Line Start" })
 map({ "n", "x" }, "gl", "$", { desc = "Goto Line End" })
 
-map({ "n", "t" }, "<C-q>", "<cmd>close<cr>", { desc = "Quit" })
+map({ "n", "t" }, "<C-q>", "<cmd>close<cr>", { desc = "Close" })
 
 map("!", "<C-l>", "<right>", { desc = "Move Right" })
-map("n", "<leader>%", "ggVG", { desc = "Select All" })
 map("n", "U", "<C-r>", { desc = "Redo" })
 map("n", "q", keymaps.super_q, { expr = true, desc = "Record Macros" })
 

@@ -42,6 +42,9 @@ right = [
   "spacer",
   "position",
 ]
+mode.normal = "NORMAL"
+mode.insert = "INSERT"
+mode.select = "SELECT"
 
 [editor.lsp]
 display-inlay-hints = true
@@ -105,5 +108,7 @@ i = "select_textobject_inner"
 a = "select_textobject_around"
 u = ["switch_to_lowercase", "collapse_selection", "normal_mode"]
 U = ["switch_to_uppercase", "collapse_selection", "normal_mode"]
+";" = "flip_selections"
+"A-;" = "collapse_selection"
 "{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
 "}" = ["extend_to_line_bounds", "goto_next_paragraph"]

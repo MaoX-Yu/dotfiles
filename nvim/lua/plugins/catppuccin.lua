@@ -16,6 +16,7 @@ return {
           enabled = true,
           colored_indent_levels = true,
         },
+        mason = true,
         noice = true,
         overseer = true,
         snacks = {
