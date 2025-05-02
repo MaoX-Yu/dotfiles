@@ -1,10 +1,11 @@
--- Built-in statusline
+-- Custom statusline
 
 ---@class utils
 ---@field stl table
 local utils = require("utils")
 
-local group_id = vim.api.nvim_create_augroup("Statusline", {})
+local au = vim.api.nvim_create_autocmd
+local group = vim.api.nvim_create_augroup("Statusline", {})
 local hl_groups = utils.stl.hl_groups
 
 local M = {}
@@ -72,36 +73,26 @@ function M.branch()
   return branch ~= "" and string.format("*%s", utils.stl.escape(branch)) or ""
 end
 
-vim.api.nvim_create_autocmd("DiagnosticChanged", {
-  group = group_id,
+au("DiagnosticChanged", {
+  group = group,
   desc = "Update diagnostics cache for the status line.",
-  callback = function(info)
-    local b = vim.b[info.buf]
-    local diag_cnt_cache = { 0, 0, 0, 0 }
-    for _, diagnostic in ipairs(info.data.diagnostics) do
-      diag_cnt_cache[diagnostic.severity] = diag_cnt_cache[diagnostic.severity] + 1
+  callback = function(ev)
+    local count = vim.diagnostic.count(ev.buf)
+    local diag = {}
+    for severity_nr, severity in ipairs({ "error", "warn", "info", "hint" }) do
+      local cnt = count[severity_nr] or 0
+      if cnt > 0 then
+        local icon_text = utils.stl.get_diag_sign_text(severity_nr)
+        table.insert(diag, utils.stl.hl(icon_text .. cnt, hl_groups[severity]))
+      end
     end
-    b.diag_str_cache = nil
-    b.diag_cnt_cache = diag_cnt_cache
+    local diag_str = #diag > 0 and string.format(" %s ", table.concat(diag, " ")) or ""
+    vim.b[ev.buf].diag_str_cache = diag_str
   end,
 })
 
 function M.diag()
-  if vim.b.diag_str_cache then
-    return vim.b.diag_str_cache
-  end
-  local diag = {}
-  local buf_cnt = vim.b.diag_cnt_cache or {}
-  for serverity_nr, severity in ipairs({ "error", "warn", "info", "hint" }) do
-    local cnt = buf_cnt[serverity_nr] or 0
-    if cnt > 0 then
-      local icon_text = utils.stl.get_diag_sign_text(serverity_nr)
-      table.insert(diag, utils.stl.hl(icon_text .. cnt, hl_groups[severity]))
-    end
-  end
-  local str = #diag > 0 and string.format(" %s ", table.concat(diag, " ")) or ""
-  vim.b.diag_str_cache = str
-  return str
+  return vim.b.diag_str_cache or ""
 end
 
 local spinner_end_keep = 2000 -- ms
@@ -127,20 +118,20 @@ local spinner_icons = {
 ---@type table<integer, { name: string, timestamp: integer, type: "begin"|"report"|"end"|nil }>
 local server_info = {}
 
-vim.api.nvim_create_autocmd("LspProgress", {
+au("LspProgress", {
   desc = "Update LSP progress info for the status line.",
-  group = group_id,
-  callback = function(info)
+  group = group,
+  callback = function(ev)
     if spinner_timer then
       spinner_timer:start(spinner_progress_keep, spinner_progress_keep, vim.schedule_wrap(vim.cmd.redrawstatus))
     end
 
-    local id = info.data.client_id
+    local id = ev.data.client_id
     local now = vim.uv.now()
     server_info[id] = {
       name = vim.lsp.get_client_by_id(id).name,
       timestamp = now,
-      type = info.data and info.data.params and info.data.params.value and info.data.params.value.kind,
+      type = ev.data and ev.data.params and ev.data.params.value and ev.data.params.value.kind,
     } -- Update LSP progress data
     -- Clear client message after a short time if no new message is received
     vim.defer_fn(function()
@@ -427,8 +418,8 @@ function M.get()
   return stl
 end
 
-vim.api.nvim_create_autocmd({ "FileChangedShellPost", "DiagnosticChanged", "LspProgress" }, {
-  group = group_id,
+au({ "FileChangedShellPost", "DiagnosticChanged", "LspProgress" }, {
+  group = group,
   command = "redrawstatus",
 })
 

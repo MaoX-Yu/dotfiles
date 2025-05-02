@@ -36,7 +36,7 @@ return {
           max_tokens = 8192,
         },
       },
-      file_selector = {
+      selector = {
         provider = "snacks",
       },
     },

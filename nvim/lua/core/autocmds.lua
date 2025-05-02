@@ -40,14 +40,14 @@ au("FileType", {
     "startuptime",
     "tsplayground",
   },
-  callback = function(event)
-    vim.bo[event.buf].buflisted = false
+  callback = function(ev)
+    vim.bo[ev.buf].buflisted = false
     vim.schedule(function()
       vim.keymap.set("n", "q", function()
         vim.cmd("close")
-        pcall(vim.api.nvim_buf_delete, event.buf, { force = true })
+        pcall(vim.api.nvim_buf_delete, ev.buf, { force = true })
       end, {
-        buffer = event.buf,
+        buffer = ev.buf,
         silent = true,
         desc = "Quit buffer",
       })
