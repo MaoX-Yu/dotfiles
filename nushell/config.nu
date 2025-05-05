@@ -1,10 +1,5 @@
 # Nushell Config File
 
-$env.PROMPT_INDICATOR = {|| "" }
-$env.PROMPT_INDICATOR_VI_INSERT = {|| "" }
-$env.PROMPT_INDICATOR_VI_NORMAL = {|| "" }
-$env.PROMPT_MULTILINE_INDICATOR = {|| "" }
-
 const NU_LIB_DIRS = [
     ($nu.default-config-dir | path join 'scripts')
     ($nu.data-dir | path join 'completions')
@@ -25,7 +20,7 @@ $env.FZF_DEFAULT_OPTS = '
 --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'
 
 load-env {
-    'CONDA_NO_PROMPT': true
+    'CONDA_NO_PROMPT': false
     'VISUAL': 'nvim'
     'EDITOR': 'nvim'
 }
@@ -39,19 +34,20 @@ $env.config.shell_integration.osc133 = false
 # Themes
 source catppuccin-macchiato.nu
 
+# Prompt
+source prompt.nu
+
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
-{{#if (is_executable "starship")}}
-starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
-{{/if}}
 {{#if (is_executable "zoxide")}}
-source zoxide.nu
+zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
 {{/if}}
 {{#if (is_executable "yazi")}}
 source yazi.nu
 {{/if}}
 
 alias n = nvim
+alias vi = nvim
 alias nf = nvim (fzf)
 alias lg = lazygit
 {{#if (is_executable "bat")}}
