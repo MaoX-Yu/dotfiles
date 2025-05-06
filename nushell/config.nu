@@ -20,7 +20,6 @@ $env.FZF_DEFAULT_OPTS = '
 --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'
 
 load-env {
-    'CONDA_NO_PROMPT': false
     'VISUAL': 'nvim'
     'EDITOR': 'nvim'
 }
