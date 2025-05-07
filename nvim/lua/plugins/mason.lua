@@ -1,6 +1,6 @@
 return {
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     cond = not vim.g.vscode,
     cmd = {
       "Mason",
@@ -18,6 +18,15 @@ return {
     },
     keys = {
       { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+    },
+  },
+  {
+    "mason-org/mason-lspconfig.nvim",
+    cond = not vim.g.vscode,
+    event = { "BufReadPost", "BufNewFile" },
+    opts_extend = { "ensure_installed" },
+    opts = {
+      ensure_installed = { "lua_ls" },
     },
   },
 }

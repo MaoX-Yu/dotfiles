@@ -2,13 +2,15 @@ return {
   {
     "max397574/better-escape.nvim",
     cond = not vim.g.vscode,
-    event = "VeryLazy",
     opts = {
+      default_mappings = false,
       mappings = {
-        t = {
+        i = {
           j = {
-            k = false,
+            j = "<Esc>",
           },
+        },
+        t = {
           ["<esc>"] = {
             ["<esc>"] = "<C-\\><C-n>",
           },
