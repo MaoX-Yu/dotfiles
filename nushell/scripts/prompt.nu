@@ -30,12 +30,7 @@ def get-git-status [] {
         _ => $":\(($status)(ansi '#f5bde6')\)"
     }
 
-    let branch_icon = match ($output | get branch) {
-        '' | 'no_branch' => ''
-        _ => ''
-    }
-
-    let result = $'($branch_icon) ($branch_name)($status)'
+    let result = $' ($branch_name)($status)'
 
     match ($output | get branch) {
         '' | 'no_branch' => ''
@@ -59,14 +54,16 @@ def get-pwd [] {
             if ($path_without_home | wrap path | compact | length) > 0 {
                 let parent = $path | skip ($home | length) | drop
                 if ($parent | wrap parent | compact | length) > 0 {
-                    let short_part = $parent | each { |part|
-                        if ($part | str starts-with '.') {
-                            $'($part | str substring 0..1)'
-                        } else {
-                            $'($part | str substring 0..0)'
+                    let short_part = $parent
+                        | each { |part|
+                            if ($part | str starts-with '.') {
+                                $'($part | str substring 0..1)'
+                            } else {
+                                $'($part | str substring 0..0)'
+                            }
                         }
-                    }
-                    $'~/($short_part | path join)/($path | last)'
+                        | str join '/'
+                    $'~/($short_part)/($path | last)'
                 } else {
                     $'~/($path | last)'
                 }
@@ -74,7 +71,16 @@ def get-pwd [] {
                 '~'
             }
         } else {
-            let parent = $path | drop | str substring 0..0 | path join
+            let parent = $path
+                | drop
+                | each { |part|
+                    if ($part | str starts-with '.') {
+                        $'($part | str substring 0..1)'
+                    } else {
+                        $'($part | str substring 0..0)'
+                    }
+                }
+                | str join '/'
             $'/($parent)/($path | last)'
         }
     } else {
@@ -97,9 +103,9 @@ $env.PROMPT_COMMAND = {
         ' ' ++ ($'($env.CMD_DURATION_MS)ms' | into duration | into string)
     } else { '' }
 
-    let git_info = get-git-status
+    let git_status = get-git-status
 
-    $'(ansi '#eed49f')($user)(ansi reset) in (ansi '#91d7e3')($current_path)(ansi '#f5bde6')($git_info)(ansi '#939ab7')($cmd_durarion)($exit_sign)(ansi reset)'
+    $'(ansi '#eed49f')($user)(ansi reset) in (ansi '#91d7e3')($current_path)(ansi '#f5bde6')($git_status)(ansi '#939ab7')($cmd_durarion)($exit_sign)(ansi reset)'
 }
 
 $env.PROMPT_COMMAND_RIGHT = { date now | format date "%H:%M:%S" }
