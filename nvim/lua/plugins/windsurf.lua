@@ -4,10 +4,8 @@ return {
     cond = not vim.g.vscode,
     event = "InsertEnter",
     cmd = "Codeium",
+    main = "codeium",
     opts = {},
-    config = function(_, opts)
-      require("codeium").setup(opts)
-    end,
   },
   {
     "saghen/blink.cmp",
