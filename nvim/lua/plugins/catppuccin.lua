@@ -47,7 +47,6 @@ return {
           FlashLabel = { fg = C.base, bg = C.red },
 
           -- nvim-cmp
-          CmpItemMenu = { fg = C.mauve },
           CmpItemKindCodeium = { fg = C.teal },
 
           -- blink.cmp

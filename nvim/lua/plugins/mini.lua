@@ -53,7 +53,6 @@ return {
           update_n_lines = "gsn", -- Update `n_lines`
         },
       })
-      require("mini.tabline").setup({ tabpage_section = "right" })
 
       MiniIcons.mock_nvim_web_devicons()
     end,

@@ -91,6 +91,10 @@ s = "extend_to_line_start"
 h = "extend_to_first_nonwhitespace"
 l = "extend_to_line_end"
 
+[keys.normal.space]
+b = "no_op"
+"," = "buffer_picker"
+
 [keys.normal.Z]
 Z = ":wq"
 
