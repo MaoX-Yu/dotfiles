@@ -12,6 +12,7 @@ return {
         types = { "italic" },
       },
       integrations = {
+        blink_cmp = true,
         indent_blankline = {
           enabled = true,
           colored_indent_levels = true,
@@ -54,8 +55,8 @@ return {
           BlinkCmpSource = { fg = C.overlay2 },
           BlinkCmpLabelDetail = { link = "BlinkCmpSource" },
           BlinkCmpLabelDescription = { link = "BlinkCmpSource" },
-          BlinkCmpKindCodeium = { link = "CmpItemKindCodeium" },
-          BlinkCmpKindAvante = { link = "CmpItemKindCodeium" },
+          BlinkCmpKindCodeium = { link = "BlinkCmpKindCopilot" },
+          BlinkCmpKindAvante = { link = "BlinkCmpKindCopilot" },
 
           -- fzf-lua
           FzfLuaNormal = { link = "Normal" },
