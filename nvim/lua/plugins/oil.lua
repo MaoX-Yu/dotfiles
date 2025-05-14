@@ -12,7 +12,7 @@ return {
       },
     },
     keys = {
-      { "<leader>e", "<cmd>Oil<cr>", desc = "Open Oil" },
+      { "<leader>e", "<cmd>Oil<cr>", desc = "Open oil" },
     },
   },
 }

@@ -28,43 +28,43 @@ return {
           else
             gitsigns.nav_hunk("next")
           end
-        end, "Next Hunk")
+        end, "Next hunk")
         map("n", "[h", function()
           if vim.wo.diff then
             vim.cmd.normal({ "[c", bang = true })
           else
             gitsigns.nav_hunk("prev")
           end
-        end, "Prev Hunk")
+        end, "Prev hunk")
         map("n", "]H", function()
           gitsigns.nav_hunk("last")
-        end, "Last Hunk")
+        end, "Last hunk")
         map("n", "[H", function()
           gitsigns.nav_hunk("first")
-        end, "First Hunk")
+        end, "First hunk")
 
         -- Actions
-        map("n", "<leader>gh", gitsigns.stage_hunk, "Stage Hunk")
-        map("n", "<leader>gH", gitsigns.stage_buffer, "Stage Buffer")
+        map("n", "<leader>gh", gitsigns.stage_hunk, "Stage hunk")
+        map("n", "<leader>gH", gitsigns.stage_buffer, "Stage buffer")
         map("v", "<leader>gh", function()
           gitsigns.stage_hunk({ vim.fn.line("."), vim.fn.line("v") })
-        end, "Stage Line")
-        map("n", "<leader>gr", gitsigns.reset_hunk, "Reset Hunk")
-        map("n", "<leader>gR", gitsigns.reset_buffer, "Reset Buffer")
+        end, "Stage line")
+        map("n", "<leader>gr", gitsigns.reset_hunk, "Reset hunk")
+        map("n", "<leader>gR", gitsigns.reset_buffer, "Reset buffer")
         map("v", "<leader>gr", function()
           gitsigns.reset_hunk({ vim.fn.line("."), vim.fn.line("v") })
-        end, "Reset Line")
+        end, "Reset line")
 
-        map("n", "<leader>gp", gitsigns.preview_hunk, "Preview Hunk")
-        map("n", "<leader>gi", gitsigns.preview_hunk_inline, "Preview Hunk Inline")
+        map("n", "<leader>gp", gitsigns.preview_hunk, "Preview hunk")
+        map("n", "<leader>gi", gitsigns.preview_hunk_inline, "Preview hunk inline")
 
-        map("n", "<leader>gq", gitsigns.setqflist, "Set Quickfix (Buffer)")
+        map("n", "<leader>gq", gitsigns.setqflist, "Set quickfix (Buffer)")
         map("n", "<leader>gQ", function()
           gitsigns.setqflist("all")
-        end, "Set Quickfix")
+        end, "Set quickfix")
 
         -- Text object
-        map({ "o", "x" }, "ih", gitsigns.select_hunk, "GitSigns Select Hunk")
+        map({ "o", "x" }, "ih", gitsigns.select_hunk, "GitSigns select hunk")
       end,
     },
   },

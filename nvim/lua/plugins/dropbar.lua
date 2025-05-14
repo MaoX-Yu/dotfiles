@@ -5,7 +5,7 @@ return {
     keys = function()
       local api = require("dropbar.api")
       return {
-        { "<leader>;", api.pick, desc = "Pick Dropbar" },
+        { "<leader>;", api.pick, desc = "Pick dropbar" },
       }
     end,
     opts = function()
