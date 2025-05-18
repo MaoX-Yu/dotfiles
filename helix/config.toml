@@ -95,9 +95,6 @@ l = "extend_to_line_end"
 b = "no_op"
 "," = "buffer_picker"
 
-[keys.normal.Z]
-Z = ":wq"
-
 [keys.insert]
 "C-[" = "normal_mode"
 "C-l" = "move_char_right"

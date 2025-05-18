@@ -7,6 +7,7 @@
 [core]
 	quotepath = false
 	longpaths = true
+	symlinks = true
 {{#if (is_executable "delta")}}
 	pager = delta
 [interactive]
