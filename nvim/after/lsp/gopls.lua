@@ -21,10 +21,10 @@ return {
         rangeVariableTypes = true,
       },
       analyses = {
+        ST1003 = true,
         nilness = true,
         unusedparams = true,
         unusedwrite = true,
-        useany = true,
       },
       usePlaceholders = true,
       completeUnimported = true,
