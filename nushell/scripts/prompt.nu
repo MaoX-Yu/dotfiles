@@ -89,28 +89,28 @@ def get-pwd [] {
 }
 
 $env.PROMPT_COMMAND = {
-    let user = if (is-windows) { $env.USERNAME } else { $env.USER }
-
-    let exit_sign = if ($env.LAST_EXIT_CODE == 0) {
-        $' (ansi '#a6da95') '
-    } else {
-        $' (ansi '#ed8796') '
-    }
-
     let current_path = get-pwd
+
+    let git_status = get-git-status
 
     let cmd_durarion = if ($env.CMD_DURATION_MS | into int) > 0 {
         ' ' ++ ($'($env.CMD_DURATION_MS)ms' | into duration | into string)
     } else { '' }
 
-    let git_status = get-git-status
-
-    $'(ansi '#eed49f')($user)(ansi reset) in (ansi '#91d7e3')($current_path)(ansi '#f5bde6')($git_status)(ansi '#939ab7')($cmd_durarion)($exit_sign)(ansi reset)'
+    $'(ansi '#91d7e3')($current_path)(ansi '#f5bde6')($git_status)(ansi '#939ab7')($cmd_durarion)(ansi reset) '
 }
 
-$env.PROMPT_COMMAND_RIGHT = { date now | format date "%H:%M:%S" }
+$env.PROMPT_COMMAND_RIGHT = {
+    let exit_code = if ($env.LAST_EXIT_CODE != 0) {
+        $'(ansi '#ed8796')($env.LAST_EXIT_CODE)(ansi reset) '
+    } else { '' }
 
-$env.PROMPT_INDICATOR = ''
-$env.PROMPT_INDICATOR_VI_INSERT = ''
-$env.PROMPT_INDICATOR_VI_NORMAL = ''
-$env.PROMPT_MULTILINE_INDICATOR = ''
+    let now = date now | format date "%H:%M:%S"
+
+    $'($exit_code)(ansi '#f5bde6')($now)(ansi reset)'
+}
+
+$env.PROMPT_INDICATOR = ' '
+$env.PROMPT_INDICATOR_VI_INSERT = ' '
+$env.PROMPT_INDICATOR_VI_NORMAL = '$ '
+$env.PROMPT_MULTILINE_INDICATOR = ': '
