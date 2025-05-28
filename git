@@ -5,8 +5,9 @@
 	signingkey = {{gpg.key}}
 {{/if}}
 [core]
-	quotepath = false
+	autocrlf = input
 	longpaths = true
+	quotepath = false
 	symlinks = true
 {{#if (is_executable "delta")}}
 	pager = delta
