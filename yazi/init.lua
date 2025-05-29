@@ -11,9 +11,9 @@ end
 local mime_ext_ok, mime_ext = pcall(require, "mime-ext")
 if mime_ext_ok then
 	mime_ext:setup({
-		-- Expand the existing filename database (lowercase), for example:
+		-- Expand the existing filename database (lowercase)
 		with_files = {},
-		-- Expand the existing extension database (lowercase), for example:
+		-- Expand the existing extension database (lowercase)
 		with_exts = {},
 		fallback_file1 = true,
 	})
@@ -41,9 +41,9 @@ Status:children_add(function()
 	end
 
 	return ui.Line({
-		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):fg("magenta"),
+		ui.Span(ya.user_name(h.cha.uid) or tostring(h.cha.uid)):style(ui.Style():fg("magenta")),
 		ui.Span(":"),
-		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):fg("magenta"),
+		ui.Span(ya.group_name(h.cha.gid) or tostring(h.cha.gid)):style(ui.Style():fg("magenta")),
 		ui.Span(" "),
 	})
 end, 500, Status.RIGHT)
@@ -58,9 +58,9 @@ Header:children_add(function()
 		return ""
 	end
 	local spans = {}
-	for i = 1, #cx.tabs do
-		spans[#spans + 1] = ui.Span(" " .. i .. " ")
+	for i, tab in ipairs(cx.tabs) do
+		spans[#spans + 1] = ui.Span(" " .. i .. " " .. tab.name .. " "):style(th.tabs.inactive)
 	end
-	spans[cx.tabs.idx]:reverse()
+	spans[cx.tabs.idx]:style(th.tabs.active)
 	return ui.Line(spans)
 end, 9000, Header.RIGHT)
