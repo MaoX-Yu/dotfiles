@@ -24,7 +24,6 @@ return {
       spec = {
         { "f", desc = "Find next char" },
         { "F", desc = "Find prev char" },
-        { "grn", desc = "Rename" },
         { "t", desc = "Find next char before" },
         { "T", desc = "Find prev char before" },
         { ";", desc = "Next find result" },
@@ -49,7 +48,7 @@ return {
           { "gs", group = "surround" },
           { "z", group = "fold" },
           { "<leader><tab>", group = "tabs" },
-          { "<leader>a", group = "avante" },
+          { "<leader>A", group = "avante" },
           { "<leader>c", group = "code" },
           { "<leader>g", group = "git" },
           { "<leader>s", group = "search" },
@@ -70,7 +69,6 @@ return {
               return require("which-key.extras").expand.win()
             end,
           },
-          { "gra", desc = "Code action" },
           { "gx", desc = "Open with system app" },
           { "<C-_>", hidden = true },
         },

@@ -88,9 +88,3 @@ end
 -- Disable deprecated warning
 ---@diagnostic disable-next-line
 vim.deprecate = function() end
-
--- Neovide
-if g.neovide then
-  o.guifont = "Maple Mono NF CN:h14"
-  g.neovide_hide_mouse_when_typing = true
-end

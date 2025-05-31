@@ -34,3 +34,7 @@ vim.cmd.colorscheme("catppuccin")
 
 require("core.keymaps")
 require("core.autocmds")
+
+if vim.g.neovide then
+  require("core.neovide")
+end

@@ -120,8 +120,8 @@ return {
       -- LSP
       { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto definition" },
       { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto declaration" },
-      { "grr", function() Snacks.picker.lsp_references() end, desc = "Goto references" },
-      { "gri", function() Snacks.picker.lsp_implementations() end, desc = "Goto implementation" },
+      { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "Goto references" },
+      { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto implementation" },
       { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto type definition" },
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP symbols" },
       { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP workspace symbols" },

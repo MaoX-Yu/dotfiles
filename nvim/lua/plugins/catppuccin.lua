@@ -12,6 +12,7 @@ return {
         types = { "italic" },
       },
       integrations = {
+        avante = true,
         blink_cmp = true,
         indent_blankline = {
           enabled = true,

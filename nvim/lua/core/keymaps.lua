@@ -1,6 +1,13 @@
 local keymaps = require("utils.keymaps")
 
 local map = vim.keymap.set
+local del = vim.keymap.del
+
+-- Remove default keymaps
+del("n", "grr")
+del("n", "grn")
+del("n", "gri")
+del({ "n", "v" }, "gra")
 
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true, silent = true })
@@ -78,7 +85,7 @@ map("n", "<leader>xq", vim.cmd.copen, { desc = "Quickfix" })
 map("n", "<leader>xl", vim.cmd.lopen, { desc = "Location list" })
 map("n", "<leader>xd", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 
--- Diagnostic
+-- LSP
 local diagnostic_goto = function(count, severity)
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
@@ -93,6 +100,8 @@ map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 map("n", "<leader>cc", vim.lsp.codelens.run, { desc = "Run codelens" })
 map("n", "<leader>cl", vim.lsp.codelens.refresh, { desc = "Show codelens" })
 map("n", "<leader>cL", "<cmd>checkhealth vim.lsp<cr>", { desc = "LSP info" })
+map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Code action" })
+map("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename" })
 
 -- Highlights under cursor
 map("n", "<leader>ui", vim.show_pos, { desc = "Inspect pos" })

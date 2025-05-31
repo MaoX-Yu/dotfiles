@@ -4,28 +4,13 @@ return {
     cond = not vim.g.vscode,
     version = false,
     event = { "BufReadPost", "BufNewFile" },
-    cmd = {
-      "AvanteAsk",
-      "AvanteBuild",
-      "AvanteChat",
-      "AvanteChatNew",
-      "AvanteClear",
-      "AvanteEdit",
-      "AvanteFocus",
-      "AvanteHistory",
-      "AvanteModels",
-      "AvanteRefresh",
-      "AvanteShowRepoMap",
-      "AvanteStop",
-      "AvanteSwitchProvider",
-      "AvanteSwitchSelectorProvider",
-      "AvanteToggle",
-    },
+    cmd = { "AvanteBuild", "AvanteToggle" },
     opts = {
       provider = "deepseek",
       cursor_applying_provider = "deepseek",
       behaviour = {
         enable_cursor_planning_mode = true,
+        auto_set_highlight_group = false,
       },
       vendors = {
         deepseek = {
@@ -38,6 +23,32 @@ return {
       },
       selector = {
         provider = "snacks",
+      },
+      windows = {
+        sidebar_header = {
+          rounded = false,
+        },
+      },
+      mappings = {
+        ask = "<leader>Aa",
+        new_ask = "<leader>An",
+        edit = "<leader>Ae",
+        refresh = "<leader>Ar",
+        focus = "<leader>Af",
+        stop = "<leader>AS",
+        toggle = {
+          default = "<leader>At",
+          debug = "<leader>Ad",
+          hint = "<leader>Ah",
+          suggestion = "<leader>As",
+          repomap = "<leader>AR",
+        },
+        files = {
+          add_current = "<leader>Ac",
+          add_all_buffers = "<leader>AB",
+        },
+        select_model = "<leader>A?",
+        select_history = "<leader>Ah",
       },
     },
   },
