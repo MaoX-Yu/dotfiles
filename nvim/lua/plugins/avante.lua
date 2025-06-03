@@ -12,7 +12,7 @@ return {
         enable_cursor_planning_mode = true,
         auto_set_highlight_group = false,
       },
-      vendors = {
+      providers = {
         deepseek = {
           __inherited_from = "openai",
           api_key_name = "DEEPSEEK_API_KEY",
