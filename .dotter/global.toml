@@ -11,7 +11,7 @@ joshuto = "~/.config/joshuto"
 git = "~/.gitconfig"
 
 [vim.files]
-vimrc = "~/.vimrc"
+vim = "~/.vim"
 
 [idea.files]
 ideavimrc = { target = "~/.ideavimrc", type = "symbolic" }
