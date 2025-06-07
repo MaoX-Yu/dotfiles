@@ -16,6 +16,7 @@ o.completeopt = "menu,menuone,noselect"
 o.confirm = true
 o.cursorline = true
 o.expandtab = true -- use space replace tab
+o.fileformats = "unix,dos"
 o.fillchars = "fold: ,foldclose:,foldopen:,foldsep: "
 o.foldcolumn = "1"
 o.foldlevel = 99
