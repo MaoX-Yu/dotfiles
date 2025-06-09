@@ -8,17 +8,6 @@ if yamb_ok then
 	yamb:setup({})
 end
 
-local mime_ext_ok, mime_ext = pcall(require, "mime-ext")
-if mime_ext_ok then
-	mime_ext:setup({
-		-- Expand the existing filename database (lowercase)
-		with_files = {},
-		-- Expand the existing extension database (lowercase)
-		with_exts = {},
-		fallback_file1 = true,
-	})
-end
-
 -- Show symlink in status bar
 function Status:name()
 	local h = self._tab.current.hovered

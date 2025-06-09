@@ -1,22 +1,17 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "c0ad8a3"
-hash = "1e9bd86b7c9f88c74fda39efbf1dc966"
-
-[[plugin.deps]]
-use = "yazi-rs/plugins:mime-ext"
-rev = "c0ad8a3"
-hash = "386f16763ac80eb24d0ff58fb31ad9e2"
+rev = "63f9650"
+hash = "bf6f074cd41ee33c3360341d168f9733"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "c0ad8a3"
-hash = "be2bd6442d806a0d3370198f3e222bcf"
+rev = "63f9650"
+hash = "a7ab702e1ef0c097defbc976ed34c186"
 
 [[plugin.deps]]
 use = "Ape/open-with-cmd"
 rev = "433cf30"
-hash = "a6d150d153ed3491505b02f4dc174e89"
+hash = "86e0312b01bc5762813c6c1d0517f073"
 
 [[plugin.deps]]
 use = "h-hg/yamb"
@@ -25,15 +20,20 @@ hash = "7cc42012a7c2099f80064d228feb8d44"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "c0ad8a3"
-hash = "4af377a12d3800b24f3e7aa32267ae2c"
+rev = "63f9650"
+hash = "d5d4f3527592da5fbe77fd6f51815f80"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:types"
-rev = "c0ad8a3"
-hash = "7afdf6c77162e4da37903e427472af6b"
+rev = "63f9650"
+hash = "c255054d6a70754db6cb96b97ad1ccd7"
+
+[[plugin.deps]]
+use = "yazi-rs/plugins:piper"
+rev = "63f9650"
+hash = "2bdc137505b8d9a0cc867a57d0e99b01"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-macchiato"
 rev = "d04a298"
-hash = "e1f117825992a958266e547e231321ad"
+hash = "e6c5beeb1da3199355734273ee452a7f"
