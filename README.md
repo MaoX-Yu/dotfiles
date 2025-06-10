@@ -14,7 +14,6 @@
 - Gitui
 - Helix
 - Idea
-- Joshuto (Only Linux)
 - Komorebi
 - Lazygit
 - Neovim
