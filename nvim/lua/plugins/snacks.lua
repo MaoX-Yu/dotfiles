@@ -75,7 +75,6 @@ return {
       { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
       { "<leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
       { "<leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
-      { "<leader>n", function() Snacks.picker.notifications() end, desc = "Notification history" },
       -- find
       { "<leader>f", function() Snacks.picker.files() end, desc = "Find files" },
       -- git
@@ -100,8 +99,8 @@ return {
       { "<leader>sb", function() Snacks.picker.lines() end, desc = "Buffer lines" },
       { "<leader>sc", function() Snacks.picker.command_history() end, desc = "Command history" },
       { "<leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
-      { "<leader>sd", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
-      { "<leader>sD", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer diagnostics" },
+      { "<leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer diagnostics" },
+      { "<leader>sD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
       { "<leader>sh", function() Snacks.picker.help() end, desc = "Help pages" },
       { "<leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
       { "<leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
@@ -111,7 +110,6 @@ return {
       { "<leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
       { "<leader>sM", function() Snacks.picker.man() end, desc = "Man pages" },
       { "<leader>sp", function() Snacks.picker.projects() end, desc = "Projects" },
-      { "<leader>sP", function() Snacks.picker.lazy() end, desc = "Search for plugin spec" },
       { "<leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix list" },
       { "<leader>sr", function() Snacks.picker.recent() end, desc = "Recent" },
       { "<leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
@@ -138,24 +136,6 @@ return {
       { "<leader>t",  function() Snacks.terminal() end, desc = "Toggle terminal" },
       { "]r",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next reference", mode = { "n", "t" } },
       { "[r",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev reference", mode = { "n", "t" } },
-      {
-        "<leader>N",
-        desc = "Neovim news",
-        function()
-          Snacks.win({
-            file = vim.api.nvim_get_runtime_file("doc/news.txt", false)[1],
-            width = 0.6,
-            height = 0.6,
-            wo = {
-              spell = false,
-              wrap = false,
-              signcolumn = "yes",
-              statuscolumn = " ",
-              conceallevel = 3,
-            },
-          })
-        end,
-      },
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {
