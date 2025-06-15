@@ -1,13 +1,12 @@
 -- Custom statusline
 
----@class utils
----@field stl table
 local utils = require("utils")
-
-local au = vim.api.nvim_create_autocmd
-local group = vim.api.nvim_create_augroup("Statusline", {})
 local hl_groups = utils.stl.hl_groups
+local au = vim.api.nvim_create_autocmd
 
+local group = vim.api.nvim_create_augroup("Statusline", {})
+
+---@class StatusLine
 local M = {}
 
 function M.mode()
@@ -20,7 +19,7 @@ function M.fname()
   local symbols = {
     modified = "[+]",
     readonly = "[-]",
-    unnamed = "[No Name]",
+    unnamed = "[Scratch]",
     newfile = "[New]",
   }
   local function is_new_file()
@@ -97,21 +96,23 @@ end
 
 local spinner_end_keep = 2000 -- ms
 local spinner_status_keep = 600 -- ms
-local spinner_progress_keep = 80 -- ms
+local spinner_progress_keep = 120 -- ms
 local spinner_timer = vim.uv.new_timer()
 
-local spinner_icon_done = "✔"
+local spinner_icon_done = "[DONE]"
 local spinner_icons = {
-  "⠋",
-  "⠙",
-  "⠹",
-  "⠸",
-  "⠼",
-  "⠴",
-  "⠦",
-  "⠧",
-  "⠇",
-  "⠏",
+  "[    ]",
+  "[=   ]",
+  "[==  ]",
+  "[ == ]",
+  "[  ==]",
+  "[   =]",
+  "[    ]",
+  "[   =]",
+  "[  ==]",
+  "[ == ]",
+  "[==  ]",
+  "[=   ]",
 }
 
 ---Id and additional info of language servers in progress

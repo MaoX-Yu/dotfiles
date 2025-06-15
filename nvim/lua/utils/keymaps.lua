@@ -1,3 +1,4 @@
+---@class KeymapUtils
 local M = {}
 
 function M.super_escape()

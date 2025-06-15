@@ -1,4 +1,4 @@
----Statusline utils
+---@class StatuslineUtils
 local M = {}
 
 -- stylua: ignore
@@ -134,10 +134,10 @@ end
 
 ---Convert a snake_case string to camelCase
 ---@param str string?
----@return string?
+---@return string
 function M.snake_to_camel(str)
   if not str then
-    return nil
+    return ""
   end
   return (str:gsub("^%l", string.upper):gsub("_%l", string.upper):gsub("_", ""))
 end
