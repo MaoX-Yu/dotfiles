@@ -4,10 +4,9 @@
     "snippets": [
       {
         "language": [
-          "csharp",
-          "cs"
+          "lua"
         ],
-        "path": "./csharp/unity.json"
+        "path": "./lua.json"
       }
     ]
   }

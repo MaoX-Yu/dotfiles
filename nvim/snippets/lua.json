@@ -1,0 +1,10 @@
+{
+    "Lua Module": {
+        "prefix": "module",
+        "description": "Lua Module",
+        "body": [
+            "local ${1:M} = {$2}",
+            "$0"
+        ]
+    }
+}
