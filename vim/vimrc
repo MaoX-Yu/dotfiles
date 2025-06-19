@@ -1,6 +1,4 @@
-if &compatible
-    set nocompatible
-endif
+source $VIMRUNTIME/defaults.vim
 
 syntax enable
 filetype plugin on
