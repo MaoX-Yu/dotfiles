@@ -161,7 +161,7 @@ return {
               return vim.g.autoformat
             end,
             set = function(state)
-              vim.g.autoformat = not state
+              vim.g.autoformat = state
             end,
           }):map("<leader>uf")
           Snacks.toggle({
