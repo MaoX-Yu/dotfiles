@@ -1,5 +1,3 @@
-local keymaps = require("utils.keymaps")
-
 local map = vim.keymap.set
 local del = vim.keymap.del
 
@@ -16,12 +14,21 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, 
 -- Move
 map({ "n", "o", "x" }, "gh", "^", { desc = "Goto line start" })
 map({ "n", "o", "x" }, "gl", "$", { desc = "Goto line end" })
+map("!", "<C-l>", "<right>", { desc = "Move right" })
 
+-- Close
 map({ "n", "t" }, "<C-q>", "<cmd>close<cr>", { desc = "Close" })
 
-map("!", "<C-l>", "<right>", { desc = "Move right" })
+local function super_q()
+  if vim.bo.bt ~= "" then
+    return "<cmd>close<cr>"
+  end
+  return "q"
+end
+map("n", "q", super_q, { expr = true, desc = "Record macros" })
+
+-- Remap redo
 map("n", "U", "<C-r>", { desc = "Redo" })
-map("n", "q", keymaps.super_q, { expr = true, desc = "Record macros" })
 
 -- Move to window using the <ctrl> hjkl keys
 map("n", "<C-h>", "<C-w>h", { desc = "Go to left window", remap = true })
@@ -41,8 +48,13 @@ map("n", "<S-l>", "<cmd>bnext<cr>", { desc = "Next buffer" })
 map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete buffer and window" })
 
--- Clear search with <esc>
-map({ "i", "n", "s" }, "<esc>", keymaps.super_escape, { expr = true, desc = "Escape" })
+-- Clear search and stop snippet with <esc>
+local function super_escape()
+  vim.cmd("noh")
+  vim.snippet.stop()
+  return "<esc>"
+end
+map({ "i", "n", "s" }, "<esc>", super_escape, { expr = true, desc = "Escape" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua
@@ -86,7 +98,7 @@ map("n", "<leader>xl", vim.cmd.lopen, { desc = "Location list" })
 map("n", "<leader>xd", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 
 -- LSP
-local diagnostic_goto = function(count, severity)
+local function diagnostic_goto(count, severity)
   severity = severity and vim.diagnostic.severity[severity] or nil
   return function()
     vim.diagnostic.jump({ count = count, severity = severity })

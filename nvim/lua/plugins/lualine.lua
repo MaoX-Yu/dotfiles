@@ -16,7 +16,7 @@ return {
         }
         local filetype = vim.o.filetype ~= "" and vim.o.filetype .. " " or ""
         local fileformat = symbols[vim.o.fileformat]
-        return string.format("%s[%s]", filetype, fileformat)
+        return string.format("%s%s", filetype, fileformat)
       end
 
       return {
