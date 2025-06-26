@@ -1,3 +1,7 @@
+if not vim.g.neovide then
+  return
+end
+
 local g = vim.g
 local o = vim.o
 
