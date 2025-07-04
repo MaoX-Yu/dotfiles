@@ -40,11 +40,11 @@ nushell = "~/.config/nushell"
 [bat.files]
 bat = "~/.config/bat"
 
-[zellij.files]
-zellij = "~/.config/zellij"
-
 [komorebi.files]
 komorebi = "~/komorebi.json"
 
 [rio.files]
 rio = "~/.config/rio"
+
+[tmux.files]
+"tmux/tmux.conf" = "~/.tmux.conf"

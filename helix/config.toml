@@ -80,13 +80,10 @@ X = "select_line_above"
 q = "record_macro"
 Q = ":format"
 "@" = "replay_macro"
-";" = "flip_selections"
-"A-;" = "collapse_selection"
-"{" = ["goto_prev_paragraph", "collapse_selection"]
-"}" = ["goto_next_paragraph", "collapse_selection"]
+"{" = "goto_prev_paragraph"
+"}" = "goto_next_paragraph"
 
 [keys.normal.g]
-e = "move_prev_word_end"
 s = "extend_to_line_start"
 h = "extend_to_first_nonwhitespace"
 l = "extend_to_line_end"
@@ -104,12 +101,10 @@ j = "normal_mode"
 
 [keys.select]
 "C-[" = "normal_mode"
-G = "goto_file_end"
+G = "extend_to_last_line"
 i = "select_textobject_inner"
 a = "select_textobject_around"
-u = ["switch_to_lowercase", "collapse_selection", "normal_mode"]
-U = ["switch_to_uppercase", "collapse_selection", "normal_mode"]
-";" = "flip_selections"
-"A-;" = "collapse_selection"
+u = ["switch_to_lowercase", "normal_mode"]
+U = ["switch_to_uppercase", "normal_mode"]
 "{" = ["extend_to_line_bounds", "goto_prev_paragraph"]
 "}" = ["extend_to_line_bounds", "goto_next_paragraph"]

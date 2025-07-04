@@ -21,26 +21,26 @@
 - Powershell
 - Rio
 - Starship
+- Tmux
 - Vim
 - Wezterm
 - Yazi
-- Zellij
 
 ## 使用方式
 
-### 安装dotter[可选]
+### 安装dotter [可选]
 
 > dotter分支下存放了Windows与Linux平台的dotter可执行文件
 
 Windows:
 
-```powershell
+```ps1
 scoop install dotter
 ```
 
 Cargo:
 
-```shell
+```sh
 cargo install dotter
 ```
 
@@ -64,7 +64,7 @@ packages = ["nvim"]
 
 > 注: Windows下需要**管理员权限**才能创建软链接
 
-```shell
+```sh
 dotter -v # [-v]可选，显示详细信息
 
 # 取消部署
