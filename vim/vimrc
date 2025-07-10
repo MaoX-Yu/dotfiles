@@ -65,7 +65,9 @@ if has('termguicolors')
     set termguicolors
 endif
 try
+    packadd! everforest
     colorscheme everforest
+    let g:airline_theme = 'everforest'
 catch
 endtry
 
