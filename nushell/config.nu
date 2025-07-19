@@ -11,10 +11,9 @@ const NU_PLUGIN_DIRS = [
 ]
 
 $env.FZF_DEFAULT_OPTS = '
+--style=full
 --layout=reverse
---height=~50%
 --border=rounded
---info=inline
 --color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796
 --color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6
 --color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'
@@ -47,7 +46,8 @@ source yazi.nu
 
 alias n = nvim
 alias vi = nvim
-alias nf = nvim (fzf)
+alias ni = nvim (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}')
+alias hi = hx (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}')
 alias lg = lazygit
 {{#if (is_executable "bat")}}
 alias cat = bat --paging=never --theme "Catppuccin Macchiato"
