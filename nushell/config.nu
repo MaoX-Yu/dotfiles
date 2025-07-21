@@ -38,12 +38,22 @@ source prompt.nu
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
 {{#if (is_executable "zoxide")}}
+$env._ZO_FZF_OPTS = '
+--style=minimal
+--layout=reverse
+--border=rounded
+--info=inline
+--height=~50%
+--color=bg+:#363a4f,bg:#24273a,spinner:#f4dbd6,hl:#ed8796
+--color=fg:#cad3f5,header:#ed8796,info:#c6a0f6,pointer:#f4dbd6
+--color=marker:#f4dbd6,fg+:#cad3f5,prompt:#c6a0f6,hl+:#ed8796'
 zoxide init nushell | save -f ($nu.data-dir | path join "vendor/autoload/zoxide.nu")
+
 {{/if}}
 {{#if (is_executable "yazi")}}
 source yazi.nu
-{{/if}}
 
+{{/if}}
 alias n = nvim
 alias vi = nvim
 alias ni = nvim (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}')
