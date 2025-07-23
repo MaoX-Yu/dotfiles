@@ -48,7 +48,7 @@ set splitright
 set belloff=all
 set novisualbell
 
-let $LANG = "en"
+let $LANG = 'en'
 set langmenu=en
 
 set encoding=utf8
@@ -71,7 +71,7 @@ try
 catch
 endtry
 
-if &term =~ "xterm"
+if &term =~ 'xterm\|tmux\|win'
     " INSERT mode
     let &t_SI = "\<esc>[6 q"
     " REPLACE mode
@@ -81,6 +81,6 @@ if &term =~ "xterm"
 endif
 
 " Set <space> as leader
-let mapleader = " "
+let mapleader = ' '
 
 runtime! modules/keymap.vim
