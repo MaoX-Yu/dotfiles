@@ -1,4 +1,4 @@
-def is-windows [] {
+def windows? [] {
     $nu.os-info.name =~ 'windows'
 }
 
@@ -8,7 +8,7 @@ def get-git-status [] {
     let branch_name = $output | get branch
 
     let status = $output
-        | reject repo_name tag branch remote
+        | reject repo_name tag branch remote state
         | rename '+' '+~' '+-' '+»' '+t' '?' '~' '-' 't' '»' '!' 'c' '↑' '↓' '$'
         | transpose key value
         | where { |it| $it.value > 0 }
@@ -40,9 +40,9 @@ def get-git-status [] {
 
 def get-pwd [] {
     let path = pwd
-        | if (is-windows) { split row '\' } else { split row '/' }
+        | if (windows?) { split row '\' } else { split row '/' }
         | where $it != ''
-    let home = if (is-windows) {
+    let home = if (windows?) {
         [$env.HOMEDRIVE $env.HOMEPATH] | path join | split row '\'
     } else {
         $env.HOME | split row '/'
@@ -84,7 +84,7 @@ def get-pwd [] {
             $'/($parent)/($path | last)'
         }
     } else {
-        if (is-windows) { $'/($path | get 0 | str replace ":" "")' } else { pwd }
+        if (windows?) { $'/($path | get 0 | str replace ":" "")' } else { pwd }
     }
 }
 
