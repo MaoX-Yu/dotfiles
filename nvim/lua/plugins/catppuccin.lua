@@ -46,7 +46,7 @@ return {
           MiniTablineModifiedVisible = { fg = C.yellow, bg = C.none },
 
           -- flash
-          FlashLabel = { fg = C.base, bg = C.red },
+          FlashLabel = { fg = C.base, bg = C.green },
 
           -- nvim-cmp
           CmpItemKindCodeium = { fg = C.teal },

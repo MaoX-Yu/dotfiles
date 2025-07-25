@@ -5,8 +5,7 @@ local del = vim.keymap.del
 del("n", "grr")
 del("n", "grn")
 del("n", "gri")
--- TODO: remove pcall in v0.11.3
-pcall(del, "n", "grt")
+del("n", "grt")
 del({ "n", "v" }, "gra")
 
 -- Better up/down
