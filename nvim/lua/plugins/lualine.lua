@@ -18,6 +18,13 @@ return {
         local fileformat = symbols[vim.o.fileformat]
         return string.format("%s%s", filetype, fileformat)
       end
+      local showcmd_msg = ""
+      vim.ui_attach(vim.api.nvim_create_namespace("showcmd_msg"), { ext_messages = true }, function(event, ...)
+        if event == "msg_showcmd" then
+          local content = ...
+          showcmd_msg = #content > 0 and content[1][2] or showcmd_msg
+        end
+      end)
 
       return {
         options = {
@@ -50,12 +57,10 @@ return {
             },
             {
               function()
-                ---@diagnostic disable-next-line: undefined-field
-                return require("noice").api.status.command.get()
+                return showcmd_msg
               end,
               cond = function()
-                ---@diagnostic disable-next-line: undefined-field
-                return package.loaded["noice"] and require("noice").api.status.command.has()
+                return showcmd_msg ~= nil
               end,
               color = function()
                 return { fg = Snacks.util.color("Statement") }
