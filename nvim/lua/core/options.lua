@@ -11,7 +11,7 @@ vim.schedule(function()
 end)
 
 o.breakindent = true
-o.cmdheight = 0
+o.cmdheight = 1
 o.completeopt = "menu,menuone,noselect"
 o.confirm = true
 o.cursorline = true
@@ -84,6 +84,11 @@ elseif vim.uv.os_uname().sysname:find("Windows") then
   o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
   o.shellquote = ""
   o.shellxquote = ""
+end
+
+-- Extui
+if vim.fn.has("nvim-0.12") == 1 then
+  require("vim._extui").enable({})
 end
 
 -- Disable deprecated warning

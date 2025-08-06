@@ -8,16 +8,6 @@ return {
         local col = vim.fn.charcol(".")
         return string.format("%d:%d", line, col)
       end
-      local function fileinfo()
-        local symbols = {
-          unix = "LF",
-          dos = "CRLF",
-          mac = "CR",
-        }
-        local filetype = vim.o.filetype ~= "" and vim.o.filetype .. " " or ""
-        local fileformat = symbols[vim.o.fileformat]
-        return string.format("%s%s", filetype, fileformat)
-      end
       local showcmd_msg = ""
       vim.ui_attach(vim.api.nvim_create_namespace("showcmd_msg"), { ext_messages = true }, function(event, ...)
         if event == "msg_showcmd" then
@@ -93,7 +83,17 @@ return {
               end,
             },
           },
-          lualine_y = { fileinfo },
+          lualine_y = {
+            "bo:filetype",
+            {
+              "fileformat",
+              symbols = {
+                unix = "LF",
+                dos = "CRLF",
+                mac = "CR",
+              },
+            },
+          },
           lualine_z = { "progress", location },
         },
         extensions = {
