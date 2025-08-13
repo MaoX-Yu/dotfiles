@@ -19,6 +19,7 @@ return {
     },
     opts = {
       dap = false,
+      templates = { "builtin", "python" },
       task_list = {
         bindings = {
           ["<C-h>"] = false,
