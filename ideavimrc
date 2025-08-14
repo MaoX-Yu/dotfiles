@@ -50,7 +50,8 @@ set surround
 " Map <space> to leader
 let mapleader=" "
 inoremap jj <esc>
-map gh ^
+map gs ^
+map gh 0
 map gl $
 nmap <esc> :noh<CR>
 
@@ -88,9 +89,9 @@ nmap <leader>fr <Action>(ReplaceInPath)
 " 类查找
 nmap gw <Action>(GotoClass)
 " 类方法或类成员字段查找
-nmap gs <Action>(FileStructurePopup)
+nmap gS <Action>(FileStructurePopup)
 " 实现类或方法查找
-nmap gi <Action>(GotoImplementation)
+nmap gI <Action>(GotoImplementation)
 " 跳转到定义或引用处
 nmap gd <Action>(GotoDeclaration)
 " 查找所有引用，类似vim中的quickfix列表

@@ -13,7 +13,8 @@ map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true
 map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true, silent = true })
 
 -- Move
-map({ "n", "o", "x" }, "gh", "^", { desc = "Goto line start" })
+map({ "n", "o", "x" }, "gs", "^", { desc = "Goto line first non-blank" })
+map({ "n", "o", "x" }, "gh", "0", { desc = "Goto line start" })
 map({ "n", "o", "x" }, "gl", "$", { desc = "Goto line end" })
 map("!", "<C-l>", "<right>", { desc = "Move right" })
 

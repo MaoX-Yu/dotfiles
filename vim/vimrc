@@ -48,9 +48,6 @@ set splitright
 set belloff=all
 set novisualbell
 
-let $LANG = 'en'
-set langmenu=en
-
 set encoding=utf8
 
 " Use Unix as the standard file type

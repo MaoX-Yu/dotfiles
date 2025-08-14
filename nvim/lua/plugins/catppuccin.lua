@@ -37,16 +37,6 @@ return {
           SnacksInputIcon = { fg = C.blue, style = { "italic" } },
           SnacksInputTitle = { fg = C.blue, style = { "italic" } },
           SnacksInputBorder = { fg = C.blue, style = { "italic" } },
-          SnacksPicker = { link = "Normal" },
-
-          -- mini
-          MiniTablineCurrent = { fg = C.mauve, bg = C.base, sp = C.mauve, style = { "bold", "italic", "underline" } },
-          MiniTablineModifiedCurrent = { fg = C.yellow, bg = C.base, style = { "bold", "italic", "underline" } },
-          MiniTablineModifiedHidden = { fg = C.yellow, bg = C.none },
-          MiniTablineModifiedVisible = { fg = C.yellow, bg = C.none },
-
-          -- flash
-          FlashLabel = { fg = C.base, bg = C.green },
 
           -- nvim-cmp
           CmpItemKindCodeium = { fg = C.teal },

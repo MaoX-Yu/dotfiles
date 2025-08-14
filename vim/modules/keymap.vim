@@ -1,7 +1,8 @@
 inoremap jj <esc>
 inoremap <C-l> <right>
 
-map gh ^
+map gs ^
+map gh 0
 map gl $
 
 nmap H <cmd>bp<cr>
