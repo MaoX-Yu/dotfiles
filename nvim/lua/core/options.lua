@@ -12,7 +12,8 @@ end)
 
 o.breakindent = true
 o.cmdheight = 1
-o.completeopt = "menu,menuone,noselect"
+o.completeitemalign = "kind,abbr,menu"
+o.completeopt = "menu,menuone,noselect,fuzzy,popup"
 o.confirm = true
 o.cursorline = true
 o.expandtab = true -- use space replace tab

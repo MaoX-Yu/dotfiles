@@ -19,7 +19,7 @@ set showmatch
 
 set wildmenu
 set wildmode=full
-set wildoptions=fuzzy
+set wildoptions=fuzzy,pum,tagfile
 
 " A buffer becomes hidden when it is abandoned
 set hidden
