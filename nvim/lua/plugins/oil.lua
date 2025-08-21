@@ -12,7 +12,20 @@ return {
       },
     },
     keys = {
-      { "<leader>e", "<cmd>Oil<cr>", desc = "Open oil" },
+      {
+        "<leader>e",
+        function()
+          require("oil").open_float()
+        end,
+        desc = "Open oil",
+      },
+      {
+        "<leader>E",
+        function()
+          require("oil").open_float(vim.fn.getcwd())
+        end,
+        desc = "Open oil (cwd)",
+      },
     },
   },
 }

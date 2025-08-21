@@ -4,7 +4,7 @@ return {
     cond = not vim.g.vscode,
     event = { "BufReadPost", "BufNewFile" },
     opts = function()
-      local highlights = require("catppuccin.groups.integrations.bufferline").get()
+      local highlights = require("catppuccin.groups.integrations.bufferline").get_theme()
       return {
         options = {
           always_show_bufferline = false,
