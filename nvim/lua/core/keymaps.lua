@@ -21,13 +21,12 @@ map("!", "<C-l>", "<right>", { desc = "Move right" })
 -- Close
 map({ "n", "t" }, "<C-q>", "<cmd>close<cr>", { desc = "Close" })
 
-local function super_q()
+map("n", "q", function()
   if vim.bo.bt ~= "" then
     return "<cmd>close<cr>"
   end
   return "q"
-end
-map("n", "q", super_q, { expr = true, desc = "Record macros" })
+end, { expr = true, desc = "Record macros" })
 
 -- Remap redo
 map("n", "U", "<C-r>", { desc = "Redo" })
@@ -51,12 +50,11 @@ map("n", "<leader>bb", "<cmd>e #<cr>", { desc = "Switch to other buffer" })
 map("n", "<leader>bD", "<cmd>:bd<cr>", { desc = "Delete buffer and window" })
 
 -- Clear search and stop snippet with <esc>
-local function super_escape()
+map({ "i", "n", "s" }, "<esc>", function()
   vim.cmd("noh")
   vim.snippet.stop()
   return "<esc>"
-end
-map({ "i", "n", "s" }, "<esc>", super_escape, { expr = true, desc = "Escape" })
+end, { expr = true, desc = "Escape" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua

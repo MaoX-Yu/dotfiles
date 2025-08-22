@@ -39,7 +39,7 @@ return {
         toggle = {
           default = "<leader>At",
           debug = "<leader>Ad",
-          hint = "<leader>Ah",
+          selection = "<leader>AC",
           suggestion = "<leader>As",
           repomap = "<leader>AR",
         },

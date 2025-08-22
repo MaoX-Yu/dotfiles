@@ -1,7 +1,7 @@
 local au = vim.api.nvim_create_autocmd
 
 local function augroup(name)
-  return vim.api.nvim_create_augroup("myau_" .. name, { clear = true })
+  return vim.api.nvim_create_augroup("mao." .. name, { clear = true })
 end
 
 -- Start picker with directory
@@ -40,14 +40,14 @@ au("FileType", {
     "startuptime",
     "tsplayground",
   },
-  callback = function(ev)
-    vim.bo[ev.buf].buflisted = false
+  callback = function(args)
+    vim.bo[args.buf].buflisted = false
     vim.schedule(function()
       vim.keymap.set("n", "q", function()
         vim.cmd("close")
-        pcall(vim.api.nvim_buf_delete, ev.buf, { force = true })
+        pcall(vim.api.nvim_buf_delete, args.buf, { force = true })
       end, {
-        buffer = ev.buf,
+        buffer = args.buf,
         silent = true,
         desc = "Quit buffer",
       })
@@ -76,9 +76,9 @@ au("VimResized", {
 -- Go to last loc when opening a buffer
 au("BufReadPost", {
   group = augroup("last_loc"),
-  callback = function(ev)
+  callback = function(args)
     local exclude = { "gitcommit" }
-    local buf = ev.buf
+    local buf = args.buf
     if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].myau_last_loc then
       return
     end
@@ -94,11 +94,11 @@ au("BufReadPost", {
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 au("BufWritePre", {
   group = augroup("auto_create_dir"),
-  callback = function(ev)
-    if ev.match:match("^%w%w+:[\\/][\\/]") then
+  callback = function(args)
+    if args.match:match("^%w%w+:[\\/][\\/]") then
       return
     end
-    local file = vim.uv.fs_realpath(ev.match) or ev.match
+    local file = vim.uv.fs_realpath(args.match) or args.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })

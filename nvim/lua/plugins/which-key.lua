@@ -45,7 +45,7 @@ return {
           { "[", group = "prev" },
           { "]", group = "next" },
           { "g", group = "goto" },
-          { "S", group = "surround" },
+          { "gz", group = "surround" },
           { "z", group = "fold" },
           { "<leader><tab>", group = "tabs" },
           { "<leader>A", group = "avante" },

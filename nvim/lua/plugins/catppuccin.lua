@@ -25,23 +25,30 @@ return {
           enabled = true,
           indent_scope_color = "",
         },
-        which_key = true,
+        which_key = false,
       },
       custom_highlights = function(C)
         return {
-          -- which-key
-          WhichKeyBorder = { fg = C.blue, bg = C.mantle },
-          WhichKeyTitle = { fg = C.blue, bg = C.mantle },
+          FloatBorder = { fg = C.mauve, bg = C.mantle },
 
-          -- snacks
-          SnacksInputIcon = { fg = C.blue, style = { "italic" } },
-          SnacksInputTitle = { fg = C.blue, style = { "italic" } },
-          SnacksInputBorder = { fg = C.blue, style = { "italic" } },
+          -- Which-key
+          WhichKey = { fg = C.mauve, style = { "italic" } },
+          WhichKeyDesc = { fg = C.green },
+          WhichKeyTitle = { fg = C.mauve, bg = C.mantle },
+          WhichKeySeparator = { fg = C.mauve },
 
-          -- nvim-cmp
-          CmpItemKindCodeium = { fg = C.teal },
+          -- Snacks
+          SnacksDashboardDesc = { fg = C.mauve },
+          SnacksDashboardHeader = { fg = C.mauve },
+          SnacksDashboardIcon = { fg = C.peach },
+          SnacksDashboardKey = { fg = C.green },
+          SnacksInputBorder = { fg = C.mauve, style = { "italic" } },
+          SnacksInputIcon = { fg = C.mauve, style = { "italic" } },
+          SnacksInputTitle = { fg = C.mauve, style = { "italic" } },
+          SnacksPickerMatch = { fg = C.pink },
 
-          -- blink.cmp
+          -- Blink.cmp
+          BlinkCmpMenuBorder = { link = "FloatBorder" },
           BlinkCmpKind = { fg = C.overlay2 },
           BlinkCmpSource = { fg = C.overlay2 },
           BlinkCmpLabelDetail = { link = "BlinkCmpSource" },
@@ -49,8 +56,8 @@ return {
           BlinkCmpKindCodeium = { link = "BlinkCmpKindCopilot" },
           BlinkCmpKindAvante = { link = "BlinkCmpKindCopilot" },
 
-          -- fzf-lua
-          FzfLuaNormal = { link = "Normal" },
+          -- Overseer
+          OverseerTask = { fg = C.mauve },
         }
       end,
     },
