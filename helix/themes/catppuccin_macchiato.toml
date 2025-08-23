@@ -66,20 +66,22 @@
 
 # User Interface
 # --------------
-"ui.background" = { fg = "text", bg = "base" }
+"ui.background" = { fg = "mauve", bg = "base" }
 
 "ui.linenr" = { fg = "surface1" }
 "ui.linenr.selected" = { fg = "lavender" }
 
 "ui.statusline" = { fg = "subtext1", bg = "mantle" }
 "ui.statusline.inactive" = { fg = "surface2", bg = "mantle" }
-"ui.statusline.normal" = { fg = "base", bg = "lavender", modifiers = ["bold"] }
+"ui.statusline.normal" = { fg = "base", bg = "mauve", modifiers = ["bold"] }
 "ui.statusline.insert" = { fg = "base", bg = "green", modifiers = ["bold"] }
-"ui.statusline.select" = { fg = "base", bg = "flamingo", modifiers = ["bold"] }
+"ui.statusline.select" = { fg = "base", bg = "lavender", modifiers = ["bold"] }
 
-"ui.popup" = { fg = "text", bg = "surface0" }
+"ui.picker.header.column" = { fg = "mauve", bg = "base"}
+
+"ui.popup" = { fg = "mauve", bg = "mantle" }
 "ui.window" = { fg = "crust" }
-"ui.help" = { fg = "overlay2", bg = "surface0" }
+"ui.help" = { fg = "mauve", bg = "mantle" }
 
 "ui.bufferline" = { fg = "subtext0", bg = "mantle" }
 "ui.bufferline.active" = { fg = "mauve", bg = "base", underline = { color = "mauve", style = "line" } }
@@ -114,7 +116,7 @@
 
 "ui.highlight" = { bg = "surface1", modifiers = ["bold"] }
 
-"ui.menu" = { fg = "overlay2", bg = "surface0" }
+"ui.menu" = { fg = "overlay2", bg = "mantle" }
 "ui.menu.selected" = { fg = "text", bg = "surface1", modifiers = ["bold"] }
 
 "diagnostic.error" = { underline = { color = "red", style = "curl" } }
