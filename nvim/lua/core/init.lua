@@ -30,6 +30,17 @@ require("lazy").setup({
   checker = { enabled = false },
 })
 
+-- TODO: Remove after fixed. See: https://github.com/folke/lazy.nvim/issues/1951
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "User: fix backdrop for lazy window",
+  pattern = "lazy_backdrop",
+  group = vim.api.nvim_create_augroup("lazy.nvim.fix", { clear = true }),
+  callback = function(ctx)
+    local win = vim.fn.win_findbuf(ctx.buf)[1]
+    vim.api.nvim_win_set_config(win, { border = "none" })
+  end,
+})
+
 vim.cmd.colorscheme("catppuccin")
 
 require("core.keymaps")

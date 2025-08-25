@@ -60,7 +60,7 @@ o.updatetime = 300
 o.virtualedit = "block"
 o.wildmenu = true
 o.winblend = 0
-o.winborder = "none"
+o.winborder = "rounded"
 o.wrap = false
 
 -- Shell

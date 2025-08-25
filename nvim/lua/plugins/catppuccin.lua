@@ -34,27 +34,29 @@ return {
           -- Which-key
           WhichKey = { fg = C.mauve, style = { "italic" } },
           WhichKeyDesc = { fg = C.green },
-          WhichKeyTitle = { fg = C.mauve, bg = C.mantle },
           WhichKeySeparator = { fg = C.mauve },
+          WhichKeyTitle = { fg = C.mauve, bg = C.mantle },
 
           -- Snacks
           SnacksDashboardDesc = { fg = C.mauve },
+          SnacksDashboardFooter = { fg = C.green },
           SnacksDashboardHeader = { fg = C.mauve },
           SnacksDashboardIcon = { fg = C.peach },
-          SnacksDashboardKey = { fg = C.green },
+          SnacksDashboardKey = { fg = C.yellow },
           SnacksInputBorder = { fg = C.mauve, style = { "italic" } },
           SnacksInputIcon = { fg = C.mauve, style = { "italic" } },
           SnacksInputTitle = { fg = C.mauve, style = { "italic" } },
           SnacksPickerMatch = { fg = C.pink },
 
           -- Blink.cmp
-          BlinkCmpMenuBorder = { link = "FloatBorder" },
           BlinkCmpKind = { fg = C.overlay2 },
-          BlinkCmpSource = { fg = C.overlay2 },
-          BlinkCmpLabelDetail = { link = "BlinkCmpSource" },
-          BlinkCmpLabelDescription = { link = "BlinkCmpSource" },
-          BlinkCmpKindCodeium = { link = "BlinkCmpKindCopilot" },
           BlinkCmpKindAvante = { link = "BlinkCmpKindCopilot" },
+          BlinkCmpKindCodeium = { link = "BlinkCmpKindCopilot" },
+          BlinkCmpLabelDescription = { link = "BlinkCmpSource" },
+          BlinkCmpLabelDetail = { link = "BlinkCmpSource" },
+          BlinkCmpMenuBorder = { link = "FloatBorder" },
+          BlinkCmpScrollBarThumb = { bg = C.mauve },
+          BlinkCmpSource = { fg = C.overlay2 },
 
           -- Overseer
           OverseerTask = { fg = C.mauve },
