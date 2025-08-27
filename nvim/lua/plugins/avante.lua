@@ -32,6 +32,7 @@ return {
       mappings = {
         ask = "<leader>Aa",
         new_ask = "<leader>An",
+        full_view_ask = "<leader>Am",
         edit = "<leader>Ae",
         refresh = "<leader>Ar",
         focus = "<leader>Af",
