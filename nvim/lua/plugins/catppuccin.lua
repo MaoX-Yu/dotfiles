@@ -30,6 +30,10 @@ return {
       custom_highlights = function(C)
         return {
           FloatBorder = { fg = C.mauve, bg = C.mantle },
+          PmenuExtra = { fg = C.mauve },
+          PmenuExtraSel = { fg = C.mauve, bg = C.surface0, style = { "bold" } },
+          PmenuMatch = { fg = C.pink, style = { "bold" } },
+          PmenuMatchSel = { fg = C.pink, style = { "bold" } },
 
           -- Which-key
           WhichKey = { fg = C.mauve, style = { "italic" } },
@@ -46,17 +50,8 @@ return {
           SnacksInputBorder = { fg = C.mauve, style = { "italic" } },
           SnacksInputIcon = { fg = C.mauve, style = { "italic" } },
           SnacksInputTitle = { fg = C.mauve, style = { "italic" } },
+          SnacksNotifierHistory = { link = "NormalFloat" },
           SnacksPickerMatch = { fg = C.pink },
-
-          -- Blink.cmp
-          BlinkCmpKind = { fg = C.overlay2 },
-          BlinkCmpKindAvante = { link = "BlinkCmpKindCopilot" },
-          BlinkCmpKindCodeium = { link = "BlinkCmpKindCopilot" },
-          BlinkCmpLabelDescription = { link = "BlinkCmpSource" },
-          BlinkCmpLabelDetail = { link = "BlinkCmpSource" },
-          BlinkCmpMenuBorder = { link = "FloatBorder" },
-          BlinkCmpScrollBarThumb = { bg = C.mauve },
-          BlinkCmpSource = { fg = C.overlay2 },
 
           -- Overseer
           OverseerTask = { fg = C.mauve },

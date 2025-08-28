@@ -1,12 +1,10 @@
 return {
   {
-    "echasnovski/mini.nvim",
+    "nvim-mini/mini.nvim",
     lazy = false,
     version = false,
     config = function()
       local gen_spec = require("mini.ai").gen_spec
-      local hipatterns = require("mini.hipatterns")
-
       require("mini.ai").setup({
         custom_textobjects = {
           o = gen_spec.treesitter({ -- code block
@@ -33,15 +31,23 @@ return {
           U = gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
         },
       })
+
+      local hipatterns = require("mini.hipatterns")
       require("mini.hipatterns").setup({
         highlighters = {
           hex_color = hipatterns.gen_highlighter.hex_color(),
         },
       })
+
       require("mini.icons").setup({})
+      MiniIcons.mock_nvim_web_devicons()
+
       require("mini.move").setup({})
+
       require("mini.pairs").setup({})
+
       require("mini.splitjoin").setup({})
+
       require("mini.surround").setup({
         mappings = {
           add = "gza", -- Add surrounding in Normal and Visual modes
@@ -54,7 +60,19 @@ return {
         },
       })
 
-      MiniIcons.mock_nvim_web_devicons()
+      local gen_loader = require("mini.snippets").gen_loader
+      require("mini.snippets").setup({
+        snippets = {
+          gen_loader.from_lang(),
+        },
+        mappings = {
+          expand = "",
+          jump_next = "",
+          jump_prev = "",
+          stop = "",
+        },
+      })
+      require("mini.snippets").start_lsp_server()
     end,
   },
 }

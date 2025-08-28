@@ -68,23 +68,4 @@ return {
       },
     },
   },
-  {
-    "saghen/blink.cmp",
-    dependencies = {
-      "Kaiser-Yang/blink-cmp-avante",
-    },
-    opts = {
-      sources = {
-        default = { "avante" },
-        providers = {
-          avante = {
-            name = "Avante",
-            module = "blink-cmp-avante",
-            async = true,
-            score_offset = 100,
-          },
-        },
-      },
-    },
-  },
 }

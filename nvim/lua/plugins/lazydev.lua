@@ -11,18 +11,4 @@ return {
       },
     },
   },
-  {
-    "saghen/blink.cmp",
-    opts = {
-      sources = {
-        default = { "lazydev" },
-        providers = {
-          lazydev = {
-            name = "LazyDev",
-            module = "lazydev.integrations.blink",
-          },
-        },
-      },
-    },
-  },
 }

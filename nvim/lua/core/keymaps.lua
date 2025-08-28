@@ -18,6 +18,35 @@ map({ "n", "o", "x" }, "gh", "0", { desc = "Goto line start" })
 map({ "n", "o", "x" }, "gl", "$", { desc = "Goto line end" })
 map("!", "<C-l>", "<right>", { desc = "Move right" })
 
+-- Completion
+map("i", "<tab>", function()
+  if tonumber(vim.fn.pumvisible()) == 1 then
+    return "<C-y>"
+  elseif vim.snippet.active({ direction = 1 }) then
+    return "<cmd>lua vim.snippet.jump(1)<cr>"
+  else
+    return "<tab>"
+  end
+end, { expr = true })
+map("i", "<cr>", function()
+  if tonumber(vim.fn.pumvisible()) == 1 then
+    return "<C-y>"
+  end
+  local line = vim.api.nvim_get_current_line()
+  local col = vim.api.nvim_win_get_cursor(0)[2]
+  local before = line:sub(col, col)
+  local after = line:sub(col + 1, col + 1)
+  local t = {
+    ["("] = ")",
+    ["["] = "]",
+    ["{"] = "}",
+  }
+  if t[before] and t[before] == after then
+    return "<cr><esc>O"
+  end
+  return "<cr>"
+end, { expr = true })
+
 -- Close
 map({ "n", "t" }, "<C-q>", "<cmd>close<cr>", { desc = "Close" })
 

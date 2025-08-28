@@ -44,6 +44,7 @@ return {
                 done = "",
                 separator = " ",
               },
+              ignore_lsp = { "mini.snippets" },
             },
             {
               function()

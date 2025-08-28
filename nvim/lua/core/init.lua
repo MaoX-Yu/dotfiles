@@ -45,7 +45,3 @@ vim.cmd.colorscheme("catppuccin")
 
 require("core.keymaps")
 require("core.autocmds")
-require("core.lsp")
-
-require("modules.neovide")
-require("modules.vscode")
