@@ -12,13 +12,22 @@ local function snippets_doc(item)
   end
 
   local menu = item.detail or item.insertText or ""
-  local doc = item.documentation and type(item.documentation) == table and item.documentation.value
-    or item.documentation
-  menu = menu:gsub("%$%{%d+:(.-)%}", function(default)
-    return default
-  end)
+  local doc = type(item.documentation) == "table" and item.documentation.value or item.documentation
+
+  while true do
+    local new_menu, count = menu:gsub("%${%d+:(%${%d+:[^}]+})}", function(nested)
+      return nested:gsub("%${%d+:([^}]+)}", "%1")
+    end)
+
+    if count == 0 then
+      break
+    end
+    menu = new_menu
+  end
+  menu = menu:gsub("%${%d+:([^}]+)}", "%1")
+  menu = menu:gsub("%${%d+}", "")
   menu = menu:gsub("%$%d+", "")
-  local ret = "```" .. vim.bo.filetype .. "\n" .. menu .. (doc and "\n```\n---\n" .. doc or "")
+  local ret = "```" .. vim.bo.filetype .. "\n" .. menu .. "\n```" .. (doc and "\n---\n" .. doc or "")
   return ret
 end
 
@@ -56,8 +65,7 @@ au("LspAttach", {
         local kind_icon, kind_hlgroup = require("mini.icons").get("lsp", kind)
         local abbr = item.label:gsub("%b()", "")
         local menu = item.detail
-        local info = item.documentation and type(item.documentation) == "table" and item.documentation.value
-          or item.documentation
+        local info = type(item.documentation) == "table" and item.documentation.value or item.documentation
 
         -- Better snippets documentation
         if item.kind == 15 then

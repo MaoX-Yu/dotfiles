@@ -65,14 +65,17 @@ return {
         snippets = {
           gen_loader.from_lang(),
         },
+        expand = {
+          insert = function(snippet, _)
+            vim.snippet.expand(snippet.body)
+          end,
+        },
         mappings = {
-          expand = "",
           jump_next = "",
           jump_prev = "",
           stop = "",
         },
       })
-      require("mini.snippets").start_lsp_server()
     end,
   },
 }
