@@ -80,4 +80,4 @@ endif
 " Set <space> as leader
 let mapleader = ' '
 
-runtime! modules/keymap.vim
+runtime! modules/keymaps.vim
