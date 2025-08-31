@@ -50,6 +50,11 @@ return {
           highlight = { backdrop = false },
         },
       },
+      prompt = {
+        win_config = {
+          border = "none",
+        },
+      },
     },
     -- stylua: ignore
     keys = {
