@@ -36,6 +36,7 @@ o.mouse = "" -- disable mouse
 o.number = true
 o.pumblend = 0
 o.pumheight = 10
+o.pummaxwidth = 80
 o.relativenumber = true
 o.ruler = false
 o.scrolloff = 4

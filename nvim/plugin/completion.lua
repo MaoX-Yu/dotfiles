@@ -64,6 +64,7 @@ au("LspAttach", {
         local kind = lsp.protocol.CompletionItemKind[item.kind] or "unknown"
         local kind_icon, kind_hlgroup = require("mini.icons").get("lsp", kind)
         local abbr = item.label:gsub("%b()", "")
+        abbr = vim.fn.strdisplaywidth(abbr) > 40 and vim.fn.strcharpart(abbr, 0, 39) .. "…" or abbr
         local menu = item.detail
         local info = type(item.documentation) == "table" and item.documentation.value or item.documentation
 
