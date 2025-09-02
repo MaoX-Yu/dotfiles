@@ -28,9 +28,9 @@ map("i", ".", ".<C-g>u")
 map("i", ";", ";<C-g>u")
 
 -- Better inputs
-map("i", ",,", "_", { unique = true })
-map("i", ",.", "&", { unique = true })
-map("i", ",/", "*", { unique = true })
+map("!", ",,", "_")
+map("!", ",.", "&")
+map("!", ",/", "*")
 
 -- Completion
 map("i", "<tab>", function()
@@ -135,7 +135,7 @@ map("n", "<leader>xd", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 map(
   "n",
   "<leader>ur",
-  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-L><CR>",
+  "<Cmd>nohlsearch<Bar>diffupdate<Bar>normal! <C-l><CR>",
   { desc = "Redraw / Clear hlsearch / Diff update" }
 )
 

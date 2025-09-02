@@ -1,5 +1,8 @@
 vim9script
 
+g:mapleader = ' '
+g:maplocalleader = '\\'
+
 syntax enable
 filetype plugin on
 filetype indent on
@@ -65,5 +68,8 @@ if &term =~ 'xterm\|tmux\|win'
     &t_EI = "\<esc>[2 q"
 endif
 
-# Set <space> as leader
-g:mapleader = ' '
+# Grep
+if executable('rg')
+    set grepprg=rg\ --vimgrep\ -uu
+    set grepformat^=%f:%l:%c:%m
+endif

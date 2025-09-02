@@ -44,7 +44,9 @@ return {
 
       require("mini.move").setup({})
 
-      require("mini.pairs").setup({})
+      require("mini.pairs").setup({
+        modes = { command = true },
+      })
 
       require("mini.splitjoin").setup({})
 
