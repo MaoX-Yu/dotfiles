@@ -68,3 +68,10 @@ auto-format = true
 [language-server.steel-language-server]
 command = "steel-language-server"
 args = []
+
+# ====================
+# Nu-lsp
+# ====================
+[language-server.nu-lsp]
+command = "nu"
+args = ["--no-config-file", "--lsp"]
