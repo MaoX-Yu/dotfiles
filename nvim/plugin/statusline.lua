@@ -305,13 +305,15 @@ function M.showcmd_msg()
   return showcmd_msg ~= "" and utils.stl.hl(string.format("%s", showcmd_msg), hl_groups.history_command) or ""
 end
 
-function M.stl_a()
+local STL = {}
+
+function STL.stl_a()
   local mode = M.mode()
   local mode_str, hl = utils.stl.get_mode_hl(mode)
   return utils.stl.hl(string.format(" %s ", mode_str), hl[1])
 end
 
-function M.stl_b()
+function STL.stl_b()
   local b = {}
   local branch = M.branch()
   local diff = M.gitdiff()
@@ -330,12 +332,12 @@ function M.stl_b()
   return #b > 0 and utils.stl.hl(string.format(" %s ", table.concat(b, utils.stl.hl(" | ", hl[2], false))), hl[2]) or ""
 end
 
-function M.stl_c()
+function STL.stl_c()
   local fname = M.fname()
-  return string.format(" %s%s", [[%{%&bt==#''?'':(&bt==#'help'?'%h ':(&pvw?'%w ':''))%}]], fname)
+  return string.format(" %s", fname)
 end
 
-function M.stl_x()
+function STL.stl_x()
   local x = {}
   local lsp_progress = M.lsp_progress()
   local showcmd = M.showcmd_msg()
@@ -365,7 +367,7 @@ function M.stl_x()
   return #x > 0 and string.format(" %s ", table.concat(x, " | ")) or ""
 end
 
-function M.stl_y()
+function STL.stl_y()
   local y = {}
   local filetype = M.filetype()
   local fileformat = M.fileformat()
@@ -380,7 +382,7 @@ function M.stl_y()
   return #y > 0 and utils.stl.hl(string.format(" %s ", table.concat(y, " | ")), hl[2]) or ""
 end
 
-function M.stl_z()
+function STL.stl_z()
   local z = {}
   local progress = M.progress()
   local position = M.position()
@@ -391,27 +393,15 @@ function M.stl_z()
   return utils.stl.hl(string.format(" %s ", table.concat(z, " | ")), hl[1])
 end
 
--- stylua: ignore
-local components = {
-  stl_a    = [[%{%v:lua.STL.stl_a()%}]],
-  stl_b    = [[%{%v:lua.STL.stl_b()%}]],
-  stl_c    = [[%{%v:lua.STL.stl_c()%}]],
-  stl_x    = [[%{%v:lua.STL.stl_x()%}]],
-  stl_y    = [[%{%v:lua.STL.stl_y()%}]],
-  stl_z    = [[%{%v:lua.STL.stl_z()%}]],
-  align    = [[%=]],
-  truncate = [[%<]],
-}
-
 local stl = table.concat({
-  components.stl_a,
-  components.stl_b,
-  components.stl_c,
-  components.align,
-  components.truncate,
-  components.stl_x,
-  components.stl_y,
-  components.stl_z,
+  [[%{%v:lua.STL.stl_a()%}]],
+  [[%{%v:lua.STL.stl_b()%}]],
+  [[%{%v:lua.STL.stl_c()%}]],
+  [[%=]],
+  [[%<]],
+  [[%{%v:lua.STL.stl_x()%}]],
+  [[%{%v:lua.STL.stl_y()%}]],
+  [[%{%v:lua.STL.stl_z()%}]],
 })
 
 local stl_lazy = function()
@@ -419,7 +409,7 @@ local stl_lazy = function()
   local lazy_str = utils.stl.hl(" Lazy ", hl_groups.normal[1])
   local lazy_status =
     utils.stl.hl(string.format(" loaded: %s/%s ", lazy.stats().loaded, lazy.stats().count), hl_groups.normal[2])
-  return string.format("%s%s %s", lazy_str, lazy_status, [[%{%v:lua.STL.lazy()%}]])
+  return string.format("%s%s %s", lazy_str, lazy_status, M.lazy())
 end
 
 local stl_mason = function()
@@ -437,11 +427,8 @@ local stl_oil = function()
   return oil_str .. " " .. oil_dir
 end
 
-function M.get()
+function STL.get()
   local ft = vim.bo.filetype
-  if vim.g.vscode then
-    return ""
-  end
   if ft == "dashboard" then
     return "%#Normal#"
   end
@@ -464,6 +451,6 @@ au({ "FileChangedShellPost", "DiagnosticChanged", "LspProgress" }, {
   end,
 })
 
-_G.STL = M
+_G.STL = STL
 
 vim.go.statusline = [[%!v:lua.STL.get()]]

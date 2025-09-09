@@ -118,11 +118,11 @@ au("LspAttach", {
             and item.insertTextFormat == lsp.protocol.InsertTextFormat.Snippet
             and (item.textEdit ~= nil or item.insertText ~= nil)
           then
-            vim.schedule(function()
+            vim.defer_fn(function()
               if api.nvim_get_mode().mode == "s" then
                 lsp.buf.signature_help()
               end
-            end)
+            end, 500)
           end
         end,
         desc = "Auto show signature help when compeltion done",

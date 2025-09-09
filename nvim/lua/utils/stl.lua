@@ -8,7 +8,6 @@ M.hl_groups = {
   command         = { "StatusLineCommand", "StatusLineCommandB" },
   visual          = { "StatusLineVisual", "StatusLineVisualB" },
   replace         = { "StatusLineReplace", "StatusLineReplaceB" },
-  inactive        = "StatusLineInactive",
   history_command = "StatusLineHistoryCommand",
   diff_add        = "StatusLineAdd",
   diff_change     = "StatusLineChange",

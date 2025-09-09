@@ -69,7 +69,6 @@ return {
           StatusLineVisualB = { bg = C.surface0, fg = C.lavender },
           StatusLineReplace = { bg = C.maroon, fg = C.base, style = { "bold" } },
           StatusLineReplaceB = { bg = C.surface0, fg = C.maroon },
-          StatusLineInactive = { bg = C.mantle, fg = C.lavender },
           StatusLineAdd = { bg = C.surface0, fg = C.green },
           StatusLineChange = { bg = C.surface0, fg = C.yellow },
           StatusLineRemove = { bg = C.surface0, fg = C.red },
