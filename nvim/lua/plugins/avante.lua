@@ -32,6 +32,7 @@ return {
       mappings = {
         ask = "<leader>Aa",
         new_ask = "<leader>An",
+        zen_mode = "<leader>Az",
         full_view_ask = "<leader>Am",
         edit = "<leader>Ae",
         refresh = "<leader>Ar",

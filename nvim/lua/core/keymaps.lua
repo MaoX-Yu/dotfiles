@@ -118,7 +118,7 @@ map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 map("n", "<leader>cc", vim.lsp.codelens.run, { desc = "Run codelens" })
 map("n", "<leader>cl", vim.lsp.codelens.refresh, { desc = "Show codelens" })
 map("n", "<leader>cL", "<cmd>checkhealth vim.lsp<cr>", { desc = "LSP info" })
-map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Code action" })
+map({ "n", "v" }, "<leader>a", vim.lsp.buf.code_action, { desc = "Code action", nowait = true })
 map("n", "<leader>r", vim.lsp.buf.rename, { desc = "Rename" })
 
 -- Highlights under cursor
