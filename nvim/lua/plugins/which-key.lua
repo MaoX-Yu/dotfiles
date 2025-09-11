@@ -9,6 +9,9 @@ return {
       win = {
         no_overlap = false,
       },
+      defer = function(ctx)
+        return ctx.mode == "v" or ctx.mode == "V" or ctx.mode == "<C-V>"
+      end,
       expand = function(node)
         return not node.desc -- expand all nodes without a description
       end,
