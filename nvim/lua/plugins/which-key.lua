@@ -6,12 +6,19 @@ return {
     opts_extend = { "spec" },
     opts = {
       preset = "helix",
+      triggers = {
+        { "<leader>", mode = { "n", "v" } },
+        { "g", mode = { "n", "v" } },
+        { "z", mode = { "n", "v" } },
+        { "<C-w>", mode = { "n", "v" } },
+        { "'", mode = { "n", "v" } },
+        { "`", mode = { "n", "v" } },
+        { '"', mode = { "n", "v" } },
+        { "<C-r>", mode = { "i", "c" } },
+      },
       win = {
         no_overlap = false,
       },
-      defer = function(ctx)
-        return ctx.mode == "v" or ctx.mode == "V" or ctx.mode == "<C-V>"
-      end,
       expand = function(node)
         return not node.desc -- expand all nodes without a description
       end,
