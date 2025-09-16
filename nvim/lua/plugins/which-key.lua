@@ -11,8 +11,14 @@ return {
         { "g", mode = { "n", "v" } },
         { "z", mode = { "n", "v" } },
         { "<C-w>", mode = { "n", "v" } },
+        { "]", mode = { "n", "v" } },
+        { "[", mode = { "n", "v" } },
+
+        -- Marks
         { "'", mode = { "n", "v" } },
         { "`", mode = { "n", "v" } },
+
+        -- Registers
         { '"', mode = { "n", "v" } },
         { "<C-r>", mode = { "i", "c" } },
       },
