@@ -2,5 +2,5 @@ vim9script
 
 source $VIMRUNTIME/defaults.vim
 
-runtime! options.vim
-runtime! keymaps.vim
+source $MYVIMDIR/options.vim
+source $MYVIMDIR/keymaps.vim

@@ -81,7 +81,7 @@
 
 "ui.popup" = { fg = "mauve", bg = "mantle" }
 "ui.window" = { fg = "crust" }
-"ui.help" = { fg = "mauve", bg = "mantle" }
+"ui.help" = { fg = "text", bg = "mantle" }
 
 "ui.bufferline" = { fg = "subtext0", bg = "mantle" }
 "ui.bufferline.active" = { fg = "mauve", bg = "base", underline = { color = "mauve", style = "line" } }
