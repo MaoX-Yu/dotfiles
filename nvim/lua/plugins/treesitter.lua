@@ -3,14 +3,12 @@ return {
     "nvim-treesitter/nvim-treesitter",
     cond = not vim.g.vscode,
     version = false,
+    branch = "main",
     build = ":TSUpdate",
-    lazy = vim.fn.argc(-1) == 0,
+    lazy = false,
     cmd = { "TSUpdateSync", "TSUpdate", "TSInstall" },
-    dependencies = { "nvim-treesitter/nvim-treesitter-textobjects" },
     opts_extend = { "ensure_installed" },
     opts = {
-      highlight = { enable = true },
-      indent = { enable = true },
       ensure_installed = {
         "bash",
         "c",
@@ -26,42 +24,69 @@ return {
         "vimdoc",
         "yaml",
       },
-      incremental_selection = {
-        enable = true,
-        keymaps = {
-          init_selection = "<M-o>",
-          node_incremental = "<M-o>",
-          scope_incremental = false,
-          node_decremental = "<M-i>",
-        },
-      },
-      textobjects = {
-        move = {
-          enable = true,
-          set_jumps = true,
-          goto_next_start = {
-            ["]f"] = { query = "@function.outer", desc = "Next function start" },
-            ["]]"] = { query = "@class.outer", desc = "Next class start" },
-            ["]z"] = { query = "@fold", query_group = "folds", desc = "Next fold" },
-          },
-          goto_next_end = {
-            ["]F"] = { query = "@function.outer", desc = "Next function end" },
-            ["]["] = { query = "@class.outer", desc = "Next class end" },
-          },
-          goto_previous_start = {
-            ["[f"] = { query = "@function.outer", desc = "Previous function start" },
-            ["[["] = { query = "@class.outer", desc = "Previous class start" },
-            ["[z"] = { query = "@fold", query_group = "folds", desc = "Previous fold" },
-          },
-          goto_previous_end = {
-            ["[F"] = { query = "@function.outer", desc = "Previous function end" },
-            ["[]"] = { query = "@class.outer", desc = "Previous class end" },
-          },
-        },
+    },
+    config = function(_, opts)
+      require("nvim-treesitter").install(opts.ensure_installed)
+
+      vim.api.nvim_create_autocmd("FileType", {
+        group = vim.api.nvim_create_augroup("mao.treesitter", { clear = true }),
+        callback = function()
+          local ok = pcall(vim.treesitter.start)
+          if ok then
+            vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+            vim.bo.indentexpr = "v:lua.require('nvim-treesitter').indentexpr()"
+          end
+        end,
+      })
+    end,
+  },
+  {
+    "nvim-treesitter/nvim-treesitter-textobjects",
+    branch = "main",
+    opts = {
+      move = {
+        set_jumps = true,
       },
     },
     config = function(_, opts)
-      require("nvim-treesitter.configs").setup(opts)
+      require("nvim-treesitter-textobjects").setup(opts)
+
+      local move = require("nvim-treesitter-textobjects.move")
+      local map = vim.keymap.set
+
+      map({ "n", "x", "o" }, "]f", function()
+        move.goto_next_start("@function.outer", "textobjects")
+      end, { desc = "Next function start" })
+      map({ "n", "x", "o" }, "]]", function()
+        move.goto_next_start("@class.outer", "textobjects")
+      end, { desc = "Next class start" })
+      map({ "n", "x", "o" }, "]z", function()
+        move.goto_next_start("@fold", "folds")
+      end, { desc = "Next fold" })
+
+      map({ "n", "x", "o" }, "]F", function()
+        move.goto_next_end("@function.outer", "textobjects")
+      end, { desc = "Next function end" })
+      map({ "n", "x", "o" }, "][", function()
+        move.goto_next_end("@class.outer", "textobjects")
+      end, { desc = "Next clss end" })
+
+      map({ "n", "x", "o" }, "[f", function()
+        move.goto_previous_start("@function.outer", "textobjects")
+      end, { desc = "Previous function start" })
+      map({ "n", "x", "o" }, "[[", function()
+        move.goto_previous_start("@class.outer", "textobjects")
+      end, { desc = "Previous class start" })
+      map({ "n", "x", "o" }, "[z", function()
+        move.goto_previous_start("@fold", "folds")
+      end, { desc = "Previous fold" })
+
+      map({ "n", "x", "o" }, "[F", function()
+        move.goto_previous_end("@function.outer", "textobjects")
+      end, { desc = "Previous function end" })
+      map({ "n", "x", "o" }, "[]", function()
+        move.goto_previous_end("@class.outer", "textobjects")
+      end, { desc = "Previous class end" })
     end,
   },
   {
