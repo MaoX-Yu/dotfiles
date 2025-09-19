@@ -1,5 +1,7 @@
 vim9script
 
+import autoload 'keymaps.vim' as K
+
 # Escape
 inoremap <unique> jj <esc>
 tnoremap <unique> <esc><esc> <C-\\><C-n>
@@ -18,9 +20,12 @@ noremap! <unique> ,/ *
 noremap! <unique> ( ()<left>
 noremap! <unique> [ []<left>
 noremap! <unique> { {}<left>
-noremap! <unique> ' ''<left>
-noremap! <unique> " ""<left>
-noremap! <unique> ` ``<left>
+noremap! <unique> <expr> ) K.SmartBracket(')')
+noremap! <unique> <expr> ] K.SmartBracket(']')
+noremap! <unique> <expr> } K.SmartBracket('}')
+noremap! <unique> <expr> ' K.SmartBracket("'")
+noremap! <unique> <expr> " K.SmartBracket('"')
+noremap! <unique> <expr> ` K.SmartBracket('`')
 
 # Better up/down
 nnoremap <unique> <expr> j v:count == 0 ? 'gj' : 'j'
@@ -36,6 +41,7 @@ noremap! <unique> <C-l> <right>
 
 # Remap redo
 nnoremap <unique> U <C-r>
+nnoremap <unique> <M-u> U
 
 # Better indenting
 vnoremap <unique> < <gv

@@ -52,12 +52,7 @@ set background=dark
 if has('termguicolors')
     set termguicolors
 endif
-try
-    packadd! everforest
-    colorscheme everforest
-    g:airline_theme = 'everforest'
-catch
-endtry
+colorscheme catppuccin
 
 if &term =~ 'xterm\|tmux\|win'
     # INSERT mode
