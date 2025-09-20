@@ -78,8 +78,9 @@ map({ "i", "n", "s" }, "<esc>", function()
   return "<esc>"
 end, { expr = true, desc = "Escape" })
 
--- Remap redo
+-- Remap undo/redo
 map("n", "U", "<C-r>", { desc = "Redo" })
+map("n", "<M-u>", "U", { desc = "Undo line" })
 
 map("n", "n", "'Nn'[v:searchforward].'zv'", { expr = true, desc = "Next search result" })
 map("x", "n", "'Nn'[v:searchforward]", { expr = true, desc = "Next search result" })
