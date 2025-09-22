@@ -57,9 +57,9 @@ def get-pwd [] {
                     let short_part = $parent
                         | each { |part|
                             if ($part | str starts-with '.') {
-                                $'($part | str substring 0..1)'
+                                $'($part | str substring -g 0..1)'
                             } else {
-                                $'($part | str substring 0..0)'
+                                $'($part | str substring -g 0..0)'
                             }
                         }
                         | str join '/'
@@ -75,9 +75,9 @@ def get-pwd [] {
                 | drop
                 | each { |part|
                     if ($part | str starts-with '.') {
-                        $'($part | str substring 0..1)'
+                        $'($part | str substring -g 0..1)'
                     } else {
-                        $'($part | str substring 0..0)'
+                        $'($part | str substring -g 0..0)'
                     }
                 }
                 | str join '/'
