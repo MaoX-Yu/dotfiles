@@ -30,10 +30,12 @@ return {
       custom_highlights = function(C)
         return {
           FloatBorder = { fg = C.mauve, bg = C.mantle },
+          IncSearch = { fg = C.mantle, bg = C.pink },
           PmenuExtra = { fg = C.mauve },
           PmenuExtraSel = { fg = C.mauve, bg = C.surface0, style = { "bold" } },
           PmenuMatch = { fg = C.pink, style = { "bold" } },
           PmenuMatchSel = { fg = C.pink, style = { "bold" } },
+          Search = { fg = C.pink, bg = C.surface1 },
 
           -- Which-key
           WhichKey = { fg = C.mauve, style = { "italic" } },
