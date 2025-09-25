@@ -30,17 +30,17 @@ function M.fname()
       return symbols.unnamed
     end
     local fname = vim.fn.expand("%:t")
-    local file_symbols = {}
-    if vim.bo.modifiable == false or vim.bo.readonly == true then
-      table.insert(file_symbols, symbols.readonly)
-    end
+    local file_symbols = { "" }
     if is_new_file() then
       table.insert(file_symbols, symbols.newfile)
+    end
+    if vim.bo.modifiable == false or vim.bo.readonly == true then
+      table.insert(file_symbols, symbols.readonly)
     end
     if vim.bo.modified then
       table.insert(file_symbols, symbols.modified)
     end
-    return utils.stl.escape(fname) .. (#file_symbols > 0 and " " .. table.concat(file_symbols, " ") or "")
+    return utils.stl.escape(fname) .. table.concat(file_symbols, " ")
   end
 
   -- Terminal buffer, show terminal command and id
@@ -79,7 +79,7 @@ au("DiagnosticChanged", {
         if cnt > 0 then
           local signs_text = vim.tbl_get(vim.diagnostic.config() --[[@as vim.diagnostic.Opts]], "signs", "text")
             or { "E:", "W:", "I:", "H:" }
-          return utils.stl.hl(signs_text[severity_nr] .. cnt, hl_groups[severity], false)
+          return utils.stl.hl(signs_text[severity_nr] .. cnt, hl_groups[severity])
         end
       end)
       :join(" ")
@@ -199,13 +199,13 @@ function M.gitdiff()
 
   local diff_str = {}
   if added > 0 then
-    table.insert(diff_str, utils.stl.hl(string.format("+%d", added), hl_groups.diff_add, false))
+    table.insert(diff_str, utils.stl.hl(string.format("+%d", added), hl_groups.diff_add))
   end
   if changed > 0 then
-    table.insert(diff_str, utils.stl.hl(string.format("~%d", changed), hl_groups.diff_change, false))
+    table.insert(diff_str, utils.stl.hl(string.format("~%d", changed), hl_groups.diff_change))
   end
   if removed > 0 then
-    table.insert(diff_str, utils.stl.hl(string.format("-%d", removed), hl_groups.diff_remove, false))
+    table.insert(diff_str, utils.stl.hl(string.format("-%d", removed), hl_groups.diff_remove))
   end
   return #diff_str > 0 and table.concat(diff_str, " ") or ""
 end
@@ -302,129 +302,115 @@ vim.ui_attach(vim.api.nvim_create_namespace("showcmd_msg"), { ext_messages = tru
   end
 end)
 function M.showcmd_msg()
-  return showcmd_msg ~= "" and utils.stl.hl(string.format("%s", showcmd_msg), hl_groups.history_command) or ""
+  return showcmd_msg ~= "" and utils.stl.hl(string.format("%s", showcmd_msg), hl_groups.showcmd) or ""
 end
 
 local STL = {}
 
-function STL.stl_a()
+function STL.stl_left()
+  local left = {}
+
   local mode = M.mode()
-  local mode_str, hl = utils.stl.get_mode_hl(mode)
-  return utils.stl.hl(string.format(" %s ", mode_str), hl[1])
-end
+  local mode_str = utils.stl.get_mode(mode)
+  table.insert(left, mode_str)
 
-function STL.stl_b()
-  local b = {}
   local branch = M.branch()
-  local diff = M.gitdiff()
-  local diag = M.diag()
-  local _, hl = utils.stl.get_mode_hl(M.mode())
-
   if branch ~= "" then
-    table.insert(b, branch)
+    table.insert(left, branch)
   end
+
+  local diff = M.gitdiff()
   if diff ~= "" then
-    table.insert(b, diff)
+    table.insert(left, diff)
   end
+
+  local diag = M.diag()
   if diag ~= "" then
-    table.insert(b, diag)
+    table.insert(left, diag)
   end
-  return #b > 0 and utils.stl.hl(string.format(" %s ", table.concat(b, utils.stl.hl(" | ", hl[2], false))), hl[2]) or ""
-end
 
-function STL.stl_c()
   local fname = M.fname()
-  return string.format(" %s", fname)
+  table.insert(left, fname)
+
+  return table.concat(left, "  ")
 end
 
-function STL.stl_x()
-  local x = {}
+function STL.stl_right()
+  local right = {}
+
   local lsp_progress = M.lsp_progress()
-  local showcmd = M.showcmd_msg()
-  local lazy = M.lazy()
-  local debug_str = M.debug()
-  local overseer = M.overseer()
-  local fileencoding = M.encoding()
-
   if lsp_progress ~= "" then
-    table.insert(x, lsp_progress)
+    table.insert(right, lsp_progress)
   end
+
+  local showcmd = M.showcmd_msg()
   if showcmd ~= "" then
-    table.insert(x, showcmd)
+    table.insert(right, showcmd)
   end
+
+  local lazy = M.lazy()
   if lazy ~= "" then
-    table.insert(x, lazy)
+    table.insert(right, lazy)
   end
+
+  local debug_str = M.debug()
   if debug_str ~= "" then
-    table.insert(x, debug_str)
+    table.insert(right, debug_str)
   end
+
+  local overseer = M.overseer()
   if overseer ~= "" then
-    table.insert(x, overseer)
+    table.insert(right, overseer)
   end
+
+  local fileencoding = M.encoding()
   if fileencoding ~= "" then
-    table.insert(x, fileencoding)
+    table.insert(right, fileencoding)
   end
-  return #x > 0 and string.format(" %s ", table.concat(x, " | ")) or ""
-end
 
-function STL.stl_y()
-  local y = {}
   local filetype = M.filetype()
-  local fileformat = M.fileformat()
-  local _, hl = utils.stl.get_mode_hl(M.mode())
-
   if filetype ~= "" then
-    table.insert(y, filetype)
+    table.insert(right, filetype)
   end
+
+  local fileformat = M.fileformat()
   if fileformat ~= "" then
-    table.insert(y, fileformat)
+    table.insert(right, fileformat)
   end
-  return #y > 0 and utils.stl.hl(string.format(" %s ", table.concat(y, " | ")), hl[2]) or ""
-end
 
-function STL.stl_z()
-  local z = {}
   local progress = M.progress()
-  local position = M.position()
-  local _, hl = utils.stl.get_mode_hl(M.mode())
+  table.insert(right, progress)
 
-  table.insert(z, progress)
-  table.insert(z, position)
-  return utils.stl.hl(string.format(" %s ", table.concat(z, " | ")), hl[1])
+  local position = M.position()
+  table.insert(right, position)
+
+  return table.concat(right, "  ")
 end
 
 local stl = table.concat({
-  [[%{%v:lua.STL.stl_a()%}]],
-  [[%{%v:lua.STL.stl_b()%}]],
-  [[%{%v:lua.STL.stl_c()%}]],
+  [[ ]],
+  [[%{%v:lua.STL.stl_left()%}]],
   [[%=]],
   [[%<]],
-  [[%{%v:lua.STL.stl_x()%}]],
-  [[%{%v:lua.STL.stl_y()%}]],
-  [[%{%v:lua.STL.stl_z()%}]],
+  [[%{%v:lua.STL.stl_right()%}]],
+  [[ ]],
 })
 
 local stl_lazy = function()
   local lazy = require("lazy")
-  local lazy_str = utils.stl.hl(" Lazy ", hl_groups.normal[1])
-  local lazy_status =
-    utils.stl.hl(string.format(" loaded: %s/%s ", lazy.stats().loaded, lazy.stats().count), hl_groups.normal[2])
-  return string.format("%s%s %s", lazy_str, lazy_status, M.lazy())
+  local lazy_status = string.format("loaded: %s/%s", lazy.stats().loaded, lazy.stats().count)
+  return string.format(" [Lazy]  %s  %s", lazy_status, M.lazy())
 end
 
 local stl_mason = function()
   local mason = require("mason-registry")
-  local mason_str = utils.stl.hl(" Mason ", hl_groups.normal[1])
   local mason_status = "Installed: " .. #mason.get_installed_packages() .. "/" .. #mason.get_all_package_specs()
-  return mason_str .. " " .. mason_status
+  return string.format(" [Mason]  %s", mason_status)
 end
 
 local stl_oil = function()
-  local mode = vim.api.nvim_get_mode().mode
-  local _, hl = utils.stl.get_mode_hl(mode)
-  local oil_str = utils.stl.hl(" Oil ", hl[1])
   local oil_dir = vim.fn.fnamemodify(require("oil").get_current_dir() or "", ":~")
-  return oil_str .. " " .. oil_dir
+  return string.format(" [Oil]  %s", oil_dir)
 end
 
 function STL.get()
