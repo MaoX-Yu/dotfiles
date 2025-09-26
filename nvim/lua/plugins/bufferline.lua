@@ -6,7 +6,7 @@ return {
     opts = function()
       local O = require("catppuccin").options
       local C = require("catppuccin.palettes").get_palette(O.flavour)
-      local highlights = require("catppuccin.groups.integrations.bufferline").get_theme({
+      local highlights = require("catppuccin.special.bufferline").get_theme({
         custom = {
           all = {
             indicator_visible = { fg = C.mauve },
