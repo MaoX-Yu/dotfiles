@@ -37,10 +37,10 @@ right = [
   "selections",
   "file-encoding",
   "file-line-ending",
+  "position",
   "spacer",
   "position-percentage",
   "spacer",
-  "position",
 ]
 mode.normal = "NORMAL"
 mode.insert = "INSERT"

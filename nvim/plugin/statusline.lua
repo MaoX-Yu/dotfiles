@@ -12,8 +12,6 @@ end
 
 function M.fname()
   local symbols = {
-    modified = "[+]",
-    readonly = "[-]",
     unnamed = "[Scratch]",
     newfile = "[New]",
   }
@@ -30,17 +28,10 @@ function M.fname()
       return symbols.unnamed
     end
     local fname = vim.fn.expand("%:t")
-    local file_symbols = { "" }
     if is_new_file() then
-      table.insert(file_symbols, symbols.newfile)
+      fname = string.format("%s %s", fname, symbols.newfile)
     end
-    if vim.bo.modifiable == false or vim.bo.readonly == true then
-      table.insert(file_symbols, symbols.readonly)
-    end
-    if vim.bo.modified then
-      table.insert(file_symbols, symbols.modified)
-    end
-    return utils.stl.escape(fname) .. table.concat(file_symbols, " ")
+    return utils.stl.escape(fname)
   end
 
   -- Terminal buffer, show terminal command and id
@@ -62,6 +53,47 @@ function M.fname()
   return "%F"
 end
 
+function M.fileinfo()
+  local info = {}
+  if vim.bo.fileencoding ~= "" then
+    local fileencoding = string.upper(string.sub(vim.bo.fileencoding, 1, 1))
+    table.insert(info, fileencoding)
+  else
+    table.insert(info, "-")
+  end
+
+  if vim.o.encoding ~= "" then
+    local encoding = string.upper(string.sub(vim.o.encoding, 1, 1))
+    table.insert(info, encoding)
+  else
+    table.insert(info, "-")
+  end
+
+  if vim.bo.fileformat == "dos" then
+    table.insert(info, "\\")
+  elseif vim.bo.fileformat == "mac" then
+    table.insert(info, "/")
+  else
+    table.insert(info, ":")
+  end
+
+  if not vim.bo.modifiable or vim.bo.readonly then
+    if vim.bo.modified then
+      table.insert(info, "%%*")
+    else
+      table.insert(info, "%%%%")
+    end
+  else
+    if vim.bo.modified then
+      table.insert(info, "**")
+    else
+      table.insert(info, "--")
+    end
+  end
+
+  return table.concat(info, "")
+end
+
 function M.branch()
   local branch = vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.head or ""
   return branch ~= "" and string.format(" %s", utils.stl.escape(branch)) or ""
@@ -72,23 +104,28 @@ au("DiagnosticChanged", {
   desc = "Update diagnostics cache for the status line.",
   callback = function(args)
     local count = vim.diagnostic.count(args.buf)
-    local diag = vim
-      .iter(ipairs({ "error", "warn", "info", "hint" }))
-      :map(function(severity_nr, severity)
-        local cnt = count[severity_nr] or 0
-        if cnt > 0 then
-          local signs_text = vim.tbl_get(vim.diagnostic.config() --[[@as vim.diagnostic.Opts]], "signs", "text")
-            or { "E:", "W:", "I:", "H:" }
-          return utils.stl.hl(signs_text[severity_nr] .. cnt, hl_groups[severity])
-        end
-      end)
-      :join(" ")
-    vim.b[args.buf].diag_str_cache = diag
+    local active_diag = {}
+    local inactive_diag = {}
+    for severity_nr, severity in ipairs({ "error", "warn", "info", "hint" }) do
+      local cnt = count[severity_nr] or 0
+      if cnt > 0 then
+        local signs_text = vim.tbl_get(vim.diagnostic.config() --[[@as vim.diagnostic.Opts]], "signs", "text")
+          or { "E:", "W:", "I:", "H:" }
+        table.insert(active_diag, utils.stl.hl(signs_text[severity_nr] .. cnt, hl_groups[severity]))
+        table.insert(inactive_diag, signs_text[severity_nr] .. cnt)
+      end
+    end
+    vim.b[args.buf].active_diag_cache = table.concat(active_diag, " ")
+    vim.b[args.buf].inactive_diag_cache = table.concat(inactive_diag, " ")
   end,
 })
 
-function M.diag()
-  return vim.b.diag_str_cache or ""
+function M.diag(active)
+  if active then
+    return vim.b.active_diag_cache or ""
+  else
+    return vim.b.inactive_diag_cache or ""
+  end
 end
 
 local spinner_end_keep = 2000 -- ms
@@ -191,7 +228,7 @@ function M.lsp_progress()
   )
 end
 
-function M.gitdiff()
+function M.gitdiff(active)
   local diff = vim.b.gitsigns_status_dict or {}
   local added = diff.added or 0
   local changed = diff.changed or 0
@@ -199,38 +236,31 @@ function M.gitdiff()
 
   local diff_str = {}
   if added > 0 then
-    table.insert(diff_str, utils.stl.hl(string.format("+%d", added), hl_groups.diff_add))
+    if active then
+      table.insert(diff_str, utils.stl.hl(string.format("+%d", added), hl_groups.diff_add))
+    else
+      table.insert(diff_str, string.format("+%d", added))
+    end
   end
   if changed > 0 then
-    table.insert(diff_str, utils.stl.hl(string.format("~%d", changed), hl_groups.diff_change))
+    if active then
+      table.insert(diff_str, utils.stl.hl(string.format("~%d", changed), hl_groups.diff_change))
+    else
+      table.insert(diff_str, string.format("~%d", changed))
+    end
   end
   if removed > 0 then
-    table.insert(diff_str, utils.stl.hl(string.format("-%d", removed), hl_groups.diff_remove))
+    if active then
+      table.insert(diff_str, utils.stl.hl(string.format("-%d", removed), hl_groups.diff_remove))
+    else
+      table.insert(diff_str, string.format("-%d", removed))
+    end
   end
-  return #diff_str > 0 and table.concat(diff_str, " ") or ""
-end
-
-function M.encoding()
-  local encoding = vim.o.fileencoding
-  if encoding == "" or encoding == "utf-8" then
-    return ""
-  end
-  return string.upper(encoding)
-end
-
-function M.fileformat()
-  local fileformat = {
-    dos = "CRLF",
-    unix = "LF",
-    mac = "CR",
-  }
-  return fileformat[vim.bo.fileformat]
+  return table.concat(diff_str, " ")
 end
 
 function M.position()
-  local line = vim.fn.line(".")
-  local col = vim.fn.charcol(".")
-  return string.format("%d:%d", line, col)
+  return "%l:%c%V"
 end
 
 function M.progress()
@@ -249,15 +279,19 @@ function M.filetype()
   return vim.bo.filetype or ""
 end
 
-function M.debug()
+function M.debug(active)
   if package.loaded["dap"] and require("dap").status() ~= "" then
     local dap = "  " .. require("dap").status()
-    return utils.stl.hl(dap, hl_groups.debug)
+    if active then
+      return utils.stl.hl(dap, hl_groups.debug)
+    else
+      return dap
+    end
   end
   return ""
 end
 
-function M.overseer()
+function M.overseer(active)
   local pieces = ""
   if package.loaded["overseer"] then
     local constants = require("overseer.constants")
@@ -277,7 +311,11 @@ function M.overseer()
       :map(function(_, status)
         local status_tasks = tasks_by_status[status]
         if icons[status] and status_tasks then
-          return utils.stl.hl(string.format("%s%s", icons[status], #status_tasks), hl_groups[status])
+          if active then
+            return utils.stl.hl(string.format("%s%s", icons[status], #status_tasks), hl_groups[status])
+          else
+            return string.format("%s%s", icons[status], #status_tasks)
+          end
         end
       end)
       :join(" ")
@@ -285,11 +323,15 @@ function M.overseer()
   return pieces
 end
 
-function M.lazy()
+function M.lazy(active)
   local ok, status = pcall(require, "lazy.status")
   if ok and status.has_updates() then
     local updates = status.updates()
-    return utils.stl.hl(updates, hl_groups.lazy)
+    if active then
+      return utils.stl.hl(updates, hl_groups.lazy)
+    else
+      return updates
+    end
   end
   return ""
 end
@@ -301,13 +343,20 @@ vim.ui_attach(vim.api.nvim_create_namespace("showcmd_msg"), { ext_messages = tru
     showcmd_msg = #content > 0 and content[1][2] or showcmd_msg
   end
 end)
-function M.showcmd_msg()
-  return showcmd_msg ~= "" and utils.stl.hl(string.format("%s", showcmd_msg), hl_groups.showcmd) or ""
+function M.showcmd_msg(active)
+  if showcmd_msg ~= "" then
+    if active then
+      return utils.stl.hl(showcmd_msg, hl_groups.showcmd)
+    else
+      return showcmd_msg
+    end
+  end
+  return ""
 end
 
 local STL = {}
 
-function STL.stl_left()
+function STL.stl_left(active)
   local left = {}
 
   local mode = M.mode()
@@ -319,15 +368,13 @@ function STL.stl_left()
     table.insert(left, branch)
   end
 
-  local diff = M.gitdiff()
-  if diff ~= "" then
-    table.insert(left, diff)
-  end
-
-  local diag = M.diag()
+  local diag = M.diag(active)
   if diag ~= "" then
     table.insert(left, diag)
   end
+
+  local fileinfo = M.fileinfo()
+  table.insert(left, fileinfo)
 
   local fname = M.fname()
   table.insert(left, fname)
@@ -335,7 +382,7 @@ function STL.stl_left()
   return table.concat(left, "  ")
 end
 
-function STL.stl_right()
+function STL.stl_right(active)
   local right = {}
 
   local lsp_progress = M.lsp_progress()
@@ -343,29 +390,29 @@ function STL.stl_right()
     table.insert(right, lsp_progress)
   end
 
-  local showcmd = M.showcmd_msg()
+  local showcmd = M.showcmd_msg(active)
   if showcmd ~= "" then
     table.insert(right, showcmd)
   end
 
-  local lazy = M.lazy()
+  local lazy = M.lazy(active)
   if lazy ~= "" then
     table.insert(right, lazy)
   end
 
-  local debug_str = M.debug()
-  if debug_str ~= "" then
-    table.insert(right, debug_str)
-  end
-
-  local overseer = M.overseer()
+  local overseer = M.overseer(active)
   if overseer ~= "" then
     table.insert(right, overseer)
   end
 
-  local fileencoding = M.encoding()
-  if fileencoding ~= "" then
-    table.insert(right, fileencoding)
+  local debug_str = M.debug(active)
+  if debug_str ~= "" then
+    table.insert(right, debug_str)
+  end
+
+  local diff = M.gitdiff(active)
+  if diff ~= "" then
+    table.insert(right, diff)
   end
 
   local filetype = M.filetype()
@@ -373,33 +420,30 @@ function STL.stl_right()
     table.insert(right, filetype)
   end
 
-  local fileformat = M.fileformat()
-  if fileformat ~= "" then
-    table.insert(right, fileformat)
-  end
+  local position = M.position()
+  table.insert(right, position)
 
   local progress = M.progress()
   table.insert(right, progress)
 
-  local position = M.position()
-  table.insert(right, position)
-
   return table.concat(right, "  ")
 end
 
-local stl = table.concat({
-  [[ ]],
-  [[%{%v:lua.STL.stl_left()%}]],
-  [[%=]],
-  [[%<]],
-  [[%{%v:lua.STL.stl_right()%}]],
-  [[ ]],
-})
+local function stl()
+  return table.concat({
+    [[ ]],
+    [[%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('STL.stl_left(true)') : luaeval('STL.stl_left()')%}]],
+    [[%=]],
+    [[%<]],
+    [[%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('STL.stl_right(true)') : luaeval('STL.stl_right()')%}]],
+    [[ ]],
+  })
+end
 
 local stl_lazy = function()
   local lazy = require("lazy")
   local lazy_status = string.format("loaded: %s/%s", lazy.stats().loaded, lazy.stats().count)
-  return string.format(" [Lazy]  %s  %s", lazy_status, M.lazy())
+  return string.format(" [Lazy]  %s  %s", lazy_status, M.lazy(true))
 end
 
 local stl_mason = function()
@@ -427,7 +471,7 @@ function STL.get()
   if ft == "oil" then
     return stl_oil()
   end
-  return stl
+  return stl()
 end
 
 au({ "FileChangedShellPost", "DiagnosticChanged", "LspProgress" }, {
