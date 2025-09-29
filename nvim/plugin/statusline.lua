@@ -12,7 +12,7 @@ end
 
 function M.fname()
   local symbols = {
-    unnamed = "[Scratch]",
+    unnamed = "[No Name]",
     newfile = "[New]",
   }
   local function is_new_file()

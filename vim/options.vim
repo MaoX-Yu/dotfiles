@@ -24,6 +24,7 @@ set list
 set listchars=nbsp:+,space:·,tab:»\ ,trail:-
 set mouse=
 set nobackup
+set noshowmode
 set noswapfile
 set novisualbell
 set nowritebackup
@@ -33,6 +34,7 @@ set ruler
 set scrolloff=4
 set shiftwidth=4
 set showcmd
+set showcmdloc=statusline
 set showmatch
 set sidescrolloff=8
 set smartcase
