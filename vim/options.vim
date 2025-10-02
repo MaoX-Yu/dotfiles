@@ -1,7 +1,7 @@
 vim9script
 
 g:mapleader = ' '
-g:maplocalleader = '\\'
+g:maplocalleader = '\'
 
 syntax enable
 filetype plugin on

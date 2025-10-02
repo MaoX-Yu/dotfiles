@@ -1,6 +1,11 @@
 vim9script
 
-if !has("gui_running")
+if exists('g:loaded_mao_gui')
+    finish
+endif
+g:loaded_mao_gui = 1
+
+if !has('gui_running')
     finish
 endif
 
@@ -11,3 +16,9 @@ if has('win32') || has('win64')
 else
     autocmd GUIEnter * set lines=999 columns=999
 endif
+
+if exists('g:disable_simple_gui')
+    finish
+endif
+
+set guioptions=

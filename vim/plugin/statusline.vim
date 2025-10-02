@@ -1,5 +1,10 @@
 vim9script
 
+if exists('g:loaded_mao_stl')
+    finish
+endif
+g:loaded_mao_stl = 1
+
 import autoload 'stl.vim' as utils
 
 def GetMode(): string
@@ -38,5 +43,5 @@ set stl+=\ \ %{%STL.GetFileinfo()%}
 set stl+=\ \ %f\ %h%w
 set stl+=%<%=
 set stl+=%S\ \ 
-set stl+=%{%&filetype%}\ \ 
+set stl+=%{%&filetype==''?''\:'%{&filetype}\ \ '%}
 set stl+=%l:%c%V\ \ %P\ 

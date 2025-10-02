@@ -20,12 +20,18 @@ noremap! <unique> ,/ *
 noremap! <unique> ( ()<left>
 noremap! <unique> [ []<left>
 noremap! <unique> { {}<left>
-noremap! <unique> <expr> ) K.SmartBracket(')')
-noremap! <unique> <expr> ] K.SmartBracket(']')
-noremap! <unique> <expr> } K.SmartBracket('}')
-noremap! <unique> <expr> ' K.SmartBracket("'")
-noremap! <unique> <expr> " K.SmartBracket('"')
-noremap! <unique> <expr> ` K.SmartBracket('`')
+inoremap <unique> <expr> ) K.SmartBracket(')')
+inoremap <unique> <expr> ] K.SmartBracket(']')
+inoremap <unique> <expr> } K.SmartBracket('}')
+inoremap <unique> <expr> ' K.SmartBracket("'")
+inoremap <unique> <expr> " K.SmartBracket('"')
+inoremap <unique> <expr> ` K.SmartBracket('`')
+cnoremap <unique> <expr> ) K.SmartBracketCmd(')')
+cnoremap <unique> <expr> ] K.SmartBracketCmd(']')
+cnoremap <unique> <expr> } K.SmartBracketCmd('}')
+cnoremap <unique> <expr> ' K.SmartBracketCmd("'")
+cnoremap <unique> <expr> " K.SmartBracketCmd('"')
+cnoremap <unique> <expr> ` K.SmartBracketCmd('`')
 
 # Better up/down
 nnoremap <unique> <expr> j v:count == 0 ? 'gj' : 'j'
