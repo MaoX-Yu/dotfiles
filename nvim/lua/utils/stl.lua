@@ -1,3 +1,4 @@
+---@class StlUtils
 local M = {}
 
 -- stylua: ignore
@@ -58,9 +59,26 @@ local modes = {
   ["t"]     = "T",
 }
 
+---@alias ModeStr
+---| "N"
+---| "I"
+---| "O"
+---| "V"
+---| "V-L"
+---| "V-B"
+---| "S"
+---| "S-L"
+---| "S-B"
+---| "R"
+---| "C"
+---| "E"
+---| "M"
+---| "SH"
+---| "T"
+
 ---Get mode string
 ---@param mode string @nvim mode
----@return string mode_str @mode string
+---@return ModeStr? mode_str @mode string
 function M.get_mode(mode)
   return modes[mode]
 end

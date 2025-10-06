@@ -4,7 +4,7 @@ return {
     cond = not vim.g.vscode,
     opts_extend = { "servers" },
     opts = {
-      servers = { "lua_ls" },
+      servers = {},
     },
     config = function(_, opts)
       vim.lsp.enable(opts.servers)

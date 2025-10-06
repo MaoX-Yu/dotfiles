@@ -1,3 +1,6 @@
+---@class MaoUtils
+---@field stl StlUtils
+
 return setmetatable({}, {
   __index = function(self, key)
     self[key] = require("utils." .. key)

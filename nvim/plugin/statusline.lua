@@ -1,4 +1,4 @@
-local utils = require("utils")
+local utils = require("utils") ---@as MaoUtils
 local hl_groups = utils.stl.hl_groups
 local au = vim.api.nvim_create_autocmd
 
@@ -158,8 +158,9 @@ au("LspProgress", {
 
     local id = args.data.client_id
     local now = vim.uv.now()
+    local client = vim.lsp.get_client_by_id(id) or {}
     server_info[id] = {
-      name = vim.lsp.get_client_by_id(id).name,
+      name = client.name,
       timestamp = now,
       type = args.data and args.data.params and args.data.params.value and args.data.params.value.kind,
     } -- Update LSP progress data

@@ -26,7 +26,7 @@ return {
     event = { "BufReadPre", "BufNewFile" },
     opts_extend = { "ensure_installed" },
     opts = {
-      ensure_installed = { "lua_ls" },
+      ensure_installed = { "emmylua_ls" },
     },
   },
 }
