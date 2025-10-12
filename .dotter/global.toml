@@ -48,3 +48,6 @@ rio = "~/.config/rio"
 
 [tmux.files]
 "tmux/tmux.conf" = "~/.tmux.conf"
+
+[fish.files]
+fish = "~/.config/fish"

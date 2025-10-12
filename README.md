@@ -10,6 +10,7 @@
 
 - Bat
 - Delta
+- Fish
 - Git
 - Gitui
 - Helix
