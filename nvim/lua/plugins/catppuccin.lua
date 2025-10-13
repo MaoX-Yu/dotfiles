@@ -31,6 +31,7 @@ return {
         return {
           FloatBorder = { fg = C.mauve, bg = C.mantle },
           IncSearch = { fg = C.mantle, bg = C.pink },
+          PmenuBorder = { link = "FloatBorder" },
           PmenuExtra = { fg = C.mauve },
           PmenuExtraSel = { fg = C.mauve, bg = C.surface0, style = { "bold" } },
           PmenuMatch = { fg = C.pink, style = { "bold" } },
