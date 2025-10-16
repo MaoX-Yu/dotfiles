@@ -6,11 +6,8 @@ g.mapleader = " "
 g.maplocalleader = "\\"
 g.qf_disable_statusline = true
 
-vim.schedule(function()
-  o.clipboard = "unnamedplus"
-end)
-
 o.breakindent = true
+o.clipboard = "unnamedplus"
 o.cmdheight = 1
 o.completeitemalign = "kind,abbr,menu"
 o.completeopt = "menu,menuone,noselect,fuzzy,popup"
@@ -64,31 +61,6 @@ o.wildmenu = true
 o.winblend = 0
 o.winborder = "rounded"
 o.wrap = false
-
--- Shell
-if vim.fn.executable("nu") == 1 then
-  o.shell = "nu"
-  o.shellcmdflag = "--stdin --no-newline -c"
-  o.shellpipe =
-    "| complete | update stderr { ansi strip } | tee { if ($in.stderr | is-empty) { get stdout } else { get stderr } | save --force --raw %s } | into record"
-  o.shellredir = "out+err> %s"
-  o.shellxescape = ""
-  o.shellquote = ""
-  o.shellxquote = ""
-  o.shelltemp = false
-elseif vim.uv.os_uname().sysname:find("Windows") then
-  if vim.fn.executable("pwsh") == 1 then
-    o.shell = "pwsh"
-  else
-    o.shell = "powershell"
-  end
-  o.shellcmdflag =
-    "-NoLogo -NonInteractive -ExecutionPolicy RemoteSigned -Command [Console]::InputEncoding=[Console]::OutputEncoding=[System.Text.UTF8Encoding]::new();$PSDefaultParameterValues['Out-File:Encoding']='utf8';$PSStyle.OutputRendering='plaintext';Remove-Alias -Force -ErrorAction SilentlyContinue tee;"
-  o.shellpipe = '2>&1 | %%{ "$_" } | tee %s; exit $LastExitCode'
-  o.shellredir = '2>&1 | %%{ "$_" } | Out-File %s; exit $LastExitCode'
-  o.shellquote = ""
-  o.shellxquote = ""
-end
 
 -- Extui
 if vim.fn.has("nvim-0.12") == 1 then
