@@ -26,19 +26,19 @@ set multiple-cursors
 " 仿真NERDTree插件
 " https://github.com/JetBrains/ideavim/wiki/NERDTree-support
 set NERDTree
-nmap <leader>e :NERDTreeToggle<CR>
-nmap <leader>o :NERDTreeFind<CR>
+nnoremap <leader>e :NERDTreeToggle<CR>
+nnoremap <leader>o :NERDTreeFind<CR>
 
 " https://github.com/JetBrains/ideavim/blob/master/doc/IdeaVim%20Plugins.md
 Plug 'vim-scripts/ReplaceWithRegister'
-nmap rs  <Plug>ReplaceWithRegisterOperator
-nmap rss <Plug>ReplaceWithRegisterLine
-xmap rs  <Plug>ReplaceWithRegisterVisual
+nnoremap rs  <Plug>ReplaceWithRegisterOperator
+nnoremap rss <Plug>ReplaceWithRegisterLine
+xnoremap rs  <Plug>ReplaceWithRegisterVisual
 
 set easymotion
-map \ <Plug>(easymotion-prefix)
-map s <Plug>(easymotion-prefix)f
-map S <Plug>(easymotion-prefix)F
+noremap \ <Plug>(easymotion-prefix)
+noremap s <Plug>(easymotion-prefix)f
+noremap S <Plug>(easymotion-prefix)F
 
 "set sneak
 set surround
@@ -49,97 +49,97 @@ set surround
 " ===
 " Map <space> to leader
 let mapleader=" "
-inoremap jj <esc>
-map gs ^
-map gh 0
-map gl $
-nmap <esc> :noh<CR>
+inoremap jj <Esc>
+noremap gs ^
+noremap gh 0
+noremap gl $
+nnoremap <Esc> :noh<CR>
 
 " 拖拽行
-"nmap <C-S-j> :move +1<CR>==
-"nmap <C-S-k> :move -2<CR>==
-"xmap <C-S-j> :move '>+1<CR>gv=gv
-"xmap <C-S-k> :move '<-2<CR>gv=gv
+"nnoremap <C-S-j> :move +1<CR>==
+"nnoremap <C-S-k> :move -2<CR>==
+"xnoremap <C-S-j> :move '>+1<CR>gv=gv
+"xnoremap <C-S-k> :move '<-2<CR>gv=gv
 
 " x模式黏贴后重新复制被黏贴内容
 "xnoremap p pgvy
 
 " 复制整个缓冲区
-nmap <leader>y mmggVGy`m
+nnoremap <leader>y mmggVGy`m
 
 " https://github.com/JetBrains/ideavim
 " IdeaVim: track action Ids
 " run
-nmap <leader><CR> <action>(Run)
+nnoremap <leader><CR> <action>(Run)
 " 搜索
-"nmap / <action>(Find)
-nmap ? <action>(Find)
-nmap <C-o> <Action>(Back)
-nmap <C-i> <Action>(Forward)
-"nmap u <Action>($Undo)
-nmap U <Action>($Redo)
+"nnoremap / <action>(Find)
+nnoremap ? <action>(Find)
+nnoremap <C-o> <Action>(Back)
+nnoremap <C-i> <Action>(Forward)
+"nnoremap u <Action>($Undo)
+nnoremap U <Action>($Redo)
 " 查找
-nmap <leader><leader> <Action>(SearchEverywhere)
+nnoremap <leader><leader> <Action>(SearchEverywhere)
 " 文件查找
-nmap <leader>ff <Action>(GotoFile)
+nnoremap <leader>ff <Action>(GotoFile)
 " 全局模糊搜索
-nmap <leader>fg <Action>(FindInPath)
+nnoremap <leader>fg <Action>(FindInPath)
 " 全局替换
-nmap <leader>fr <Action>(ReplaceInPath)
+nnoremap <leader>fr <Action>(ReplaceInPath)
 " 类查找
-nmap gw <Action>(GotoClass)
+nnoremap gw <Action>(GotoClass)
 " 类方法或类成员字段查找
-nmap gS <Action>(FileStructurePopup)
+nnoremap gS <Action>(FileStructurePopup)
 " 实现类或方法查找
-nmap gI <Action>(GotoImplementation)
+nnoremap gI <Action>(GotoImplementation)
 " 跳转到定义或引用处
-nmap gd <Action>(GotoDeclaration)
+nnoremap gd <Action>(GotoDeclaration)
 " 查找所有引用，类似vim中的quickfix列表
-nmap gr <Action>(FindUsages)
+nnoremap gr <Action>(FindUsages)
 " 找到被实现的类或方法
-nmap gp <Action>(GotoSuperMethod)
+nnoremap gp <Action>(GotoSuperMethod)
 " 注释
-xmap gc <Action>(CommentByLineComment)<Esc>
+xnoremap gc <Action>(CommentByLineComment)<Esc>
 " 代码编辑提示
-nmap <leader>a <Action>(ShowIntentionActions)
-xmap <leader>a <Action>(ShowIntentionActions)
+nnoremap <leader>a <Action>(ShowIntentionActions)
+xnoremap <leader>a <Action>(ShowIntentionActions)
 " 新建类
-nmap <leader>nc <Action>(NewClass)
+nnoremap <leader>nc <Action>(NewClass)
 " 打开终端
-nmap <leader>ft <Action>(ActivateTerminalToolWindow)
+nnoremap <leader>ft <Action>(ActivateTerminalToolWindow)
 " 翻译
-xmap <leader>t <Action>($EditorTranslateAction)<Esc>
-nmap <leader>T <Action>($ShowTranslationDialogAction)
-nmap <leader>t viw<Action>($EditorTranslateAction)
+xnoremap <leader>t <Action>($EditorTranslateAction)<Esc>
+nnoremap <leader>T <Action>($ShowTranslationDialogAction)
+nnoremap <leader>t viw<Action>($EditorTranslateAction)
 " 重命名
-nmap <leader>r <Action>(RenameElement)
+nnoremap <leader>r <Action>(RenameElement)
 " 类wildfire
-nmap <Enter> <Action>(EditorSelectWord)
-nmap <BS> <Action>(EditorUnSelectWord)
-xmap <Enter> <Action>(EditorSelectWord)
-xmap <BS> <Action>(EditorUnSelectWord)
+nnoremap <Enter> <Action>(EditorSelectWord)
+nnoremap <BS> <Action>(EditorUnSelectWord)
+xnoremap <Enter> <Action>(EditorSelectWord)
+xnoremap <BS> <Action>(EditorUnSelectWord)
 " 找到上一个或下一个问题
-nmap [d <Action>(GotoPreviousError)
-nmap ]d <Action>(GotoNextError)
+nnoremap [d <Action>(GotoPreviousError)
+nnoremap ]d <Action>(GotoNextError)
 " 找到上一个或下一个突出高亮
-nmap [h <Action>(GotoPrevElementUnderCaretUsage)
-nmap ]h <Action>(GotoNextElementUnderCaretUsage)
+nnoremap [h <Action>(GotoPrevElementUnderCaretUsage)
+nnoremap ]h <Action>(GotoNextElementUnderCaretUsage)
 " vim模式开关
-nmap <leader>vim <Action>(VimPluginToggle)
+nnoremap <leader>vim <Action>(VimPluginToggle)
 " 选择idea keymap
-nmap <leader>mp <Action>(ChangeKeymap)
+nnoremap <leader>mp <Action>(ChangeKeymap)
 " 跳转tab
-nmap [b <Action>(PreviousTab)
-nmap ]b <Action>(NextTab)
+nnoremap [b <Action>(PreviousTab)
+nnoremap ]b <Action>(NextTab)
 " 跳转method
-nmap [f <Action>(MethodUp)
-nmap ]f <Action>(MethodDown)
+nnoremap [f <Action>(MethodUp)
+nnoremap ]f <Action>(MethodDown)
 " debug
-nmap <leader>dd <Action>(DebugClass)
-nmap <leader>db <Action>(ToggleLineBreakpoint)
-nmap <leader>dr <Action>(EvaluateExpression)
+nnoremap <leader>dd <Action>(DebugClass)
+nnoremap <leader>db <Action>(ToggleLineBreakpoint)
+nnoremap <leader>dr <Action>(EvaluateExpression)
 " git
-nmap <leader>gb <Action>(Annotate)
+nnoremap <leader>gb <Action>(Annotate)
 
 " ===
 " === Shortcut handler

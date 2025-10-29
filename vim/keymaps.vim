@@ -4,7 +4,7 @@ import autoload 'keymaps.vim' as K
 
 # Escape
 inoremap <unique> jj <esc>
-tnoremap <unique> <esc><esc> <C-\\><C-n>
+tnoremap <unique> <esc><esc> <C-\><C-n>
 
 # Add undo break-points
 inoremap <unique> , ,<C-g>u
