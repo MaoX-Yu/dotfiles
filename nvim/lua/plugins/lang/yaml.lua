@@ -1,8 +1,8 @@
 return {
   {
-    "neovim/nvim-lspconfig",
+    "mason-org/mason-lspconfig.nvim",
     opts = {
-      servers = { "yamlls" },
+      ensure_installed = { "yamlls" },
     },
   },
 }

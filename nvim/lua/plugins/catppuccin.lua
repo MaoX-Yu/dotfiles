@@ -30,13 +30,11 @@ return {
       custom_highlights = function(C)
         return {
           FloatBorder = { fg = C.mauve, bg = C.mantle },
-          IncSearch = { fg = C.mantle, bg = C.pink },
           PmenuBorder = { link = "FloatBorder" },
           PmenuExtra = { fg = C.mauve },
           PmenuExtraSel = { fg = C.mauve, bg = C.surface0, style = { "bold" } },
           PmenuMatch = { fg = C.pink, style = { "bold" } },
           PmenuMatchSel = { fg = C.pink, style = { "bold" } },
-          Search = { fg = C.pink, bg = C.surface1 },
 
           -- Which-key
           WhichKey = { fg = C.mauve, style = { "italic" } },
@@ -45,11 +43,12 @@ return {
           WhichKeyTitle = { fg = C.mauve, bg = C.mantle },
 
           -- Snacks
-          SnacksDashboardDesc = { fg = C.mauve },
+          SnacksDashboardDesc = { fg = C.green },
           SnacksDashboardFooter = { fg = C.green },
           SnacksDashboardHeader = { fg = C.mauve },
           SnacksDashboardIcon = { fg = C.peach },
           SnacksDashboardKey = { fg = C.yellow },
+          SnacksDashboardTitle = { fg = C.mauve },
           SnacksInputBorder = { fg = C.mauve, style = { "italic" } },
           SnacksInputIcon = { fg = C.mauve, style = { "italic" } },
           SnacksInputTitle = { fg = C.mauve, style = { "italic" } },

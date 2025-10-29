@@ -21,19 +21,17 @@ return {
           keys = {
             { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
             { icon = " ", key = "n", desc = "New File", action = ":enew" },
-            { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
-            { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
-            { icon = " ", key = "p", desc = "Projects", action = ":lua Snacks.picker.projects()" },
-            {
-              icon = " ",
-              key = "c",
-              desc = "Config",
-              action = ":lua Snacks.dashboard.pick('files', {cwd = vim.fn.stdpath('config')})",
-            },
             { icon = " ", key = "s", desc = "Restore Session", section = "session" },
             { icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
             { icon = " ", key = "q", desc = "Quit", action = ":qa" },
           },
+        },
+        sections = {
+          { section = "header" },
+          { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
+          { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+          { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+          { section = "startup" },
         },
       },
       indent = {
@@ -132,7 +130,7 @@ return {
       { "<leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP symbols" },
       { "<leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP workspace symbols" },
       -- Other
-      { "<leader>z",  function() Snacks.zen() end, desc = "Toggle zen mode" },
+      { "<leader>z",  function() Snacks.zen.zen() end, desc = "Toggle zen mode" },
       { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle zoom" },
       { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle scratch buffer" },
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select scratch buffer" },
