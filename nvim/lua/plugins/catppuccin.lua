@@ -4,7 +4,11 @@ return {
     name = "catppuccin",
     priority = 1000,
     opts = {
-      flavour = "macchiato",
+      flavour = "auto",
+      background = {
+        light = "latte",
+        dark = "macchiato",
+      },
       styles = {
         conditionals = {},
         functions = { "italic" },
@@ -58,7 +62,7 @@ return {
           -- Overseer
           OverseerTask = { fg = C.mauve },
 
-          -- statusline
+          -- StatusLine
           StatusLineAdd = { fg = C.green },
           StatusLineChange = { fg = C.yellow },
           StatusLineRemove = { fg = C.red },
