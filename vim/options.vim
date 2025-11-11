@@ -2,6 +2,7 @@ vim9script
 
 g:mapleader = ' '
 g:maplocalleader = '\'
+g:qf_disable_statusline = true
 
 syntax enable
 filetype plugin on

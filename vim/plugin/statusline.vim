@@ -33,8 +33,8 @@ def GetFileinfo(): string
 enddef
 
 g:STL = {
-    'GetMode': GetMode,
-    'GetFileinfo': GetFileinfo,
+    GetMode: GetMode,
+    GetFileinfo: GetFileinfo,
 }
 
 set stl=
