@@ -1,3 +1,7 @@
+if vim.env.NVIM_LSP_DISABLED and not vim.env.NVIM_LSP_JSON then
+  return
+end
+
 return {
   {
     "mason-org/mason-lspconfig.nvim",

@@ -1,3 +1,7 @@
+if vim.env.NVIM_LSP_DISABLED and not vim.env.NVIM_LSP_RUST then
+  return
+end
+
 return {
   {
     "nvim-treesitter/nvim-treesitter",
