@@ -15,10 +15,10 @@ def get-git-status [] {
         | each {
             |it| insert color {
                 match $it.key {
-                    '+' | '+~' | '+»' | '+t' => '#a6da95'
-                    '+-' | '-' | 'c' => '#ed8796'
-                    '!' => '#939ab7'
-                    _ => '#eed49f'
+                    '+' | '+~' | '+»' | '+t' => 'green'
+                    '+-' | '-' | 'c' => 'red'
+                    '!' => 'light_gray'
+                    _ => 'yellow'
                 }
             }
         }
@@ -27,7 +27,7 @@ def get-git-status [] {
 
     let status = match $status {
         '' => ''
-        _ => $":\(($status)(ansi '#f5bde6')\)"
+        _ => $":\(($status)(ansi purple)\)"
     }
 
     let result = $' ($branch_name)($status)'
@@ -97,17 +97,17 @@ $env.PROMPT_COMMAND = {
         ' ' ++ ($'($env.CMD_DURATION_MS)ms' | into duration | into string)
     } else { '' }
 
-    $'(ansi '#91d7e3')($current_path)(ansi '#f5bde6')($git_status)(ansi '#939ab7')($cmd_durarion)(ansi reset) '
+    $'(ansi cyan)($current_path)(ansi purple)($git_status)(ansi dark_gray)($cmd_durarion)(ansi reset) '
 }
 
 $env.PROMPT_COMMAND_RIGHT = {
     let exit_code = if ($env.LAST_EXIT_CODE != 0) {
-        $'(ansi '#ed8796')($env.LAST_EXIT_CODE)(ansi reset) '
+        $'(ansi red)($env.LAST_EXIT_CODE)(ansi reset) '
     } else { '' }
 
     let now = date now | format date "%H:%M:%S"
 
-    $'($exit_code)(ansi '#f5bde6')($now)(ansi reset)'
+    $'($exit_code)(ansi purple)($now)(ansi reset)'
 }
 
 $env.PROMPT_INDICATOR = ' '
