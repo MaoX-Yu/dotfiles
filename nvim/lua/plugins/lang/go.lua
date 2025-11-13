@@ -1,5 +1,5 @@
 if vim.env.NVIM_LSP_DISABLED and not vim.env.NVIM_LSP_GO then
-  return
+  return {}
 end
 
 return {

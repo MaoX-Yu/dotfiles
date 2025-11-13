@@ -12,9 +12,18 @@ if not vim.uv.fs_stat(lazypath) then
     os.exit(1)
   end
 end
-vim.opt.rtp:prepend(lazypath)
+vim.o.rtp = lazypath .. "," .. vim.o.rtp
 
-require("core.options")
+-- TODO: Remove after fixed. See: https://github.com/folke/lazy.nvim/issues/1951
+vim.api.nvim_create_autocmd("FileType", {
+  desc = "User: fix backdrop for lazy window",
+  pattern = "lazy_backdrop",
+  group = vim.api.nvim_create_augroup("lazy.nvim.fix", { clear = true }),
+  callback = function(ctx)
+    local win = vim.fn.win_findbuf(ctx.buf)[1] or 0
+    vim.api.nvim_win_set_config(win, { border = "none" })
+  end,
+})
 
 -- Setup lazy.nvim
 require("lazy").setup({
@@ -30,18 +39,4 @@ require("lazy").setup({
   checker = { enabled = false },
 })
 
--- TODO: Remove after fixed. See: https://github.com/folke/lazy.nvim/issues/1951
-vim.api.nvim_create_autocmd("FileType", {
-  desc = "User: fix backdrop for lazy window",
-  pattern = "lazy_backdrop",
-  group = vim.api.nvim_create_augroup("lazy.nvim.fix", { clear = true }),
-  callback = function(ctx)
-    local win = vim.fn.win_findbuf(ctx.buf)[1]
-    vim.api.nvim_win_set_config(win, { border = "none" })
-  end,
-})
-
 vim.cmd.colorscheme("catppuccin")
-
-require("core.keymaps")
-require("core.autocmds")
