@@ -31,8 +31,10 @@ $env.config.cursor_shape.vi_insert = "block"
 $env.config.cursor_shape.vi_normal = "underscore"
 $env.config.shell_integration.osc133 = false
 
-# Prompt
-source prompt.nu
+$env.PROMPT_INDICATOR = ''
+$env.PROMPT_INDICATOR_VI_INSERT = ''
+$env.PROMPT_INDICATOR_VI_NORMAL = ''
+$env.PROMPT_MULTILINE_INDICATOR = ''
 
 mkdir ($nu.data-dir | path join "vendor/autoload")
 
