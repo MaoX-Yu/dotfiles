@@ -6,19 +6,12 @@ return {
       "OverseerOpen",
       "OverseerClose",
       "OverseerToggle",
-      "OverseerSaveBundle",
-      "OverseerLoadBundle",
-      "OverseerDeleteBundle",
-      "OverseerRunCmd",
       "OverseerRun",
-      "OverseerInfo",
-      "OverseerBuild",
-      "OverseerQuickAction",
+      "OverseerShell",
       "OverseerTaskAction",
-      "OverseerClearCache",
     },
     opts = {
-      dap = false,
+      dap = true,
       templates = { "builtin", "python" },
       task_list = {
         bindings = {
@@ -31,13 +24,11 @@ return {
     },
     -- stylua: ignore
     keys = {
-      { "<leader>ow", "<cmd>OverseerToggle<cr>",      desc = "Task list" },
-      { "<leader>oo", "<cmd>OverseerRun<cr>",         desc = "Run task" },
-      { "<leader>oq", "<cmd>OverseerQuickAction<cr>", desc = "Action recent task" },
-      { "<leader>oi", "<cmd>OverseerInfo<cr>",        desc = "Overseer info" },
-      { "<leader>ob", "<cmd>OverseerBuild<cr>",       desc = "Task builder" },
-      { "<leader>ot", "<cmd>OverseerTaskAction<cr>",  desc = "Task action" },
-      { "<leader>oc", "<cmd>OverseerClearCache<cr>",  desc = "Clear cache" },
+      { "<leader>ow", "<cmd>OverseerToggle<cr>",     desc = "Toggle task list" },
+      { "<leader>oo", "<cmd>OverseerOpen<cr>",       desc = "Open task list" },
+      { "<leader>oc", "<cmd>OverseerClose<cr>",      desc = "Close task list" },
+      { "<leader>ot", "<cmd>OverseerTaskAction<cr>", desc = "Task action" },
+      { "<leader>os", "<cmd>OverseerShell<cr>",      desc = "Run shell" },
     },
   },
 }
