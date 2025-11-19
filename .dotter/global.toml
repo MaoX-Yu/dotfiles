@@ -28,9 +28,6 @@ lazygit = { target = "~/.config/lazygit/config.yml", type = "symbolic" }
 [yazi.files]
 yazi = { target = "~/.config/yazi", type = "symbolic" }
 
-[gitui.files]
-gitui = "~/.config/gitui"
-
 [wezterm.files]
 wezterm = "~/.config/wezterm"
 
@@ -39,9 +36,6 @@ nushell = "~/.config/nushell"
 
 [bat.files]
 bat = "~/.config/bat"
-
-[komorebi.files]
-komorebi = "~/komorebi.json"
 
 [rio.files]
 rio = "~/.config/rio"
