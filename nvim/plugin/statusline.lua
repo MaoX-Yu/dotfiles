@@ -282,7 +282,7 @@ end
 
 function M.debug(active)
   if package.loaded["dap"] and require("dap").status() ~= "" then
-    local dap = "  " .. require("dap").status()
+    local dap = " " .. require("dap").status()
     if active then
       return utils.stl.hl(dap, hl_groups.debug)
     else

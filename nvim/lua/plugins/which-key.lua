@@ -40,8 +40,8 @@ return {
       spec = {
         { "f", desc = "Find next char" },
         { "F", desc = "Find prev char" },
-        { "t", desc = "Find next char before" },
-        { "T", desc = "Find prev char before" },
+        { "t", desc = "Find next char tail" },
+        { "T", desc = "Find prev char tail" },
         { ";", desc = "Next find result" },
         { ",", desc = "Prev find result" },
         { "]d", desc = "Next diagnostic" },
@@ -65,6 +65,7 @@ return {
           { "<leader><tab>", group = "tabs" },
           { "<leader>A", group = "avante" },
           { "<leader>c", group = "code" },
+          { "<leader>d", group = "debug" },
           { "<leader>g", group = "git" },
           { "<leader>s", group = "search" },
           { "<leader>u", group = "ui" },
