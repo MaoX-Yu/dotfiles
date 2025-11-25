@@ -17,7 +17,7 @@
 	path = ~/dotfiles/delta/catppuccin.gitconfig
 [delta]
 	navigate = true    # use n and N to move between diff sections
-	features = catppuccin-macchiato
+	features = catppuccin-mocha
 [merge]
 	conflictstyle = diff3
 [diff]

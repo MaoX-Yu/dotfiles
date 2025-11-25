@@ -1,7 +1,7 @@
-theme = "catppuccin-macchiato"
+theme = "catppuccin-mocha"
 
 [editor]
-program = "hx"
+program = "nvim"
 args = []
 
 [fonts]

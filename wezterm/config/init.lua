@@ -18,10 +18,10 @@ function M.setup(config)
   config.status_update_interval = 1000
 
   -- Appearance
-  config.front_end = "OpenGL"
+  config.front_end = "WebGpu"
 
   -- Colorscheme
-  config.color_scheme = "Catppuccin Macchiato"
+  config.color_scheme = "Catppuccin Mocha"
 
   -- Font
   config.font = Wezterm.font_with_fallback({

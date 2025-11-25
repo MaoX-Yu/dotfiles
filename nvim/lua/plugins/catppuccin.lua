@@ -7,7 +7,7 @@ return {
       flavour = "auto",
       background = {
         light = "latte",
-        dark = "macchiato",
+        dark = "mocha",
       },
       styles = {
         conditionals = {},
