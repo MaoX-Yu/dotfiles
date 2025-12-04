@@ -8,9 +8,10 @@ mouse = false
 line-number = "relative"
 bufferline = "multiple"
 cursorline = true
-color-modes = true
+color-modes = false
 default-line-ending = "lf"
 end-of-line-diagnostics = "hint"
+rainbow-brackets = true
 
 [editor.cursor-shape]
 insert = "bar"
@@ -42,9 +43,6 @@ right = [
   "position-percentage",
   "spacer",
 ]
-mode.normal = "NORMAL"
-mode.insert = "INSERT"
-mode.select = "SELECT"
 
 [editor.lsp]
 display-inlay-hints = true
