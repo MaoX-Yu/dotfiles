@@ -49,7 +49,7 @@ return {
         },
       },
       input = { enabled = true },
-      notifier = { enabled = true },
+      notifier = { enabled = false },
       picker = {
         enabled = true,
         win = {
@@ -134,7 +134,6 @@ return {
       { "<leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle zoom" },
       { "<leader>.",  function() Snacks.scratch() end, desc = "Toggle scratch buffer" },
       { "<leader>S",  function() Snacks.scratch.select() end, desc = "Select scratch buffer" },
-      { "<leader>n",  function() Snacks.notifier.show_history() end, desc = "Notification history" },
       { "<leader>bd", function() Snacks.bufdelete() end, desc = "Delete buffer" },
       { "<leader>bo", function() Snacks.bufdelete.other() end, desc = "Delete other buffers" },
       { "<leader>cr", function() Snacks.rename.rename_file() end, desc = "Rename file" },

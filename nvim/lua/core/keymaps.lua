@@ -105,16 +105,6 @@ map("v", "<C-_>", "gc", { remap = true, desc = "Toggle comment" })
 map("n", "<leader>l", "<cmd>Lazy<cr>", { desc = "Lazy" })
 
 -- LSP
-local function diagnostic_goto(count, severity)
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    vim.diagnostic.jump({ count = count, severity = severity })
-  end
-end
-map("n", "]e", diagnostic_goto(1, "ERROR"), { desc = "Next error" })
-map("n", "[e", diagnostic_goto(-1, "ERROR"), { desc = "Prev error" })
-map("n", "]w", diagnostic_goto(1, "WARN"), { desc = "Next warning" })
-map("n", "[w", diagnostic_goto(-1, "WARN"), { desc = "Prev warning" })
 map("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 map("n", "<leader>cc", vim.lsp.codelens.run, { desc = "Run codelens" })
 map("n", "<leader>cl", vim.lsp.codelens.refresh, { desc = "Show codelens" })
@@ -130,6 +120,9 @@ map("n", "<leader>uI", "<cmd>InspectTree<cr>", { desc = "Inspect tree" })
 map("n", "<leader>xq", vim.cmd.copen, { desc = "Quickfix" })
 map("n", "<leader>xl", vim.cmd.lopen, { desc = "Location list" })
 map("n", "<leader>xd", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
+
+-- Notification
+map("n", "<leader>n", "<cmd>messages<cr>", { desc = "Notification" })
 
 -- Clear search, diff update and redraw
 -- taken from runtime/lua/_editor.lua

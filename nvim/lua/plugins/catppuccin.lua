@@ -33,7 +33,7 @@ return {
       },
       custom_highlights = function(C)
         return {
-          FloatBorder = { fg = C.mauve, bg = C.mantle },
+          FloatBorder = { fg = C.lavender, bg = C.mantle },
           PmenuBorder = { link = "FloatBorder" },
           PmenuExtra = { fg = C.mauve },
           PmenuExtraSel = { fg = C.mauve, bg = C.surface0, style = { "bold" } },
@@ -41,10 +41,11 @@ return {
           PmenuMatchSel = { fg = C.pink, style = { "bold" } },
 
           -- Which-key
-          WhichKey = { fg = C.mauve, style = { "italic" } },
-          WhichKeyDesc = { fg = C.green },
-          WhichKeySeparator = { fg = C.mauve },
-          WhichKeyTitle = { fg = C.mauve, bg = C.mantle },
+          WhichKey = { fg = C.lavender, style = { "italic" } },
+          WhichKeyDesc = { fg = C.text },
+          WhichKeyGroup = { fg = C.lavender },
+          WhichKeySeparator = { fg = C.lavender },
+          WhichKeyTitle = { fg = C.lavender, bg = C.mantle },
 
           -- Snacks
           SnacksDashboardDesc = { fg = C.green },
@@ -53,14 +54,14 @@ return {
           SnacksDashboardIcon = { fg = C.peach },
           SnacksDashboardKey = { fg = C.yellow },
           SnacksDashboardTitle = { fg = C.mauve },
-          SnacksInputBorder = { fg = C.mauve, style = { "italic" } },
-          SnacksInputIcon = { fg = C.mauve, style = { "italic" } },
-          SnacksInputTitle = { fg = C.mauve, style = { "italic" } },
+          SnacksInputBorder = { fg = C.lavender, style = { "italic" } },
+          SnacksInputIcon = { fg = C.lavender, style = { "italic" } },
+          SnacksInputTitle = { fg = C.lavender, style = { "italic" } },
           SnacksNotifierHistory = { link = "NormalFloat" },
           SnacksPickerMatch = { fg = C.pink },
 
           -- Overseer
-          OverseerTask = { fg = C.mauve },
+          OverseerTask = { fg = C.lavender },
 
           -- StatusLine
           StatusLineAdd = { fg = C.green },
