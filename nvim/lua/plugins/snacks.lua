@@ -139,8 +139,8 @@ return {
       { "<leader>cr", function() Snacks.rename.rename_file() end, desc = "Rename file" },
       { "<leader>un", function() Snacks.notifier.hide() end, desc = "Dismiss all notifications" },
       { "<leader>t",  function() Snacks.terminal() end, desc = "Toggle terminal" },
-      { "]r",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next reference", mode = { "n", "t" } },
-      { "[r",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev reference", mode = { "n", "t" } },
+      { "]w",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next word", mode = { "n", "t" } },
+      { "[w",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev word", mode = { "n", "t" } },
     },
     init = function()
       vim.api.nvim_create_autocmd("User", {

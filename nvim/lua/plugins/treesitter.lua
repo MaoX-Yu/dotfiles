@@ -14,7 +14,6 @@ return {
         "c",
         "diff",
         "json",
-        "jsonc",
         "lua",
         "luadoc",
         "query",
