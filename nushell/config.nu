@@ -68,6 +68,7 @@ alias n = nvim
 alias vi = nvim
 alias ni = nvim (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}')
 alias hi = hx (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}')
+alias g = git
 alias lg = lazygit
 {{#if (is_executable "bat")}}
 alias cat = bat --paging=never --theme "Catppuccin Mocha"

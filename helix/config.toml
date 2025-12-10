@@ -54,7 +54,7 @@ render = "all"
 space = "·"
 nbsp = "⍽"
 nnbsp = "␣"
-newline = "+"
+newline = " "
 tab = "»"
 tabpad = " "
 

@@ -1,4 +1,5 @@
 alias cls "clear"
+alias g   "git"
 alias la  "ls -la"
 alias n   "nvim"
 alias ni  "nvim (fzf)"

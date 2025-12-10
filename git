@@ -1,5 +1,5 @@
 [user]
-	name = MaoX_Yu
+	name = MaoX-Yu
 	email = maoxytz@163.com
 {{#if gpg.key}}
 	signingkey = {{gpg.key}}
@@ -23,6 +23,17 @@
 [diff]
 	colorMoved = default
 {{/if}}
+[alias]
+	b = branch
+	ba = branch -a
+	st = status
+	co = checkout
+	aa = add .
+	ci = commit
+	cm = commit -m
+	lg = log --color --graph --pretty=format:'%Cred%h %Cgreen%ad%Creset |%C(yellow)%d%Creset %s %C(bold blue)[%an]%Creset' --abbrev-commit --date=format:'%Y-%m-%d %H:%M:%S %z'
+	wip = !git add -u && git commit -m \"WIP\"
+	stats = shortlog -sn --no-merges
 [init]
 	defaultBranch = main
 [pull]
