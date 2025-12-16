@@ -49,17 +49,7 @@ return {
         },
       },
       input = { enabled = true },
-      notifier = { enabled = false },
-      picker = {
-        enabled = true,
-        win = {
-          input = {
-            keys = {
-              ["<Esc>"] = { "close", mode = { "n", "i" } },
-            },
-          },
-        },
-      },
+      picker = { enabled = true },
       quickfile = { enabled = true },
       scope = { enabled = true },
       statuscolumn = { enabled = true },

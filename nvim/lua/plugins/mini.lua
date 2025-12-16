@@ -32,6 +32,21 @@ return {
         },
       })
 
+      require("mini.cmdline").setup({})
+
+      require("mini.files").setup({
+        mappings = {
+          go_in = "",
+          go_in_plus = "<CR>",
+          go_out = "-",
+          go_out_plus = "",
+        },
+        windows = {
+          preview = true,
+          width_preview = 50,
+        },
+      })
+
       local hipatterns = require("mini.hipatterns")
       require("mini.hipatterns").setup({
         highlighters = {
@@ -78,5 +93,21 @@ return {
         },
       })
     end,
+    keys = {
+      {
+        "<leader>e",
+        function()
+          MiniFiles.open(vim.api.nvim_buf_get_name(0))
+        end,
+        desc = "File explorer",
+      },
+      {
+        "<leader>E",
+        function()
+          MiniFiles.open()
+        end,
+        desc = "File explorer (cwd)",
+      },
+    },
   },
 }

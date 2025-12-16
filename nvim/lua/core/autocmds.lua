@@ -4,22 +4,6 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("mao." .. name, { clear = true })
 end
 
--- Start picker with directory
-au("BufEnter", {
-  group = augroup("picker_start_directory"),
-  desc = "Start picker with directory",
-  once = true,
-  callback = function()
-    local basename = vim.fn.argv(0)
-    local stats = vim.uv.fs_stat(basename)
-    if stats and stats.type == "directory" then
-      vim.cmd("bd") -- close netrw
-      local current_dir = vim.fn.expand("%:p:h") .. "/" .. basename
-      Snacks.picker.files({ dirs = { current_dir } })
-    end
-  end,
-})
-
 -- Close some filetypes with <q>
 au("FileType", {
   group = augroup("close_with_q"),
@@ -30,7 +14,6 @@ au("FileType", {
     "gitsigns-blame",
     "grug-far",
     "help",
-    "lspinfo",
     "neotest-output",
     "neotest-output-panel",
     "neotest-summary",
