@@ -1,5 +1,10 @@
 vim9script
 
+if exists('g:loaded_local_keymaps')
+    finish
+endif
+g:loaded_local_keymaps = 1
+
 import autoload 'keymaps.vim' as K
 
 # Escape

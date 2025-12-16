@@ -1,9 +1,9 @@
 vim9script
 
-if exists('g:loaded_mao_stl')
+if exists('g:loaded_local_stl')
     finish
 endif
-g:loaded_mao_stl = 1
+g:loaded_local_stl = 1
 
 import autoload 'stl.vim' as utils
 

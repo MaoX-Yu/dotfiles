@@ -1,9 +1,9 @@
 vim9script
 
-if exists('g:loaded_mao_gui')
+if exists('g:loaded_local_gui')
     finish
 endif
-g:loaded_mao_gui = 1
+g:loaded_local_gui = 1
 
 if !has('gui_running')
     finish
