@@ -97,10 +97,10 @@ nnoremap <unique> <C-Left> <cmd>vertical resize -2<cr>
 nnoremap <unique> <C-Right> <cmd>vertical resize +2<cr>
 
 # Tabs
-nnoremap <unique> <leader><tab>l <cmd>tablast<cr>
+nnoremap <unique> <leader><tab>] <cmd>tablast<cr>
 nnoremap <unique> <leader><tab>o <cmd>tabonly<cr>
-nnoremap <unique> <leader><tab>f <cmd>tabfirst<cr>
+nnoremap <unique> <leader><tab>[ <cmd>tabfirst<cr>
 nnoremap <unique> <leader><tab><tab> <cmd>tabnew<cr>
-nnoremap <unique> <leader><tab>] <cmd>tabnext<cr>
+nnoremap <unique> ]<tab> <cmd>tabnext<cr>
 nnoremap <unique> <leader><tab>d <cmd>tabclose<cr>
-nnoremap <unique> <leader><tab>[ <cmd>tabprevious<cr>
+nnoremap <unique> [<tab> <cmd>tabprevious<cr>
