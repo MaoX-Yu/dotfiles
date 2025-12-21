@@ -8,16 +8,14 @@ return {
       {
         "<leader>st",
         function()
-          ---@diagnostic disable-next-line: undefined-field
-          Snacks.picker.todo_comments()
+          require("todo-comments.fzf").todo()
         end,
         desc = "Todo",
       },
       {
         "<leader>sT",
         function()
-          ---@diagnostic disable-next-line: undefined-field
-          Snacks.picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } })
+          require("todo-comments.fzf").todo({ keywords = { "TODO", "FIX", "FIXME" } })
         end,
         desc = "Todo/Fix/Fixme",
       },

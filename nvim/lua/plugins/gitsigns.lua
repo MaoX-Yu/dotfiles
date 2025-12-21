@@ -58,10 +58,23 @@ return {
         map("n", "<leader>gp", gitsigns.preview_hunk, "Preview hunk")
         map("n", "<leader>gi", gitsigns.preview_hunk_inline, "Preview hunk inline")
 
+        map("n", "<leader>gb", function()
+          gitsigns.blame_line({ full = true })
+        end, "Blame line")
+
+        map("n", "<leader>gd", gitsigns.diffthis, "Diff")
+        map("n", "<leader>gD", function()
+          gitsigns.diffthis("~")
+        end, "Diff HEAD")
+
         map("n", "<leader>gq", gitsigns.setqflist, "Set quickfix (Buffer)")
         map("n", "<leader>gQ", function()
           gitsigns.setqflist("all")
         end, "Set quickfix")
+
+        -- Toggles
+        map("n", "<leader>gl", gitsigns.toggle_current_line_blame, "Toggle blame line")
+        map("n", "<leader>gw", gitsigns.toggle_word_diff, "Toggle word diff")
 
         -- Text object
         map({ "o", "x" }, "ih", gitsigns.select_hunk, "GitSigns select hunk")
