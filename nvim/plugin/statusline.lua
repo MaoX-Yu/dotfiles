@@ -31,6 +31,9 @@ function M.fname()
     if is_new_file() then
       fname = string.format("%s %s", fname, symbols.newfile)
     end
+    if vim.bo.ft == "netrw" then
+      fname = vim.fn.expand("%")
+    end
     return utils.stl.escape(fname)
   end
 
@@ -188,7 +191,8 @@ function M.lsp_progress()
   local buf = vim.api.nvim_get_current_buf()
   local server_ids = {}
   for id, _ in pairs(server_info) do
-    if vim.tbl_contains(vim.lsp.get_buffers_by_client_id(id), buf) then
+    local client = vim.lsp.get_client_by_id(id) or {}
+    if client.attached_buffers[buf] then
       table.insert(server_ids, id)
     end
   end
@@ -265,8 +269,13 @@ function M.position()
 end
 
 function M.progress()
-  local cur = vim.fn.line(".")
+  local first = vim.fn.line("w0")
   local total = vim.fn.line("$")
+  if first == 1 and total <= vim.fn.winheight(0) then
+    return "ALL"
+  end
+
+  local cur = vim.fn.line(".")
   if cur == 1 then
     return "TOP"
   elseif cur == total then
@@ -453,14 +462,14 @@ local stl_mason = function()
   return string.format(" [Mason]  %s", mason_status)
 end
 
-local stl_oil = function()
-  local oil_dir = vim.fn.fnamemodify(require("oil").get_current_dir() or "", ":~")
-  return string.format(" [Oil]  %s", oil_dir)
+local stl_minifiles = function()
+  local path = vim.fn.expand("%"):match("^minifiles://%d+/(.*)")
+  return string.format(" [Minifiles]  %s", path)
 end
 
 function STL.get()
   local ft = vim.bo.filetype
-  if ft == "dashboard" then
+  if ft == "snacks_dashboard" then
     return "%#Normal#"
   end
   if ft == "lazy" then
@@ -469,8 +478,8 @@ function STL.get()
   if ft == "mason" then
     return stl_mason()
   end
-  if ft == "oil" then
-    return stl_oil()
+  if ft == "minifiles" then
+    return stl_minifiles()
   end
   return stl()
 end

@@ -32,9 +32,27 @@ def GetFileinfo(): string
     return fileencoding .. encoding .. fileformat .. filestat
 enddef
 
+def GetProgress(): string
+    const first = line('w0')
+    const total = line('$')
+    if first == 1 && total <= winheight(0)
+        return 'ALL'
+    endif
+
+    const cur = line('.')
+    if cur == 1
+        return "TOP"
+    elseif cur == total
+        return "BOT"
+    else
+        return $"{cur * 100 / total}%%"
+    endif
+enddef
+
 g:STL = {
     GetMode: GetMode,
     GetFileinfo: GetFileinfo,
+    GetProgress: GetProgress,
 }
 
 set stl=
@@ -44,4 +62,5 @@ set stl+=\ \ %f\ %h%w
 set stl+=%<%=
 set stl+=%S\ \ 
 set stl+=%{%&filetype==''?''\:'%{&filetype}\ \ '%}
-set stl+=%l:%c%V\ \ %P\ 
+set stl+=%l:%c%V
+set stl+=\ \ %{%STL.GetProgress()%}\ 
