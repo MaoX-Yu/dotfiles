@@ -7,6 +7,27 @@ return {
       fzf_colors = true,
       fzf_opts = {
         ["--no-scrollbar"] = true,
+        ["--info"] = "inline",
+        ["--style"] = "minimal",
+      },
+      keymap = {
+        builtin = {
+          true,
+          ["<C-f>"] = "preview-page-down",
+          ["<C-b>"] = "preview-page-up",
+        },
+        fzf = {
+          true,
+          ["alt-d"] = "half-page-down",
+          ["alt-u"] = "half-page-up",
+          ["ctrl-f"] = "preview-page-down",
+          ["ctrl-b"] = "preview-page-up",
+        },
+      },
+      winopts = {
+        preview = {
+          scrollbar = false,
+        },
       },
     },
     keys = {
