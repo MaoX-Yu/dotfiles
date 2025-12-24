@@ -150,11 +150,11 @@ sethandler <C-2> a:ide
 sethandler <C-S-2> a:ide
 sethandler <C-6> a:ide
 sethandler <C-S-6> a:ide
-sethandler <C-A> a:ide
+sethandler <C-A> i:ide n-v:vim
 sethandler <C-B> i:ide n-v:vim
 sethandler <C-C> i:ide n-v:vim
 sethandler <C-D> i:ide n-v:vim
-sethandler <C-E> a:ide
+sethandler <C-E> i:ide n-v:vim
 sethandler <C-F> i:ide n-v:vim
 sethandler <C-G> a:ide
 sethandler <C-H> a:ide
@@ -163,18 +163,18 @@ sethandler <C-J> a:ide
 sethandler <C-K> a:ide
 sethandler <C-L> a:ide
 sethandler <C-M> a:ide
-sethandler <C-N> a:ide
+sethandler <C-N> i:ide n-v:vim
 sethandler <C-O> i:ide n-v:vim
-sethandler <C-P> a:ide
+sethandler <C-P> i:ide n-v:vim
 sethandler <C-Q> a:ide
-sethandler <C-R> a:ide
+sethandler <C-R> i:ide n-v:vim
 sethandler <C-S> a:ide
-sethandler <C-T> a:ide
+sethandler <C-T> i:ide n-v:vim
 sethandler <C-U> i:ide n-v:vim
 sethandler <C-V> i:ide n-v:vim
 sethandler <C-W> i:ide n-v:vim
-sethandler <C-X> a:ide
-sethandler <C-Y> a:ide
+sethandler <C-X> i:ide n-v:vim
+sethandler <C-Y> i:ide n-v:vim
 sethandler <C-[> a:ide
 sethandler <C-\> a:ide
-sethandler <C-]> a:ide
+sethandler <C-]> i:ide n-v:vim
