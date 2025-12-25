@@ -11,9 +11,9 @@ const NU_PLUGIN_DIRS = [
 ]
 
 $env.FZF_DEFAULT_OPTS = '
---style=full
+--style=full:rounded
 --layout=reverse
---border=rounded
+--border=none
 --cycle
 --color=bg+:#313244,bg:#1E1E2E,spinner:#F5E0DC,hl:#F38BA8
 --color=fg:#CDD6F4,header:#F38BA8,info:#CBA6F7,pointer:#F5E0DC
@@ -66,8 +66,8 @@ source yazi.nu
 {{/if}}
 alias n = nvim
 alias vi = nvim
-alias ni = nvim (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}')
-alias hi = hx (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}')
+alias ni = nvim (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}' --preview-border rounded)
+alias hi = hx (fzf --preview 'bat --color=always --style=numbers,changes --line-range :500 {}' --preview-border rounded)
 alias g = git
 alias lg = lazygit
 {{#if (is_executable "bat")}}

@@ -4,11 +4,13 @@ return {
     cond = not vim.g.vscode,
     lazy = false,
     opts = {
-      fzf_colors = true,
       fzf_opts = {
-        ["--no-scrollbar"] = true,
-        ["--info"] = "inline",
-        ["--style"] = "minimal",
+        ["--style"] = "default",
+        ["--info"] = "default",
+      },
+      fzf_colors = {
+        true,
+        ["info"] = { "fg", "Statement" },
       },
       keymap = {
         builtin = {
@@ -22,11 +24,6 @@ return {
           ["alt-u"] = "half-page-up",
           ["ctrl-f"] = "preview-page-down",
           ["ctrl-b"] = "preview-page-up",
-        },
-      },
-      winopts = {
-        preview = {
-          scrollbar = false,
         },
       },
     },
