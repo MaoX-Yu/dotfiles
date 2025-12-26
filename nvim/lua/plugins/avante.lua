@@ -3,13 +3,13 @@ return {
     "yetone/avante.nvim",
     cond = not vim.g.vscode,
     version = false,
+    build = vim.fn.has("win32") ~= 0 and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+      or "make",
     event = { "BufReadPost", "BufNewFile" },
     cmd = { "AvanteBuild", "AvanteToggle" },
     opts = {
       provider = "deepseek",
-      cursor_applying_provider = "deepseek",
       behaviour = {
-        enable_cursor_planning_mode = true,
         auto_set_highlight_group = false,
       },
       providers = {
@@ -33,7 +33,6 @@ return {
         ask = "<leader>Aa",
         new_ask = "<leader>An",
         zen_mode = "<leader>Az",
-        full_view_ask = "<leader>Am",
         edit = "<leader>Ae",
         refresh = "<leader>Ar",
         focus = "<leader>Af",
