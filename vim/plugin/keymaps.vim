@@ -1,106 +1,102 @@
 vim9script
 
-if exists('g:loaded_local_keymaps')
-    finish
-endif
-g:loaded_local_keymaps = 1
-
 import autoload 'keymaps.vim' as K
 
 # Escape
-inoremap <unique> jj <esc>
-tnoremap <unique> <esc><esc> <C-\><C-n>
+inoremap jj <esc>
+tnoremap <esc><esc> <C-\><C-n>
 
 # Add undo break-points
-inoremap <unique> , ,<C-g>u
-inoremap <unique> . .<C-g>u
-inoremap <unique> ; ;<C-g>u
+inoremap , ,<C-g>u
+inoremap . .<C-g>u
+inoremap ; ;<C-g>u
 
 # Better inputs
-noremap! <unique> ,, _
-noremap! <unique> ,. &
-noremap! <unique> ,/ *
+noremap! ,, _
+noremap! ,. &
+noremap! ,/ *
 
 # Auto pairs
-noremap! <unique> ( ()<left>
-noremap! <unique> [ []<left>
-noremap! <unique> { {}<left>
-inoremap <unique> <expr> ) K.SmartBracket(')')
-inoremap <unique> <expr> ] K.SmartBracket(']')
-inoremap <unique> <expr> } K.SmartBracket('}')
-inoremap <unique> <expr> ' K.SmartBracket("'")
-inoremap <unique> <expr> " K.SmartBracket('"')
-inoremap <unique> <expr> ` K.SmartBracket('`')
-cnoremap <unique> <expr> ) K.SmartBracketCmd(')')
-cnoremap <unique> <expr> ] K.SmartBracketCmd(']')
-cnoremap <unique> <expr> } K.SmartBracketCmd('}')
-cnoremap <unique> <expr> ' K.SmartBracketCmd("'")
-cnoremap <unique> <expr> " K.SmartBracketCmd('"')
-cnoremap <unique> <expr> ` K.SmartBracketCmd('`')
+noremap! ( ()<left>
+noremap! [ []<left>
+noremap! { {}<left>
+inoremap <expr> ) K.SmartBracket(')')
+inoremap <expr> ] K.SmartBracket(']')
+inoremap <expr> } K.SmartBracket('}')
+inoremap <expr> ' K.SmartBracket("'")
+inoremap <expr> " K.SmartBracket('"')
+inoremap <expr> ` K.SmartBracket('`')
+cnoremap <expr> ) K.SmartBracketCmd(')')
+cnoremap <expr> ] K.SmartBracketCmd(']')
+cnoremap <expr> } K.SmartBracketCmd('}')
+cnoremap <expr> ' K.SmartBracketCmd("'")
+cnoremap <expr> " K.SmartBracketCmd('"')
+cnoremap <expr> ` K.SmartBracketCmd('`')
 
 # Better up/down
-nnoremap <unique> <expr> j v:count == 0 ? 'gj' : 'j'
-xnoremap <unique> <expr> j v:count == 0 ? 'gj' : 'j'
-nnoremap <unique> <expr> k v:count == 0 ? 'gk' : 'k'
-xnoremap <unique> <expr> k v:count == 0 ? 'gk' : 'k'
+nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
+nnoremap <expr> k v:count == 0 ? 'gk' : 'k'
+xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 
 # Move
-noremap <unique> gs ^
-noremap <unique> gh 0
-noremap <unique> gl $
-noremap! <unique> <C-l> <right>
+noremap gs ^
+noremap gh 0
+noremap gl $
+noremap! <C-l> <right>
 
 # Remap redo
-nnoremap <unique> U <C-r>
-nnoremap <unique> <M-u> U
+nnoremap U <C-r>
+nnoremap <M-u> U
 
 # Better indenting
-vnoremap <unique> < <gv
-vnoremap <unique> > >gv
+vnoremap < <gv
+vnoremap > >gv
 
-nnoremap <unique> <expr> n get(v:, 'searchforward', 1) ? 'nzv' : 'Nzv'
-xnoremap <unique> <expr> n get(v:, 'searchforward', 1) ? 'n' : 'N'
-onoremap <unique> <expr> n get(v:, 'searchforward', 1) ? 'n' : 'N'
-nnoremap <unique> <expr> N get(v:, 'searchforward', 1) ? 'Nzv' : 'nzv'
-xnoremap <unique> <expr> N get(v:, 'searchforward', 1) ? 'N' : 'n'
-onoremap <unique> <expr> N get(v:, 'searchforward', 1) ? 'N' : 'n'
+nnoremap <expr> n get(v:, 'searchforward', 1) ? 'nzv' : 'Nzv'
+xnoremap <expr> n get(v:, 'searchforward', 1) ? 'n' : 'N'
+onoremap <expr> n get(v:, 'searchforward', 1) ? 'n' : 'N'
+nnoremap <expr> N get(v:, 'searchforward', 1) ? 'Nzv' : 'nzv'
+xnoremap <expr> N get(v:, 'searchforward', 1) ? 'N' : 'n'
+onoremap <expr> N get(v:, 'searchforward', 1) ? 'N' : 'n'
 
 # Add space line
-nnoremap <unique> [<space> O<esc>j
-nnoremap <unique> ]<space> o<esc>k
+nnoremap [<space> O<esc>j
+nnoremap ]<space> o<esc>k
 
-noremap <unique> <leader>y "+y
-noremap <unique> <leader>p "+p
+# Yank and paste
+noremap <leader>y "+y
+noremap <leader>p "+p
 
 # Clear highlight
-nnoremap <unique> <esc> <cmd>noh<cr><esc>
+nnoremap <esc> <cmd>noh<cr><esc>
 
 # Close
-nnoremap <unique> <C-q> <cmd>close<cr>
-tnoremap <unique> <C-q> <cmd>close<cr>
-nnoremap <unique> <expr> q &buftype == '' ? 'q' : '<cmd>close<cr>'
+nnoremap <C-q> <cmd>close<cr>
+tnoremap <C-q> <cmd>close<cr>
+nnoremap <expr> q &buftype == '' ? 'q' : '<cmd>close<cr>'
 
 # Buffer
-nnoremap <unique> H <cmd>bp<cr>
-nnoremap <unique> L <cmd>bn<cr>
+nnoremap H <cmd>bp<cr>
+nnoremap L <cmd>bn<cr>
 
 # Windows
-nnoremap <unique> <C-j> <C-w>j
-nnoremap <unique> <C-k> <C-w>k
-nnoremap <unique> <C-h> <C-w>h
-nnoremap <unique> <C-l> <C-w>l
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-h> <C-w>h
+nnoremap <C-l> <C-w>l
 
 # Resize window
-nnoremap <unique> <C-Up> <cmd>resize +2<cr>
-nnoremap <unique> <C-Down> <cmd>resize -2<cr>
-nnoremap <unique> <C-Left> <cmd>vertical resize -2<cr>
-nnoremap <unique> <C-Right> <cmd>vertical resize +2<cr>
+nnoremap <C-Up> <cmd>resize +2<cr>
+nnoremap <C-Down> <cmd>resize -2<cr>
+nnoremap <C-Left> <cmd>vertical resize -2<cr>
+nnoremap <C-Right> <cmd>vertical resize +2<cr>
 
 # Tabs
-nnoremap <unique> <leader><tab>] <cmd>tablast<cr>
-nnoremap <unique> <leader><tab>o <cmd>tabonly<cr>
-nnoremap <unique> <leader><tab>[ <cmd>tabfirst<cr>
-nnoremap <unique> <leader><tab><tab> <cmd>tabnew<cr>
-nnoremap <unique> ]<tab> <cmd>tabnext<cr>
-nnoremap <unique> <leader><tab>d <cmd>tabclose<cr>
-nnoremap <unique> [<tab> <cmd>tabprevious<cr>
+nnoremap <leader><tab>] <cmd>tablast<cr>
+nnoremap <leader><tab>o <cmd>tabonly<cr>
+nnoremap <leader><tab>[ <cmd>tabfirst<cr>
+nnoremap <leader><tab><tab> <cmd>tabnew<cr>
+nnoremap ]<tab> <cmd>tabnext<cr>
+nnoremap <leader><tab>d <cmd>tabclose<cr>
+nnoremap [<tab> <cmd>tabprevious<cr>
