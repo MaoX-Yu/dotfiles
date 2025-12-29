@@ -1,10 +1,10 @@
 [flavor]
-dark = "catppuccin-macchiato"
+dark = "catppuccin-mocha"
 
 [mgr]
 border_symbol = " "
-hovered = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
-preview_hovered = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
+current = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
+preview = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
 
 [filetype]
 rules = [
@@ -19,14 +19,14 @@ rules = [
 	{ mime = "application/{tar,bzip*,7z-compressed,xz,rar}", fg = "#f5c2e7" },
 
 	# Symbolic link
-	{ name = "*", is = "orphan", fg = "#f38ba8" },
-	{ name = "*/", is = "orphan", fg = "#f38ba8" },
-	{ name = "*", is = "link", fg = "#94e2d5" },
-	{ name = "*/", is = "link", fg = "#94e2d5" },
+	{ url = "*", is = "orphan", fg = "#f38ba8" },
+	{ url = "*/", is = "orphan", fg = "#f38ba8" },
+	{ url = "*", is = "link", fg = "#94e2d5" },
+	{ url = "*/", is = "link", fg = "#94e2d5" },
 
 	# Fallback
-	{ name = "*", fg = "#cdd6f4" },
-	{ name = "*/", fg = "#89b4fa" },
+	{ url = "*", fg = "#cdd6f4" },
+	{ url = "*/", fg = "#89b4fa" },
 ]
 
 [icon]
@@ -148,6 +148,7 @@ files = [
 	{ name = "tsconfig.json", text = "", fg = "#74c7ec" },
 	{ name = "unlicense", text = "", fg = "#f9e2af" },
 	{ name = "vagrantfile$", text = "", fg = "#89b4fa" },
+	{ name = "vimrc", text = "", fg = "#a6e3a1" },
 	{ name = "vlcrc", text = "󰕼", fg = "#fab387" },
 	{ name = "webpack", text = "󰜫", fg = "#74c7ec" },
 	{ name = "weston.ini", text = "", fg = "#fab387" },

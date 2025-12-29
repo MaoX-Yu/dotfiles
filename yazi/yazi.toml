@@ -14,18 +14,14 @@ edit = [
 
 [[plugin.prepend_fetchers]]
 id = "git"
-name = "*"
+url = "*"
 run = "git"
 
 [[plugin.prepend_fetchers]]
 id = "git"
-name = "*/"
+url = "*/"
 run = "git"
 
 [[plugin.prepend_previewers]]
-mime = "text/*"
-run = 'piper -- bat -pp --color=always "$1"'
-
-[[plugin.prepend_previewers]]
-name = "*/"
+url = "*/"
 run = 'piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes "$1"'
