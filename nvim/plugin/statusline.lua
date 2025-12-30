@@ -192,7 +192,7 @@ function M.lsp_progress()
   local server_ids = {}
   for id, _ in pairs(server_info) do
     local client = vim.lsp.get_client_by_id(id) or {}
-    if client.attached_buffers[buf] then
+    if client.attached_buffers and client.attached_buffers[buf] then
       table.insert(server_ids, id)
     end
   end

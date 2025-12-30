@@ -5,7 +5,7 @@ if exists('g:loaded_local_stl')
 endif
 g:loaded_local_stl = 1
 
-import autoload 'stl.vim' as utils
+import autoload '../autoload/stl.vim' as utils
 
 def GetMode(): string
     const current_mode = mode()

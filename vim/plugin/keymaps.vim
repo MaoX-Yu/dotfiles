@@ -1,6 +1,6 @@
 vim9script
 
-import autoload 'keymaps.vim' as K
+import autoload '../autoload/keymaps.vim' as K
 
 # Escape
 inoremap jj <esc>
