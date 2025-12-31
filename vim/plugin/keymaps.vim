@@ -3,8 +3,8 @@ vim9script
 import autoload '../autoload/keymaps.vim' as K
 
 # Escape
-inoremap jj <esc>
-tnoremap <esc><esc> <C-\><C-n>
+inoremap jj <Esc>
+tnoremap <Esc><Esc> <C-\><C-n>
 
 # Add undo break-points
 inoremap , ,<C-g>u
@@ -17,9 +17,9 @@ noremap! ,. &
 noremap! ,/ *
 
 # Auto pairs
-noremap! ( ()<left>
-noremap! [ []<left>
-noremap! { {}<left>
+noremap! ( ()<Left>
+noremap! [ []<Left>
+noremap! { {}<Left>
 inoremap <expr> ) K.SmartBracket(')')
 inoremap <expr> ] K.SmartBracket(']')
 inoremap <expr> } K.SmartBracket('}')
@@ -43,7 +43,7 @@ xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 noremap gs ^
 noremap gh 0
 noremap gl $
-noremap! <C-l> <right>
+noremap! <C-l> <Right>
 
 # Remap redo
 nnoremap U <C-r>
@@ -53,50 +53,40 @@ nnoremap <M-u> U
 vnoremap < <gv
 vnoremap > >gv
 
-nnoremap <expr> n get(v:, 'searchforward', 1) ? 'nzv' : 'Nzv'
-xnoremap <expr> n get(v:, 'searchforward', 1) ? 'n' : 'N'
-onoremap <expr> n get(v:, 'searchforward', 1) ? 'n' : 'N'
-nnoremap <expr> N get(v:, 'searchforward', 1) ? 'Nzv' : 'nzv'
-xnoremap <expr> N get(v:, 'searchforward', 1) ? 'N' : 'n'
-onoremap <expr> N get(v:, 'searchforward', 1) ? 'N' : 'n'
-
 # Add space line
-nnoremap [<space> O<esc>j
-nnoremap ]<space> o<esc>k
+nnoremap [<Space> O<Esc>j
+nnoremap ]<Space> o<Esc>k
 
 # Yank and paste
-noremap <leader>y "+y
-noremap <leader>p "+p
+noremap <Leader>y "+y
+noremap <Leader>p "+p
 
 # Clear highlight
-nnoremap <esc> <cmd>noh<cr><esc>
+nnoremap <Esc> <Cmd>noh<CR><Esc>
 
 # Close
-nnoremap <C-q> <cmd>close<cr>
-tnoremap <C-q> <cmd>close<cr>
-nnoremap <expr> q &buftype == '' ? 'q' : '<cmd>close<cr>'
+nnoremap <C-q> <Cmd>close<CR>
+tnoremap <C-q> <Cmd>close<CR>
+nnoremap <expr> q &buftype == '' ? 'q' : '<Cmd>close<CR>'
 
 # Buffer
-nnoremap H <cmd>bp<cr>
-nnoremap L <cmd>bn<cr>
+nnoremap H <Cmd>bp<CR>
+nnoremap L <Cmd>bn<CR>
 
 # Windows
-nnoremap <C-j> <C-w>j
-nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
-nnoremap <C-l> <C-w>l
+map <Leader>w <C-w>
 
 # Resize window
-nnoremap <C-Up> <cmd>resize +2<cr>
-nnoremap <C-Down> <cmd>resize -2<cr>
-nnoremap <C-Left> <cmd>vertical resize -2<cr>
-nnoremap <C-Right> <cmd>vertical resize +2<cr>
+nnoremap <C-Up> <Cmd>resize +2<CR>
+nnoremap <C-Down> <Cmd>resize -2<CR>
+nnoremap <C-Left> <Cmd>vertical resize -2<CR>
+nnoremap <C-Right> <Cmd>vertical resize +2<CR>
 
 # Tabs
-nnoremap <leader><tab>] <cmd>tablast<cr>
-nnoremap <leader><tab>o <cmd>tabonly<cr>
-nnoremap <leader><tab>[ <cmd>tabfirst<cr>
-nnoremap <leader><tab><tab> <cmd>tabnew<cr>
-nnoremap ]<tab> <cmd>tabnext<cr>
-nnoremap <leader><tab>d <cmd>tabclose<cr>
-nnoremap [<tab> <cmd>tabprevious<cr>
+nnoremap <Leader><Tab>] <Cmd>tablast<CR>
+nnoremap <Leader><Tab>o <Cmd>tabonly<CR>
+nnoremap <Leader><Tab>[ <Cmd>tabfirst<CR>
+nnoremap <Leader><Tab><Tab> <Cmd>tabnew<CR>
+nnoremap ]<Tab> <Cmd>tabnext<CR>
+nnoremap <Leader><Tab>d <Cmd>tabclose<CR>
+nnoremap [<Tab> <Cmd>tabprevious<CR>

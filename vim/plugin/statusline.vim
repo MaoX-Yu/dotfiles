@@ -1,15 +1,10 @@
 vim9script
 
-if exists('g:loaded_local_stl')
-    finish
-endif
-g:loaded_local_stl = 1
-
 import autoload '../autoload/stl.vim' as utils
 
 def GetMode(): string
     const current_mode = mode()
-    return get(utils.mode_names, current_mode, 'U')
+    return get(utils.mode_names, current_mode, 'Unknown')
 enddef
 
 def GetFileinfo(): string

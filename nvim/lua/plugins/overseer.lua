@@ -14,12 +14,6 @@ return {
       dap = true,
       task_list = {
         direction = "right",
-        keymaps = {
-          ["<C-h>"] = false,
-          ["<C-j>"] = false,
-          ["<C-k>"] = false,
-          ["<C-l>"] = false,
-        },
       },
     },
     -- stylua: ignore

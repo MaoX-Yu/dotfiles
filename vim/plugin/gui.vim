@@ -1,10 +1,5 @@
 vim9script
 
-if exists('g:loaded_local_gui')
-    finish
-endif
-g:loaded_local_gui = 1
-
 if !has('gui_running')
     finish
 endif
