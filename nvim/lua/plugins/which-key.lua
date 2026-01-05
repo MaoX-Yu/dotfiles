@@ -50,6 +50,7 @@ return {
         { "[D", desc = "First diagnostic" },
         { "<", group = "indent left" },
         { ">", group = "indent right" },
+        { "=", group = "indent" },
         { "<leader>", group = "leader" },
         { "<leader>o", group = "overseer" },
         { "<BS>", "<M-i>", desc = "Decrement selection", mode = "x", remap = true },

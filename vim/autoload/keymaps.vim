@@ -32,3 +32,11 @@ export def SmartBracketCmd(char: string): string
         return char
     endif
 enddef
+
+export def AddBlank(offset: number)
+    const line = line(".") + offset
+    const col = col(".")
+    const cmd = offset == 1 ? 'put!=repeat(nr2char(10), v:count1)' : 'put =repeat(nr2char(10), v:count1)'
+    exe cmd
+    cursor(line, col)
+enddef

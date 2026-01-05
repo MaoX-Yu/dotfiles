@@ -87,8 +87,8 @@ map("v", "<", "<gv")
 map("v", ">", ">gv")
 
 -- Commenting
-map("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<bs>", { desc = "Add comment below" })
-map("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<bs>", { desc = "Add comment above" })
+map("n", "gco", "o<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Add comment below" })
+map("n", "gcO", "O<Esc>Vcx<Esc><Cmd>normal gcc<CR>fxa<BS>", { desc = "Add comment above" })
 map("n", "<C-/>", "gccj", { remap = true, desc = "Toggle comment" })
 map("n", "<C-_>", "gccj", { remap = true, desc = "Toggle comment" })
 map("v", "<C-/>", "gc", { remap = true, desc = "Toggle comment" })

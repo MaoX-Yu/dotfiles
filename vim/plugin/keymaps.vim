@@ -54,8 +54,8 @@ vnoremap < <gv
 vnoremap > >gv
 
 # Add space line
-nnoremap [<Space> O<Esc>j
-nnoremap ]<Space> o<Esc>k
+nnoremap [<Space> <Cmd>call keymaps#AddBlank(1)<CR>
+nnoremap ]<Space> <Cmd>call keymaps#AddBlank(0)<CR>
 
 # Yank and paste
 noremap <Leader>y "+y
