@@ -14,6 +14,7 @@ set autoindent
 set autoread
 set belloff=all
 set breakindent
+set confirm
 set cursorline
 set encoding=utf8
 set expandtab

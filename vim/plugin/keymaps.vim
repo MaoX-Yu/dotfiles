@@ -72,6 +72,9 @@ nnoremap <expr> q &buftype == '' ? 'q' : '<Cmd>close<CR>'
 # Buffer
 nnoremap H <Cmd>bp<CR>
 nnoremap L <Cmd>bn<CR>
+nnoremap <Leader>bb <Cmd>e #<CR>
+nnoremap <Leader>bc <Cmd>bd<CR>
+nnoremap <Leader>bo <Cmd>call keymaps#CloseOtherBuffers()<CR>
 
 # Windows
 map <Leader>w <C-w>
@@ -88,5 +91,5 @@ nnoremap <Leader><Tab>o <Cmd>tabonly<CR>
 nnoremap <Leader><Tab>[ <Cmd>tabfirst<CR>
 nnoremap <Leader><Tab><Tab> <Cmd>tabnew<CR>
 nnoremap ]<Tab> <Cmd>tabnext<CR>
-nnoremap <Leader><Tab>d <Cmd>tabclose<CR>
+nnoremap <Leader><Tab>c <Cmd>tabclose<CR>
 nnoremap [<Tab> <Cmd>tabprevious<CR>
