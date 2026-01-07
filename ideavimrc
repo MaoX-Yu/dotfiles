@@ -77,7 +77,7 @@ nmap ? <Action>(Find)
 nmap <C-o> <Action>(Back)
 nmap <C-i> <Action>(Forward)
 "nmap u <Action>($Undo)
-nmap U <Action>($Redo)
+"nmap U <Action>($Redo)
 " 查找
 nmap <Leader><Space> <Action>(SearchEverywhere)
 " 文件查找
@@ -131,8 +131,6 @@ nmap <Leader>mp <Action>(ChangeKeymap)
 " 跳转tab
 nmap [b <Action>(PreviousTab)
 nmap ]b <Action>(NextTab)
-nmap H <Action>(PreviousTab)
-nmap L <Action>(NextTab)
 " 跳转method
 nmap [f <Action>(MethodUp)
 nmap ]f <Action>(MethodDown)

@@ -16,23 +16,6 @@ noremap! ,, _
 noremap! ,. &
 noremap! ,/ *
 
-# Auto pairs
-noremap! ( ()<Left>
-noremap! [ []<Left>
-noremap! { {}<Left>
-inoremap <expr> ) K.SmartBracket(')')
-inoremap <expr> ] K.SmartBracket(']')
-inoremap <expr> } K.SmartBracket('}')
-inoremap <expr> ' K.SmartBracket("'")
-inoremap <expr> " K.SmartBracket('"')
-inoremap <expr> ` K.SmartBracket('`')
-cnoremap <expr> ) K.SmartBracketCmd(')')
-cnoremap <expr> ] K.SmartBracketCmd(']')
-cnoremap <expr> } K.SmartBracketCmd('}')
-cnoremap <expr> ' K.SmartBracketCmd("'")
-cnoremap <expr> " K.SmartBracketCmd('"')
-cnoremap <expr> ` K.SmartBracketCmd('`')
-
 # Better up/down
 nnoremap <expr> j v:count == 0 ? 'gj' : 'j'
 xnoremap <expr> j v:count == 0 ? 'gj' : 'j'
@@ -44,10 +27,6 @@ noremap gs ^
 noremap gh 0
 noremap gl $
 noremap! <C-l> <Right>
-
-# Remap redo
-nnoremap U <C-r>
-nnoremap <M-u> U
 
 # Better indenting
 vnoremap < <gv
@@ -70,8 +49,10 @@ tnoremap <C-q> <Cmd>close<CR>
 nnoremap <expr> q &buftype == '' ? 'q' : '<Cmd>close<CR>'
 
 # Buffer
-nnoremap H <Cmd>bp<CR>
-nnoremap L <Cmd>bn<CR>
+nnoremap [b <Cmd>bp<CR>
+nnoremap ]b <Cmd>bn<CR>
+nnoremap [B <Cmd>bfirst<CR>
+nnoremap ]B <Cmd>blast<CR>
 nnoremap <Leader>bb <Cmd>e #<CR>
 nnoremap <Leader>bc <Cmd>bd<CR>
 nnoremap <Leader>bo <Cmd>call keymaps#CloseOtherBuffers()<CR>
@@ -86,10 +67,10 @@ nnoremap <C-Left> <Cmd>vertical resize -2<CR>
 nnoremap <C-Right> <Cmd>vertical resize +2<CR>
 
 # Tabs
-nnoremap <Leader><Tab>] <Cmd>tablast<CR>
-nnoremap <Leader><Tab>o <Cmd>tabonly<CR>
-nnoremap <Leader><Tab>[ <Cmd>tabfirst<CR>
-nnoremap <Leader><Tab><Tab> <Cmd>tabnew<CR>
-nnoremap ]<Tab> <Cmd>tabnext<CR>
-nnoremap <Leader><Tab>c <Cmd>tabclose<CR>
 nnoremap [<Tab> <Cmd>tabprevious<CR>
+nnoremap ]<Tab> <Cmd>tabnext<CR>
+nnoremap <Leader><Tab>[ <Cmd>tabfirst<CR>
+nnoremap <Leader><Tab>] <Cmd>tablast<CR>
+nnoremap <Leader><Tab><Tab> <Cmd>tabnew<CR>
+nnoremap <Leader><Tab>c <Cmd>tabclose<CR>
+nnoremap <Leader><Tab>o <Cmd>tabonly<CR>

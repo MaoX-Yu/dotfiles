@@ -78,10 +78,6 @@ map({ "i", "n", "s" }, "<Esc>", function()
   return "<Esc>"
 end, { expr = true, desc = "Escape" })
 
--- Remap undo/redo
-map("n", "U", "<C-r>", { desc = "Redo" })
-map("n", "<M-u>", "U", { desc = "Undo line" })
-
 -- Better indenting
 map("v", "<", "<gv")
 map("v", ">", ">gv")
@@ -127,8 +123,6 @@ map(
 )
 
 -- Buffers
-map("n", "<S-h>", "<Cmd>bprevious<CR>", { desc = "Prev buffer" })
-map("n", "<S-l>", "<Cmd>bnext<CR>", { desc = "Next buffer" })
 map("n", "<Leader>bb", "<Cmd>e #<CR>", { desc = "Switch to other buffer" })
 map("n", "<Leader>bC", "<Cmd>:bd<CR>", { desc = "Close buffer and window" })
 
@@ -142,10 +136,10 @@ map("n", "<C-Right>", "<Cmd>vertical resize +2<CR>", { desc = "Increase window w
 map("n", "<Leader>w", "<C-w>", { desc = "Windows", remap = true })
 
 -- Tabs
-map("n", "<Leader><Tab>]", "<Cmd>tablast<CR>", { desc = "Last tab" })
-map("n", "<Leader><Tab>o", "<Cmd>tabonly<CR>", { desc = "Close other tabs" })
-map("n", "<Leader><Tab>[", "<Cmd>tabfirst<CR>", { desc = "First tab" })
-map("n", "<Leader><Tab><Tab>", "<Cmd>tabnew<CR>", { desc = "New tab" })
-map("n", "]<Tab>", "<Cmd>tabnext<CR>", { desc = "Next tab" })
-map("n", "<Leader><Tab>c", "<Cmd>tabclose<CR>", { desc = "Close tab" })
 map("n", "[<Tab>", "<Cmd>tabprevious<CR>", { desc = "Previous tab" })
+map("n", "]<Tab>", "<Cmd>tabnext<CR>", { desc = "Next tab" })
+map("n", "<Leader><Tab>[", "<Cmd>tabfirst<CR>", { desc = "First tab" })
+map("n", "<Leader><Tab>]", "<Cmd>tablast<CR>", { desc = "Last tab" })
+map("n", "<Leader><Tab><Tab>", "<Cmd>tabnew<CR>", { desc = "New tab" })
+map("n", "<Leader><Tab>c", "<Cmd>tabclose<CR>", { desc = "Close tab" })
+map("n", "<Leader><Tab>o", "<Cmd>tabonly<CR>", { desc = "Close other tabs" })
