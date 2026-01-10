@@ -6,10 +6,6 @@ local group = vim.api.nvim_create_augroup("mao.statusline", { clear = true })
 
 local M = {}
 
-function M.mode()
-  return vim.api.nvim_get_mode().mode
-end
-
 function M.fname()
   local symbols = {
     unnamed = "[No Name]",
@@ -61,13 +57,6 @@ function M.fileinfo()
   if vim.bo.fileencoding ~= "" then
     local fileencoding = string.upper(string.sub(vim.bo.fileencoding, 1, 1))
     table.insert(info, fileencoding)
-  else
-    table.insert(info, "-")
-  end
-
-  if vim.o.encoding ~= "" then
-    local encoding = string.upper(string.sub(vim.o.encoding, 1, 1))
-    table.insert(info, encoding)
   else
     table.insert(info, "-")
   end
@@ -346,22 +335,12 @@ function M.lazy(active)
   return ""
 end
 
-local showcmd_msg = ""
-vim.ui_attach(vim.api.nvim_create_namespace("showcmd_msg"), { ext_messages = true }, function(event, ...)
-  if event == "msg_showcmd" then
-    local content = ...
-    showcmd_msg = #content > 0 and content[1][2] or showcmd_msg
-  end
-end)
 function M.showcmd_msg(active)
-  if showcmd_msg ~= "" then
-    if active then
-      return utils.stl.hl(showcmd_msg, hl_groups.showcmd)
-    else
-      return showcmd_msg
-    end
+  if active then
+    return utils.stl.hl("%S", hl_groups.showcmd)
+  else
+    return "%S"
   end
-  return ""
 end
 
 local STL = {}
@@ -369,25 +348,21 @@ local STL = {}
 function STL.stl_left(active)
   local left = {}
 
-  local mode = M.mode()
-  local mode_str = utils.stl.get_mode(mode)
-  table.insert(left, mode_str)
+  local fileinfo = M.fileinfo()
+  table.insert(left, fileinfo)
+
+  local fname = M.fname()
+  table.insert(left, fname)
 
   local branch = M.branch()
   if branch ~= "" then
     table.insert(left, branch)
   end
 
-  local diag = M.diag(active)
-  if diag ~= "" then
-    table.insert(left, diag)
+  local diff = M.gitdiff(active)
+  if diff ~= "" then
+    table.insert(left, diff)
   end
-
-  local fileinfo = M.fileinfo()
-  table.insert(left, fileinfo)
-
-  local fname = M.fname()
-  table.insert(left, fname)
 
   return table.concat(left, "  ")
 end
@@ -395,14 +370,14 @@ end
 function STL.stl_right(active)
   local right = {}
 
-  local lsp_progress = M.lsp_progress()
-  if lsp_progress ~= "" then
-    table.insert(right, lsp_progress)
-  end
-
   local showcmd = M.showcmd_msg(active)
   if showcmd ~= "" then
     table.insert(right, showcmd)
+  end
+
+  local lsp_progress = M.lsp_progress()
+  if lsp_progress ~= "" then
+    table.insert(right, lsp_progress)
   end
 
   local lazy = M.lazy(active)
@@ -420,9 +395,9 @@ function STL.stl_right(active)
     table.insert(right, debug_str)
   end
 
-  local diff = M.gitdiff(active)
-  if diff ~= "" then
-    table.insert(right, diff)
+  local diag = M.diag(active)
+  if diag ~= "" then
+    table.insert(right, diag)
   end
 
   local filetype = M.filetype()

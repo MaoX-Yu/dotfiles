@@ -1,15 +1,7 @@
 vim9script
 
-import autoload '../autoload/stl.vim' as utils
-
-def GetMode(): string
-    const current_mode = mode()
-    return get(utils.mode_names, current_mode, 'Unknown')
-enddef
-
 def GetFileinfo(): string
     const fileencoding = empty(&fileencoding) ? '-' : toupper(&fileencoding[0])
-    const encoding = empty(&encoding) ? '-' : toupper(&encoding[0])
     const fileformat = &fileformat == 'dos' ? '\' : (&fileformat == 'mac' ? '/' : ':')
     var filestat = '--'
     if !&modifiable || &readonly
@@ -24,7 +16,7 @@ def GetFileinfo(): string
         endif
     endif
 
-    return fileencoding .. encoding .. fileformat .. filestat
+    return fileencoding .. fileformat .. filestat
 enddef
 
 def GetProgress(): string
@@ -45,14 +37,12 @@ def GetProgress(): string
 enddef
 
 g:STL = {
-    GetMode: GetMode,
     GetFileinfo: GetFileinfo,
     GetProgress: GetProgress,
 }
 
 set stl=
-set stl+=\ %{%STL.GetMode()%}
-set stl+=\ \ %{%STL.GetFileinfo()%}
+set stl+=\ %{%STL.GetFileinfo()%}
 set stl+=\ \ %f\ %h%w
 set stl+=%<%=
 set stl+=%S\ \ 
