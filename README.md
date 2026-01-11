@@ -12,8 +12,7 @@
 - Delta
 - Fish
 - Git
-- Helix
-- Idea
+- Ideavim
 - Lazygit
 - Neovim
 - Nushell

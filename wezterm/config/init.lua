@@ -18,7 +18,7 @@ function M.setup(config)
   config.status_update_interval = 1000
 
   -- Appearance
-  config.front_end = "WebGpu"
+  config.front_end = "OpenGL"
 
   -- Colorscheme
   config.color_scheme = "Catppuccin Mocha"
