@@ -14,16 +14,6 @@ run = "plugin toggle-pane min-preview"
 desc = "Show or hide the preview pane"
 
 [[mgr.prepend_keymap]]
-on = "o"
-run = "plugin open-with-cmd -- block"
-desc = "Open with command in the terminal"
-
-[[mgr.prepend_keymap]]
-on = "O"
-run = "plugin open-with-cmd"
-desc = "Open with command"
-
-[[mgr.prepend_keymap]]
 on = "<C-g>"
 run = "shell --confirm --block lazygit"
 desc = "Lazygit"
@@ -67,8 +57,3 @@ desc = "Rename bookmark by key"
 on = ["'", "R"]
 run = "plugin yamb -- rename_by_fzf"
 desc = "Rename bookmark by fzf"
-
-[[input.prepend_keymap]]
-on = "U"
-run = "redo"
-desc = "Redo the last operation"
