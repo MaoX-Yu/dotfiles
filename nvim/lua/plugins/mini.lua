@@ -75,23 +75,6 @@ return {
           replace = "cs", -- Replace surrounding
         },
       })
-
-      local gen_loader = require("mini.snippets").gen_loader
-      require("mini.snippets").setup({
-        snippets = {
-          gen_loader.from_lang(),
-        },
-        expand = {
-          insert = function(snippet, _)
-            vim.snippet.expand(snippet.body)
-          end,
-        },
-        mappings = {
-          jump_next = "",
-          jump_prev = "",
-          stop = "",
-        },
-      })
     end,
     keys = {
       {
