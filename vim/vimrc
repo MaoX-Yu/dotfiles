@@ -36,7 +36,7 @@ set relativenumber
 set ruler
 set scrolloff=4
 set shiftwidth=4
-set shortmess=CoWITOtcFl
+set shortmess=filnxtToOFWI
 set showcmd
 set showcmdloc=statusline
 set showmatch

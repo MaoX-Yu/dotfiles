@@ -17,12 +17,10 @@ return {
         menu = { border = "none" },
         documentation = {
           auto_show = true,
-          window = { border = "none" },
+          auto_show_delay_ms = 500,
         },
       },
-      signature = {
-        window = { border = "none" },
-      },
+      signature = { enabled = true },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
