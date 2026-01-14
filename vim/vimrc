@@ -42,6 +42,7 @@ set showcmdloc=statusline
 set showmatch
 set showmode
 set sidescrolloff=8
+set signcolumn=yes
 set smartcase
 set smartindent
 set smarttab
@@ -75,3 +76,16 @@ if executable('rg')
     set grepprg=rg\ --vimgrep\ -uu
     set grepformat^=%f:%l:%c:%m
 endif
+
+# File picker
+set findfunc=Find
+def Find(arg: string, _: any): list<string>
+    if empty(filescache)
+        filescache = globpath('.', '**', 1, 1)
+        filter(filescache, '!isdirectory(v:val)')
+        map(filescache, "fnamemodify(v:val, ':.')")
+    endif
+    return arg == '' ? filescache : matchfuzzy(filescache, arg)
+enddef
+var filescache = []
+autocmd CmdlineEnter : filescache = []

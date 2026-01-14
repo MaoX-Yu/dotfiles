@@ -36,9 +36,37 @@ def GetProgress(): string
     endif
 enddef
 
+def GetDiag(): string
+    if !exists('g:loaded_lsp')
+        return ''
+    endif
+
+    var count = lsp#lsp#ErrorCount()
+    var diag = []
+    if count.Error > 0
+        add(diag, 'E:' .. count.Error)
+    endif
+    if count.Warn > 0
+        add(diag, 'W:' .. count.Warn)
+    endif
+    if count.Hint > 0
+        add(diag, 'H:' .. count.Hint)
+    endif
+    if count.Info > 0
+        add(diag, 'I:' .. count.Info)
+    endif
+
+    if len(diag) == 0
+        return ''
+    endif
+
+    return join(diag, ' ') .. '  '
+enddef
+
 g:STL = {
     GetFileinfo: GetFileinfo,
     GetProgress: GetProgress,
+    GetDiag: GetDiag,
 }
 
 set stl=
@@ -46,6 +74,7 @@ set stl+=\ %{%STL.GetFileinfo()%}
 set stl+=\ \ %f\ %h%w
 set stl+=%<%=
 set stl+=%S\ \ 
+set stl+=%{%STL.GetDiag()%}
 set stl+=%{%&filetype==''?''\:'%{&filetype}\ \ '%}
 set stl+=%l:%c%V
 set stl+=\ \ %{%STL.GetProgress()%}\ 

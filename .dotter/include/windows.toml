@@ -1,9 +1,6 @@
 [nvim.files]
 nvim = "~/AppData/Local/nvim"
 
-[vim.files]
-vim = "~/vimfiles"
-
 [lazygit.files]
 lazygit = { target = "~/AppData/Roaming/lazygit/config.yml", type = "symbolic" }
 

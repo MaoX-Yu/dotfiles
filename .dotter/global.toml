@@ -7,9 +7,6 @@ nvim = "~/.config/nvim"
 [git.files]
 git = "~/.gitconfig"
 
-[vim.files]
-vim = "~/.vim"
-
 [idea.files]
 ideavimrc = { target = "~/.ideavimrc", type = "symbolic" }
 
