@@ -9,7 +9,6 @@ g.qf_disable_statusline = true
 o.breakindent = true
 o.clipboard = "unnamedplus"
 o.cmdheight = 1
-o.completeitemalign = "kind,abbr,menu"
 o.completeopt = "menu,menuone,noselect,fuzzy,popup"
 o.confirm = true
 o.cursorline = true

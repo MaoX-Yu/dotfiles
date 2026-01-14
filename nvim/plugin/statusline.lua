@@ -23,12 +23,9 @@ function M.fname()
     if bname == "" then
       return symbols.unnamed
     end
-    local fname = vim.fn.expand("%:t")
+    local fname = vim.fn.expand("%")
     if is_new_file() then
       fname = string.format("%s %s", fname, symbols.newfile)
-    end
-    if vim.bo.ft == "netrw" then
-      fname = vim.fn.expand("%")
     end
     return utils.stl.escape(fname)
   end

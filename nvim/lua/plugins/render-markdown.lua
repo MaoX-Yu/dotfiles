@@ -136,9 +136,6 @@ return {
       },
       -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/509
       win_options = { concealcursor = { rendered = "nvc" } },
-      completions = {
-        lsp = { enabled = true },
-      },
     },
     config = function(_, opts)
       require("render-markdown").setup(opts)

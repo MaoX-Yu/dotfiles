@@ -20,7 +20,7 @@ return {
           auto_show_delay_ms = 500,
         },
       },
-      signature = { enabled = true },
+      cmdline = { enabled = false },
       sources = {
         default = { "lsp", "path", "snippets", "buffer" },
       },
