@@ -23,7 +23,7 @@ function M.fname()
     if bname == "" then
       return symbols.unnamed
     end
-    local fname = vim.fn.expand("%")
+    local fname = vim.fs.normalize(vim.fn.expand("%"))
     if is_new_file() then
       fname = string.format("%s %s", fname, symbols.newfile)
     end
@@ -33,7 +33,7 @@ function M.fname()
   -- Terminal buffer, show terminal command and id
   if vim.bo.bt == "terminal" then
     local id, cmd = bname:match("^term://.*/(%d+):(.*)")
-    return id and cmd and string.format("%s (%s)", utils.stl.escape(cmd), id) or "%F"
+    return id and cmd and string.format("%s (%s)", utils.stl.escape(vim.fs.normalize(cmd)), id) or "%F"
   end
 
   -- Other special buffer types
