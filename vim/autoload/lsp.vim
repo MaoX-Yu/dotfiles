@@ -3,6 +3,8 @@ vim9script
 export def SetupLspOptions()
     var lspOpts = {
         diagVirtualTextAlign: 'after',
+        popupBorder: true,
+        popupBorderCompletion: false,
         semanticHighlight: true,
         showDiagWithVirtualText: true,
         showInlayHints: true,
@@ -36,7 +38,7 @@ enddef
 export def SetupLspKeymaps()
     nnoremap gd <Cmd>LspGotoDefinition<CR>
     nnoremap gD <Cmd>LspGotoDeclaration<CR>
-    nnoremap gr <Cmd>LspShowReferences<CR>
+    nnoremap gr <Cmd>LspPeekReferences<CR>
     nnoremap gI <Cmd>LspGotoImpl<CR>
     nnoremap gy <Cmd>LspGotoTypeDef<CR>
     nnoremap K <Cmd>LspHover<CR>
