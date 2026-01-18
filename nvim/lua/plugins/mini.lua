@@ -60,7 +60,7 @@ return {
       require("mini.move").setup({})
 
       require("mini.pairs").setup({
-        modes = { command = true },
+        modes = { command = false },
       })
 
       require("mini.splitjoin").setup({})

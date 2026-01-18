@@ -27,14 +27,9 @@ load-env {
 }
 
 $env.config.show_banner = "short"
-$env.config.edit_mode = "vi"
-$env.config.cursor_shape.vi_insert = "block"
-$env.config.cursor_shape.vi_normal = "underscore"
 $env.config.shell_integration.osc133 = false
 
 $env.PROMPT_INDICATOR = ''
-$env.PROMPT_INDICATOR_VI_INSERT = ''
-$env.PROMPT_INDICATOR_VI_NORMAL = ''
 $env.PROMPT_MULTILINE_INDICATOR = ''
 
 mkdir ($nu.data-dir | path join "vendor/autoload")

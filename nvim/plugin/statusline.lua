@@ -23,7 +23,7 @@ function M.fname()
     if bname == "" then
       return symbols.unnamed
     end
-    local fname = vim.fs.normalize(vim.fn.expand("%"))
+    local fname = vim.fs.normalize(vim.fn.expand("%:."))
     if is_new_file() then
       fname = string.format("%s %s", fname, symbols.newfile)
     end
