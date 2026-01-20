@@ -26,7 +26,6 @@ o.inccommand = "split"
 o.jumpoptions = "view"
 o.laststatus = 3
 o.linebreak = true
-o.list = true
 o.listchars = "nbsp:+,space:·,tab:» ,trail:-"
 o.mouse = "" -- disable mouse
 o.number = true

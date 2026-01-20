@@ -29,11 +29,11 @@ function M.setup(config)
     },
     {
       label = " WSL CWD",
-      args = { "wsl", "--", "zellij" },
+      args = { "wsl" },
     },
     {
       label = " WSL HOME",
-      args = { "wsl", "~", "--", "zellij" },
+      args = { "wsl", "~" },
     },
   }
 end
