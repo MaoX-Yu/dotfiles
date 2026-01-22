@@ -32,7 +32,11 @@ return {
         },
       })
 
-      require("mini.cmdline").setup({})
+      require("mini.cmdline").setup({
+        autocomplete = {
+          enable = false,
+        },
+      })
 
       require("mini.files").setup({
         mappings = {
@@ -58,10 +62,6 @@ return {
       MiniIcons.mock_nvim_web_devicons()
 
       require("mini.move").setup({})
-
-      require("mini.pairs").setup({
-        modes = { command = false },
-      })
 
       require("mini.splitjoin").setup({})
 
