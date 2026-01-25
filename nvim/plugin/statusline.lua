@@ -67,18 +67,16 @@ function M.fileinfo()
   end
 
   if not vim.bo.modifiable or vim.bo.readonly then
-    if vim.bo.modified then
-      table.insert(info, "%%*")
-    else
-      table.insert(info, "%%%%")
-    end
+    table.insert(info, "%%")
   else
-    if vim.bo.modified then
-      table.insert(info, "**")
-    else
-      table.insert(info, "--")
-    end
+    table.insert(info, "-")
   end
+  if vim.bo.modified then
+    table.insert(info, "*")
+  else
+    table.insert(info, "-")
+  end
+  table.insert(info, "-")
 
   return table.concat(info, "")
 end

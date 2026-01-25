@@ -1,11 +1,11 @@
 [[plugin.deps]]
 use = "yazi-rs/plugins:git"
-rev = "1612f00"
-hash = "5f5ff760eee73db3f9ac9268318267a6"
+rev = "6c71385"
+hash = "36a484acf6a0a0219c543ccb4cee218f"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:smart-enter"
-rev = "1612f00"
+rev = "6c71385"
 hash = "56fdabc96fc1f4d53c96eb884b02a5be"
 
 [[plugin.deps]]
@@ -15,20 +15,20 @@ hash = "699fe07e0d2d1b4af8dafb84168eeb04"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:toggle-pane"
-rev = "1612f00"
+rev = "6c71385"
 hash = "8a7c58225816a163a6e8730c0adafbc8"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:types"
-rev = "1612f00"
-hash = "1e047e1b13b5e3fc6ab1f5d0d04a14e2"
+rev = "6c71385"
+hash = "204d77f3890fc8b0eb1efb081ed400c0"
 
 [[plugin.deps]]
 use = "yazi-rs/plugins:piper"
-rev = "1612f00"
-hash = "d00cacddd5e4f58e2fb13aecae42d655"
+rev = "6c71385"
+hash = "25aee698dd1081001008ce0cb1cc4da3"
 
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
-rev = "9276ffa"
-hash = "b951d27afe197d154f6da9683b46c5f8"
+rev = "ca61658"
+hash = "8eabb4e88096f10905a6df62cfaadbf4"

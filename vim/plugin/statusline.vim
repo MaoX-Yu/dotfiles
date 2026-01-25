@@ -1,22 +1,27 @@
 vim9script
 
 def GetFileinfo(): string
-    const fileencoding = empty(&fileencoding) ? '-' : toupper(&fileencoding[0])
-    const fileformat = &fileformat == 'dos' ? '\' : (&fileformat == 'mac' ? '/' : ':')
-    var filestat = '--'
-    if !&modifiable || &readonly
-        if &modified
-            filestat = '%%*'
-        else
-            filestat = '%%%%'
-        endif
-    else
-        if &modified
-            filestat = '**'
-        endif
-    endif
+    var info = []
 
-    return fileencoding .. fileformat .. filestat
+    const fileencoding = empty(&fileencoding) ? '-' : toupper(&fileencoding[0])
+    add(info, fileencoding)
+
+    const fileformat = &fileformat == 'dos' ? '\' : (&fileformat == 'mac' ? '/' : ':')
+    add(info, fileformat)
+
+    if !&modifiable || &readonly
+        add(info, '%%')    
+    else
+        add(info, '-')
+    endif
+    if &modified
+        add(info, '*')
+    else
+        add(info, '-')
+    endif
+    add(info, '-')
+
+    return join(info, '')
 enddef
 
 def GetProgress(): string

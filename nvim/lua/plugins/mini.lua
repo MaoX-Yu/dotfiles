@@ -41,9 +41,7 @@ return {
       require("mini.files").setup({
         mappings = {
           go_in = "",
-          go_in_plus = "<CR>",
-          go_out = "-",
-          go_out_plus = "",
+          go_in_plus = "l",
         },
         windows = {
           preview = true,

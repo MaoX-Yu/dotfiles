@@ -57,7 +57,6 @@ set wildmode=full
 set wildoptions=fuzzy,pum,tagfile
 
 # Theme
-set background=dark
 if has('termguicolors')
     set termguicolors
 endif
@@ -193,8 +192,6 @@ nnoremap <Leader><Tab>o <Cmd>tabonly<CR>
 
 if has('win32') || has('win64')
     autocmd GUIEnter * simalt ~x
-else
-    autocmd GUIEnter * set lines=999 columns=999
 endif
 
 # }}}
