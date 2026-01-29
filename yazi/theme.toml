@@ -6,6 +6,9 @@ border_symbol = " "
 current = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
 preview = { fg = "#1e1e2e", bg = "#89b4fa", bold = true }
 
+[indicator]
+preview = { reversed = true }
+
 [filetype]
 rules = [
 	# Images

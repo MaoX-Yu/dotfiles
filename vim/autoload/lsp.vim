@@ -2,11 +2,9 @@ vim9script
 
 export def SetupLspOptions()
     var lspOpts = {
-        diagVirtualTextAlign: 'after',
         popupBorder: true,
         popupBorderCompletion: false,
         semanticHighlight: true,
-        showDiagWithVirtualText: true,
         showInlayHints: true,
     }
 

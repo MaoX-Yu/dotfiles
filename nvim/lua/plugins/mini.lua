@@ -40,8 +40,7 @@ return {
 
       require("mini.files").setup({
         mappings = {
-          go_in = "",
-          go_in_plus = "l",
+          go_in_plus = "<CR>",
         },
         windows = {
           preview = true,

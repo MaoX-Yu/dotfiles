@@ -23,11 +23,6 @@ use = "yazi-rs/plugins:types"
 rev = "6c71385"
 hash = "204d77f3890fc8b0eb1efb081ed400c0"
 
-[[plugin.deps]]
-use = "yazi-rs/plugins:piper"
-rev = "6c71385"
-hash = "25aee698dd1081001008ce0cb1cc4da3"
-
 [[flavor.deps]]
 use = "yazi-rs/flavors:catppuccin-mocha"
 rev = "ca61658"

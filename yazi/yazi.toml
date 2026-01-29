@@ -8,9 +8,16 @@ max_height = 1000
 
 [opener]
 edit = [
-	{ run = '${EDITOR:-vi} "$@"', block = true, desc = "Editor", for = "unix" },
-	{ run = '%EDITOR% %*', block = true, desc = "Editor", for = "windows" },
+	{ run = "${EDITOR:-vi} %s", desc = "Editor", block = true, for = "unix" },
+	{ run = "%EDITOR% %s", desc = "Editor", block = true, for = "windows" },
 ]
+mpv = [
+	{ run = "mpv %s", desc = "Mpv", orphan = true, for = "unix" },
+	{ run = "mpv %s", desc = "Mpv", orphan = true, for = "windows" },
+]
+
+[open]
+prepend_rules = [{ mime = "{audio,video}/*", use = ["mpv", "play", "reveal"] }]
 
 [[plugin.prepend_fetchers]]
 id = "git"
@@ -21,7 +28,3 @@ run = "git"
 id = "git"
 url = "*/"
 run = "git"
-
-[[plugin.prepend_previewers]]
-url = "*/"
-run = 'piper -- eza -TL=3 --color=always --icons=always --group-directories-first --no-quotes "$1"'

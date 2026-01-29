@@ -4,6 +4,7 @@ return {
     cond = not vim.g.vscode,
     lazy = false,
     opts = {
+      ui_select = true,
       fzf_opts = {
         ["--style"] = "default",
         ["--info"] = "default",
