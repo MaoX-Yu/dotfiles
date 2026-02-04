@@ -4,7 +4,12 @@ return {
     cond = not vim.g.vscode,
     lazy = false,
     opts = {
-      ui_select = true,
+      ui_select = function(opts)
+        local title = opts.prompt:match("^%s*(.-)%s*[>:]*%s*$")
+        opts.winopts = { title = string.format(" %s ", title) }
+        opts.prompt = "> "
+        return opts
+      end,
       fzf_opts = {
         ["--style"] = "default",
         ["--info"] = "default",

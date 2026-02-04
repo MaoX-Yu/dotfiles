@@ -16,8 +16,9 @@ return {
         if not menu then
           return
         end
-        local cursor = vim.api.nvim_win_get_cursor(menu.win)
-        local entry = menu.entries[cursor[1]]
+        local win = menu.win or 0
+        local row = vim.api.nvim_win_get_cursor(win)[1]
+        local entry = menu.entries[row]
         local component = entry:first_clickable(entry.padding.left + entry.components[1]:bytewidth())
         if component then
           menu:click_on(component, nil, 1, "l")
@@ -57,7 +58,8 @@ return {
               if not menu then
                 return
               end
-              local row = vim.api.nvim_win_get_cursor(menu.win)[1]
+              local win = menu.win or 0
+              local row = vim.api.nvim_win_get_cursor(win)[1]
               local component = menu.entries[row]:first_clickable()
               if component then
                 menu:click_on(component, nil, 1, "l")
@@ -68,6 +70,37 @@ return {
             ["<CR>"] = enter,
             ["q"] = close,
             ["<Esc>"] = close,
+          },
+        },
+        sources = {
+          treesitter = {
+            valid_types = {
+              "array",
+              "boolean",
+              "class",
+              "constant",
+              "constructor",
+              "enum",
+              "enum_member",
+              "event",
+              "field",
+              "function",
+              "interface",
+              "keyword",
+              "macro",
+              "method",
+              "namespace",
+              "null",
+              "number",
+              "object",
+              "operator",
+              "package",
+              "property",
+              "struct",
+              "type",
+              "type_parameter",
+              "variable",
+            },
           },
         },
       }
