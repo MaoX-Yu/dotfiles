@@ -1,6 +1,3 @@
-return {
-  {
-    "MunifTanjim/nui.nvim",
-    lazy = true,
-  },
-}
+vim.pack.add({
+  "https://github.com/MunifTanjim/nui.nvim",
+})

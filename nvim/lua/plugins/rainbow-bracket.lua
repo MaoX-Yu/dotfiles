@@ -1,9 +1,16 @@
-return {
+local utils = require("utils") ---@as MaoUtils
+local lazy = utils.pack.lazy
+
+vim.pack.add({
   {
-    "HiPhish/rainbow-delimiters.nvim",
-    cond = not vim.g.vscode,
-    dependencies = "nvim-treesitter/nvim-treesitter",
-    event = { "BufReadPost", "BufNewFile" },
-    main = "rainbow-delimiters.setup",
+    src = "https://github.com/HiPhish/rainbow-delimiters.nvim",
+    data = {
+      event = { "BufReadPost", "BufNewFile" },
+      config = function()
+        require("rainbow-delimiters.setup").setup({})
+      end,
+    },
   },
-}
+}, {
+  load = lazy,
+})

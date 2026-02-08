@@ -1,32 +1,35 @@
-return {
+local utils = require("utils") ---@as MaoUtils
+local lazy = utils.pack.lazy
+local map = utils.pack.map
+
+vim.pack.add({
   {
-    "mason-org/mason.nvim",
-    cond = not vim.g.vscode,
-    cmd = {
-      "Mason",
-      "MasonUpdate",
-      "MasonLog",
-    },
-    opts = {
-      ui = {
-        icons = {
-          package_installed = "✓",
-          package_uninstalled = "✗",
-          package_pending = "⟳",
-        },
+    src = "https://github.com/mason-org/mason.nvim",
+    data = {
+      cmd = {
+        "Mason",
+        "MasonUpdate",
+        "MasonLog",
       },
-    },
-    keys = {
-      { "<leader>cm", "<cmd>Mason<cr>", desc = "Mason" },
+      event = { "BufReadPre", "BufNewFile" },
+      config = function()
+        ---@diagnostic disable-next-line: missing-fields
+        require("mason").setup({
+          ui = {
+            icons = {
+              package_installed = "✓",
+              package_uninstalled = "✗",
+              package_pending = "⟳",
+            },
+          },
+        } --[[@as MasonSettings]])
+
+        map({
+          { "<Leader>cm", "<Cmd>Mason<CR>", desc = "Mason" },
+        })
+      end,
     },
   },
-  {
-    "mason-org/mason-lspconfig.nvim",
-    cond = not vim.g.vscode,
-    event = { "BufReadPre", "BufNewFile" },
-    opts_extend = { "ensure_installed" },
-    opts = {
-      ensure_installed = { "emmylua_ls" },
-    },
-  },
-}
+}, {
+  load = lazy,
+})

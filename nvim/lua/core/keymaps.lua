@@ -60,13 +60,13 @@ map("n", "<C-_>", "gccj", { remap = true, desc = "Toggle comment" })
 map("v", "<C-/>", "gc", { remap = true, desc = "Toggle comment" })
 map("v", "<C-_>", "gc", { remap = true, desc = "Toggle comment" })
 
--- Lazy
-map("n", "<Leader>l", "<Cmd>Lazy<CR>", { desc = "Lazy" })
+-- Pack
+map("n", "<Leader>l", "<Cmd>lua vim.pack.update()<CR>", { desc = "Pack" })
 
 -- LSP
 map("n", "<Leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
 map("n", "<Leader>cc", vim.lsp.codelens.run, { desc = "Run codelens" })
-map("n", "<Leader>cl", vim.lsp.codelens.refresh, { desc = "Show codelens" })
+map("n", "<Leader>cl", vim.lsp.codelens.enable, { desc = "Show codelens" })
 map("n", "<Leader>cL", "<Cmd>checkhealth vim.lsp<CR>", { desc = "LSP info" })
 map({ "n", "v" }, "<Leader>a", vim.lsp.buf.code_action, { desc = "Code action", nowait = true })
 map("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename" })

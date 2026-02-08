@@ -317,19 +317,6 @@ function M.overseer(active)
   return pieces
 end
 
-function M.lazy(active)
-  local ok, status = pcall(require, "lazy.status")
-  if ok and status.has_updates() then
-    local updates = status.updates()
-    if active then
-      return utils.stl.hl(updates, hl_groups.lazy)
-    else
-      return updates
-    end
-  end
-  return ""
-end
-
 function M.showcmd_msg(active)
   if active then
     return utils.stl.hl("%S", hl_groups.showcmd)
@@ -375,11 +362,6 @@ function STL.stl_right(active)
     table.insert(right, lsp_progress)
   end
 
-  local lazy = M.lazy(active)
-  if lazy ~= "" then
-    table.insert(right, lazy)
-  end
-
   local overseer = M.overseer(active)
   if overseer ~= "" then
     table.insert(right, overseer)
@@ -420,12 +402,6 @@ local function stl()
   })
 end
 
-local stl_lazy = function()
-  local lazy = require("lazy")
-  local lazy_status = string.format("loaded: %s/%s", lazy.stats().loaded, lazy.stats().count)
-  return string.format(" [Lazy]  %s  %s", lazy_status, M.lazy(true))
-end
-
 local stl_mason = function()
   local mason = require("mason-registry")
   local mason_status = "Installed: " .. #mason.get_installed_packages() .. "/" .. #mason.get_all_package_specs()
@@ -441,9 +417,6 @@ function STL.get()
   local ft = vim.bo.filetype
   if ft == "snacks_dashboard" then
     return "%#Normal#"
-  end
-  if ft == "lazy" then
-    return stl_lazy()
   end
   if ft == "mason" then
     return stl_mason()

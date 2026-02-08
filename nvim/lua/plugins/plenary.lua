@@ -1,6 +1,3 @@
-return {
-  {
-    "nvim-lua/plenary.nvim",
-    lazy = true,
-  },
-}
+vim.pack.add({
+  "https://github.com/nvim-lua/plenary.nvim",
+})

@@ -2,33 +2,34 @@ if vim.env.NVIM_LSP_DISABLED and not vim.env.NVIM_LSP_RUST then
   return {}
 end
 
-return {
+local utils = require("utils") ---@as MaoUtils
+local lazy = utils.pack.lazy
+
+vim.pack.add({
+  "https://github.com/mrcjkb/rustaceanvim",
   {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "rust", "ron" },
+    src = "https://github.com/Saecki/crates.nvim",
+    data = {
+      event = { "BufRead Cargo.toml" },
+      config = function()
+        require("crates").setup({
+          completion = {
+            crates = {
+              enabled = true,
+            },
+          },
+          lsp = {
+            enabled = true,
+            actions = true,
+            completion = true,
+            hover = true,
+          },
+        })
+      end,
     },
   },
-  {
-    "Saecki/crates.nvim",
-    event = { "BufRead Cargo.toml" },
-    opts = {
-      completion = {
-        crates = {
-          enabled = true,
-        },
-      },
-      lsp = {
-        enabled = true,
-        actions = true,
-        completion = true,
-        hover = true,
-      },
-    },
-  },
-  {
-    "mrcjkb/rustaceanvim",
-    version = "*",
-    lazy = false,
-  },
-}
+}, {
+  load = lazy,
+})
+
+require("nvim-treesitter").install({ "rust", "ron" })

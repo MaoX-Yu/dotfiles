@@ -1,4 +1,5 @@
 ---@class MaoUtils
+---@field pack PackUtils
 ---@field stl StlUtils
 
 return setmetatable({}, {

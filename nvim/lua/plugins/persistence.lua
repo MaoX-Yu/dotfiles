@@ -1,7 +1,15 @@
-return {
+local utils = require("utils") ---@as MaoUtils
+local lazy = utils.pack.lazy
+
+vim.pack.add({
   {
-    "folke/persistence.nvim",
-    event = "BufReadPre",
-    opts = {},
+    src = "https://github.com/folke/persistence.nvim",
+    data = {
+      config = function()
+        require("persistence").setup({})
+      end,
+    },
   },
-}
+}, {
+  load = lazy,
+})

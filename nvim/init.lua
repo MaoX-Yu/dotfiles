@@ -1,4 +1,4 @@
 require("core.options")
-require("core.lazy")
+require("core.pack")
 require("core.keymaps")
 require("core.autocmds")

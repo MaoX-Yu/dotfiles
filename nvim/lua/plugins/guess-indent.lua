@@ -1,8 +1,16 @@
-return {
+local utils = require("utils") ---@as MaoUtils
+local lazy = utils.pack.lazy
+
+vim.pack.add({
   {
-    "nmac427/guess-indent.nvim",
-    cond = not vim.g.vscode,
-    event = { "BufReadPost", "BufNewFile" },
-    opts = {},
+    src = "https://github.com/nmac427/guess-indent.nvim",
+    data = {
+      event = { "BufReadPost", "BufNewFile" },
+      config = function()
+        require("guess-indent").setup({})
+      end,
+    },
   },
-}
+}, {
+  load = lazy,
+})

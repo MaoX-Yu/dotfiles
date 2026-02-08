@@ -1,17 +1,22 @@
-return {
+local utils = require("utils") ---@as MaoUtils
+local lazy = utils.pack.lazy
+
+vim.pack.add({
   {
-    "mfussenegger/nvim-lint",
-    cond = not vim.g.vscode,
-    opts = {
-      linters_by_ft = {},
+    src = "https://github.com/mfussenegger/nvim-lint",
+    data = {
+      config = function()
+        require("lint").linters_by_ft = {
+          markdown = { "markdownlint-cli2" },
+        }
+        vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
+          callback = function()
+            require("lint").try_lint()
+          end,
+        })
+      end,
     },
-    config = function(_, opts)
-      require("lint").linters_by_ft = opts.linters_by_ft
-      vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
-        callback = function()
-          require("lint").try_lint()
-        end,
-      })
-    end,
   },
-}
+}, {
+  load = lazy,
+})

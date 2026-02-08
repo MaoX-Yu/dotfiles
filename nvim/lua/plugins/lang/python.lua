@@ -2,32 +2,21 @@ if vim.env.NVIM_LSP_DISABLED and not vim.env.NVIM_LSP_PYTHON then
   return {}
 end
 
-return {
+local utils = require("utils") ---@as MaoUtils
+local lazy = utils.pack.lazy
+
+vim.pack.add({
   {
-    "mason-org/mason-lspconfig.nvim",
-    opts = {
-      ensure_installed = { "basedpyright", "ruff" },
+    src = "https://github.com/mfussenegger/nvim-dap-python",
+    data = {
+      ft = { "python" },
+      config = function()
+        require("dap-python").setup("debugpy-adapter")
+      end,
     },
   },
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = { "python" },
-    },
-  },
-  {
-    "stevearc/conform.nvim",
-    opts = {
-      formatters_by_ft = {
-        ["python"] = { "ruff_format" },
-      },
-    },
-  },
-  {
-    "mfussenegger/nvim-dap-python",
-    ft = { "python" },
-    config = function()
-      require("dap-python").setup("debugpy-adapter")
-    end,
-  },
-}
+}, {
+  load = lazy,
+})
+
+require("nvim-treesitter").install({ "python" })
