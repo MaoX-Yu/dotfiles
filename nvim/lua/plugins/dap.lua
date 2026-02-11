@@ -1,7 +1,3 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
 local function get_args(config)
   local args = type(config.args) == "function" and (config.args() or {}) or config.args or {} ---@as string | string[]
   local args_str = type(args) == "table" and table.concat(args, " ") or args ---@as string
@@ -18,7 +14,7 @@ local function get_args(config)
   return config
 end
 
-vim.pack.add({
+P:add({
   "https://github.com/theHamsta/nvim-dap-virtual-text",
   "https://github.com/nvim-neotest/nvim-nio",
   {
@@ -53,7 +49,7 @@ vim.pack.add({
         end
 
         -- stylua: ignore
-        map({
+        P.map({
           { "<leader>dB", function() require("dap").set_breakpoint(vim.fn.input('Breakpoint condition: ')) end, desc = "Breakpoint condition" },
           { "<leader>db", function() require("dap").toggle_breakpoint() end, desc = "Toggle breakpoint" },
           { "<leader>dc", function() require("dap").continue() end, desc = "Run/Continue" },
@@ -94,13 +90,11 @@ vim.pack.add({
         end
 
         -- stylua: ignore
-        map({
+        P.map({
           { "<leader>du", function() require("dapui").toggle({}) end, desc = "Dap UI" },
           { "<leader>de", function() require("dapui").eval() end, desc = "Eval", mode = { "n", "x" } },
         })
       end,
     },
   },
-}, {
-  load = lazy,
 })

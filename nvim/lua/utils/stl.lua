@@ -1,4 +1,4 @@
----@class StlUtils
+---@class mao.utils.Stl
 local M = {}
 
 -- stylua: ignore

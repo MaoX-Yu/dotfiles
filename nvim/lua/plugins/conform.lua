@@ -1,8 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/stevearc/conform.nvim",
     data = {
@@ -57,12 +53,10 @@ vim.pack.add({
           require("conform").format({ async = true, lsp_format = "fallback", range = range } --[[@as conform.FormatOpts]])
         end, { range = true })
 
-        map({
+        P.map({
           { "Q", "<cmd>Format<cr>", desc = "Format" },
         })
       end,
     },
   },
-}, {
-  load = lazy,
 })

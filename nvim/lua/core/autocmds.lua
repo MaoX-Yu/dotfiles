@@ -8,20 +8,12 @@ end
 au("FileType", {
   group = augroup("close_with_q"),
   pattern = {
-    "PlenaryTestPopup",
+    "OverseerList",
     "checkhealth",
-    "dbout",
     "gitsigns-blame",
-    "grug-far",
     "help",
-    "neotest-output",
-    "neotest-output-panel",
-    "neotest-summary",
-    "notify",
+    "pager",
     "qf",
-    "spectre_panel",
-    "startuptime",
-    "tsplayground",
   },
   callback = function(args)
     vim.bo[args.buf].buflisted = false

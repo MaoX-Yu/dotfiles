@@ -1,8 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/nvim-mini/mini.nvim",
     data = {
@@ -78,7 +74,7 @@ vim.pack.add({
           },
         })
 
-        map({
+        P.map({
           {
             "<Leader>e",
             function()
@@ -97,6 +93,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

@@ -1,7 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-
-vim.pack.add({
+P:add({
   "https://github.com/HakonHarnes/img-clip.nvim",
   {
     src = "https://github.com/yetone/avante.nvim",
@@ -69,6 +66,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

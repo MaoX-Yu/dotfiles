@@ -1,7 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/saghen/blink.cmp",
     version = vim.version.range("*"),
@@ -32,6 +29,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

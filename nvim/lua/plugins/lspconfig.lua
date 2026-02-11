@@ -1,3 +1,3 @@
-vim.pack.add({
+P:add({
   "https://github.com/neovim/nvim-lspconfig",
 })

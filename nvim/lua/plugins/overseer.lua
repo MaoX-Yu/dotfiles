@@ -1,8 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/stevearc/overseer.nvim",
     data = {
@@ -14,6 +10,7 @@ vim.pack.add({
         "OverseerShell",
         "OverseerTaskAction",
       },
+      event = { "BufReadPost", "BufNewFile" },
       config = function()
         require("overseer").setup({
           dap = true,
@@ -22,7 +19,7 @@ vim.pack.add({
           },
         })
 
-        map({
+        P.map({
           { "<Leader>ow", "<Cmd>OverseerToggle<CR>", desc = "Toggle task list" },
           { "<Leader>oo", "<Cmd>OverseerRun<CR>", desc = "Run task" },
           { "<Leader>ot", "<Cmd>OverseerTaskAction<CR>", desc = "Task action" },
@@ -31,6 +28,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

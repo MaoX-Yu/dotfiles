@@ -1,8 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/mason-org/mason.nvim",
     data = {
@@ -24,12 +20,10 @@ vim.pack.add({
           },
         } --[[@as MasonSettings]])
 
-        map({
+        P.map({
           { "<Leader>cm", "<Cmd>Mason<CR>", desc = "Mason" },
         })
       end,
     },
   },
-}, {
-  load = lazy,
 })

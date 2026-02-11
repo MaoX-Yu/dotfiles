@@ -1,7 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/nvim-treesitter/nvim-treesitter",
     data = {
@@ -10,11 +7,19 @@ vim.pack.add({
           "bash",
           "c",
           "diff",
+          "go",
+          "gomod",
+          "gosum",
+          "gowork",
           "json",
           "lua",
           "luadoc",
+          "markdown",
+          "markdown_inline",
+          "python",
           "query",
           "regex",
+          "rust",
           "toml",
           "vim",
           "vimdoc",
@@ -109,6 +114,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

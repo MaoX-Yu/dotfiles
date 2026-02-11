@@ -1,7 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/folke/which-key.nvim",
     data = {
@@ -97,6 +94,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

@@ -1,7 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/lewis6991/gitsigns.nvim",
     data = {
@@ -87,6 +84,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

@@ -1,7 +1,3 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
 local inc_selection = {
   actions = {
     ["<M-o>"] = "next",
@@ -9,7 +5,7 @@ local inc_selection = {
   },
 }
 
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/folke/flash.nvim",
     data = {
@@ -32,7 +28,7 @@ vim.pack.add({
         })
 
         -- stylua: ignore
-        map({
+        P.map({
           { "s", mode = { "n", "x", "o" }, function() require("flash").jump() end, desc = "Flash" },
           { "<M-o>", mode = { "n", "o", "x" }, function() require("flash").treesitter(inc_selection) end, desc = "Flash Treesitter" },
           { "r", mode = "o", function() require("flash").remote() end, desc = "Remote flash" },
@@ -42,6 +38,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

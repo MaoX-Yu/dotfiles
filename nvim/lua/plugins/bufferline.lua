@@ -1,8 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/akinsho/bufferline.nvim",
     data = {
@@ -38,7 +34,7 @@ vim.pack.add({
           highlights = highlights,
         })
 
-        map({
+        P.map({
           { "<Leader>bp", "<Cmd>BufferLineTogglePin<CR>", desc = "Toggle pin" },
           { "<Leader>bP", "<Cmd>BufferLineGroupClose ungrouped<CR>", desc = "Close non-pinned buffers" },
           { "<Leader>br", "<Cmd>BufferLineCloseRight<CR>", desc = "Close buffers to the right" },
@@ -47,6 +43,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

@@ -1,5 +1,5 @@
-local utils = require("utils") ---@as MaoUtils
-local hl_groups = utils.stl.hl_groups
+local utils = require("utils.stl")
+local hl_groups = utils.hl_groups
 local au = vim.api.nvim_create_autocmd
 
 local group = vim.api.nvim_create_augroup("mao.statusline", { clear = true })
@@ -27,23 +27,23 @@ function M.fname()
     if is_new_file() then
       fname = string.format("%s %s", fname, symbols.newfile)
     end
-    return utils.stl.escape(fname)
+    return utils.escape(fname)
   end
 
   -- Terminal buffer, show terminal command and id
   if vim.bo.bt == "terminal" then
     local id, cmd = bname:match("^term://.*/(%d+):(.*)")
-    return id and cmd and string.format("%s (%s)", utils.stl.escape(vim.fs.normalize(cmd)), id) or "%F"
+    return id and cmd and string.format("%s (%s)", utils.escape(vim.fs.normalize(cmd)), id) or "%F"
   end
 
   -- Other special buffer types
   local prefix, suffix = bname:match("^%s*(%S+)://(.*)")
   if prefix and suffix then
-    return string.format("[%s] %s", utils.stl.escape(utils.stl.snake_to_camel(prefix)), utils.stl.escape(suffix))
+    return string.format("[%s] %s", utils.escape(utils.snake_to_camel(prefix)), utils.escape(suffix))
   end
 
   if bname == "" and vim.bo.ft ~= "" and vim.bo.ft ~= "qf" then
-    return string.format("[%s]", utils.stl.escape(utils.stl.snake_to_camel(vim.bo.ft)))
+    return string.format("[%s]", utils.escape(utils.snake_to_camel(vim.bo.ft)))
   end
 
   return "%F"
@@ -83,7 +83,7 @@ end
 
 function M.branch()
   local branch = vim.b.gitsigns_status_dict and vim.b.gitsigns_status_dict.head or ""
-  return branch ~= "" and string.format(" %s", utils.stl.escape(branch)) or ""
+  return branch ~= "" and string.format(" %s", utils.escape(branch)) or ""
 end
 
 au("DiagnosticChanged", {
@@ -98,7 +98,7 @@ au("DiagnosticChanged", {
       if cnt > 0 then
         local signs_text = vim.tbl_get(vim.diagnostic.config() --[[@as vim.diagnostic.Opts]], "signs", "text")
           or { "E:", "W:", "I:", "H:" }
-        table.insert(active_diag, utils.stl.hl(signs_text[severity_nr] .. cnt, hl_groups[severity]))
+        table.insert(active_diag, utils.hl(signs_text[severity_nr] .. cnt, hl_groups[severity]))
         table.insert(inactive_diag, signs_text[severity_nr] .. cnt)
       end
     end
@@ -209,7 +209,7 @@ function M.lsp_progress()
     " %s %s",
     table.concat(
       vim.tbl_map(function(id)
-        return utils.stl.escape(server_info[id].name)
+        return utils.escape(server_info[id].name)
       end, server_ids),
       ", "
     ),
@@ -226,21 +226,21 @@ function M.gitdiff(active)
   local diff_str = {}
   if added > 0 then
     if active then
-      table.insert(diff_str, utils.stl.hl(string.format("+%d", added), hl_groups.diff_add))
+      table.insert(diff_str, utils.hl(string.format("+%d", added), hl_groups.diff_add))
     else
       table.insert(diff_str, string.format("+%d", added))
     end
   end
   if changed > 0 then
     if active then
-      table.insert(diff_str, utils.stl.hl(string.format("~%d", changed), hl_groups.diff_change))
+      table.insert(diff_str, utils.hl(string.format("~%d", changed), hl_groups.diff_change))
     else
       table.insert(diff_str, string.format("~%d", changed))
     end
   end
   if removed > 0 then
     if active then
-      table.insert(diff_str, utils.stl.hl(string.format("-%d", removed), hl_groups.diff_remove))
+      table.insert(diff_str, utils.hl(string.format("-%d", removed), hl_groups.diff_remove))
     else
       table.insert(diff_str, string.format("-%d", removed))
     end
@@ -277,7 +277,7 @@ function M.debug(active)
   if package.loaded["dap"] and require("dap").status() ~= "" then
     local dap = " " .. require("dap").status()
     if active then
-      return utils.stl.hl(dap, hl_groups.debug)
+      return utils.hl(dap, hl_groups.debug)
     else
       return dap
     end
@@ -306,7 +306,7 @@ function M.overseer(active)
         local status_tasks = tasks_by_status[status]
         if icons[status] and status_tasks then
           if active then
-            return utils.stl.hl(string.format("%s%s", icons[status], #status_tasks), hl_groups[status])
+            return utils.hl(string.format("%s%s", icons[status], #status_tasks), hl_groups[status])
           else
             return string.format("%s%s", icons[status], #status_tasks)
           end
@@ -319,7 +319,7 @@ end
 
 function M.showcmd_msg(active)
   if active then
-    return utils.stl.hl("%S", hl_groups.showcmd)
+    return utils.hl("%S", hl_groups.showcmd)
   else
     return "%S"
   end

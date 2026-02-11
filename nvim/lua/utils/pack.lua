@@ -1,5 +1,6 @@
----@class PackUtils
-local M = {}
+---@class mao.utils.Pack
+---@field specs vim.pack.Spec[]
+local Pack = {}
 
 ---Split string by space
 ---@param str string
@@ -13,8 +14,8 @@ local function split(str)
 end
 
 ---Lazy load plugin by Command, Autocmd and FileType
----@param plug vim.pack.Plug @plugin
-function M.lazy(plug)
+---@param plug vim.pack.Plug
+local function lazy(plug)
   local data = plug.spec.data or {}
   if not data.cmd and not data.event and not data.ft then
     vim.cmd.packadd(plug.spec.name)
@@ -63,6 +64,16 @@ function M.lazy(plug)
   end
 end
 
+---New Pack
+---@return mao.utils.Pack
+function Pack.new()
+  return setmetatable({
+    specs = {},
+  }, {
+    __index = Pack,
+  })
+end
+
 ---@class mao.pack.map.Spec
 ---@field [1] string
 ---@field [2] string | function
@@ -73,10 +84,25 @@ end
 
 ---Mappings
 ---@param specs mao.pack.map.Spec[]
-function M.map(specs)
+function Pack.map(specs)
   for _, spec in ipairs(specs) do
     vim.keymap.set(spec.mode or "n", spec[1], spec[2], { desc = spec.desc, nowait = spec.nowait, expr = spec.expr })
   end
 end
 
-return M
+---Add plugins
+---@param specs (string | vim.pack.Spec)[]
+---@return mao.utils.Pack
+function Pack:add(specs)
+  vim.list_extend(self.specs, specs)
+  return self
+end
+
+---Load all plugins
+function Pack:load()
+  vim.pack.add(self.specs, {
+    load = lazy,
+  })
+end
+
+return Pack

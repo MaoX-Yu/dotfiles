@@ -1,11 +1,4 @@
-if vim.env.NVIM_LSP_DISABLED and not vim.env.NVIM_LSP_PYTHON then
-  return {}
-end
-
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/mfussenegger/nvim-dap-python",
     data = {
@@ -15,8 +8,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })
-
-require("nvim-treesitter").install({ "python" })

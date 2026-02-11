@@ -1,7 +1,3 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
 ---@param increment boolean
 ---@param g? boolean
 ---@return string
@@ -14,7 +10,7 @@ local function dial(increment, g)
   return require("dial.map")[func](group)
 end
 
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/monaqa/dial.nvim",
     data = {
@@ -113,7 +109,7 @@ vim.pack.add({
         vim.g.dials_by_ft = opts.dials_by_ft
 
         -- stylua: ignore
-        map({
+        P.map({
           { "<C-a>", function() return dial(true) end, expr = true, desc = "Increment", mode = {"n", "v"} },
           { "<C-x>", function() return dial(false) end, expr = true, desc = "Decrement", mode = {"n", "v"} },
           { "g<C-a>", function() return dial(true, true) end, expr = true, desc = "Increment", mode = {"n", "v"} },
@@ -122,6 +118,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

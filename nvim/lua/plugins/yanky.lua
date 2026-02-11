@@ -1,8 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/gbprod/yanky.nvim",
     data = {
@@ -14,7 +10,7 @@ vim.pack.add({
           },
         })
 
-        map({
+        P.map({
           { "<Leader>p", "<Cmd>YankyRingHistory<CR>", mode = { "n", "x" }, desc = "Open yank history" },
           { "y", "<Plug>(YankyYank)", mode = { "n", "x" }, desc = "Yank text" },
           { "p", "<Plug>(YankyPutAfter)", mode = { "n", "x" }, desc = "Put text after cursor" },
@@ -43,6 +39,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

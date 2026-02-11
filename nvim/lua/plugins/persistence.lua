@@ -1,7 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/folke/persistence.nvim",
     data = {
@@ -10,6 +7,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

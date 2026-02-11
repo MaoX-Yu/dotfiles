@@ -1,8 +1,4 @@
-local utils = require("utils") ---@as MaoUtils
-local lazy = utils.pack.lazy
-local map = utils.pack.map
-
-vim.pack.add({
+P:add({
   {
     src = "https://github.com/folke/snacks.nvim",
     data = {
@@ -131,7 +127,7 @@ vim.pack.add({
         })
 
         -- stylua: ignore
-        map({
+        P.map({
           -- Top Pickers & Explorer
           { "<leader><space>", function() Snacks.picker.smart() end, desc = "Smart find files" },
           { "<leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
@@ -195,6 +191,4 @@ vim.pack.add({
       end,
     },
   },
-}, {
-  load = lazy,
 })

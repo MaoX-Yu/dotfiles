@@ -1,3 +1,7 @@
+local Pack = require("utils.pack")
+
+_G.P = Pack.new()
+
 -- Theme
 require("plugins.catppuccin")
 
@@ -40,7 +44,7 @@ require("plugins.yanky")
 
 -- Lang
 require("plugins.lang.go")
-require("plugins.lang.markdown")
-require("plugins.lang.nushell")
 require("plugins.lang.python")
 require("plugins.lang.rust")
+
+P:load()
