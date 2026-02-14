@@ -18,7 +18,7 @@ P:add({
               package_pending = "⟳",
             },
           },
-        } --[[@as MasonSettings]])
+        })
 
         P.map({
           { "<Leader>cm", "<Cmd>Mason<CR>", desc = "Mason" },

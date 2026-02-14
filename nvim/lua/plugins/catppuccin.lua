@@ -81,7 +81,7 @@ P:add({
               StatusLineOverseerFAILURE = { fg = C.red },
             }
           end,
-        } --[[@as CatppuccinOptions]])
+        })
 
         vim.cmd.colorscheme("catppuccin")
       end,

@@ -25,7 +25,7 @@ P:add({
           sources = {
             default = { "lsp", "path", "snippets", "buffer" },
           },
-        } --[[@as blink.cmp.Config]])
+        })
       end,
     },
   },

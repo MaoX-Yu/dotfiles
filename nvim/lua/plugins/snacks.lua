@@ -66,8 +66,9 @@ P:add({
               height = 0.8,
             },
           },
-        } --[[@as snacks.Config]])
+        })
 
+        ---@diagnostic disable: undefined-global
         vim.api.nvim_create_autocmd("User", {
           callback = function()
             -- Create some toggle mappings

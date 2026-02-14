@@ -3,6 +3,7 @@ P:add({
     src = "https://github.com/nvim-mini/mini.nvim",
     data = {
       config = function()
+        ---@diagnostic disable: undefined-global
         local gen_spec = require("mini.ai").gen_spec
         require("mini.ai").setup({
           custom_textobjects = {

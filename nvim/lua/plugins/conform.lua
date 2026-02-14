@@ -40,7 +40,7 @@ P:add({
               return { timeout_ms = 3000 }
             end
           end,
-        } --[[@as conform.setupOpts]])
+        })
         vim.api.nvim_create_user_command("Format", function(args)
           local range = nil
           if args.count ~= -1 then
@@ -50,7 +50,7 @@ P:add({
               ["end"] = { args.line2, end_line:len() },
             }
           end
-          require("conform").format({ async = true, lsp_format = "fallback", range = range } --[[@as conform.FormatOpts]])
+          require("conform").format({ async = true, lsp_format = "fallback", range = range })
         end, { range = true })
 
         P.map({

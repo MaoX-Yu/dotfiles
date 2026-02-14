@@ -90,7 +90,7 @@ P:add({
               { "<C-_>", hidden = true },
             },
           },
-        } --[[@as wk.Opts]])
+        })
       end,
     },
   },

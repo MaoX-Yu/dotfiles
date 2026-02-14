@@ -22,7 +22,7 @@ P:add({
     data = {
       config = function()
         ---@diagnostic disable-next-line: missing-fields
-        require("nvim-dap-virtual-text").setup({} --[[@as nvim_dap_virtual_text_options]])
+        require("nvim-dap-virtual-text").setup({})
 
         vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
@@ -78,7 +78,7 @@ P:add({
         local dap = require("dap")
         local dapui = require("dapui")
         ---@diagnostic disable-next-line: missing-fields
-        dapui.setup({} --[[@as dapui.Config]])
+        dapui.setup({})
         dap.listeners.after.event_initialized["dapui_config"] = function()
           dapui.open({})
         end

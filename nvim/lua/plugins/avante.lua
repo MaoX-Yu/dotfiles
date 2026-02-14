@@ -62,7 +62,7 @@ P:add({
             select_model = "<Leader>A?",
             select_history = "<Leader>Ah",
           },
-        } --[[@as avante.Config]])
+        })
       end,
     },
   },
