@@ -3,20 +3,19 @@ local M = {}
 
 -- stylua: ignore
 M.hl_groups = {
-  showcmd     = "StatusLineShowcmd",
-  diff_add    = "StatusLineAdd",
-  diff_change = "StatusLineChange",
-  diff_remove = "StatusLineRemove",
-  error       = "StatusLineError",
-  warn        = "StatusLineWarn",
-  info        = "StatusLineInfo",
-  hint        = "StatusLineHint",
-  lazy        = "StatusLineLazy",
-  debug       = "StatusLineDebug",
-  RUNNING     = "StatusLineOverseerRUNNING",
-  SUCCESS     = "StatusLineOverseerSUCCESS",
-  CANCELED    = "StatusLineOverseerCANCELED",
-  FAILURE     = "StatusLineOverseerFAILURE",
+  showcmd     = "Statement",
+  diff_add    = "GitSignsAdd",
+  diff_change = "GitSignsChange",
+  diff_remove = "GitSignsDelete",
+  error       = "DiagnosticSignError",
+  warn        = "DiagnosticSignWarn",
+  info        = "DiagnosticSignInfo",
+  hint        = "DiagnosticSignHint",
+  debug       = "Error",
+  RUNNING     = "OverseerRUNNING",
+  SUCCESS     = "OverseerSUCCESS",
+  CANCELED    = "OverseerCANCELED",
+  FAILURE     = "OverseerFAILURE",
 }
 
 ---Get string representation of a string with highlight

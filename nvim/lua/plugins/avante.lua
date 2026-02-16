@@ -17,7 +17,6 @@ P:add({
           },
         })
 
-        ---@diagnostic disable: missing-fields
         require("avante").setup({
           provider = "deepseek",
           behaviour = {

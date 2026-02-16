@@ -147,7 +147,7 @@ au("LspProgress", {
     local now = vim.uv.now()
     local client = vim.lsp.get_client_by_id(id) or {}
     server_info[id] = {
-      name = client.name,
+      name = client.name or "unknown",
       timestamp = now,
       type = args.data and args.data.params and args.data.params.value and args.data.params.value.kind,
     } -- Update LSP progress data

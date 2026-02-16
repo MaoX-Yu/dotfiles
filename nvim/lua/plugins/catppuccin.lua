@@ -63,22 +63,6 @@ P:add({
 
               -- Overseer
               OverseerTask = { fg = C.lavender },
-
-              -- StatusLine
-              StatusLineAdd = { fg = C.green },
-              StatusLineChange = { fg = C.yellow },
-              StatusLineRemove = { fg = C.red },
-              StatusLineError = { fg = C.red },
-              StatusLineWarn = { fg = C.yellow },
-              StatusLineInfo = { fg = C.sky },
-              StatusLineHint = { fg = C.teal },
-              StatusLineShowcmd = { fg = C.mauve },
-              StatusLineLazy = { fg = C.pink },
-              StatusLineDebug = { fg = C.red },
-              StatusLineOverseerRUNNING = { fg = C.yellow },
-              StatusLineOverseerSUCCESS = { fg = C.green },
-              StatusLineOverseerCANCELED = { fg = C.overlay2 },
-              StatusLineOverseerFAILURE = { fg = C.red },
             }
           end,
         })

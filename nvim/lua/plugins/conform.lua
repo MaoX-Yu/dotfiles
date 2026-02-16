@@ -52,11 +52,11 @@ P:add({
           end
           require("conform").format({ async = true, lsp_format = "fallback", range = range })
         end, { range = true })
-
-        P.map({
-          { "Q", "<cmd>Format<cr>", desc = "Format" },
-        })
       end,
     },
   },
+})
+
+P.map({
+  { "Q", "<Cmd>Format<CR>", desc = "Format" },
 })

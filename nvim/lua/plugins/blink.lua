@@ -5,7 +5,6 @@ P:add({
     data = {
       event = { "InsertEnter" },
       config = function()
-        ---@diagnostic disable: missing-fields
         require("blink.cmp").setup({
           keymap = {
             preset = "super-tab",

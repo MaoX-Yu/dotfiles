@@ -3,7 +3,6 @@ P:add({
     src = "https://github.com/folke/which-key.nvim",
     data = {
       config = function()
-        ---@diagnostic disable: missing-fields
         require("which-key").setup({
           preset = "helix",
           triggers = {

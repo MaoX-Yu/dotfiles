@@ -9,7 +9,6 @@ P:add({
       },
       event = { "BufReadPre", "BufNewFile" },
       config = function()
-        ---@diagnostic disable-next-line: missing-fields
         require("mason").setup({
           ui = {
             icons = {
@@ -19,11 +18,11 @@ P:add({
             },
           },
         })
-
-        P.map({
-          { "<Leader>cm", "<Cmd>Mason<CR>", desc = "Mason" },
-        })
       end,
     },
   },
+})
+
+P.map({
+  { "<Leader>cm", "<Cmd>Mason<CR>", desc = "Mason" },
 })
