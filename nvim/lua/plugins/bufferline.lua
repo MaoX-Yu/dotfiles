@@ -2,7 +2,12 @@ P:add({
   {
     src = "https://github.com/akinsho/bufferline.nvim",
     data = {
-      event = { "BufReadPost", "BufNewFile" },
+      event = {
+        "BufReadPost",
+        "BufNewFile",
+        "TabEnter",
+        "TabNew",
+      },
       config = function()
         local O = require("catppuccin").options
         local C = require("catppuccin.palettes").get_palette(O.flavour)
@@ -18,6 +23,7 @@ P:add({
           options = {
             always_show_bufferline = false,
             close_command = function(bufnr)
+              ---@diagnostic disable-next-line: undefined-global
               Snacks.bufdelete(bufnr)
             end,
             diagnostics = "nvim_lsp",
