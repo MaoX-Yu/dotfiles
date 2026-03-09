@@ -71,6 +71,23 @@ map("n", "<Leader>cL", "<Cmd>checkhealth vim.lsp<CR>", { desc = "LSP info" })
 map({ "n", "v" }, "<Leader>a", vim.lsp.buf.code_action, { desc = "Code action", nowait = true })
 map("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename" })
 
+-- Treesitter
+map({ "n", "x", "o" }, "<M-o>", function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_parent(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(vim.v.count1)
+  end
+end, { desc = "Select parent treesitter node" })
+
+map({ "x", "o" }, "<M-i>", function()
+  if vim.treesitter.get_parser(nil, nil, { error = false }) then
+    require("vim.treesitter._select").select_child(vim.v.count1)
+  else
+    vim.lsp.buf.selection_range(-vim.v.count1)
+  end
+end, { desc = "Select child treesitter node" })
+
 -- Highlights under cursor
 map("n", "<Leader>ui", vim.show_pos, { desc = "Inspect pos" })
 map("n", "<Leader>uI", "<Cmd>InspectTree<CR>", { desc = "Inspect tree" })
