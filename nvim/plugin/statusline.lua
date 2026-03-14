@@ -89,8 +89,8 @@ end
 au("DiagnosticChanged", {
   group = group,
   desc = "Update diagnostics cache for the status line.",
-  callback = function(args)
-    local count = vim.diagnostic.count(args.buf)
+  callback = function(ev)
+    local count = vim.diagnostic.count(ev.buf)
     local active_diag = {}
     local inactive_diag = {}
     for severity_nr, severity in ipairs({ "error", "warn", "info", "hint" }) do
@@ -102,8 +102,8 @@ au("DiagnosticChanged", {
         table.insert(inactive_diag, signs_text[severity_nr] .. cnt)
       end
     end
-    vim.b[args.buf].active_diag_cache = table.concat(active_diag, " ")
-    vim.b[args.buf].inactive_diag_cache = table.concat(inactive_diag, " ")
+    vim.b[ev.buf].active_diag_cache = table.concat(active_diag, " ")
+    vim.b[ev.buf].inactive_diag_cache = table.concat(inactive_diag, " ")
   end,
 })
 
@@ -138,18 +138,18 @@ local server_info = {}
 au("LspProgress", {
   desc = "Update LSP progress info for the status line.",
   group = group,
-  callback = function(args)
+  callback = function(ev)
     if spinner_timer then
       spinner_timer:start(spinner_progress_keep, spinner_progress_keep, vim.schedule_wrap(vim.cmd.redrawstatus))
     end
 
-    local id = args.data.client_id
+    local id = ev.data.client_id
     local now = vim.uv.now()
     local client = vim.lsp.get_client_by_id(id) or {}
     server_info[id] = {
       name = client.name or "unknown",
       timestamp = now,
-      type = args.data and args.data.params and args.data.params.value and args.data.params.value.kind,
+      type = ev.data and ev.data.params and ev.data.params.value and ev.data.params.value.kind,
     } -- Update LSP progress data
     -- Clear client message after a short time if no new message is received
     vim.defer_fn(function()
@@ -429,8 +429,8 @@ end
 
 au({ "FileChangedShellPost", "DiagnosticChanged", "LspProgress" }, {
   group = group,
-  callback = function(args)
-    vim.api.nvim__redraw({ buf = args.buf, statusline = true })
+  callback = function(ev)
+    vim.api.nvim__redraw({ buf = ev.buf, statusline = true })
   end,
 })
 

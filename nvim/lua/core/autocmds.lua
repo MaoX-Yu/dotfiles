@@ -15,14 +15,14 @@ au("FileType", {
     "pager",
     "qf",
   },
-  callback = function(args)
-    vim.bo[args.buf].buflisted = false
+  callback = function(ev)
+    vim.bo[ev.buf].buflisted = false
     vim.schedule(function()
       vim.keymap.set("n", "q", function()
         vim.cmd("close")
-        pcall(vim.api.nvim_buf_delete, args.buf, { force = true })
+        pcall(vim.api.nvim_buf_delete, ev.buf, { force = true })
       end, {
-        buffer = args.buf,
+        buffer = ev.buf,
         silent = true,
         desc = "Quit buffer",
       })
@@ -51,9 +51,9 @@ au("VimResized", {
 -- Go to last loc when opening a buffer
 au("BufReadPost", {
   group = augroup("last_loc"),
-  callback = function(args)
+  callback = function(ev)
     local exclude = { "gitcommit" }
-    local buf = args.buf
+    local buf = ev.buf
     if vim.tbl_contains(exclude, vim.bo[buf].filetype) or vim.b[buf].myau_last_loc then
       return
     end
@@ -69,11 +69,11 @@ au("BufReadPost", {
 -- Auto create dir when saving a file, in case some intermediate directory does not exist
 au("BufWritePre", {
   group = augroup("auto_create_dir"),
-  callback = function(args)
-    if args.match:match("^%w%w+:[\\/][\\/]") then
+  callback = function(ev)
+    if ev.match:match("^%w%w+:[\\/][\\/]") then
       return
     end
-    local file = vim.uv.fs_realpath(args.match) or args.match
+    local file = vim.uv.fs_realpath(ev.match) or ev.match
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
