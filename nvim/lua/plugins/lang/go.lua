@@ -4,7 +4,7 @@ P:add({
     data = {
       ft = { "go" },
       config = function()
-        require("nvim-dap-go").setup({})
+        require("dap-go").setup({})
       end,
     },
   },
