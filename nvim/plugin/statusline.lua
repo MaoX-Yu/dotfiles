@@ -68,6 +68,8 @@ function M.fileinfo()
 
   if not vim.bo.modifiable or vim.bo.readonly then
     table.insert(info, "%%")
+  elseif vim.bo.modified then
+    table.insert(info, "*")
   else
     table.insert(info, "-")
   end

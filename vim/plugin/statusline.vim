@@ -11,6 +11,8 @@ def GetFileinfo(): string
 
     if !&modifiable || &readonly
         add(info, '%%')    
+    elseif &modified
+        add(info, '*')
     else
         add(info, '-')
     endif

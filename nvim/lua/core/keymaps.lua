@@ -6,6 +6,7 @@ del("n", "grr")
 del("n", "grn")
 del("n", "gri")
 del("n", "grt")
+del("n", "grx")
 del({ "n", "v" }, "gra")
 
 -- Better up/down
