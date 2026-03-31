@@ -27,7 +27,7 @@ P:add({
                   action = ":lua require('persistence').load({ last = true })",
                 },
                 { icon = " ", key = "l", desc = "Pack", action = ":lua vim.pack.update()" },
-                { icon = " ", key = "q", desc = "Quit", action = ":qa" },
+                { icon = " ", key = "q", desc = "Quit", action = ":q" },
               },
             },
             sections = {
