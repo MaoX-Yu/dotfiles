@@ -46,6 +46,10 @@ function M.fname()
     return string.format("[%s]", utils.escape(utils.snake_to_camel(vim.bo.ft)))
   end
 
+  if vim.bo.bt == "help" then
+    return "%F [Help]"
+  end
+
   return "%F"
 end
 
@@ -271,10 +275,6 @@ function M.progress()
   end
 end
 
-function M.filetype()
-  return vim.bo.filetype or ""
-end
-
 function M.debug(active)
   if package.loaded["dap"] and require("dap").status() ~= "" then
     local dap = " " .. require("dap").status()
@@ -377,11 +377,6 @@ function STL.stl_right(active)
   local diag = M.diag(active)
   if diag ~= "" then
     table.insert(right, diag)
-  end
-
-  local filetype = M.filetype()
-  if filetype ~= "" then
-    table.insert(right, filetype)
   end
 
   local position = M.position()
