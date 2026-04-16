@@ -37,6 +37,11 @@ function M.fname()
   end
 
   -- Other special buffer types
+  if vim.bo.ft == "minifiles" then
+    local path = vim.fn.expand("%"):match("^minifiles://%d+/(.*)")
+    return string.format("[Minifiles] %s", path)
+  end
+
   local prefix, suffix = bname:match("^%s*(%S+)://(.*)")
   if prefix and suffix then
     return string.format("[%s] %s", utils.escape(utils.snake_to_camel(prefix)), utils.escape(suffix))
@@ -47,7 +52,7 @@ function M.fname()
   end
 
   if vim.bo.bt == "help" then
-    return "%F [Help]"
+    return "[Help] %F"
   end
 
   return "%F"
@@ -332,8 +337,10 @@ local STL = {}
 function STL.stl_left(active)
   local left = {}
 
-  local fileinfo = M.fileinfo()
-  table.insert(left, fileinfo)
+  if vim.bo.bt ~= "help" and vim.bo.bt ~= "nofile" and vim.bo.bt ~= "quickfix" then
+    local fileinfo = M.fileinfo()
+    table.insert(left, fileinfo)
+  end
 
   local fname = M.fname()
   table.insert(left, fname)
@@ -399,27 +406,10 @@ local function stl()
   })
 end
 
-local stl_mason = function()
-  local mason = require("mason-registry")
-  local mason_status = "Installed: " .. #mason.get_installed_packages() .. "/" .. #mason.get_all_package_specs()
-  return string.format(" [Mason]  %s", mason_status)
-end
-
-local stl_minifiles = function()
-  local path = vim.fn.expand("%"):match("^minifiles://%d+/(.*)")
-  return string.format(" [Minifiles]  %s", path)
-end
-
 function STL.get()
   local ft = vim.bo.filetype
-  if ft == "snacks_dashboard" then
+  if ft == "snacks_dashboard" or ft == "mason" then
     return "%#Normal#"
-  end
-  if ft == "mason" then
-    return stl_mason()
-  end
-  if ft == "minifiles" then
-    return stl_minifiles()
   end
   return stl()
 end
