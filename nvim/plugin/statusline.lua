@@ -308,7 +308,7 @@ function M.overseer(active)
     local tasks = task_list.list_tasks()
     local tasks_by_status = util.tbl_group_by(tasks, "status")
     pieces = vim
-      .iter(ipairs(STATUS.values))
+      .iter(ipairs(STATUS.values)) ---@diagnostic disable-line: param-type-mismatch
       :map(function(_, status)
         local status_tasks = tasks_by_status[status]
         if icons[status] and status_tasks then
@@ -337,7 +337,7 @@ local STL = {}
 function STL.stl_left(active)
   local left = {}
 
-  if vim.bo.bt ~= "help" and vim.bo.bt ~= "nofile" and vim.bo.bt ~= "quickfix" then
+  if vim.bo.bt == "" then
     local fileinfo = M.fileinfo()
     table.insert(left, fileinfo)
   end
