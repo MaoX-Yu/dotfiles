@@ -52,10 +52,6 @@ P:add({
             { "=", group = "indent" },
             { "<Leader>", group = "leader" },
             { "<Leader>o", group = "overseer" },
-            { "<BS>", "<M-i>", desc = "Decrement selection", mode = "x", remap = true },
-            { "<C-Space>", "<M-o>", desc = "Increment selection", mode = { "x", "n" }, remap = true },
-            { "<M-i>", desc = "Decrement selection", mode = "x" },
-            { "<M-o>", desc = "Increment selection", mode = { "x", "n" } },
             {
               mode = { "n", "v" },
               { "[", group = "prev" },

@@ -79,7 +79,8 @@ map({ "n", "x", "o" }, "<M-o>", function()
   else
     vim.lsp.buf.selection_range(vim.v.count1)
   end
-end, { desc = "Select parent treesitter node" })
+end, { desc = "Increment selection" })
+map({ "n", "x", "o" }, "<C-Space>", "<M-o>", { remap = true, desc = "Increment selection" })
 
 map({ "x", "o" }, "<M-i>", function()
   if vim.treesitter.get_parser(nil, nil, { error = false }) then
@@ -87,7 +88,8 @@ map({ "x", "o" }, "<M-i>", function()
   else
     vim.lsp.buf.selection_range(-vim.v.count1)
   end
-end, { desc = "Select child treesitter node" })
+end, { desc = "Decrement selection" })
+map({ "x", "o" }, "<BS>", "<M-i>", { remap = true, desc = "Decrement selection" })
 
 -- Highlights under cursor
 map("n", "<Leader>ui", vim.show_pos, { desc = "Inspect pos" })
