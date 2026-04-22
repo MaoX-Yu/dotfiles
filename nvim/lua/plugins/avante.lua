@@ -60,6 +60,8 @@ P:add({
             },
             select_model = "<Leader>A?",
             select_history = "<Leader>Ah",
+            select_acp_model = "<leader>AM",
+            select_acp_mode = "<leader>Am",
           },
         })
       end,
