@@ -23,8 +23,10 @@ prepend_rules = [{ mime = "{audio,video}/*", use = ["mpv", "play", "reveal"] }]
 id = "git"
 url = "*"
 run = "git"
+group = "git"
 
 [[plugin.prepend_fetchers]]
 id = "git"
 url = "*/"
 run = "git"
+group = "git"
