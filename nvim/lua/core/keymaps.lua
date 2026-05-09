@@ -75,7 +75,7 @@ map("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename" })
 -- Treesitter
 map({ "n", "x", "o" }, "<M-o>", function()
   if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require("vim.treesitter._select").select_parent(vim.v.count1)
+    vim.treesitter.select("parent", vim.v.count1)
   else
     vim.lsp.buf.selection_range(vim.v.count1)
   end
@@ -84,7 +84,7 @@ map({ "n", "x", "o" }, "<C-Space>", "<M-o>", { remap = true, desc = "Increment s
 
 map({ "x", "o" }, "<M-i>", function()
   if vim.treesitter.get_parser(nil, nil, { error = false }) then
-    require("vim.treesitter._select").select_child(vim.v.count1)
+    vim.treesitter.select("child", vim.v.count1)
   else
     vim.lsp.buf.selection_range(-vim.v.count1)
   end
