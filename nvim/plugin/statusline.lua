@@ -260,7 +260,7 @@ function M.gitdiff(active)
 end
 
 function M.position()
-  return "%-14.(%l,%c%V%)"
+  return "%-13.(%l,%c%V%)"
 end
 
 function M.progress()
