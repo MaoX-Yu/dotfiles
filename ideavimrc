@@ -29,12 +29,6 @@ set NERDTree
 nnoremap <Leader>e :NERDTreeToggle<CR>
 nnoremap <Leader>o :NERDTreeFind<CR>
 
-" https://github.com/JetBrains/ideavim/blob/master/doc/IdeaVim%20Plugins.md
-Plug 'vim-scripts/ReplaceWithRegister'
-nmap rs  <Plug>ReplaceWithRegisterOperator
-nmap rss <Plug>ReplaceWithRegisterLine
-xmap rs  <Plug>ReplaceWithRegisterVisual
-
 set easymotion
 map \ <Plug>(easymotion-prefix)
 map s <Plug>(easymotion-prefix)f
@@ -50,16 +44,17 @@ set surround
 " Map <Space> to leader
 let mapleader=" "
 inoremap jj <Esc>
+inoremap <C-l> <Right>
 noremap gs ^
 noremap gh 0
 noremap gl $
 nnoremap <Esc> :noh<CR>
 
 " 拖拽行
-"nnoremap <C-S-j> :move +1<CR>==
-"nnoremap <C-S-k> :move -2<CR>==
-"xnoremap <C-S-j> :move '>+1<CR>gv=gv
-"xnoremap <C-S-k> :move '<-2<CR>gv=gv
+nnoremap <M-j> :move +1<CR>==
+nnoremap <M-k> :move -2<CR>==
+xnoremap <M-j> :move '>+1<CR>gv=gv
+xnoremap <M-k> :move '<-2<CR>gv=gv
 
 " x模式黏贴后重新复制被黏贴内容
 "xnoremap p pgvy
@@ -69,7 +64,10 @@ nnoremap <Leader>y mmggVGy`m
 
 " https://github.com/JetBrains/ideavim
 " IdeaVim: track action Ids
-" run
+" Edit
+imap <C-n> <Action>(EditorDown)
+imap <C-p> <Action>(EditorUp)
+" Run
 nmap <Leader><CR> <Action>(Run)
 " 搜索
 "nmap / <Action>(Find)
@@ -106,11 +104,7 @@ xmap <Leader>a <Action>(ShowIntentionActions)
 " 新建类
 nmap <Leader>nc <Action>(NewClass)
 " 打开终端
-nmap <Leader>ft <Action>(ActivateTerminalToolWindow)
-" 翻译
-xmap <Leader>t <Action>($EditorTranslateAction)<Esc>
-nmap <Leader>T <Action>($ShowTranslationDialogAction)
-nmap <Leader>t viw<Action>($EditorTranslateAction)
+nmap <Leader>t <Action>(ActivateTerminalToolWindow)
 " 重命名
 nmap <Leader>r <Action>(RenameElement)
 " 类wildfire
@@ -155,15 +149,15 @@ sethandler <C-D> i:ide n-v:vim
 sethandler <C-E> i:ide n-v:vim
 sethandler <C-F> i:ide n-v:vim
 sethandler <C-G> a:ide
-sethandler <C-H> a:ide
+sethandler <C-H> i:vim n-v:ide
 sethandler <C-I> i:ide n-v:vim
 sethandler <C-J> a:ide
 sethandler <C-K> a:ide
-sethandler <C-L> a:ide
+sethandler <C-L> i:vim n-v:ide
 sethandler <C-M> a:ide
-sethandler <C-N> i:ide n-v:vim
+sethandler <C-N> a:vim
 sethandler <C-O> i:ide n-v:vim
-sethandler <C-P> i:ide n-v:vim
+sethandler <C-P> a:vim
 sethandler <C-Q> a:ide
 sethandler <C-R> i:ide n-v:vim
 sethandler <C-S> a:ide
