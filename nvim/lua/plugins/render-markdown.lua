@@ -2,7 +2,7 @@ P:add({
   {
     src = "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     data = {
-      ft = { "markdown", "norg", "rmd", "org", "Avante" },
+      ft = { "markdown", "codecompanion" },
       config = function()
         require("render-markdown").setup({
           callout = {
@@ -153,6 +153,7 @@ P:add({
           -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/509
           win_options = { concealcursor = { rendered = "nvc" } },
         })
+        ---@diagnostic disable-next-line: undefined-global
         Snacks.toggle({
           name = "Render Markdown",
           get = function()

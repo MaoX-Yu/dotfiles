@@ -14,7 +14,6 @@ P:add({
   {
     src = "https://github.com/monaqa/dial.nvim",
     data = {
-
       config = function()
         local augend = require("dial.augend")
 

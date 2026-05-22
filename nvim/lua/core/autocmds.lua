@@ -9,11 +9,8 @@ au("FileType", {
   group = augroup("close_with_q"),
   pattern = {
     "OverseerList",
-    "checkhealth",
+    "codecompanion",
     "gitsigns-blame",
-    "help",
-    "pager",
-    "qf",
   },
   callback = function(ev)
     vim.bo[ev.buf].buflisted = false

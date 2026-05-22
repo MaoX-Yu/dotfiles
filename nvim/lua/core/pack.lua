@@ -23,8 +23,8 @@ require("plugins.mason")
 require("plugins.treesitter")
 
 -- Code
-require("plugins.avante")
 require("plugins.blink")
+require("plugins.codecompanion")
 require("plugins.conform")
 require("plugins.dial")
 require("plugins.guess-indent")

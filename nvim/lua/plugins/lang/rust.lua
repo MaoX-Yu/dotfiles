@@ -1,5 +1,8 @@
 P:add({
-  "https://github.com/mrcjkb/rustaceanvim",
+  {
+    src = "https://github.com/mrcjkb/rustaceanvim",
+    version = vim.version.range("^9"),
+  },
   {
     src = "https://github.com/Saecki/crates.nvim",
     data = {
