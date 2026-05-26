@@ -13,6 +13,9 @@ local function split(str)
   return results
 end
 
+---@class vim.pack.Plug
+---@field spec vim.pack.Spec
+
 ---Lazy load plugin by Command, Autocmd and FileType
 ---@param plug vim.pack.Plug
 local function lazy(plug)
@@ -38,8 +41,6 @@ local function lazy(plug)
   end
 
   if data.event or data.ft then
-    local group = vim.api.nvim_create_augroup("mao.pack." .. plug.spec.name, { clear = true })
-
     data.event = data.event or {}
     if data.ft then
       table.insert(data.event, "FileType")
@@ -50,14 +51,14 @@ local function lazy(plug)
       local event = lst[1]
       local pattern = event == "FileType" and data.ft or lst[2]
       vim.api.nvim_create_autocmd(event --[[@as vim.api.keyset.events]], {
-        group = group,
+        group = vim.api.nvim_create_augroup("mao.pack." .. plug.spec.name, { clear = true }),
         pattern = pattern,
+        once = true,
         callback = function()
           vim.cmd.packadd(plug.spec.name)
           if data.config then
             data.config()
           end
-          vim.api.nvim_del_augroup_by_id(group)
         end,
       })
     end
@@ -102,7 +103,7 @@ end
 function Pack:load()
   vim.pack.add(self.specs, {
     load = lazy,
-  })
+  } --[[@as vim.pack.keyset.add]])
 end
 
 return Pack

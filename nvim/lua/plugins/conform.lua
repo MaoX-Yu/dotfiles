@@ -36,7 +36,7 @@ P:add({
             lsp_format = "fallback",
           },
           format_on_save = function(bufnr)
-            if vim.g.autoformat and (vim.b[bufnr].autoformat or vim.b[bufnr].autoformat == nil) then
+            if vim.g.autoformat and (vim.b[bufnr].autoformat == nil or vim.b[bufnr].autoformat) then
               return { timeout_ms = 3000 }
             end
           end,

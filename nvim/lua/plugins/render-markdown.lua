@@ -5,6 +5,7 @@ P:add({
       ft = { "markdown", "codecompanion" },
       config = function()
         require("render-markdown").setup({
+          file_types = { "markdown", "codecompanion" },
           callout = {
             abstract = {
               raw = "[!ABSTRACT]",

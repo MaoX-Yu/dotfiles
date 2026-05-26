@@ -8,7 +8,12 @@ P:add({
           interactions = {
             chat = {
               adapter = "deepseek",
-              model = "deepseek-v4-pro"
+            },
+            inline = {
+              adapter = "deepseek",
+            },
+            cmd = {
+              adapter = "deepseek",
             },
           },
         })
