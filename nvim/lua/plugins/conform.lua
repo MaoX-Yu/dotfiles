@@ -2,8 +2,6 @@ P:add({
   {
     src = "https://github.com/stevearc/conform.nvim",
     data = {
-      cmd = { "Format", "ConformInfo" },
-      event = { "BufWritePre" },
       config = function()
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
         require("conform").setup({

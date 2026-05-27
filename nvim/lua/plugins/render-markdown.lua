@@ -2,7 +2,6 @@ P:add({
   {
     src = "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     data = {
-      ft = { "markdown", "codecompanion" },
       config = function()
         require("render-markdown").setup({
           file_types = { "markdown", "codecompanion" },
