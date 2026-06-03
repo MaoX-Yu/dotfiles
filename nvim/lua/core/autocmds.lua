@@ -9,6 +9,7 @@ au("FileType", {
   group = augroup("close_with_q"),
   pattern = {
     "OverseerList",
+    "checkhealth",
     "codecompanion",
     "gitsigns-blame",
   },

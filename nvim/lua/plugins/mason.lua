@@ -2,12 +2,6 @@ P:add({
   {
     src = "https://github.com/mason-org/mason.nvim",
     data = {
-      cmd = {
-        "Mason",
-        "MasonUpdate",
-        "MasonLog",
-      },
-      event = { "BufReadPre", "BufNewFile" },
       config = function()
         require("mason").setup({
           ui = {
