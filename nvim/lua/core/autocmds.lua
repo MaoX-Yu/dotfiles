@@ -12,6 +12,7 @@ au("FileType", {
     "checkhealth",
     "codecompanion",
     "gitsigns-blame",
+    "nvim-pack",
   },
   callback = function(ev)
     vim.bo[ev.buf].buflisted = false
