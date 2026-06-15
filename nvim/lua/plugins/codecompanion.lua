@@ -1,6 +1,6 @@
 P:add({
   {
-    src = "https://www.github.com/olimorris/codecompanion.nvim",
+    src = "https://github.com/olimorris/codecompanion.nvim",
     version = vim.version.range("^19.0.0"),
     data = {
       config = function()
