@@ -41,6 +41,8 @@ local function lazy(plug)
   end
 
   if data.event or data.ft then
+    local group = vim.api.nvim_create_augroup("mao.pack." .. plug.spec.name, { clear = true })
+
     data.event = data.event or {}
     if data.ft then
       table.insert(data.event, "FileType")
@@ -51,14 +53,14 @@ local function lazy(plug)
       local event = lst[1]
       local pattern = event == "FileType" and data.ft or lst[2]
       vim.api.nvim_create_autocmd(event --[[@as vim.api.keyset.events]], {
-        group = vim.api.nvim_create_augroup("mao.pack." .. plug.spec.name, { clear = true }),
+        group = group,
         pattern = pattern,
-        once = true,
         callback = function()
           vim.cmd.packadd(plug.spec.name)
           if data.config then
             data.config()
           end
+          vim.api.nvim_del_augroup_by_id(group)
         end,
       })
     end
