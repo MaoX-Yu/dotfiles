@@ -23,13 +23,15 @@ vim.diagnostic.config({
 vim.lsp.inlay_hint.enable()
 
 vim.lsp.enable({
+  "basedpyright",
   "emmylua_ls",
   "gopls",
   "jsonls",
   "marksman",
   "nushell",
-  "basedpyright",
   "ruff",
   "taplo",
+  "vtsls",
+  "vue_ls",
   "yamlls",
 })
