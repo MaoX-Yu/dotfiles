@@ -29,6 +29,9 @@ P:add({
             ["go"] = { "goimports" },
             ["markdown"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
             ["python"] = { "ruff_format" },
+            ["vue"] = { "prettier" },
+            ["javascript"] = { "prettier" },
+            ["typescript"] = { "prettier" },
           },
           default_format_opts = {
             lsp_format = "fallback",
