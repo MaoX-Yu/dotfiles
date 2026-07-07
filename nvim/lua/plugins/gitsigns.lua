@@ -23,26 +23,26 @@ P:add({
             end
 
             -- Navigation
-            map("n", "]h", function()
+            map("n", "]g", function()
               if vim.wo.diff then
                 vim.cmd.normal({ "]c", bang = true })
               else
                 gitsigns.nav_hunk("next")
               end
-            end, "Next hunk")
-            map("n", "[h", function()
+            end, "Next git hunk")
+            map("n", "[g", function()
               if vim.wo.diff then
                 vim.cmd.normal({ "[c", bang = true })
               else
                 gitsigns.nav_hunk("prev")
               end
-            end, "Prev hunk")
-            map("n", "]H", function()
+            end, "Prev git hunk")
+            map("n", "]G", function()
               gitsigns.nav_hunk("last")
-            end, "Last hunk")
-            map("n", "[H", function()
+            end, "Last git hunk")
+            map("n", "[G", function()
               gitsigns.nav_hunk("first")
-            end, "First hunk")
+            end, "First git hunk")
 
             -- Actions
             map("n", "<Leader>gh", gitsigns.stage_hunk, "Stage hunk")
