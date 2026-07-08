@@ -6,6 +6,12 @@ P:add({
         ---@diagnostic disable: undefined-global
         local gen_spec = require("mini.ai").gen_spec
         require("mini.ai").setup({
+          mappings = {
+            around_next = "",
+            inside_next = "",
+            around_last = "",
+            inside_last = "",
+          },
           custom_textobjects = {
             o = gen_spec.treesitter({ -- code block
               a = { "@block.outer", "@conditional.outer", "@loop.outer" },
@@ -19,14 +25,6 @@ P:add({
               { "%u[%l%d]+%f[^%l%d]", "%f[%S][%l%d]+%f[^%l%d]", "%f[%P][%l%d]+%f[^%l%d]", "^[%l%d]+%f[^%l%d]" },
               "^().*()$",
             },
-            g = function()
-              local from = { line = 1, col = 1 }
-              local to = {
-                line = vim.fn.line("$"),
-                col = math.max(vim.fn.getline("$"):len(), 1),
-              }
-              return { from = from, to = to }
-            end,
             u = gen_spec.function_call(), -- u for "Usage"
             U = gen_spec.function_call({ name_pattern = "[%w_]" }), -- without dot in function name
           },
