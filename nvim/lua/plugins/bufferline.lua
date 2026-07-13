@@ -36,6 +36,11 @@ P:add({
                 .. (diag.warning and icons.Warning .. diag.warning or "")
               return vim.trim(ret)
             end,
+            custom_filter = function(buf_number)
+              if vim.fn.bufname(buf_number) ~= "[Command Line]" then
+                return true
+              end
+            end,
           },
           highlights = highlights,
         })

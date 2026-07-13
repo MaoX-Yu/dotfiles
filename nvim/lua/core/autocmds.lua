@@ -13,6 +13,7 @@ au("FileType", {
     "codecompanion",
     "gitsigns-blame",
     "nvim-pack",
+    "qf",
   },
   callback = function(ev)
     vim.bo[ev.buf].buflisted = false
