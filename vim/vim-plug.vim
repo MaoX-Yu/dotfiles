@@ -5,11 +5,9 @@ endif
 
 call plug#begin()
 
-Plug 'yegappan/lsp'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
-" LSP
-autocmd User LspSetup call lsp#SetupLspOptions()
-autocmd User LspSetup call lsp#SetupLspServers()
-autocmd User LspSetup call lsp#SetupLspKeymaps()
+" COC
+call lsp#Setup()
