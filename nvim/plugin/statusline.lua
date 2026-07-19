@@ -24,6 +24,9 @@ function M.fname()
       return symbols.unnamed
     end
     local fname = vim.fs.normalize(vim.fn.expand("%:."))
+    if #fname > 40 then
+      fname = vim.fs.normalize(vim.fn.expand("%:p:t"))
+    end
     if is_new_file() then
       fname = string.format("%s %s", fname, symbols.newfile)
     end
