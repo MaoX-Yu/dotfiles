@@ -16,15 +16,14 @@ P:add({
             properties = { "italic" },
             types = { "italic" },
           },
+          auto_integrations = true,
           integrations = {
-            avante = true,
             blink_cmp = true,
             indent_blankline = {
               enabled = true,
               colored_indent_levels = true,
             },
             mason = true,
-            noice = true,
             overseer = true,
             snacks = {
               enabled = true,

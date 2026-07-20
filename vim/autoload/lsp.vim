@@ -27,10 +27,10 @@ function! lsp#Setup() abort
         inoremap <silent><expr> <C-@> coc#refresh()
     endif
 
-    " Use `[g` and `]g` to navigate diagnostics
+    " Use `[d` and `]d` to navigate diagnostics
     " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list
-    nmap <silent><nowait> [g <Plug>(coc-diagnostic-prev)
-    nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
+    nmap <silent><nowait> [d <Plug>(coc-diagnostic-prev)
+    nmap <silent><nowait> ]d <Plug>(coc-diagnostic-next)
 
     " GoTo code navigation
     nmap <silent><nowait> gd <Plug>(coc-definition)
@@ -53,11 +53,11 @@ function! lsp#Setup() abort
     autocmd CursorHold * silent call CocActionAsync('highlight')
 
     " Symbol renaming
-    nmap <Leader>rn <Plug>(coc-rename)
+    nmap <Leader>r  <Plug>(coc-rename)
 
     " Formatting selected code
-    xmap <Leader>f  <Plug>(coc-format-selected)
-    nmap <Leader>f  <Plug>(coc-format-selected)
+    xmap <Leader>cf <Plug>(coc-format-selected)
+    nmap <Leader>cf <Plug>(coc-format-selected)
 
     augroup mygroup
         autocmd!
@@ -71,16 +71,16 @@ function! lsp#Setup() abort
     nmap <Leader>a  <Plug>(coc-codeaction-selected)
 
     " Remap keys for applying code actions at the cursor position
-    nmap <Leader>ac  <Plug>(coc-codeaction-cursor)
+    nmap <Leader>ac <Plug>(coc-codeaction-cursor)
     " Remap keys for apply code actions affect whole buffer
-    nmap <Leader>as  <Plug>(coc-codeaction-source)
+    nmap <Leader>as <Plug>(coc-codeaction-source)
     " Apply the most preferred quickfix action to fix diagnostic on the current line
-    nmap <Leader>qf  <Plug>(coc-fix-current)
+    nmap <Leader>qf <Plug>(coc-fix-current)
 
     " Remap keys for applying refactor code actions
     nmap <silent> <Leader>re <Plug>(coc-codeaction-refactor)
-    xmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
-    nmap <silent> <Leader>r  <Plug>(coc-codeaction-refactor-selected)
+    xmap <silent> <Leader>rs <Plug>(coc-codeaction-refactor-selected)
+    nmap <silent> <Leader>rs <Plug>(coc-codeaction-refactor-selected)
 
     " Run the Code Lens action on the current line
     nmap <Leader>cl  <Plug>(coc-codelens-action)
@@ -122,19 +122,19 @@ function! lsp#Setup() abort
 
     " Mappings for CoCList
     " Show all diagnostics
-    nnoremap <silent><nowait> <Leader>d :<C-u>CocList diagnostics<cr>
+    nnoremap <silent><nowait> <Leader>d  :<C-u>CocList diagnostics<cr>
     " Manage extensions
-    nnoremap <silent><nowait> <Leader>e :<C-u>CocList extensions<cr>
+    nnoremap <silent><nowait> <Leader>ce :<C-u>CocList extensions<cr>
     " Show commands
-    nnoremap <silent><nowait> <Leader>c :<C-u>CocList commands<cr>
+    nnoremap <silent><nowait> <Leader>cc :<C-u>CocList commands<cr>
     " Find symbol of current document
-    nnoremap <silent><nowait> <Leader>o :<C-u>CocList outline<cr>
+    nnoremap <silent><nowait> <Leader>o  :<C-u>CocList outline<cr>
     " Search workspace symbols
-    nnoremap <silent><nowait> <Leader>s :<C-u>CocList -I symbols<cr>
+    nnoremap <silent><nowait> <Leader>cs :<C-u>CocList -I symbols<cr>
     " Do default action for next item
-    nnoremap <silent><nowait> <Leader>j :<C-u>CocNext<CR>
+    nnoremap <silent><nowait> <Leader>j  :<C-u>CocNext<CR>
     " Do default action for previous item
-    nnoremap <silent><nowait> <Leader>k :<C-u>CocPrev<CR>
+    nnoremap <silent><nowait> <Leader>k  :<C-u>CocPrev<CR>
     " Resume latest coc list
-    nnoremap <silent><nowait> <Leader>p :<C-u>CocListResume<CR>
+    nnoremap <silent><nowait> <Leader>cp :<C-u>CocListResume<CR>
 endfunction
