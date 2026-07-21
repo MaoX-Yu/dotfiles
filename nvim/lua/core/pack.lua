@@ -34,7 +34,6 @@ require("plugins.rainbow-bracket")
 -- Editor
 require("plugins.bufferline")
 require("plugins.dap")
-require("plugins.flash")
 require("plugins.gitsigns")
 require("plugins.overseer")
 require("plugins.persistence")

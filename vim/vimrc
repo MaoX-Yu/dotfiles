@@ -56,6 +56,9 @@ set wildmenu
 set wildmode=full
 set wildoptions=fuzzy,pum,tagfile
 
+# Command map
+cnoreabbrev bc bd
+
 # Theme
 if has('termguicolors')
     set termguicolors
@@ -131,7 +134,10 @@ xnoremap <expr> k v:count == 0 ? 'gk' : 'k'
 noremap gs ^
 noremap gh 0
 noremap gl $
+noremap! <C-h> <Left>
 noremap! <C-l> <Right>
+noremap! <M-f> <Cmd>norm! w<CR>
+noremap! <M-b> <Cmd>norm! b<CR>
 
 # Better indenting
 vnoremap < <gv
@@ -152,6 +158,10 @@ nnoremap <Esc> <Cmd>noh<CR><Esc>
 nnoremap <C-q> <Cmd>close<CR>
 tnoremap <C-q> <Cmd>close<CR>
 nnoremap <expr> q &buftype == '' ? 'q' : '<Cmd>close<CR>'
+
+# Picker
+nnoremap <Leader>f :find 
+nnoremap <Leader>/ :grep 
 
 # Buffer
 nnoremap [b <Cmd>bp<CR>

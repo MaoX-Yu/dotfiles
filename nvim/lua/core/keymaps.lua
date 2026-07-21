@@ -17,7 +17,10 @@ map({ "n", "x" }, "k", "v:count == 0 ? 'gk' : 'k'", { desc = "Up", expr = true }
 map("", "gs", "^", { desc = "Goto line first non-blank" })
 map("", "gh", "0", { desc = "Goto line start" })
 map("", "gl", "$", { desc = "Goto line end" })
+map("!", "<C-h>", "<Left>", { desc = "Move left" })
 map("!", "<C-l>", "<Right>", { desc = "Move right" })
+map("!", "<M-f>", "<Cmd>norm! w<CR>", { desc = "Move next word" })
+map("!", "<M-b>", "<Cmd>norm! b<CR>", { desc = "Move prev word" })
 
 -- Escape
 map("i", "jj", "<Esc>", { desc = "Escape" })

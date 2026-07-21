@@ -29,12 +29,6 @@ set NERDTree
 nnoremap <Leader>e :NERDTreeToggle<CR>
 nnoremap <Leader>o :NERDTreeFind<CR>
 
-set easymotion
-map \ <Plug>(easymotion-prefix)
-map s <Plug>(easymotion-prefix)f
-map S <Plug>(easymotion-prefix)F
-
-"set sneak
 set surround
 "set which-key
 
@@ -44,6 +38,7 @@ set surround
 " Map <Space> to leader
 let mapleader=" "
 inoremap jj <Esc>
+inoremap <C-h> <Left>
 inoremap <C-l> <Right>
 noremap gs ^
 noremap gh 0

@@ -61,6 +61,9 @@ o.winblend = 0
 o.winborder = "rounded"
 o.wrap = false
 
+-- Command map
+vim.cmd("cnoreabbrev bc bd")
+
 -- Extui
 if vim.fn.has("nvim-0.12") == 1 then
   require("vim._core.ui2").enable({})
