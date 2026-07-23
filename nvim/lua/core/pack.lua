@@ -24,7 +24,6 @@ require("plugins.treesitter")
 
 -- Code
 require("plugins.blink")
-require("plugins.codecompanion")
 require("plugins.conform")
 require("plugins.dial")
 require("plugins.guess-indent")

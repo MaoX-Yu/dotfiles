@@ -52,7 +52,11 @@ P:add({
             },
           },
           input = { enabled = true },
-          picker = { enabled = true },
+          picker = {
+            layout = {
+              preset = "ivy",
+            },
+          },
           quickfile = { enabled = true },
           scope = { enabled = true },
           statuscolumn = { enabled = true },

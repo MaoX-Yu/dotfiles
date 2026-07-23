@@ -85,8 +85,11 @@ const has_fd = executable('fd')
 
 # Grep
 if has_rg
-    set grepprg=rg\ --vimgrep\ -uu
+    set grepprg=rg\ --vimgrep
     set grepformat^=%f:%l:%c:%m
+
+    command! RgAll set grepprg=rg\ --vimgrep\ -uu
+    command! RgDefault set grepprg=rg\ --vimgrep
 endif
 
 # File picker
