@@ -5,6 +5,9 @@ P:add({
       config = function()
         require("lint").linters_by_ft = {
           markdown = { "markdownlint-cli2" },
+          vue = { "eslint" },
+          javascript = { "eslint" },
+          typescript = { "eslint" },
         }
         vim.api.nvim_create_autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
           callback = function()

@@ -32,6 +32,7 @@ P:add({
             ["vue"] = { "prettier" },
             ["javascript"] = { "prettier" },
             ["typescript"] = { "prettier" },
+            ["json"] = { "prettier" },
           },
           default_format_opts = {
             lsp_format = "fallback",

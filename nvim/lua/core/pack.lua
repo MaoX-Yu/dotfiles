@@ -31,7 +31,6 @@ require("plugins.lint")
 require("plugins.rainbow-bracket")
 
 -- Editor
-require("plugins.bufferline")
 require("plugins.dap")
 require("plugins.gitsigns")
 require("plugins.overseer")
