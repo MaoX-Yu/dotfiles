@@ -68,7 +68,7 @@ P:add({
         end, { desc = "Next function end" })
         map({ "n", "x", "o" }, "][", function()
           move.goto_next_end("@class.outer", "textobjects")
-        end, { desc = "Next clss end" })
+        end, { desc = "Next class end" })
 
         map({ "n", "x", "o" }, "[f", function()
           move.goto_previous_start("@function.outer", "textobjects")
