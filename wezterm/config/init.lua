@@ -1,4 +1,4 @@
-local Wezterm = require("wezterm")
+local wezterm = require("wezterm")
 
 local M = {}
 
@@ -24,7 +24,7 @@ function M.setup(config)
   config.color_scheme = "Catppuccin Mocha"
 
   -- Font
-  config.font = Wezterm.font_with_fallback({
+  config.font = wezterm.font_with_fallback({
     {
       family = "Maple Mono NF CN",
       harfbuzz_features = {},

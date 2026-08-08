@@ -1,10 +1,10 @@
-local Wezterm = require("wezterm")
+local wezterm = require("wezterm")
 
 local M = {}
 
 function M.setup(config)
-  local wsl_domains = Wezterm.default_wsl_domains()
-  local ssh_domains = Wezterm.default_ssh_domains() -- Load SSH Domains from ~/.ssh/config
+  local wsl_domains = wezterm.default_wsl_domains()
+  local ssh_domains = wezterm.default_ssh_domains() -- Load SSH Domains from ~/.ssh/config
 
   for _, domain in ipairs(wsl_domains) do
     domain.default_cwd = "~"

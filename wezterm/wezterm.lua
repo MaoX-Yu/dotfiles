@@ -1,30 +1,30 @@
-local Wezterm = require("wezterm")
-local Windows = require("platforms.windows")
-local Linux = require("platforms.linux")
-local Config = require("config")
-local Events = require("events")
+local wezterm = require("wezterm")
+local windows = require("platforms.windows")
+local linux = require("platforms.linux")
+local config = require("config")
+local events = require("events")
 
 local C = {}
 
-if Wezterm.config_builder then
-  C = Wezterm.config_builder()
+if wezterm.config_builder then
+  C = wezterm.config_builder()
 end
 
 -- For windows host custom configuration
-if Wezterm.target_triple == "x86_64-pc-windows-msvc" then
-  Windows.setup(C)
+if wezterm.target_triple == "x86_64-pc-windows-msvc" then
+  windows.setup(C)
 end
 
 -- For linux host custom configuration
-if Wezterm.target_triple == "x86_64-unknown-linux-gnu" then
-  Linux.setup(C)
+if wezterm.target_triple == "x86_64-unknown-linux-gnu" then
+  linux.setup(C)
 end
 
-Events["new-tab-button"].setup()
-Events["right-status"].setup()
-Events["tab-title"].setup()
-Events["window-resized"].setup()
+events["new-tab-button"].setup()
+events["right-status"].setup()
+events["tab-title"].setup()
+events["window-resized"].setup()
 
-Config.setup(C)
+config.setup(C)
 
 return C

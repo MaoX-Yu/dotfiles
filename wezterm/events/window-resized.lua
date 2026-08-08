@@ -1,15 +1,15 @@
-local Wezterm = require("wezterm")
-local Utils = require("utils")
+local wezterm = require("wezterm")
+local utils = require("utils")
 
 local M = {}
 
 function M.setup()
-  Wezterm.on("window-resized", function(window)
-    Utils.recompute_padding(window)
+  wezterm.on("window-resized", function(window)
+    utils.recompute_padding(window)
   end)
 
-  Wezterm.on("window-config-reloaded", function(window)
-    Utils.recompute_padding(window)
+  wezterm.on("window-config-reloaded", function(window)
+    utils.recompute_padding(window)
   end)
 end
 
