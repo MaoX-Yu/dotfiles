@@ -1,20 +1,59 @@
 local wezterm = require("wezterm")
 local config = require("config")
 
--- Inspired by https://github.com/wez/wezterm/discussions/628#discussioncomment-1874614
-
 local GLYPH_SEMI_CIRCLE_LEFT = ""
--- local GLYPH_SEMI_CIRCLE_LEFT = utf8.char(0xe0b6)
 local GLYPH_SEMI_CIRCLE_RIGHT = ""
--- local GLYPH_SEMI_CIRCLE_RIGHT = utf8.char(0xe0b4)
 local GLYPH_CIRCLE = " "
--- local GLYPH_CIRCLE = utf8.char(0xf111)
 local GLYPH_ADMIN = "󱥠 "
--- local GLYPH_ADMIN = utf8.char(0xfc7e)
+
+local GLYPH_STATIC = wezterm.nerdfonts.cod_book
+local GLYPH_APP_TITLE = wezterm.nerdfonts.cod_terminal
+local GLYPH_FOLDER = wezterm.nerdfonts.md_folder
 
 local M = {}
 
 M.cells = {}
+
+-- Display width: East Asian wide characters count as 2 columns,
+-- combining and zero-width characters count as 0.
+local function display_width(text)
+  local width = 0
+  local ok = pcall(function()
+    for _, cp in utf8.codes(text) do
+      local is_wide = (cp >= 0x1100 and cp <= 0x115F)
+        or (cp >= 0x2E80 and cp <= 0xA4CF)
+        or (cp >= 0xAC00 and cp <= 0xD7A3)
+        or (cp >= 0xF900 and cp <= 0xFAFF)
+        or (cp >= 0xFE30 and cp <= 0xFE4F)
+        or (cp >= 0xFF00 and cp <= 0xFF60)
+        or (cp >= 0xFFE0 and cp <= 0xFFE6)
+        or (cp >= 0x20000 and cp <= 0x2FFFD)
+        or (cp >= 0x30000 and cp <= 0x3FFFD)
+      local is_zero_width = (cp >= 0x0300 and cp <= 0x036F)
+        or (cp >= 0x200B and cp <= 0x200F)
+        or (cp >= 0xFE00 and cp <= 0xFE0F)
+        or (cp >= 0xFE20 and cp <= 0xFE2F)
+        or (cp >= 0xE0100 and cp <= 0xE01EF)
+      if is_zero_width then
+        -- counts as zero columns
+      elseif is_wide then
+        width = width + 2
+      else
+        width = width + 1
+      end
+    end
+  end)
+  if not ok then
+    return #text
+  end
+  return width
+end
+
+local function urldecode(s)
+  return s:gsub("%%(%x%x)", function(hex)
+    return string.char(tonumber(hex, 16))
+  end)
+end
 
 M.colors = {
   default = {
@@ -32,29 +71,122 @@ M.colors = {
   },
 }
 
-function M.set_process_name(s)
-  local a = string.gsub(s, "(.*[/\\])(.*)", "%2")
-  return a:gsub("%.exe$", "")
+-- Normalize a file URL or raw path into a displayable, forward-slash path.
+function M.clean_path(raw)
+  -- Strip the scheme:// prefix, e.g. file:// or wsl+Ubuntu://
+  local path = raw:gsub("^[^:]+://", "")
+  -- Windows drive paths come through as /C:/...; drop the leading slash
+  if path:match("^/[A-Za-z]:") then
+    path = path:sub(2)
+  end
+  -- Backslashes are garbage; always use forward slashes
+  path = path:gsub("\\", "/")
+  -- Trailing slashes
+  path = path:gsub("/+$", "")
+  path = urldecode(path)
+  if path == "" then
+    return nil
+  end
+  return path
 end
 
-function M.set_title(process_name, static_title, active_title, max_width, inset)
-  local title
-  inset = inset or 6
+function M.is_windows_path(s)
+  return s:match("^[A-Za-z]:[\\/]") ~= nil or s:match("^\\\\") ~= nil
+end
 
-  if process_name:len() > 0 and static_title:len() == 0 then
-    title = "󰖳  " .. process_name .. " ~ " .. " "
-  elseif static_title:len() > 0 then
-    title = "󰴈  " .. static_title .. " ~ " .. " "
+-- Console shells that set the terminal title to their own executable path
+-- when spawned (e.g. cmd.exe on Windows); treat those titles as noise.
+local NOISE_SHELLS = {
+  "cmd.exe",
+  "cmd",
+  "conhost.exe",
+  "powershell.exe",
+  "powershell",
+  "pwsh.exe",
+  "pwsh",
+}
+
+function M.is_shell_noise_title(s)
+  local lower = s:lower()
+  for _, name in ipairs(NOISE_SHELLS) do
+    if lower == name then
+      return true
+    end
+  end
+  if M.is_windows_path(s) then
+    local base = M.clean_path(s)
+    if base then
+      base = base:gsub(".*/", ""):lower()
+      for _, name in ipairs(NOISE_SHELLS) do
+        if base == name then
+          return true
+        end
+      end
+    end
+  end
+  return false
+end
+
+-- Clean the pane cwd into a displayable, forward-slash path, or nil.
+function M.get_cwd_display(pane)
+  local ok, cwd = pcall(function()
+    return pane:get_current_working_dir()
+  end)
+  if not ok or not cwd then
+    return nil
+  end
+
+  local raw
+  local ok_field, field = pcall(function()
+    return cwd.file_path
+  end)
+  if ok_field and type(field) == "string" and field ~= "" then
+    raw = field
   else
-    title = "󰌽  " .. active_title .. " ~ " .. " "
+    local str = tostring(cwd)
+    if type(str) ~= "string" or str == "" then
+      return nil
+    end
+    raw = str
   end
 
-  if title:len() > max_width - inset then
-    local diff = title:len() - max_width + inset
-    title = wezterm.truncate_right(title, title:len() - diff)
+  return M.clean_path(raw)
+end
+
+function M.set_title(static_title, app_title, app_path, cwd_path, process_name, max_width, inset)
+  inset = inset or 6
+  local title
+  local icon
+
+  if static_title:len() > 0 then
+    icon = GLYPH_STATIC
+    title = static_title
+  elseif app_title:len() > 0 then
+    icon = GLYPH_APP_TITLE
+    title = app_title
+  elseif app_path or cwd_path then
+    icon = GLYPH_FOLDER
+    local path = app_path or cwd_path
+    local short = path:gsub(".*/", "")
+    if short == "" then
+      short = path
+    end
+    -- Full path if it fits, otherwise only the last directory name
+    if display_width(GLYPH_FOLDER .. "  " .. path) > max_width - inset then
+      title = short
+    else
+      title = path
+    end
+  else
+    icon = GLYPH_APP_TITLE
+    title = process_name
   end
 
-  return title
+  local result = icon .. "  " .. title
+  if max_width and max_width > 0 and display_width(result) > max_width - inset then
+    result = wezterm.truncate_right(result, max_width - inset)
+  end
+  return result
 end
 
 function M.check_if_admin(p)
@@ -81,9 +213,65 @@ function M.setup()
 
     local bg
     local fg
-    local process_name = M.set_process_name(tab.active_pane.foreground_process_name)
-    local is_admin = M.check_if_admin(tab.active_pane.title)
-    local title = M.set_title(process_name, tab.tab_title, tab.active_pane.title, max_width, (is_admin and 8))
+    local pane = tab.active_pane
+
+    -- Raw foreground process name (full path), with fallbacks
+    local raw_process = ""
+    local ok_process, process = pcall(function()
+      return pane:get_foreground_process_name()
+    end)
+    if ok_process and process then
+      raw_process = process
+    elseif pane.foreground_process_name then
+      raw_process = pane.foreground_process_name
+    end
+    local default_title = raw_process:gsub(".*[/\\]", "")
+    local process_name = raw_process:gsub(".*[/\\]", ""):gsub("%.exe$", "")
+
+    -- Application-provided title: non-empty and different from the default
+    -- process-name title
+    local pane_title = ""
+    local ok_title, title_field = pcall(function()
+      return pane.title
+    end)
+    if ok_title and title_field then
+      pane_title = tostring(title_field)
+    end
+    if pane_title == "" then
+      local ok_get, got_title = pcall(function()
+        return pane:get_title()
+      end)
+      if ok_get and got_title then
+        pane_title = tostring(got_title)
+      end
+    end
+    pane_title = pane_title:gsub("^%s+", ""):gsub("%s+$", "")
+
+    local app_title = ""
+    local app_path = nil
+    if pane_title ~= "" and pane_title ~= default_title and not M.is_shell_noise_title(pane_title) then
+      if M.is_windows_path(pane_title) then
+        app_path = M.clean_path(pane_title)
+      else
+        app_title = pane_title
+      end
+    end
+
+    local is_admin = M.check_if_admin(pane_title)
+    local cwd_path = M.get_cwd_display(pane)
+
+    local has_unseen_output = false
+    for _, pane in ipairs(tab.panes) do
+      if pane.has_unseen_output then
+        has_unseen_output = true
+        break
+      end
+    end
+
+    -- Exact width budget for the decorations pushed around the title:
+    -- semi-circles + padding (4), admin icon (+2), unseen dot (+2)
+    local inset = 4 + (is_admin and 2 or 0) + (has_unseen_output and 2 or 0)
+    local title = M.set_title(tab.tab_title or "", app_title, app_path, cwd_path, process_name, max_width, inset)
 
     if tab.is_active then
       bg = M.colors.is_active.bg
@@ -94,14 +282,6 @@ function M.setup()
     else
       bg = M.colors.default.bg
       fg = M.colors.default.fg
-    end
-
-    local has_unseen_output = false
-    for _, pane in ipairs(tab.panes) do
-      if pane.has_unseen_output then
-        has_unseen_output = true
-        break
-      end
     end
 
     -- Left semi-circle

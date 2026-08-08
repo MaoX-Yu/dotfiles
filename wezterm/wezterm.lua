@@ -1,6 +1,7 @@
 local wezterm = require("wezterm")
 local windows = require("platforms.windows")
 local linux = require("platforms.linux")
+local macos = require("platforms.macos")
 local config = require("config")
 local events = require("events")
 
@@ -20,10 +21,16 @@ if wezterm.target_triple == "x86_64-unknown-linux-gnu" then
   linux.setup(C)
 end
 
+-- For macos host custom configuration
+if wezterm.target_triple:find("apple") or wezterm.target_triple:find("darwin") then
+  macos.setup(C)
+end
+
 events["new-tab-button"].setup()
 events["right-status"].setup()
 events["tab-title"].setup()
 events["window-resized"].setup()
+events["gui-startup"].setup()
 
 config.setup(C)
 

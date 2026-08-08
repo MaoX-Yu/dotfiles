@@ -2,6 +2,10 @@ local wezterm = require("wezterm")
 
 local M = {}
 
+-- Initial window size (also used for startup centering)
+M.cols = 128
+M.rows = 34
+
 -- Color pallete
 M.colors = {
   crust = "rgba(24, 25, 38, 1)",
@@ -16,9 +20,6 @@ M.colors = {
 
 function M.setup(config)
   config.status_update_interval = 1000
-
-  -- Appearance
-  config.front_end = "OpenGL"
 
   -- Colorscheme
   config.color_scheme = "Catppuccin Mocha"
@@ -38,15 +39,14 @@ function M.setup(config)
   config.max_fps = 240
 
   -- Initial size
-  config.initial_cols = 128
-  config.initial_rows = 34
+  config.initial_cols = M.cols
+  config.initial_rows = M.rows
 
   -- Cursor
-  config.default_cursor_style = "BlinkingBlock"
+  config.default_cursor_style = "SteadyBlock"
   config.cursor_blink_rate = 0
 
   -- Window
-  config.window_decorations = "RESIZE"
   config.text_background_opacity = 1.0
   config.window_background_opacity = 1.0
   config.window_frame = {
@@ -59,7 +59,6 @@ function M.setup(config)
     font_size = 14,
   }
   config.enable_scroll_bar = false
-  config.inactive_pane_hsb = { saturation = 1.0, brightness = 1.0 }
   config.window_padding = { left = "5px", right = "5px", top = "10px", bottom = "0px" }
 
   -- Tab bar
@@ -77,7 +76,7 @@ function M.setup(config)
     },
   }
 
-  config.tab_max_width = 25
+  config.tab_max_width = 32
   config.hide_tab_bar_if_only_one_tab = false
   config.tab_bar_at_bottom = false
   config.show_new_tab_button_in_tab_bar = true
@@ -92,7 +91,7 @@ function M.setup(config)
   -- Command palette
   config.command_palette_bg_color = M.colors.float_bg
   config.command_palette_fg_color = M.colors.float_fg
-  -- config.command_palette_rows = 25 -- only nightly
+  config.command_palette_rows = 25
 
   -- Char select
   config.char_select_bg_color = M.colors.float_bg
