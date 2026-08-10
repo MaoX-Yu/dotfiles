@@ -25,9 +25,6 @@ P:add({
           cmdline = { enabled = false },
           sources = {
             default = { "lsp", "path", "snippets", "buffer" },
-            per_filetype = {
-              codecompanion = { "codecompanion" },
-            },
           },
         })
       end,

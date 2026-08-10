@@ -141,7 +141,7 @@ P:add({
           -- find
           { "<Leader>f", function() Snacks.picker.files() end, desc = "Find files" },
           -- git
-          { "<Leader>gb", function() Snacks.picker.git_branches() end, desc = "Git branches" },
+          { "<Leader>gC", function() Snacks.picker.git_branches() end, desc = "Git branches" },
           -- Git
           { "<Leader>gB", function() Snacks.gitbrowse() end, desc = "Git browse", mode = { "n", "v" } },
           { "<Leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
@@ -154,7 +154,6 @@ P:add({
           { '<Leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
           { '<Leader>s/', function() Snacks.picker.search_history() end, desc = "Search history" },
           { "<Leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
-          { "<Leader>sb", function() Snacks.picker.lines() end, desc = "Buffer lines" },
           { "<Leader>sc", function() Snacks.picker.command_history() end, desc = "Command history" },
           { "<Leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
           { "<Leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer diagnostics" },

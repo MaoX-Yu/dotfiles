@@ -4,7 +4,7 @@ P:add({
     data = {
       config = function()
         require("render-markdown").setup({
-          file_types = { "markdown", "codecompanion" },
+          file_types = { "markdown" },
           callout = {
             abstract = {
               raw = "[!ABSTRACT]",

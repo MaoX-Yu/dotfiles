@@ -59,7 +59,6 @@ P:add({
               { "g", group = "goto" },
               { "z", group = "fold" },
               { "<Leader><Tab>", group = "tabs" },
-              { "<Leader>A", group = "avante" },
               { "<Leader>c", group = "code" },
               { "<Leader>d", group = "debug" },
               { "<Leader>g", group = "git" },

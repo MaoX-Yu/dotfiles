@@ -10,7 +10,6 @@ au("FileType", {
   pattern = {
     "OverseerList",
     "checkhealth",
-    "codecompanion",
     "gitsigns-blame",
     "nvim-pack",
     "qf",
