@@ -29,6 +29,7 @@ P:add({
               enabled = true,
               indent_scope_color = "",
             },
+            telescope = false,
             which_key = false,
           },
           custom_highlights = function(C)
@@ -57,8 +58,20 @@ P:add({
               SnacksInputBorder = { fg = C.lavender, style = { "italic" } },
               SnacksInputIcon = { fg = C.lavender, style = { "italic" } },
               SnacksInputTitle = { fg = C.lavender, style = { "italic" } },
-              SnacksNotifierHistory = { link = "NormalFloat" },
               SnacksPickerMatch = { fg = C.pink },
+
+              -- Telescope
+              TelescopeBorder = { link = "FloatBorder" },
+              TelescopeMatching = { fg = C.pink },
+              TelescopeMultiSelection = { fg = C.yellow },
+              TelescopeNormal = { link = "NormalFloat" },
+              TelescopePreviewNormal = { link = "TelescopeNormal" },
+              TelescopePromptNormal = { link = "TelescopeNormal" },
+              TelescopePromptPrefix = { fg = C.flamingo },
+              TelescopeResultsNormal = { link = "TelescopeNormal" },
+              TelescopeSelection = { bg = C.surface0, style = { "bold" } },
+              TelescopeSelectionCaret = { fg = C.flamingo, bg = C.surface0 },
+              TelescopeTitle = { link = "FloatTitle" },
 
               -- Overseer
               OverseerTask = { fg = C.lavender },

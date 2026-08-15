@@ -18,7 +18,7 @@ P:add({
  ███████████ ███    ███ █████████ █████ █████ ████ █████ 
 ██████  █████████████████████ ████ █████ █████ ████ ██████]],
               keys = {
-                { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
+                { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
                 { icon = " ", key = "n", desc = "New File", action = ":enew" },
                 {
                   icon = " ",
@@ -52,11 +52,6 @@ P:add({
             },
           },
           input = { enabled = true },
-          picker = {
-            layout = {
-              preset = "ivy",
-            },
-          },
           quickfile = { enabled = true },
           scope = { enabled = true },
           statuscolumn = { enabled = true },
@@ -133,53 +128,9 @@ P:add({
 
         -- stylua: ignore
         P.map({
-          -- Top Pickers & Explorer
-          { "<Leader><Space>", function() Snacks.picker.smart() end, desc = "Smart find files" },
-          { "<Leader>,", function() Snacks.picker.buffers() end, desc = "Buffers" },
-          { "<Leader>/", function() Snacks.picker.grep() end, desc = "Grep" },
-          { "<Leader>:", function() Snacks.picker.command_history() end, desc = "Command history" },
-          -- find
-          { "<Leader>f", function() Snacks.picker.files() end, desc = "Find files" },
-          -- git
-          { "<Leader>gC", function() Snacks.picker.git_branches() end, desc = "Git branches" },
           -- Git
           { "<Leader>gB", function() Snacks.gitbrowse() end, desc = "Git browse", mode = { "n", "v" } },
           { "<Leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
-          -- Grep
-          { "<Leader>sb", function() Snacks.picker.lines() end, desc = "Buffer lines" },
-          { "<Leader>sB", function() Snacks.picker.grep_buffers() end, desc = "Grep open buffers" },
-          { "<Leader>sg", function() Snacks.picker.grep() end, desc = "Grep" },
-          { "<Leader>sw", function() Snacks.picker.grep_word() end, desc = "Visual selection or word", mode = { "n", "x" } },
-          -- search
-          { '<Leader>s"', function() Snacks.picker.registers() end, desc = "Registers" },
-          { '<Leader>s/', function() Snacks.picker.search_history() end, desc = "Search history" },
-          { "<Leader>sa", function() Snacks.picker.autocmds() end, desc = "Autocmds" },
-          { "<Leader>sc", function() Snacks.picker.command_history() end, desc = "Command history" },
-          { "<Leader>sC", function() Snacks.picker.commands() end, desc = "Commands" },
-          { "<Leader>sd", function() Snacks.picker.diagnostics_buffer() end, desc = "Buffer diagnostics" },
-          { "<Leader>sD", function() Snacks.picker.diagnostics() end, desc = "Diagnostics" },
-          { "<Leader>sh", function() Snacks.picker.help() end, desc = "Help pages" },
-          { "<Leader>sH", function() Snacks.picker.highlights() end, desc = "Highlights" },
-          { "<Leader>si", function() Snacks.picker.icons() end, desc = "Icons" },
-          { "<Leader>sj", function() Snacks.picker.jumps() end, desc = "Jumps" },
-          { "<Leader>sk", function() Snacks.picker.keymaps() end, desc = "Keymaps" },
-          { "<Leader>sl", function() Snacks.picker.loclist() end, desc = "Location list" },
-          { "<Leader>sm", function() Snacks.picker.marks() end, desc = "Marks" },
-          { "<Leader>sM", function() Snacks.picker.man() end, desc = "Man pages" },
-          { "<Leader>sp", function() Snacks.picker.projects() end, desc = "Projects" },
-          { "<Leader>sq", function() Snacks.picker.qflist() end, desc = "Quickfix list" },
-          { "<Leader>sr", function() Snacks.picker.recent() end, desc = "Recent" },
-          { "<Leader>sR", function() Snacks.picker.resume() end, desc = "Resume" },
-          { "<Leader>su", function() Snacks.picker.undo() end, desc = "Undo history" },
-          { "<Leader>uC", function() Snacks.picker.colorschemes() end, desc = "Colorschemes" },
-          -- LSP
-          { "gd", function() Snacks.picker.lsp_definitions() end, desc = "Goto definition" },
-          { "gD", function() Snacks.picker.lsp_declarations() end, desc = "Goto declaration" },
-          { "gr", function() Snacks.picker.lsp_references() end, nowait = true, desc = "Goto references" },
-          { "gI", function() Snacks.picker.lsp_implementations() end, desc = "Goto implementation" },
-          { "gy", function() Snacks.picker.lsp_type_definitions() end, desc = "Goto type definition" },
-          { "<Leader>ss", function() Snacks.picker.lsp_symbols() end, desc = "LSP symbols" },
-          { "<Leader>sS", function() Snacks.picker.lsp_workspace_symbols() end, desc = "LSP workspace symbols" },
           -- Other
           { "<Leader>z",  function() Snacks.zen.zen() end, desc = "Toggle zen mode" },
           { "<Leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle zoom" },
@@ -187,7 +138,7 @@ P:add({
           { "<Leader>S",  function() Snacks.scratch.select() end, desc = "Select scratch buffer" },
           { "<Leader>bc", function() Snacks.bufdelete() end, desc = "Close buffer" },
           { "<Leader>bo", function() Snacks.bufdelete.other() end, desc = "Close other buffers" },
-          { "<Leader>cr", function() Snacks.rename.rename_file() end, desc = "Rename file" },
+          { "<Leader>R", function() Snacks.rename.rename_file() end, desc = "Rename file" },
           { "<Leader>t",  function() Snacks.terminal() end, desc = "Toggle terminal" },
           { "]w",         function() Snacks.words.jump(vim.v.count1) end, desc = "Next word", mode = { "n", "t" } },
           { "[w",         function() Snacks.words.jump(-vim.v.count1) end, desc = "Prev word", mode = { "n", "t" } },

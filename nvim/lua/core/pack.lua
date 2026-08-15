@@ -36,6 +36,7 @@ require("plugins.gitsigns")
 require("plugins.overseer")
 require("plugins.persistence")
 require("plugins.render-markdown")
+require("plugins.telescope")
 require("plugins.which-key")
 require("plugins.yanky")
 
