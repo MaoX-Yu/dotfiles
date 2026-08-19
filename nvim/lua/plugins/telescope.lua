@@ -1,4 +1,5 @@
 P:add({
+  "https://github.com/nvim-telescope/telescope-fzf-native.nvim",
   {
     src = "https://github.com/nvim-telescope/telescope.nvim",
     data = {
@@ -14,6 +15,7 @@ P:add({
             sorting_strategy = "ascending",
           },
         })
+        require("telescope").load_extension("fzf")
 
         local action_state = require("telescope.actions.state")
         local actions = require("telescope.actions")

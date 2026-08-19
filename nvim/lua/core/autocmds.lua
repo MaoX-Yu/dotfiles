@@ -76,3 +76,19 @@ au("BufWritePre", {
     vim.fn.mkdir(vim.fn.fnamemodify(file, ":p:h"), "p")
   end,
 })
+
+au("PackChanged", {
+  callback = function(ev)
+    local name, kind = ev.data.spec.name, ev.data.kind
+
+    if name == "telescope-fzf-native.nvim" and (kind == "install" or kind == "update") then
+      vim.system({ "make" }, { cwd = ev.data.path }, function(result)
+        if result.code == 0 then
+          vim.notify("telescope-fzf-native.nvim: make succeeded", vim.log.levels.INFO)
+        else
+          vim.notify(("telescope-fzf-native.nvim: make failed\n%s"):format(result.stderr or ""), vim.log.levels.ERROR)
+        end
+      end)
+    end
+  end,
+})
