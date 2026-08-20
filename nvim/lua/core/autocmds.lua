@@ -77,18 +77,38 @@ au("BufWritePre", {
   end,
 })
 
+-- Auto-build plugins after install/update
 au("PackChanged", {
+  group = augroup("pack_build"),
   callback = function(ev)
-    local name, kind = ev.data.spec.name, ev.data.kind
+    local name = ev.data.spec.name
+    local kind = ev.data.kind
+    local path = ev.data.path
 
-    if name == "telescope-fzf-native.nvim" and (kind == "install" or kind == "update") then
-      vim.system({ "make" }, { cwd = ev.data.path }, function(result)
+    if kind ~= "install" and kind ~= "update" then
+      return
+    end
+
+    local build_commands = {
+      ["telescope-fzf-native.nvim"] = { "make" },
+    }
+
+    local cmd = build_commands[name]
+    if not cmd then
+      return
+    end
+
+    vim.system(cmd, { cwd = path }, function(result)
+      vim.schedule(function()
         if result.code == 0 then
-          vim.notify("telescope-fzf-native.nvim: make succeeded", vim.log.levels.INFO)
+          vim.notify(string.format("[%s] Build succeeded", name), vim.log.levels.INFO)
         else
-          vim.notify(("telescope-fzf-native.nvim: make failed\n%s"):format(result.stderr or ""), vim.log.levels.ERROR)
+          vim.notify(
+            string.format("[%s] Build failed\n%s", name, result.stderr or "Unknown error"),
+            vim.log.levels.ERROR
+          )
         end
       end)
-    end
+    end)
   end,
 })

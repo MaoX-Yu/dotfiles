@@ -8,7 +8,9 @@ local M = {}
 
 function M.fname()
   local symbols = {
-    unnamed = "[No Name]",
+    modified = "[+]",
+    readonly = "[-]",
+    unnamed = "[Scratch]",
     newfile = "[New]",
   }
   local function is_new_file()
@@ -27,10 +29,17 @@ function M.fname()
     if #fname > 40 then
       fname = vim.fs.normalize(vim.fn.expand("%:p:t"))
     end
-    if is_new_file() then
-      fname = string.format("%s %s", fname, symbols.newfile)
+    local file_symbols = {}
+    if vim.bo.modifiable == false or vim.bo.readonly == true then
+      table.insert(file_symbols, symbols.readonly)
     end
-    return utils.escape(fname)
+    if is_new_file() then
+      table.insert(file_symbols, symbols.newfile)
+    end
+    if vim.bo.modified then
+      table.insert(file_symbols, symbols.modified)
+    end
+    return utils.escape(fname) .. (#file_symbols > 0 and " " .. table.concat(file_symbols, " ") or "")
   end
 
   -- Terminal buffer, show terminal command and id
@@ -59,40 +68,6 @@ function M.fname()
   end
 
   return "%F"
-end
-
-function M.fileinfo()
-  local info = {}
-  if vim.bo.fileencoding ~= "" then
-    local fileencoding = string.upper(string.sub(vim.bo.fileencoding, 1, 1))
-    table.insert(info, fileencoding)
-  else
-    table.insert(info, "-")
-  end
-
-  if vim.bo.fileformat == "dos" then
-    table.insert(info, "\\")
-  elseif vim.bo.fileformat == "mac" then
-    table.insert(info, "/")
-  else
-    table.insert(info, ":")
-  end
-
-  if not vim.bo.modifiable or vim.bo.readonly then
-    table.insert(info, "%%")
-  elseif vim.bo.modified then
-    table.insert(info, "*")
-  else
-    table.insert(info, "-")
-  end
-  if vim.bo.modified then
-    table.insert(info, "*")
-  else
-    table.insert(info, "-")
-  end
-  table.insert(info, "-")
-
-  return table.concat(info, "")
 end
 
 function M.branch()
@@ -339,11 +314,6 @@ local STL = {}
 
 function STL.stl_left(active)
   local left = {}
-
-  if vim.bo.bt == "" then
-    local fileinfo = M.fileinfo()
-    table.insert(left, fileinfo)
-  end
 
   local fname = M.fname()
   table.insert(left, fname)
