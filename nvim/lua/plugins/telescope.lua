@@ -20,17 +20,37 @@ P:add({
         local action_state = require("telescope.actions.state")
         local actions = require("telescope.actions")
         local builtin = require("telescope.builtin")
+        local path_utils = require("telescope.utils")
         local themes = require("telescope.themes")
 
-        local function select_one(prompt, choices, opts, on_choice)
-          local picker_height = #choices + 4
+        local is_uri = path_utils.is_uri
+        path_utils.is_uri = function(filename)
+          if filename:match("^%a:[/\\]") then
+            return false
+          end
+          return is_uri(filename)
+        end
 
-          opts = vim.tbl_deep_extend("force", themes.get_dropdown({}), opts or {})
-          opts.layout_config = vim.tbl_deep_extend("force", opts.layout_config or {}, {
-            height = function(_, _, max_lines)
-              return math.min(picker_height, max_lines)
-            end,
+        local function select_one(prompt, choices, opts, on_choice)
+          opts = opts or {}
+
+          local content_width = 0
+          for _, choice in ipairs(choices) do
+            content_width = math.max(content_width, vim.fn.strwidth(choice.label))
+          end
+          local needed_width = math.max(vim.fn.strwidth(prompt) + 2, content_width + 6)
+
+          opts = vim.tbl_deep_extend("keep", opts, {
+            layout_config = {
+              width = function(_, max_columns, _)
+                return math.min(math.max(80, needed_width), max_columns)
+              end,
+              height = function(_, _, max_lines)
+                return math.min(#choices + 4, max_lines)
+              end,
+            },
           })
+          opts = themes.get_dropdown(opts)
           require("telescope.pickers")
             .new(opts, {
               prompt_title = prompt,
@@ -116,7 +136,7 @@ P:add({
         P.map({
           -- Top Pickers
           { "<Leader><Space>", smart, desc = "Smart find files" },
-          { "<Leader>,", function() builtin.buffers() end, desc = "Buffers" },
+          { "<Leader>,", function() builtin.buffers({ path_display = { "truncate" } }) end, desc = "Buffers" },
           { "<Leader>/", function() builtin.live_grep() end, desc = "Grep" },
           { "<Leader>:", function() builtin.command_history() end, desc = "Command history" },
           -- find
@@ -125,11 +145,7 @@ P:add({
           { "<Leader>gC", function() builtin.git_branches() end, desc = "Git branches" },
           -- Grep
           { "<Leader>sb", function() builtin.current_buffer_fuzzy_find() end, desc = "Buffer lines" },
-          {
-            "<Leader>sB",
-            function() builtin.live_grep({ grep_open_files = true }) end,
-            desc = "Grep open buffers",
-          },
+          { "<Leader>sB", function() builtin.live_grep({ grep_open_files = true }) end, desc = "Grep open buffers" },
           { "<Leader>sg", function() builtin.live_grep() end, desc = "Grep" },
           { "<Leader>sw", grep_string, desc = "Word or selection", mode = { "n", "x" } },
           -- search
@@ -137,11 +153,7 @@ P:add({
           { '<Leader>s/', function() builtin.search_history() end, desc = "Search history" },
           { "<Leader>sc", function() builtin.command_history() end, desc = "Command history" },
           { "<Leader>sC", function() builtin.commands() end, desc = "Commands" },
-          {
-            "<Leader>sd",
-            function() builtin.diagnostics({ bufnr = 0 }) end,
-            desc = "Buffer diagnostics",
-          },
+          { "<Leader>sd", function() builtin.diagnostics({ bufnr = 0 }) end, desc = "Buffer diagnostics" },
           { "<Leader>sD", function() builtin.diagnostics() end, desc = "Diagnostics" },
           { "<Leader>sh", function() builtin.help_tags() end, desc = "Help pages" },
           { "<Leader>sH", function() builtin.highlights() end, desc = "Highlights" },
