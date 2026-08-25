@@ -76,7 +76,7 @@ function M.setup(config)
     },
   }
 
-  config.tab_max_width = 32
+  config.tab_max_width = 30
   config.hide_tab_bar_if_only_one_tab = false
   config.tab_bar_at_bottom = false
   config.show_new_tab_button_in_tab_bar = true
@@ -91,7 +91,6 @@ function M.setup(config)
   -- Command palette
   config.command_palette_bg_color = M.colors.float_bg
   config.command_palette_fg_color = M.colors.float_fg
-  config.command_palette_rows = 25
 
   -- Char select
   config.char_select_bg_color = M.colors.float_bg

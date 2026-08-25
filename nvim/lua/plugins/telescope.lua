@@ -65,15 +65,11 @@ P:add({
                 end,
               }),
               sorter = require("telescope.config").values.generic_sorter(opts),
-              attach_mappings = function(prompt_bufnr, map)
+              attach_mappings = function(prompt_bufnr)
                 actions.select_default:replace(function()
                   local selection = action_state.get_selected_entry()
                   actions.close(prompt_bufnr)
                   on_choice(selection and selection.value, selection and selection.value.index)
-                end)
-                map("i", "<C-c>", function()
-                  actions.close(prompt_bufnr)
-                  on_choice(nil, nil)
                 end)
                 return true
               end,

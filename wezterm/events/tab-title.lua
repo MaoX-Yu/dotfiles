@@ -5,6 +5,7 @@ local GLYPH_SEMI_CIRCLE_LEFT = ""
 local GLYPH_SEMI_CIRCLE_RIGHT = ""
 local GLYPH_CIRCLE = " "
 local GLYPH_ADMIN = "󱥠 "
+local ELLIPSIS = "…"
 
 local GLYPH_STATIC = wezterm.nerdfonts.cod_book
 local GLYPH_APP_TITLE = wezterm.nerdfonts.cod_terminal
@@ -170,30 +171,6 @@ function M.get_cwd_display(pane)
   return M.clean_path(raw)
 end
 
--- True when a title is (or contains) a path-like string, so that long
--- titles can be shortened to their final directory.
-local function is_path(s)
-  return s:match("[\\/]") ~= nil or s:match("^[A-Za-z]+://") ~= nil
-end
-
--- Reduce a path to its last directory plus anything after it:
--- "C:/a/b/c/file.txt" -> "c/file.txt", "C:/a/b/c" -> "c".
-local function shorten_path(path)
-  local parts = {}
-  for part in path:gmatch("[^/]+") do
-    table.insert(parts, part)
-  end
-  if #parts <= 1 then
-    return path
-  end
-  -- A final component that looks like a file (dot past the first char)
-  -- keeps its parent directory, e.g. C:/.../System32/cmd.exe -> System32/cmd.exe
-  if parts[#parts]:find(".", 2, true) then
-    return parts[#parts - 1] .. "/" .. parts[#parts]
-  end
-  return parts[#parts]
-end
-
 function M.set_title(static_title, app_title, app_path, cwd_path, process_name, max_width, inset)
   inset = inset or 6
   local title
@@ -220,14 +197,15 @@ function M.set_title(static_title, app_title, app_path, cwd_path, process_name, 
 
   local result = icon .. "  " .. title
   if max_width and max_width > 0 and display_width(result) > max_width - inset then
-    -- Long path-like titles keep only the last directory and whatever
-    -- follows it; anything else falls back to truncation.
-    if is_path(title) then
-      title = shorten_path(title)
+    -- Too long: keep the icon and the trailing part of the title, with an
+    -- ellipsis at the front.
+    local title_budget = max_width - inset - display_width(icon .. "  ")
+    if title_budget > display_width(ELLIPSIS) then
+      title = ELLIPSIS .. wezterm.truncate_left(title, title_budget - display_width(ELLIPSIS))
       result = icon .. "  " .. title
-    end
-    if display_width(result) > max_width - inset then
-      result = wezterm.truncate_right(result, max_width - inset)
+    else
+      -- Extremely narrow tab: drop the icon and show whatever tail fits
+      result = wezterm.truncate_left(result, max_width - inset)
     end
   end
   return result

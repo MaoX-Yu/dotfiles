@@ -370,12 +370,10 @@ end
 
 local function stl()
   return table.concat({
-    [[ ]],
     [[%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('STL.stl_left(true)') : luaeval('STL.stl_left()')%}]],
     [[%=]],
     [[%<]],
     [[%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('STL.stl_right(true)') : luaeval('STL.stl_right()')%}]],
-    [[ ]],
   })
 end
 
