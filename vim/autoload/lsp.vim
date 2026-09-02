@@ -43,10 +43,10 @@ export def Setup()
     nmap <silent> <nowait> ]d <Plug>(coc-diagnostic-next)
 
     # GoTo code navigation
-    nmap <silent> <nowait> gd <Plug>(coc-definition)
-    nmap <silent> <nowait> gy <Plug>(coc-type-definition)
-    nmap <silent> <nowait> gI <Plug>(coc-implementation)
-    nmap <silent> <nowait> gr <Plug>(coc-references)
+    nmap <silent> <nowait> gd  <Plug>(coc-definition)
+    nmap <silent> <nowait> grt <Plug>(coc-type-definition)
+    nmap <silent> <nowait> gri <Plug>(coc-implementation)
+    nmap <silent> <nowait> grr <Plug>(coc-references)
 
     # Use K to show documentation in preview window
     nnoremap <silent> K :call <SID>ShowDocumentation()<CR>
@@ -55,7 +55,7 @@ export def Setup()
     autocmd CursorHold * silent call g:CocActionAsync('highlight')
 
     # Symbol renaming
-    nmap <Leader>r  <Plug>(coc-rename)
+    nmap grn <Plug>(coc-rename)
 
     # Formatting selected code
     xmap <Leader>cf <Plug>(coc-format-selected)
@@ -68,14 +68,14 @@ export def Setup()
     augroup end
 
     # Applying code actions to the selected code block
-    # Example: `<leader>aap` for current paragraph
-    xmap <Leader>a  <Plug>(coc-codeaction-selected)
-    nmap <Leader>a  <Plug>(coc-codeaction-selected)
+    # Example: `graap` for current paragraph
+    xmap gra <Plug>(coc-codeaction-selected)
+    nmap gra <Plug>(coc-codeaction-selected)
 
     # Remap keys for applying code actions at the cursor position
-    nmap <Leader>ac <Plug>(coc-codeaction-cursor)
+    nmap grac <Plug>(coc-codeaction-cursor)
     # Remap keys for apply code actions affect whole buffer
-    nmap <Leader>as <Plug>(coc-codeaction-source)
+    nmap gras <Plug>(coc-codeaction-source)
     # Apply the most preferred quickfix action to fix diagnostic on the current line
     nmap <Leader>cq <Plug>(coc-fix-current)
 
@@ -85,7 +85,7 @@ export def Setup()
     nmap <silent> <Leader>rs <Plug>(coc-codeaction-refactor-selected)
 
     # Run the Code Lens action on the current line
-    nmap <Leader>cl <Plug>(coc-codelens-action)
+    nmap grx <Plug>(coc-codelens-action)
 
     # Map function and class text objects
     # NOTE: Requires 'textDocument.documentSymbol' support from the language server

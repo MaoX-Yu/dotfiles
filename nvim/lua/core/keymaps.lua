@@ -1,13 +1,4 @@
 local map = vim.keymap.set
-local del = vim.keymap.del
-
--- Remove default keymaps
-del("n", "grr")
-del("n", "grn")
-del("n", "gri")
-del("n", "grt")
-del("n", "grx")
-del({ "n", "v" }, "gra")
 
 -- Better up/down
 map({ "n", "x" }, "j", "v:count == 0 ? 'gj' : 'j'", { desc = "Down", expr = true })
@@ -68,12 +59,11 @@ map("v", "<C-_>", "gc", { remap = true, desc = "Toggle comment" })
 map("n", "<Leader>l", "<Cmd>lua vim.pack.update()<CR>", { desc = "Pack" })
 
 -- LSP
+map("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
+map("n", "gD", vim.lsp.buf.declaration, { desc = "Declaration" })
 map("n", "<Leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
-map("n", "<Leader>cc", vim.lsp.codelens.run, { desc = "Run codelens" })
-map("n", "<Leader>cl", vim.lsp.codelens.enable, { desc = "Show codelens" })
-map("n", "<Leader>cL", "<Cmd>checkhealth vim.lsp<CR>", { desc = "LSP info" })
-map({ "n", "v" }, "<Leader>a", vim.lsp.buf.code_action, { desc = "Code action", nowait = true })
-map("n", "<Leader>r", vim.lsp.buf.rename, { desc = "Rename" })
+map("n", "<Leader>cc", vim.lsp.codelens.enable, { desc = "Show codelens" })
+map("n", "<Leader>cl", "<Cmd>checkhealth vim.lsp<CR>", { desc = "LSP info" })
 
 -- Treesitter
 map({ "n", "x", "o" }, "<M-o>", function()
@@ -99,8 +89,10 @@ map("n", "<Leader>ui", vim.show_pos, { desc = "Inspect pos" })
 map("n", "<Leader>uI", "<Cmd>InspectTree<CR>", { desc = "Inspect tree" })
 
 -- Quickfix
-map("n", "<Leader>xq", vim.cmd.copen, { desc = "Quickfix" })
-map("n", "<Leader>xl", vim.cmd.lopen, { desc = "Location list" })
+map("n", "<Leader>qf", vim.cmd.copen, { desc = "Open quickfix" })
+map("n", "<Leader>qc", vim.cmd.cclose, { desc = "Close quickfix" })
+map("n", "<Leader>xl", vim.cmd.lopen, { desc = "Open location list" })
+map("n", "<Leader>xc", vim.cmd.lclose, { desc = "Close location list" })
 map("n", "<Leader>xd", vim.diagnostic.setloclist, { desc = "Diagnostics list" })
 
 -- Notification

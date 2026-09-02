@@ -4,7 +4,6 @@ P:add({
     data = {
       config = function()
         require("lint").linters_by_ft = {
-          markdown = { "markdownlint-cli2" },
           vue = { "eslint" },
           javascript = { "eslint" },
           typescript = { "eslint" },

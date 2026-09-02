@@ -163,11 +163,6 @@ P:add({
           { "<Leader>sR", function() builtin.resume() end, desc = "Resume" },
           { "<Leader>uC", function() builtin.colorscheme() end, desc = "Colorschemes" },
           -- LSP
-          { "gd", function() builtin.lsp_definitions() end, desc = "Goto definition" },
-          { "gD", function() builtin.lsp_declarations() end, desc = "Goto declaration" },
-          { "gr", function() builtin.lsp_references() end, nowait = true, desc = "Goto references" },
-          { "gI", function() builtin.lsp_implementations() end, desc = "Goto implementation" },
-          { "gy", function() builtin.lsp_type_definitions() end, desc = "Goto type definition" },
           { "<Leader>ss", function() builtin.lsp_document_symbols() end, desc = "LSP symbols" },
           { "<Leader>sS", function() builtin.lsp_workspace_symbols() end, desc = "LSP workspace symbols" },
         })
