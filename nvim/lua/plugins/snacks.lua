@@ -5,38 +5,6 @@ P:add({
       config = function()
         require("snacks").setup({
           bigfile = { enabled = true },
-          dashboard = {
-            enabled = true,
-            preset = {
-              header = [[
-                                                                   
-      ████ ██████           █████      ██                    
-     ███████████             █████                            
-     █████████ ███████████████████ ███   ███████████  
-    █████████  ███    █████████████ █████ ██████████████  
-   █████████ ██████████ █████████ █████ █████ ████ █████  
- ███████████ ███    ███ █████████ █████ █████ ████ █████ 
-██████  █████████████████████ ████ █████ █████ ████ ██████]],
-              keys = {
-                { icon = " ", key = "f", desc = "Find File", action = ":Telescope find_files" },
-                { icon = " ", key = "n", desc = "New File", action = ":enew" },
-                {
-                  icon = " ",
-                  key = "s",
-                  desc = "Restore Session",
-                  action = ":lua require('persistence').load({ last = true })",
-                },
-                { icon = " ", key = "l", desc = "Pack", action = ":lua vim.pack.update()" },
-                { icon = " ", key = "q", desc = "Quit", action = ":q" },
-              },
-            },
-            sections = {
-              { section = "header" },
-              { icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
-              { icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
-              { icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
-            },
-          },
           indent = {
             chunk = {
               enabled = true,
@@ -54,7 +22,6 @@ P:add({
           input = { enabled = true },
           quickfile = { enabled = true },
           scope = { enabled = true },
-          statuscolumn = { enabled = true },
           words = { enabled = true },
           styles = {
             notification = {
@@ -135,7 +102,7 @@ P:add({
           { "<Leader>z",  function() Snacks.zen.zen() end, desc = "Toggle zen mode" },
           { "<Leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle zoom" },
           { "<Leader>.",  function() Snacks.scratch() end, desc = "Toggle scratch buffer" },
-          { "<Leader>S",  function() Snacks.scratch.select() end, desc = "Select scratch buffer" },
+          { "<Leader>bS", function() Snacks.scratch.select() end, desc = "Select scratch buffer" },
           { "<Leader>bc", function() Snacks.bufdelete() end, desc = "Close buffer" },
           { "<Leader>bo", function() Snacks.bufdelete.other() end, desc = "Close other buffers" },
           { "<Leader>R", function() Snacks.rename.rename_file() end, desc = "Rename file" },

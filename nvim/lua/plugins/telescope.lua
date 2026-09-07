@@ -13,6 +13,17 @@ P:add({
               preview = { "─", "│", "─", "│", "╭", "╮", "╯", "╰" },
             },
             sorting_strategy = "ascending",
+            preview = {
+              hide_on_startup = true,
+            },
+            mappings = {
+              i = {
+                ["<M-p>"] = require("telescope.actions.layout").toggle_preview,
+              },
+              n = {
+                ["<M-p>"] = require("telescope.actions.layout").toggle_preview,
+              },
+            },
           },
         })
         require("telescope").load_extension("fzf")
@@ -102,6 +113,10 @@ P:add({
           end
         end
 
+        local function buffer_path_display(_, path)
+          return vim.fn.fnamemodify(path, ":.")
+        end
+
         local function grep_string()
           local mode = vim.fn.mode(true)
           local search
@@ -132,7 +147,7 @@ P:add({
         P.map({
           -- Top Pickers
           { "<Leader><Space>", smart, desc = "Smart find files" },
-          { "<Leader>,", function() builtin.buffers({ path_display = { "truncate" } }) end, desc = "Buffers" },
+          { "<Leader>,", function() builtin.buffers({ path_display = buffer_path_display }) end, desc = "Buffers" },
           { "<Leader>/", function() builtin.live_grep() end, desc = "Grep" },
           { "<Leader>:", function() builtin.command_history() end, desc = "Command history" },
           -- find

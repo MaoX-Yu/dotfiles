@@ -72,6 +72,7 @@ P:add({
               { "<Leader>s", group = "search" },
               { "<Leader>u", group = "ui" },
               { "<Leader>q", group = "quickfix" },
+              { "<Leader>S", group = "session" },
               { "<Leader>x", group = "location list" },
               {
                 "<Leader>b",
