@@ -105,7 +105,7 @@ P:add({
               tsc.disable()
             end
           end,
-        }):map("<leader>ut")
+        }):map("<Leader>ut")
 
         require("treesitter-context").setup({
           mode = "cursor",

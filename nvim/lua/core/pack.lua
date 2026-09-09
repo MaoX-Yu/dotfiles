@@ -32,7 +32,9 @@ require("plugins.rainbow-bracket")
 
 -- Editor
 require("plugins.dap")
+require("plugins.diffs")
 require("plugins.gitsigns")
+require("plugins.neogit")
 require("plugins.overseer")
 require("plugins.persistence")
 require("plugins.render-markdown")

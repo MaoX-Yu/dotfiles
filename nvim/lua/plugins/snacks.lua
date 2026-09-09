@@ -97,7 +97,6 @@ P:add({
         P.map({
           -- Git
           { "<Leader>gB", function() Snacks.gitbrowse() end, desc = "Git browse", mode = { "n", "v" } },
-          { "<Leader>gg", function() Snacks.lazygit() end, desc = "Lazygit" },
           -- Other
           { "<Leader>z",  function() Snacks.zen.zen() end, desc = "Toggle zen mode" },
           { "<Leader>Z",  function() Snacks.zen.zoom() end, desc = "Toggle zoom" },

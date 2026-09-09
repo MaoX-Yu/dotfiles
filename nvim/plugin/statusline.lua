@@ -6,17 +6,24 @@ local group = vim.api.nvim_create_augroup("mao.statusline", { clear = true })
 
 local M = {}
 
-function M.fname()
-  local symbols = {
-    modified = "[+]",
-    readonly = "[-]",
-    unnamed = "[Scratch]",
-    newfile = "[New]",
-  }
-  local function is_new_file()
-    local filename = vim.fn.expand("%")
-    return filename ~= "" and vim.bo.buftype == "" and vim.fn.filereadable(filename) == 0
+local symbols = {
+  modified = "[+]",
+  readonly = "[-]",
+  unnamed = "[Scratch]",
+  newfile = "[New]",
+}
+
+---Statusline name for a file buffer: path relative to the current directory,
+---falling back to the file name when the relative path is too long.
+local function file_display_name(bname)
+  local fname = vim.fs.normalize(vim.fn.fnamemodify(bname, ":."))
+  if #fname > 40 then
+    fname = vim.fn.fnamemodify(bname, ":t")
   end
+  return fname
+end
+
+function M.fname()
   local bname = vim.api.nvim_buf_get_name(0)
 
   -- Normal buffer
@@ -25,21 +32,26 @@ function M.fname()
     if bname == "" then
       return symbols.unnamed
     end
-    local fname = vim.fs.normalize(vim.fn.expand("%:."))
-    if #fname > 40 then
-      fname = vim.fs.normalize(vim.fn.expand("%:p:t"))
-    end
     local file_symbols = {}
     if vim.bo.modifiable == false or vim.bo.readonly == true then
       table.insert(file_symbols, symbols.readonly)
     end
-    if is_new_file() then
+    if vim.fn.filereadable(bname) == 0 then
       table.insert(file_symbols, symbols.newfile)
     end
     if vim.bo.modified then
       table.insert(file_symbols, symbols.modified)
     end
-    return utils.escape(fname) .. (#file_symbols > 0 and " " .. table.concat(file_symbols, " ") or "")
+    local parts = { utils.escape(file_display_name(bname)) }
+    vim.list_extend(parts, file_symbols)
+    return table.concat(parts, " ")
+  end
+
+  -- Neogit uses named nofile buffers whose filetype and buffer name both start
+  -- with "Neogit". Since the buffer name is non-empty they never reach the
+  -- unnamed [filetype] branch below, so show a label directly.
+  if vim.bo.ft:match("^Neogit") then
+    return string.format("[%s]", utils.escape(vim.bo.ft))
   end
 
   -- Terminal buffer, show terminal command and id
