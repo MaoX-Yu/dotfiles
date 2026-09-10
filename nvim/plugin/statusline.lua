@@ -322,9 +322,9 @@ function M.showcmd_msg(active)
   end
 end
 
-local STL = {}
+local statusline = {}
 
-function STL.stl_left(active)
+function statusline.stl_left(active)
   local left = {}
 
   local fname = M.fname()
@@ -343,7 +343,7 @@ function STL.stl_left(active)
   return table.concat(left, "  ")
 end
 
-function STL.stl_right(active)
+function statusline.stl_right(active)
   local right = {}
 
   local showcmd = M.showcmd_msg(active)
@@ -382,14 +382,14 @@ end
 
 local function stl()
   return table.concat({
-    [[%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('STL.stl_left(true)') : luaeval('STL.stl_left()')%}]],
+    [[%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('statusline.stl_left(true)') : luaeval('statusline.stl_left()')%}]],
     [[%=]],
     [[%<]],
-    [[%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('STL.stl_right(true)') : luaeval('STL.stl_right()')%}]],
+    [[%{%(nvim_get_current_win()==#g:actual_curwin) ? luaeval('statusline.stl_right(true)') : luaeval('statusline.stl_right()')%}]],
   })
 end
 
-function STL.get()
+function statusline.get()
   local ft = vim.bo.filetype
   if ft == "snacks_dashboard" or ft == "mason" then
     return "%#Normal#"
@@ -404,6 +404,6 @@ au({ "FileChangedShellPost", "DiagnosticChanged", "LspProgress" }, {
   end,
 })
 
-_G.STL = STL
+_G.statusline = statusline
 
-vim.go.statusline = [[%!v:lua.STL.get()]]
+vim.go.statusline = [[%!v:lua.statusline.get()]]

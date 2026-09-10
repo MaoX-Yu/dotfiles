@@ -40,6 +40,7 @@ P:add({
               PmenuExtraSel = { fg = C.mauve, bg = C.surface0, style = { "bold" } },
               PmenuMatch = { fg = C.pink, style = { "bold" } },
               PmenuMatchSel = { fg = C.pink, style = { "bold" } },
+              TabLine = { bg = C.mantle, fg = C.overlay0 },
 
               -- Which-key
               WhichKey = { fg = C.lavender, style = { "italic" } },
