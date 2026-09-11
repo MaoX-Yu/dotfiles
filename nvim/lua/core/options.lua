@@ -13,6 +13,7 @@ o.completeopt = "menu,menuone,noselect,fuzzy,popup"
 o.confirm = true
 o.cursorline = true
 o.expandtab = true -- use space replace tab
+o.exrc = true
 o.fileformats = "unix,dos"
 o.fillchars = "fold: ,foldclose:,foldopen:,foldsep: ,foldinner: "
 o.foldcolumn = "0"

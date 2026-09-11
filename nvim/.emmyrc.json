@@ -3,11 +3,6 @@
     "runtime": {
         "version": "LuaJIT"
     },
-    "workspace": {
-        "library": [
-            "$VIMRUNTIME"
-        ]
-    },
     "diagnostics": {
         "disable": [
             "unnecessary-if",
