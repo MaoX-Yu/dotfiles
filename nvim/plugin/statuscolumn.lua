@@ -72,7 +72,7 @@ ffi.cdef([[  typedef struct {} Error;
 
 ---Highlight group openers are cached because the statuscolumn is evaluated for
 ---every screen line and small strings are built very often.
----@type table<string, string>
+---@type table<string|integer, string>
 local hl_open = setmetatable({}, {
   __index = function(cache, hl)
     local prefix = "%#" .. hl .. "#"
@@ -83,7 +83,7 @@ local hl_open = setmetatable({}, {
 
 ---Build a highlighted statuscolumn cell.
 ---@param str string cell content
----@param hl string name of the highlight group
+---@param hl string|integer name or id of the highlight group
 ---@return string
 local function make_cell(str, hl)
   return hl_open[hl] .. str .. "%*"
@@ -131,7 +131,7 @@ local function index_signs(signs)
   for _, sign in ipairs(signs) do
     local spec = sign[4]
     if spec.sign_text then
-      local name = spec.sign_name or spec.sign_hl_group or ""
+      local name = tostring(spec.sign_name or spec.sign_hl_group or "")
       local lnum = sign[2] + 1
       local row = rows and rows[lnum]
       if not row then
@@ -163,7 +163,7 @@ local function refresh(data)
   local wo = vim.wo[win]
   local fcs = vim.opt_local.fillchars:get()
   local buf = vim.api.nvim_win_get_buf(win)
-  local wininfo = vim.fn.getwininfo(win)[1]
+  local wininfo = vim.fn.getwininfo(win)[1] --[[@as vim.fn.getwininfo.ret.item ]]
   data.cur = vim.api.nvim_win_get_cursor(win)
   data.cul_hl_active = wo.cul and wo.culopt:find("[ou]") ~= nil
   data.nu = wo.nu
@@ -185,7 +185,7 @@ local function refresh(data)
       type = "sign",
       details = true,
     })
-    data.signs = index_signs(signs)
+    data.signs = index_signs(signs --[[@as mao.extmark.sign[] ]])
   end
 
   -- Line number width must fit the largest value that can be displayed:
@@ -228,23 +228,26 @@ local function render_lnum(data)
     return ""
   end
 
+  local pad = data.num_fmt_pad --[[@as string]]
+  local abs = data.num_fmt_abs --[[@as string]]
+
   if data.virtnum ~= 0 then
-    return string.format(data.num_fmt_pad, "")
+    return string.format(pad, "")
   end
 
   if not data.nu then
-    return string.format(data.num_fmt_pad, data.relnum)
+    return string.format(pad, data.relnum)
   end
 
   if not data.rnu then
-    return string.format(data.num_fmt_pad, data.lnum)
+    return string.format(pad, data.lnum)
   end
 
   if data.relnum == 0 then
-    return string.format(data.num_fmt_abs, data.lnum)
+    return string.format(abs, data.lnum)
   end
 
-  return string.format(data.num_fmt_pad, data.relnum)
+  return string.format(pad, data.relnum)
 end
 
 ---Build the fold column piece.
@@ -261,7 +264,8 @@ local function render_fold(data, culhl)
   local foldchar = (data.virtnum ~= 0 or foldinfo.start ~= lnum) and data.foldsep
     or foldinfo.lines == 0 and data.foldopen
     or data.foldclose
-  return data.fold_cells[culhl][foldchar]
+  local cells = data.fold_cells --[[@as table<boolean, mao.stc.fold_cells> ]]
+  return cells[culhl][foldchar]
 end
 
 ---Pick the sign cell of a row, falling back to the cached blank cell.
@@ -279,12 +283,13 @@ end
 ---@param data mao.stc.shared_data
 ---@return string
 local function render_line(data)
-  local culhl = data.cul_hl_active and data.lnum == data.cur[1]
+  local cur = data.cur --[[@as integer[] ]]
+  local culhl = not not (data.cul_hl_active and data.lnum == cur[1])
   local row = data.signs and data.signs[data.lnum]
   local pieces = {}
 
   if data.show_scl then
-    local candidate = data.virtnum == 0 and row and row.non_git
+    local candidate = (data.virtnum == 0 and row and row.non_git) or nil
     pieces[#pieces + 1] = render_sign(candidate, culhl)
     pieces[#pieces + 1] = " "
   end

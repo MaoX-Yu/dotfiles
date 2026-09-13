@@ -3,7 +3,7 @@ P:add({
     src = "https://github.com/folke/which-key.nvim",
     data = {
       config = function()
-        require("which-key").setup({
+        local opts = {
           preset = "helix",
           triggers = {
             { "<Leader>", mode = { "n", "v" } },
@@ -93,7 +93,8 @@ P:add({
               { "<C-_>", hidden = true },
             },
           },
-        })
+        }
+        require("which-key").setup(opts --[[@as wk.Opts]])
       end,
     },
   },

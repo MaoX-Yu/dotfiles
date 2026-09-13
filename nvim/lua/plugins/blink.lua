@@ -5,7 +5,7 @@ P:add({
     data = {
       event = { "InsertEnter" },
       config = function()
-        require("blink.cmp").setup({
+        local opts = {
           keymap = {
             preset = "default",
             ["<CR>"] = { "select_and_accept", "fallback" },
@@ -26,7 +26,8 @@ P:add({
           sources = {
             default = { "lsp", "path", "snippets", "buffer" },
           },
-        })
+        }
+        require("blink.cmp").setup(opts --[[@as blink.cmp.Config]])
       end,
     },
   },

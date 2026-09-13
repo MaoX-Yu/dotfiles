@@ -33,6 +33,8 @@ au("FileType", {
 au("TextYankPost", {
   group = augroup("highlight_yank"),
   callback = function()
+    -- TODO: nvim 0.13 正式发布后改用 vim.hl.hl_op()
+    ---@diagnostic disable-next-line: deprecated
     (vim.hl or vim.highlight).on_yank()
   end,
 })

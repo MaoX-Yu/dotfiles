@@ -62,7 +62,8 @@ function M.fname()
 
   -- Other special buffer types
   if vim.bo.ft == "minifiles" then
-    local path = vim.fn.expand("%"):match("^minifiles://%d+/(.*)")
+    local bname_full = vim.fn.expand("%") --[[@as string]]
+    local path = bname_full:match("^minifiles://%d+/(.*)") or ""
     return string.format("[Minifiles] %s", path)
   end
 

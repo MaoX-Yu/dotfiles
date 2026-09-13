@@ -3,6 +3,7 @@ P:add({
     src = "https://github.com/MeanderingProgrammer/render-markdown.nvim",
     data = {
       config = function()
+        ---@diagnostic disable-next-line: undefined-field
         require("render-markdown").setup({
           file_types = { "markdown" },
           callout = {
@@ -153,7 +154,6 @@ P:add({
           -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/509
           win_options = { concealcursor = { rendered = "nvc" } },
         })
-        ---@diagnostic disable-next-line: undefined-global
         Snacks.toggle({
           name = "Render Markdown",
           get = function()
@@ -162,8 +162,10 @@ P:add({
           set = function(enabled)
             local m = require("render-markdown")
             if enabled then
+              ---@diagnostic disable-next-line: undefined-field
               m.enable()
             else
+              ---@diagnostic disable-next-line: undefined-field
               m.disable()
             end
           end,

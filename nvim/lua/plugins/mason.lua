@@ -3,7 +3,7 @@ P:add({
     src = "https://github.com/mason-org/mason.nvim",
     data = {
       config = function()
-        require("mason").setup({
+        local opts = {
           ui = {
             icons = {
               package_installed = "✓",
@@ -11,7 +11,8 @@ P:add({
               package_pending = "⟳",
             },
           },
-        })
+        }
+        require("mason").setup(opts --[[@as MasonSettings]])
 
         local Result = require("mason-core.result")
         local path = require("mason-core.path")
@@ -30,7 +31,8 @@ P:add({
             -- if vim.fn.executable "uv" ~= 1 then
             --   return pypi.install(ctx, source)
             -- end
-            return Result.try(function(try)
+            ---@async
+            local function install_with_uv(try)
               ctx:promote_cwd()
               try(ctx.spawn.uv({ "venv", "venv" }))
               try(ctx.spawn.uv({
@@ -43,13 +45,14 @@ P:add({
                   VIRTUAL_ENV = path.concat({ ctx.cwd:get(), "venv" }),
                 },
               }))
-            end)
+            end
+            return Result.try(install_with_uv)
           end,
         }
 
         setmetatable(uv, extend)
 
-        compiler.register_compiler("pypi", uv)
+        compiler.register_compiler("pypi", uv --[[@as InstallerCompiler]])
       end,
     },
   },

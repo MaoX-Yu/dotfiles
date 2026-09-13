@@ -61,7 +61,7 @@ P:add({
               end,
             },
           })
-          opts = themes.get_dropdown(opts)
+          opts = themes.get_dropdown(opts) --[[@as table]]
           require("telescope.pickers")
             .new(opts, {
               prompt_title = prompt,
@@ -123,11 +123,12 @@ P:add({
           if mode == "V" then
             local s = vim.fn.getpos("'<")
             local e = vim.fn.getpos("'>")
-            search = table.concat(vim.fn.getline(s[2], e[2]), "\n")
+            local vlines = vim.fn.getline(s[2], e[2]) --[[@as string[] ]]
+            search = table.concat(vlines, "\n")
           elseif mode:find("[v\22]") then
             local s = vim.fn.getpos("'<")
             local e = vim.fn.getpos("'>")
-            local lines = vim.fn.getline(s[2], e[2])
+            local lines = vim.fn.getline(s[2], e[2]) --[[@as string[] ]]
             if #lines > 0 then
               lines[1] = string.sub(lines[1], s[3])
               if #lines == 1 then

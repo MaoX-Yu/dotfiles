@@ -12,6 +12,10 @@
             "iter-variable-reassign",
             "non-literal-expressions-in-assert",
             "missing-global-doc"
+        ],
+        "globals": [
+            "MiniIcons",
+            "MiniFiles"
         ]
     },
     "strict": {

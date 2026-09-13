@@ -21,7 +21,8 @@ P:add({
     src = "https://github.com/mfussenegger/nvim-dap",
     data = {
       config = function()
-        require("nvim-dap-virtual-text").setup({})
+        local opts = {}
+        require("nvim-dap-virtual-text").setup(opts --[[@as nvim_dap_virtual_text_options]])
 
         vim.api.nvim_set_hl(0, "DapStoppedLine", { default = true, link = "Visual" })
 
@@ -76,7 +77,8 @@ P:add({
       config = function()
         local dap = require("dap")
         local dapui = require("dapui")
-        dapui.setup({})
+        local opts = {}
+        dapui.setup(opts --[[@as dapui.Config]])
         dap.listeners.after.event_initialized["dapui_config"] = function()
           dapui.open({})
         end

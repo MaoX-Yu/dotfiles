@@ -7,7 +7,8 @@ local function dial(increment, g)
   local is_visual = mode == "v" or mode == "V" or mode == "\22"
   local func = (increment and "inc" or "dec") .. (g and "_g" or "_") .. (is_visual and "visual" or "normal")
   local group = vim.g.dials_by_ft[vim.bo.filetype] or "default"
-  return require("dial.map")[func](group)
+  local dial_fn = require("dial.map")[func] --[[@as fun(group_name: string?): string]]
+  return dial_fn(group)
 end
 
 P:add({

@@ -4,7 +4,7 @@ P:add({
     data = {
       config = function()
         vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
-        require("conform").setup({
+        local opts = {
           formatters_by_ft = {
             ["lua"] = { "stylua" },
             ["go"] = { "goimports" },
@@ -23,7 +23,8 @@ P:add({
               return { timeout_ms = 3000 }
             end
           end,
-        })
+        }
+        require("conform").setup(opts --[[@as conform.setupOpts]])
         vim.api.nvim_create_user_command("Format", function(args)
           local range = nil
           if args.count ~= -1 then
@@ -33,7 +34,8 @@ P:add({
               ["end"] = { args.line2, end_line:len() },
             }
           end
-          require("conform").format({ async = true, lsp_format = "fallback", range = range })
+          local format_opts = { async = true, lsp_format = "fallback", range = range }
+          require("conform").format(format_opts --[[@as conform.FormatOpts]])
         end, { range = true })
       end,
     },
