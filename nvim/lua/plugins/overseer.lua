@@ -18,14 +18,14 @@ P:add({
             direction = "right",
           },
         })
-
-        P.map({
-          { "<Leader>ow", "<Cmd>OverseerToggle<CR>", desc = "Toggle task list" },
-          { "<Leader>oo", "<Cmd>OverseerRun<CR>", desc = "Run task" },
-          { "<Leader>ot", "<Cmd>OverseerTaskAction<CR>", desc = "Task action" },
-          { "<Leader>os", "<Cmd>OverseerShell<CR>", desc = "Run shell" },
-        })
       end,
     },
   },
+})
+
+P.map({
+  { "<Leader>ow", "<Cmd>OverseerToggle<CR>", desc = "Toggle task list" },
+  { "<Leader>oo", "<Cmd>OverseerRun<CR>", desc = "Run task" },
+  { "<Leader>ot", "<Cmd>OverseerTaskAction<CR>", desc = "Task action" },
+  { "<Leader>os", "<Cmd>OverseerShell<CR>", desc = "Run shell" },
 })
