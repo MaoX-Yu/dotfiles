@@ -59,6 +59,8 @@ map("v", "<C-_>", "gc", { remap = true, desc = "Toggle comment" })
 map("n", "<Leader>l", "<Cmd>lua vim.pack.update()<CR>", { desc = "Pack" })
 
 -- LSP
+map("n", "K", vim.lsp.buf.hover, { desc = "Hover" })
+map("n", "<Leader>K", "<Cmd>norm! K<CR>", { desc = "Keywordprg" })
 map("n", "gd", vim.lsp.buf.definition, { desc = "Definition" })
 map("n", "gD", vim.lsp.buf.declaration, { desc = "Declaration" })
 map("n", "<Leader>cd", vim.diagnostic.open_float, { desc = "Line diagnostics" })
