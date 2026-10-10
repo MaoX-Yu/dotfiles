@@ -38,4 +38,9 @@ rio = "~/.config/rio"
 "tmux/tmux.conf" = "~/.tmux.conf"
 
 [fish.files]
-fish = "~/.config/fish"
+"fish/conf.d/alias.fish" = { target = "~/.config/fish/conf.d/alias.fish", type = "symbolic" }
+"fish/conf.d/brew.fish" = { target = "~/.config/fish/conf.d/brew.fish", type = "symbolic", if = "(is_executable '/opt/homebrew/bin/brew')" }
+"fish/conf.d/fzf.fish" = { target = "~/.config/fish/conf.d/fzf.fish", type = "symbolic", if = "(command_success 'command -v fzf >/dev/null 2>&1 || test -x /opt/homebrew/bin/fzf')" }
+"fish/conf.d/starship.fish" = { target = "~/.config/fish/conf.d/starship.fish", type = "symbolic", if = "(command_success 'command -v starship >/dev/null 2>&1 || test -x /opt/homebrew/bin/starship')" }
+"fish/conf.d/yazi.fish" = { target = "~/.config/fish/conf.d/yazi.fish", type = "symbolic", if = "(command_success 'command -v yazi >/dev/null 2>&1 || test -x /opt/homebrew/bin/yazi')" }
+"fish/conf.d/zoxide.fish" = { target = "~/.config/fish/conf.d/zoxide.fish", type = "symbolic", if = "(command_success 'command -v zoxide >/dev/null 2>&1 || test -x /opt/homebrew/bin/zoxide')" }
