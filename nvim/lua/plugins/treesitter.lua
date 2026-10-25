@@ -95,7 +95,7 @@ P:add({
       event = { "BufReadPost", "BufNewFile" },
       config = function()
         local tsc = require("treesitter-context")
-        Snacks.toggle({
+        require("utils.snacks.toggle")({
           name = "Treesitter Context",
           get = tsc.enabled,
           set = function(state)

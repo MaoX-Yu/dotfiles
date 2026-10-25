@@ -6,7 +6,6 @@ _G.P = Pack.new()
 require("plugins.catppuccin")
 
 -- Tools
-require("plugins.snacks")
 require("plugins.mini")
 
 -- Deps

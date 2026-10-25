@@ -1,0 +1,42 @@
+local S = require("utils.snacks")
+
+local M = {}
+
+function M.setup()
+  vim.keymap.set({ "n", "v" }, "<Leader>gB", function()
+    S.gitbrowse.open()
+  end, { desc = "Git browse" })
+
+  vim.keymap.set("n", "<Leader>z", function()
+    S.zen.zen()
+  end, { desc = "Toggle zen mode" })
+  vim.keymap.set("n", "<Leader>Z", function()
+    S.zen.zoom()
+  end, { desc = "Toggle zoom" })
+  vim.keymap.set("n", "<Leader>.", function()
+    S.scratch.open()
+  end, { desc = "Toggle scratch buffer" })
+  vim.keymap.set("n", "<Leader>bS", function()
+    S.scratch.select()
+  end, { desc = "Select scratch buffer" })
+  vim.keymap.set("n", "<Leader>bc", function()
+    S.bufdelete.delete()
+  end, { desc = "Close buffer" })
+  vim.keymap.set("n", "<Leader>bo", function()
+    S.bufdelete.other()
+  end, { desc = "Close other buffers" })
+  vim.keymap.set("n", "<Leader>R", function()
+    S.rename.rename_file()
+  end, { desc = "Rename file" })
+  vim.keymap.set("n", "<Leader>t", function()
+    S.terminal.toggle()
+  end, { desc = "Toggle terminal" })
+  vim.keymap.set({ "n", "t" }, "]w", function()
+    S.words.jump(vim.v.count1)
+  end, { desc = "Next word" })
+  vim.keymap.set({ "n", "t" }, "[w", function()
+    S.words.jump(-vim.v.count1)
+  end, { desc = "Prev word" })
+end
+
+return M

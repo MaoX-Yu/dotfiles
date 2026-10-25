@@ -392,7 +392,7 @@ end
 
 function statusline.get()
   local ft = vim.bo.filetype
-  if ft == "snacks_dashboard" or ft == "mason" then
+  if ft == "mason" then
     return "%#Normal#"
   end
   return stl()

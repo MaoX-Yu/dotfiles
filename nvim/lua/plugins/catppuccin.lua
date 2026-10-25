@@ -25,10 +25,6 @@ P:add({
             },
             mason = true,
             overseer = true,
-            snacks = {
-              enabled = true,
-              indent_scope_color = "",
-            },
             telescope = false,
             which_key = false,
           },
@@ -48,17 +44,10 @@ P:add({
               WhichKeySeparator = { fg = C.lavender },
               WhichKeyTitle = { fg = C.lavender, bg = C.mantle },
 
-              -- Snacks
-              SnacksDashboardDesc = { fg = C.green },
-              SnacksDashboardFooter = { fg = C.green },
-              SnacksDashboardHeader = { fg = C.mauve },
-              SnacksDashboardIcon = { fg = C.peach },
-              SnacksDashboardKey = { fg = C.yellow },
-              SnacksDashboardTitle = { fg = C.mauve },
-              SnacksInputBorder = { fg = C.lavender, style = { "italic" } },
-              SnacksInputIcon = { fg = C.lavender, style = { "italic" } },
-              SnacksInputTitle = { fg = C.lavender, style = { "italic" } },
-              SnacksPickerMatch = { fg = C.pink },
+              -- Local editor UI
+              MaoInputBorder = { fg = C.lavender, style = { "italic" } },
+              MaoInputIcon = { fg = C.lavender, style = { "italic" } },
+              MaoInputTitle = { fg = C.lavender, style = { "italic" } },
 
               -- Telescope
               TelescopeBorder = { link = "FloatBorder" },

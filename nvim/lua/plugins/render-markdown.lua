@@ -154,7 +154,7 @@ P:add({
           -- https://github.com/MeanderingProgrammer/render-markdown.nvim/issues/509
           win_options = { concealcursor = { rendered = "nvc" } },
         })
-        Snacks.toggle({
+        require("utils.snacks.toggle")({
           name = "Render Markdown",
           get = function()
             return require("render-markdown.state").enabled
