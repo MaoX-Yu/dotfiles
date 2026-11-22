@@ -73,10 +73,14 @@ function M.setup(config)
         bg_color = M.colors.tab_hover,
         fg_color = M.colors.tab_fg,
       },
+      -- 非活跃 tab 右侧 1px 分隔线，默认取主题的 #313244 会显出灰竖条，改成 tab bar 底色隐藏
+      inactive_tab_edge = M.colors.crust,
     },
   }
 
   config.tab_max_width = 30
+  -- 原生关闭按钮是浮动矢量方块，会盖住自定义 tab 的圆角和标题；隐藏后改用中键 / Ctrl+Shift+W 关闭
+  config.show_close_tab_button_in_tabs = false
   config.hide_tab_bar_if_only_one_tab = false
   config.tab_bar_at_bottom = false
   config.show_new_tab_button_in_tab_bar = true
